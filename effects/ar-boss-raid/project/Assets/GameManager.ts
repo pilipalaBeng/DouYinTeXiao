@@ -19,17 +19,17 @@ const AIM_RADIUS = 122;
 
 /** 3D Boss 的空间参数，单位：米。
  *  尺寸依据（探针实测）：AR 相机 fov=60°、fovType=Custom(0)，距离 D 处屏幕竖向覆盖 ≈ 1.155×D 米。
- *  当前 BOSS_CORE_SIZE=3.0 + SPAWN_DIST=3 → 约占屏高 87%。
- *  想调观感大小只动 BOSS_CORE_SIZE 即可（场景里该组件默认 size 是 10，脚本会覆盖它）。
+ *  当前 BOSS_CORE_SIZE=3.0 + SPAWN_DIST=1.5 → 占屏约 173%，**已超过满屏**（会顶到脸、甚至穿进相机）。
+ *  若真机出现「糊脸/穿模」，应调小 BOSS_CORE_SIZE，而不是回退距离。
  */
 const BOSS_CORE_SIZE = 3.0;
 /** 环绕飞行的俯仰上限（弧度）：限制在用户周围「平飞」（±约 28°），不飞到头顶或脚下。 */
 const ORBIT_PITCH_MAX = 0.5;
 const BOSS_SPEED = 0.025;
 /** 开局投放距离：沿相机视轴前方多少米（= 环绕飞行的恒定半径）。
- *  2 -> 4 -> 6 -> 3（作者最后一次要求拉近到二分之一）。**实体恒为 3.0，不随距离缩放**。
+ *  2 -> 4 -> 6 -> 3 -> 1.5（作者两次要求拉近，均为「减半」）。**实体恒为 3.0，不随距离缩放**。
  */
-const SPAWN_DIST = 3;
+const SPAWN_DIST = 1.5;
 /** 投放闸门兜底：等 AR 相机离原点（SLAM 就位）最多等多久，超时则按当前位置投放。 */
 const SPAWN_WAIT_MS = 2500;
 

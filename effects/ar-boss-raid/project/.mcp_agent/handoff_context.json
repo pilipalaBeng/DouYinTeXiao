@@ -1,15 +1,15 @@
 {
   "formatVersion": 2,
-  "revision": 22,
-  "mutationRevision": 206,
-  "updatedAt": "2026-10-15T16:28:49.973Z",
+  "revision": 24,
+  "mutationRevision": 209,
+  "updatedAt": "2026-10-15T16:37:11.502Z",
   "writerInstanceId": "1",
   "task": {
     "objective": "把 ar-boss-raid 改为真 3D 空间玩法并调通",
     "workflow": "EffectWorkflow",
-    "currentStage": "Boss 体积调整 + 头像链路移除-已完成",
+    "currentStage": "Boss 拉近 + 修开火失效-已完成，待重启验证",
     "status": "verifying",
-    "summary": "移除好友头像残留链路：删场景对象 Boss出战牌/Boss头像/结算头像，脚本中 badge/avatar/resultAvatar 共 10 处引用清光；Boss 载体 Image.size 0.5→1.0（场景默认原为 10，脚本曾压到 1/20，是观感过小的主因），漂移球壳收紧至 0.4~0.8m。三份 brief 与提审文案等 10 份文档已同步。"
+    "summary": "SPAWN_DIST 6->3（作者要求拉近到二分之一，BOSS_CORE_SIZE 保持 3.0 不动）；修复开火失效：beginFire 原叠加 isRecording，而 handleRecordEnd 会把它永久置 false 且无恢复路径，导致按屏幕不开火且 tick 停摆（HUD 冻结 30s）—— 改为只判 phase，handleRecordEnd 不再冻结整局；fire() 包 try-catch 防音效抛错静默毁链。"
   },
   "knowledge": {
     "rulesDigest": "sha256:8833b06622258c7ff9181204bd4b86d74622dff6714909d205ca1bf969a8a580",
@@ -108,61 +108,45 @@
   ],
   "latestInput": {
     "conversationId": "conversation-5f7406cb8b73f4a8c81f8b67830e4f3e",
-    "messageId": "3d57a72c-0542-49b0-8f46-30b6c2ae6d04",
+    "messageId": "800fd1cb-dbf8-4f8e-b91f-4683ac3dea34",
     "traceContextId": "5f97c60c744d9125e6b42a37cde04bcf2d2746a5a82b8bf84a351ee55b3e8974"
   },
   "artifacts": [
     {
-      "role": "主玩法脚本（已移除头像链路、放大 Boss 载体）",
+      "role": "主玩法脚本（SPAWN_DIST=3、beginFire 去 isRecording 依赖、fire try-catch）",
       "kind": "script",
       "path": "Assets/GameManager.ts",
       "name": "GameManager"
-    },
-    {
-      "role": "3D Boss 载体（Image.size 0.5→1.0）",
-      "kind": "sceneObject",
-      "parent": "AR跟踪",
-      "name": "Boss空间体"
-    },
-    {
-      "role": "预览实际运行的编译产物",
-      "kind": "script",
-      "path": "Library/CompiledScripts/Editor/GameManager.js",
-      "name": "GameManager.js"
     }
   ],
   "verification": [
     {
-      "kind": "scene",
-      "status": "passed",
-      "summary": "s17/s18/s40 已删；Boss空间体 Image.size 由 10 改为 1，与脚本 BOSS_CORE_SIZE=1.0 一致",
-      "at": "2026-10-15T14:36:37.834Z"
-    },
-    {
       "kind": "preview",
-      "status": "passed",
-      "summary": "The latest capture_preview call completed successfully.",
-      "at": "2026-10-15T16:03:51.863Z"
-    },
-    {
-      "kind": "interaction",
-      "status": "passed",
-      "summary": "The latest interact_by_dsl sequence completed successfully.",
-      "at": "2026-10-15T16:27:59.059Z"
+      "status": "inconclusive",
+      "summary": "预览仍执行旧模块（探针为旧格式、origin→boss 仍 6 米），新脚本未加载；已穷尽外部重载手段无效",
+      "at": "2026-10-15T16:29:48.113Z"
     },
     {
       "kind": "script",
       "status": "passed",
       "summary": "The latest run_otsc_check call completed without compilation errors.",
-      "at": "2026-10-15T16:28:49.973Z"
+      "at": "2026-10-15T16:37:00.881Z"
+    },
+    {
+      "kind": "interaction",
+      "status": "passed",
+      "summary": "The latest interact_by_dsl sequence completed successfully.",
+      "at": "2026-10-15T16:37:11.502Z"
     }
   ],
   "openIssues": [
-    "3D 位置与手感无法在 PC 预览验证：AR 相机世界位置飘移（探针实测 y=-50m），属无 SLAM 环境限制"
+    "像塑脚本热重载卡死：Assets 与 CompiledScripts 全部最新但预览仍执行旧模块；实测无效手段含 run_otsc_check(no_emit:false)、stop/pause/resume/reset/start 全序列、capture_preview、save_project、改场景、import_resource",
+    "PC 无 SLAM，模拟相机漂移会让 Boss 出框，无法在 PC 验证命中"
   ],
   "nextActions": [
-    "作者在像塑内保存工程",
-    "真机验证 Boss 尺寸与 3D 手感，反馈后调 BOSS_CORE_SIZE / SPAWN_DIST"
+    "作者在像塑内重启一次编辑器（脚本热重载卡死，外部手段均无效）",
+    "重启后真机验证：距离 3 米观感 + 开火是否恢复",
+    "确认无问题后删除 probeSpatial 与 [fire] 诊断"
   ],
   "lastMutation": {
     "at": "2026-10-15T16:28:21.707Z",
