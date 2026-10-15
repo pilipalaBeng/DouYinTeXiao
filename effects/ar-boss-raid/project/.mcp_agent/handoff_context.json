@@ -1,15 +1,15 @@
 {
   "formatVersion": 2,
-  "revision": 24,
-  "mutationRevision": 217,
-  "updatedAt": "2026-10-15T16:43:05.176Z",
+  "revision": 26,
+  "mutationRevision": 219,
+  "updatedAt": "2026-10-15T16:58:13.827Z",
   "writerInstanceId": "1",
   "task": {
     "objective": "把 ar-boss-raid 改为真 3D 空间玩法并调通",
     "workflow": "EffectWorkflow",
-    "currentStage": "Boss 拉近 + 修开火失效-已完成，待重启验证",
+    "currentStage": "距离调至 1.5 + 主循环加固-已完成，待真机验证",
     "status": "verifying",
-    "summary": "SPAWN_DIST 6->3（作者要求拉近到二分之一，BOSS_CORE_SIZE 保持 3.0 不动）；修复开火失效：beginFire 原叠加 isRecording，而 handleRecordEnd 会把它永久置 false 且无恢复路径，导致按屏幕不开火且 tick 停摆（HUD 冻结 30s）—— 改为只判 phase，handleRecordEnd 不再冻结整局；fire() 包 try-catch 防音效抛错静默毁链。"
+    "summary": "SPAWN_DIST 3->1.5（作者要求再拉近一倍，BOSS_CORE_SIZE 保持 3.0）；彻底排查主循环：探针实测 tick 每帧完整执行、isRec=true、phase=warmup 均正常，PC 上 HUD 冻结系帧率仅 1.5~5 FPS 叠加单帧限幅所致，非代码问题；加固 detectFaceHeavy 异常隔离与 update 独立异常配额；确认 delta 单位为毫秒。"
   },
   "knowledge": {
     "rulesDigest": "sha256:8833b06622258c7ff9181204bd4b86d74622dff6714909d205ca1bf969a8a580",
@@ -108,12 +108,12 @@
   ],
   "latestInput": {
     "conversationId": "conversation-5f7406cb8b73f4a8c81f8b67830e4f3e",
-    "messageId": "800fd1cb-dbf8-4f8e-b91f-4683ac3dea34",
+    "messageId": "ac4dc9ab-2965-4900-96e3-da6b30339f52",
     "traceContextId": "5f97c60c744d9125e6b42a37cde04bcf2d2746a5a82b8bf84a351ee55b3e8974"
   },
   "artifacts": [
     {
-      "role": "主玩法脚本（SPAWN_DIST=3、beginFire 去 isRecording 依赖、fire try-catch）",
+      "role": "主玩法脚本（SPAWN_DIST=1.5；detectFaceHeavy 隔离；update 独立异常配额）",
       "kind": "script",
       "path": "Assets/GameManager.ts",
       "name": "GameManager"
@@ -122,30 +122,31 @@
   "verification": [
     {
       "kind": "preview",
-      "status": "inconclusive",
-      "summary": "预览仍执行旧模块（探针为旧格式、origin→boss 仍 6 米），新脚本未加载；已穷尽外部重载手段无效",
-      "at": "2026-10-15T16:29:48.113Z"
+      "status": "passed",
+      "summary": "tick 入口/出口探针确认主循环健康（n=1..3 均 el 递增、每帧完整跑完无异常）；SPAWN_DIST=1.5 已在探针中实测生效（boss=(1.5,0,0)）",
+      "at": "2026-10-15T16:44:29.514Z"
     },
     {
       "kind": "script",
       "status": "passed",
       "summary": "The latest run_otsc_check call completed without compilation errors.",
-      "at": "2026-10-15T16:42:46.714Z"
+      "at": "2026-10-15T16:57:52.030Z"
     },
     {
       "kind": "interaction",
       "status": "passed",
       "summary": "The latest interact_by_dsl sequence completed successfully.",
-      "at": "2026-10-15T16:43:05.176Z"
+      "at": "2026-10-15T16:58:13.827Z"
     }
   ],
   "openIssues": [
-    "像塑脚本热重载卡死：Assets 与 CompiledScripts 全部最新但预览仍执行旧模块；实测无效手段含 run_otsc_check(no_emit:false)、stop/pause/resume/reset/start 全序列、capture_preview、save_project、改场景、import_resource",
-    "PC 无 SLAM，模拟相机漂移会让 Boss 出框，无法在 PC 验证命中"
+    "PC 预览帧率仅 1.5~5 FPS（delta 186~640ms），HUD 看似冻结，属无 SLAM 环境限制，真机不受影响",
+    "MCP 的 touch_down 不派发 APJS.EventType.Touch 全局事件，开火无法在 PC 验证",
+    "PC 上相机位于原点时 worldToScreenPoint 退化为 (0,0,0)，Boss 恒出框，命中判定无法在 PC 验证"
   ],
   "nextActions": [
-    "作者在像塑内重启一次编辑器（脚本热重载卡死，外部手段均无效）",
-    "重启后真机验证：距离 3 米观感 + 开火是否恢复",
+    "真机验证开火（触摸链路只能在真机验）与 1.5 米距离观感",
+    "若 1.5 米下 Boss 糊脸/穿模，调小 BOSS_CORE_SIZE（当前 3.0），不要回退距离",
     "确认无问题后删除 probeSpatial 与 [fire] 诊断"
   ],
   "lastMutation": {

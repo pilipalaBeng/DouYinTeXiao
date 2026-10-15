@@ -26,12 +26,19 @@ const BOSS_CORE_SIZE = 3.0;
 /** 环绕飞行的俯仰上限（弧度）：限制在用户周围「平飞」（±约 28°），不飞到头顶或脚下。 */
 const ORBIT_PITCH_MAX = 0.5;
 const BOSS_SPEED = 0.025;
+/** 投放后先「定在原地」多久（毫秒），让玩家先看清 Boss 在哪，再开始绕飞。
+ *  作者要求：不要一上来就飞，避免玩家像抓瞎一样找。
+ */
+const BORN_HOLD_MS = 2500;
 /** 开局投放距离：沿相机视轴前方多少米（= 环绕飞行的恒定半径）。
  *  2 -> 4 -> 6 -> 3 -> 1.5（作者两次要求拉近，均为「减半」）。**实体恒为 3.0，不随距离缩放**。
  */
 const SPAWN_DIST = 1.5;
-/** 投放闸门兜底：等 AR 相机离原点（SLAM 就位）最多等多久，超时则按当前位置投放。 */
-const SPAWN_WAIT_MS = 2500;
+/** 投放闸门兜底：等 AR 相机离原点（SLAM 就位）最多等多久，超时则按当前位置投放。
+ *  2500 -> 1200：真机实测相机 590~900ms 就位，缩短后玩家几乎无感；
+ *  且现在球心每帧跟随相机，即便开局锚点算错也会立刻被纠正（不再需要长等待兜底）。
+ */
+const SPAWN_WAIT_MS = 1200;
 
 /**
  * Main Scene
@@ -92,6 +99,8 @@ class MainScene extends Scene {
     /** 开局投放闸门：等 AR 相机被 SLAM 就位后再投放，避免锚点算在世界原点。 */
     private spawnReady: boolean = false;
     private spawnWait: number = 0;
+    /** 投放后「定住不动」的倒计时（毫秒）；归零后才开始绕飞。 */
+    private bornHoldLeft: number = 0;
     /** AR 相机 Transform 缓存（billboard 每帧都要用，避免每帧做场景查找）。 */
     private arCamTransform: APJS.Transform | null = null;
 
@@ -273,7 +282,20 @@ class MainScene extends Scene {
         const dt = Math.min(0.05, delta / 1000);
         try {
             if (!this.spawnReady) { this.trySpawnBoss(delta); return; }
-            this.orbitStep(dt);
+            // 球心每帧跟随相机的**当前**位置 —— 这才是「围着用户转」。
+            // 若球心固定为开局那一刻的位置，玩家一走动（相机平移），
+            // Boss 到他的距离就不再等于半径，表现为「忽远忽近」。
+            if (this.arCamTransform) {
+                const cp = this.arCamTransform.getWorldPosition();
+                this.userOrigin.x = cp.x; this.userOrigin.y = cp.y; this.userOrigin.z = cp.z;
+            }
+            // 投放后先定住 BORN_HOLD_MS，让玩家先看清 Boss 在哪，再开始绕飞。
+            if (this.bornHoldLeft > 0) {
+                this.bornHoldLeft = Math.max(0, this.bornHoldLeft - delta);
+                this.placeBossOnOrbit();
+            } else {
+                this.orbitStep(dt);
+            }
             if (this.bossSpatial) {
                 this.bossSpatial.getTransform().setWorldPosition(this.bossPos);
                 this.billboardBoss();
@@ -352,6 +374,36 @@ class MainScene extends Scene {
         const ny = this.userOrigin.y + (f.y * kf + r.y * kr + u.y * sp) * SPAWN_DIST;
         const nz = this.userOrigin.z + (f.z * kf + r.z * kr + u.z * sp) * SPAWN_DIST;
         this.bossPos.x = nx; this.bossPos.y = ny; this.bossPos.z = nz;
+    }
+
+    /**
+     * 出生校准：把 Boss 从「视轴方向」微调到正对屏幕准星。
+     * 视轴方向的投影落在屏幕几何中心 (360, 640)，而准星在 (360, 520) —— 相差 120px，
+     * 命中容差 AIM_RADIUS 只有 122px，余量几乎为零，稍微一动就会脱靶。
+     * 这里不依赖 worldToScreenPoint 的 Y 轴方向假设（不同端可能相反）：
+     * 对 pitch 做「正负试探」，取投影更接近准星的那一组。
+     */
+    private aimAtCrosshair(): void {
+        if (!this.arCamera) return;
+        const fovHalfRad = Math.max(0.05, Math.min(1.2, (this.arCamera.fov / 2) * Math.PI / 180));
+        this.orbitYaw = 0; this.orbitPitch = 0;
+        this.placeBossOnOrbit();
+        this.projectBoss();
+        const baseY = this.bossScreenY;
+        if (!isFinite(baseY)) return;
+        const need = CROSS_Y - baseY;
+        if (Math.abs(need) < 6) return;
+        const angle = Math.min(ORBIT_PITCH_MAX, Math.atan(Math.abs(need) / (SCREEN_H / 2) * Math.tan(fovHalfRad)));
+        let best = 0; let bestD = Math.abs(need);
+        for (const sign of [1, -1]) {
+            this.orbitPitch = sign * angle;
+            this.placeBossOnOrbit();
+            this.projectBoss();
+            const d = Math.abs(this.bossScreenY - CROSS_Y);
+            if (d < bestD) { bestD = d; best = sign * angle; }
+        }
+        this.orbitYaw = 0; this.orbitPitch = best;
+        this.placeBossOnOrbit();
     }
 
     /** 真机诊断探针：打印相机、朝向、锚点、Boss 世界坐标与投影结果。定位完毕后应移除。 */
@@ -538,6 +590,10 @@ class MainScene extends Scene {
         this.orbitYaw = 0; this.orbitPitch = 0;
         this.orbitYawVel = 0; this.orbitPitchVel = 0;
         this.placeBossOnOrbit();
+        // 微调到正对屏幕准星，让玩家一睁眼就看见它、且能直接打中。
+        this.aimAtCrosshair();
+        // 先定住不动，让玩家看清 Boss 的位置，再开始绕飞。
+        this.bornHoldLeft = BORN_HOLD_MS;
         if (this.bossSpatial) {
             this.bossSpatial.getTransform().setWorldPosition(this.bossPos);
             this.bossSpatial.enabled = true;
