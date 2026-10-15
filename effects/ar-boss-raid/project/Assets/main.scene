@@ -3352,15 +3352,15 @@ enablePivotMatrix: true
 name: !<str> ""
 guid: {a: 5119655065878392194, b: 17037362078210685599}
 enabled: true
-localPosition: {x: 4.5625, y: -11.375, z: 0}
+localPosition: {x: 11.26616, y: -5.46436, z: 0}
 localScale: {x: 1, y: 1, z: 1}
 localOrientation: {w: 1, x: 0, y: 0, z: 0}
 parent: {localId: 30}
 mobility:
   __class: Mobility
   value: Dynamic
-anchoredPosition: {x: 146, y: -364}
-sizeDelta: {x: 392, y: 271}
+anchoredPosition: {x: 360.5172, y: -174.8595}
+sizeDelta: {x: 321.0343, y: 293.719}
 pivot: {x: 0.5, y: 0.5}
 anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
 pixelsPerUnit: 32

@@ -20,15 +20,17 @@ const AIM_RADIUS = 122;
 /** 3D Boss 的空间参数，单位：米。
  *  BOSS_MIN/MAX_DIST 是「距开局锚点」的球壳半径；锚点本身在相机视轴前方 SPAWN_DIST 米。
  *  尺寸依据（探针实测）：AR 相机 fov=60°、fovType=Custom(0)，距离 D 处屏幕竖向覆盖 ≈ 1.155×D 米。
- *  故 BOSS_CORE_SIZE=1.5 + SPAWN_DIST=2 → 约占屏高 65%（最近 1.4m 处约 93%，最远 2.6m 处约 50%）。
- *  想整体调大/调小观感，只改 BOSS_CORE_SIZE 即可（场景里该组件默认 size 是 10，脚本会覆盖它）。
+ *  当前 BOSS_CORE_SIZE=3.0 + SPAWN_DIST=4 → 约占屏高 65%（最近 3.4m 处约 76%，最远 4.6m 处约 56%）。
+ *  改观感只动 BOSS_CORE_SIZE 即可（场景里该组件默认 size 是 10，脚本会覆盖它）。
  */
-const BOSS_CORE_SIZE = 1.5;
+const BOSS_CORE_SIZE = 3.0;
 const BOSS_MIN_DIST = 0.3;
 const BOSS_MAX_DIST = 0.6;
 const BOSS_SPEED = 0.05;
-/** 开局投放距离：沿相机视轴前方多少米。 */
-const SPAWN_DIST = 2;
+/** 开局投放距离：沿相机视轴前方多少米。
+ *  2 -> 4（作者要求再远一倍）；实体同步 1.5 -> 3.0，保持屏幕观感大小不变。
+ */
+const SPAWN_DIST = 4;
 /** 投放闸门兜底：等 AR 相机离原点（SLAM 就位）最多等多久，超时则按当前位置投放。 */
 const SPAWN_WAIT_MS = 2500;
 
@@ -78,6 +80,8 @@ class MainScene extends Scene {
     /** 开局投放闸门：等 AR 相机被 SLAM 就位后再投放，避免锚点算在世界原点。 */
     private spawnReady: boolean = false;
     private spawnWait: number = 0;
+    /** AR 相机 Transform 缓存（billboard 每帧都要用，避免每帧做场景查找）。 */
+    private arCamTransform: APJS.Transform | null = null;
 
     // ---- 2D 资源与跟随物 ----
     private idleTexture: APJS.Texture | null = null;
@@ -170,6 +174,7 @@ class MainScene extends Scene {
         if (this.bossImage) this.bossImage.size = new APJS.Vector2f(BOSS_CORE_SIZE, BOSS_CORE_SIZE);
         const camObj = engine.findSceneObject('AR摄像机');
         this.arCamera = camObj ? (camObj.getComponent('Camera') as APJS.Camera) : null;
+        this.arCamTransform = camObj ? camObj.getTransform() : null;
         this.idleTexture = this.bossImage ? this.bossImage.texture : null;
         if (!this.bossImage || !this.arCamera) {
             console.warn(`[guard] spatial boss not ready: image=${!!this.bossImage} camera=${!!this.arCamera}`);
@@ -235,9 +240,25 @@ class MainScene extends Scene {
         const dt = Math.min(0.05, delta / 1000);
         const rage = this.phase === 'rage' ? 1.6 : 1;
         this.driftStep(dt, rage);
-        if (this.bossSpatial) this.bossSpatial.getTransform().setWorldPosition(this.bossPos);
+        if (this.bossSpatial) {
+            this.bossSpatial.getTransform().setWorldPosition(this.bossPos);
+            this.billboardBoss();
+        }
         this.projectBoss();
         this.syncFollowers();
+    }
+
+    /**
+     * Billboard（广告牌）：每帧让 Boss 平面正对相机。
+     * 3D Image 本质是一张薄片，玩家绕到侧面就会看到它"压成一条线"；持续转向相机之后，
+     * 任何角度看过去都是一张正脸，视觉上就当成有体积的怪物了。
+     * 注意 Quaternionf.lookAt 对齐的是物体 **+Z** 轴，所以 forward 取「Boss → 相机」方向。
+     */
+    private billboardBoss(): void {
+        if (!this.bossSpatial || !this.arCamTransform) return;
+        const cp = this.arCamTransform.getWorldPosition();
+        const forward = new APJS.Vector3f(cp.x - this.bossPos.x, cp.y - this.bossPos.y, cp.z - this.bossPos.z);
+        this.bossSpatial.getTransform().setWorldRotation(APJS.Quaternionf.lookAt(forward, new APJS.Vector3f(0, 1, 0)));
     }
 
     /**
@@ -247,8 +268,7 @@ class MainScene extends Scene {
      */
     private trySpawnBoss(delta: number): void {
         this.spawnWait += delta;
-        const camObj = this.sys.engineScene.findSceneObject('AR摄像机');
-        const cp = camObj ? camObj.getTransform().getWorldPosition() : null;
+        const cp = this.arCamTransform ? this.arCamTransform.getWorldPosition() : null;
         const camMoved = !!cp && (Math.abs(cp.x) + Math.abs(cp.y) + Math.abs(cp.z)) > 0.01;
         if (!camMoved && this.spawnWait < SPAWN_WAIT_MS) {
             if (this.bossSpatial) this.bossSpatial.enabled = false;
@@ -428,11 +448,10 @@ class MainScene extends Scene {
      * （早前试过 viewportToWorldPoint / screenToWorldPoint，实测与 worldToScreenPoint 基准不一致，已弃用。）
      */
     private spawnBossInSpace(): void {
-        const camObj = this.sys.engineScene.findSceneObject('AR摄像机');
-        if (this.arCamera && camObj) {
+        if (this.arCamera && this.arCamTransform) {
             // AR 相机由 DeviceTracker 驱动，其位置/朝向只能运行时读取：
             // 用相机世界位置 + getLookAt() 朝向（单位向量）沿视轴前推 SPAWN_DIST 米作为开局锚点。
-            const camPos = camObj.getTransform().getWorldPosition();
+            const camPos = this.arCamTransform.getWorldPosition();
             const look = this.arCamera.getLookAt();
             // 防御：getLookAt 若返回非单位向量，直接乘米数会把锚点甩到很远（表现为"Boss 极小/找不到"）。
             const lookLen = Math.sqrt(look.x * look.x + look.y * look.y + look.z * look.z) || 1;

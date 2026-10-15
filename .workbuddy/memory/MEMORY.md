@@ -30,6 +30,14 @@
 - 配套专家技能：`dy-effect-creator`（该专家已在本项目启用）。
 
 ## 像塑 MCP 实操要点（跨特效通用，踩过的坑）
+- **完整流程（照抄）**：`health` → `list_instances`（拿 instance_id，本项目 = `"1"`）→ `get_project_context`（内含 `workspace.skills_root` / `rules`）→ **`update_handoff_context` 逐字登记用户消息链（先做，否则不许改场景）** → 读 `skills_root/general/SceneEditing/SKILL.md` → `edit_by_dsl`。
+- **改对象位置/尺寸一律用 `set_component`**（不存在 `update_screen_transform` 之类命令）：
+  `{"command_type":"set_component","params":{"guid":"<组件GUID>","properties":{"anchoredPosition":{"x":318,"y":-126.5},"sizeDelta":{"x":192,"y":165}}}}`
+  组件 GUID 直接传（`c61`），别用 `{"$ref":..,"component_type":..}` 包字面 GUID。`properties` 是**对象**不是数组。会回显 before/after。
+- **ScreenTransform 只写 `anchoredPosition` / `sizeDelta`**，别写派生的 `offsets`。
+- **屏幕坐标换算**：`screenX = 360 + anchoredPosition.x`，`screenY = 640 − anchoredPosition.y`（画布 720×1280，锚点 0.5/0.5，PPU 32）。
+- **像素素材上屏必须整数倍**：显示尺寸 ÷ 逻辑画布必须为整数（否则半像素）。战弩：逻辑 64×55 → 显示 192×165 = 3×。
+- **改贴图没有专用命令**：需 `import_resource` + `set_component{texture}`；**覆盖 `project/Assets/` 源文件不保证编辑器自动重导**。
 - 连接器 `xiangsu-mcp-manager` → `ToolSearch` + `DeferExecuteTool` 两步调用。
 - **短 id（`s1`/`c5`/`r3`）可直接当 GUID 传参，但不能塞进 `$ref`**；`$ref` 只认同批次内定义的 alias。
 - **enum 值必须包成 `{"type":"Enum","data":"Nearest"}`**；`properties` 是**对象不是数组**。

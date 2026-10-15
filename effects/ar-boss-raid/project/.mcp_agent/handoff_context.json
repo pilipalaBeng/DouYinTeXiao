@@ -1,8 +1,8 @@
 {
   "formatVersion": 2,
-  "revision": 16,
-  "mutationRevision": 147,
-  "updatedAt": "2026-10-15T14:53:26.903Z",
+  "revision": 18,
+  "mutationRevision": 162,
+  "updatedAt": "2026-10-15T15:14:45.264Z",
   "writerInstanceId": "1",
   "task": {
     "objective": "把 ar-boss-raid 改为真 3D 空间玩法并调通",
@@ -108,7 +108,7 @@
   ],
   "latestInput": {
     "conversationId": "conversation-5f7406cb8b73f4a8c81f8b67830e4f3e",
-    "messageId": "0bd5b54a-59b0-47d4-a4cd-e27b69250e5c",
+    "messageId": "m6",
     "traceContextId": "5f97c60c744d9125e6b42a37cde04bcf2d2746a5a82b8bf84a351ee55b3e8974"
   },
   "artifacts": [
@@ -139,22 +139,22 @@
       "at": "2026-10-15T14:36:37.834Z"
     },
     {
-      "kind": "preview",
-      "status": "passed",
-      "summary": "初始截图：HUD 稳定 2400 29s，无头顶头像/出战牌，无结算文字泄漏，无模板残留",
-      "at": "2026-10-15T14:36:37.834Z"
-    },
-    {
       "kind": "script",
       "status": "passed",
       "summary": "The latest run_otsc_check call completed without compilation errors.",
-      "at": "2026-10-15T14:51:37.346Z"
+      "at": "2026-10-15T15:01:53.671Z"
+    },
+    {
+      "kind": "preview",
+      "status": "passed",
+      "summary": "The latest capture_preview call completed successfully.",
+      "at": "2026-10-15T15:09:21.227Z"
     },
     {
       "kind": "interaction",
       "status": "passed",
       "summary": "The latest interact_by_dsl sequence completed successfully.",
-      "at": "2026-10-15T14:53:26.903Z"
+      "at": "2026-10-15T15:14:45.264Z"
     }
   ],
   "openIssues": [
@@ -165,9 +165,9 @@
     "真机验证 Boss 尺寸与 3D 手感，反馈后调 BOSS_CORE_SIZE / SPAWN_DIST"
   ],
   "lastMutation": {
-    "at": "2026-10-15T14:42:26.902Z",
+    "at": "2026-10-15T15:06:27.255Z",
     "status": "success",
-    "mutationRevision": 141,
+    "mutationRevision": 154,
     "commandTypes": [
       "set_component"
     ]
