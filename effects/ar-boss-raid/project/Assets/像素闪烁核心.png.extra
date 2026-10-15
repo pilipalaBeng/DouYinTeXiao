@@ -1,0 +1,31 @@
+[
+  {
+    "guid": {
+      "a": "f75f7124-4b2e-9c7b-a1a2-a15329f53394",
+      "b": ""
+    },
+    "extraType": "ResItemPNGImage",
+    "name": "像素闪烁核心",
+    "version": "0.2.0",
+    "rttiType": "Texture",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "compressionType": 0,
+    "compressQuality": 0,
+    "compressMaxResolution": 512,
+    "enableMipmap": false,
+    "filterMin": 1,
+    "filterMag": 1,
+    "filterMipmap": 0,
+    "wrapModeS": 0,
+    "wrapModeT": 0,
+    "wrapModeR": 0,
+    "premultiplyAlpha": false,
+    "objGuid": "",
+    "references": []
+  }
+]

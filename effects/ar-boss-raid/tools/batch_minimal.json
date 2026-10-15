@@ -1,0 +1,22 @@
+[
+  {
+    "src": "C:/Users/Administrator/AppData/Local/DouyinAR/Instances/Instance1/ProjectCreatedTmp/未命名/Assets/BossIdlePose.png",
+    "dst": "D:/Project/DouYinTeXiao/effects/ar-boss-raid/assets/px/BossIdlePose_128.png",
+    "logical": 128, "median": 9, "mode": "pad", "contentScale": 0.92
+  },
+  {
+    "src": "C:/Users/Administrator/AppData/Local/DouyinAR/Instances/Instance1/ProjectCreatedTmp/未命名/Assets/Crosshair.png",
+    "dst": "D:/Project/DouYinTeXiao/effects/ar-boss-raid/assets/px/Crosshair_64.png",
+    "logical": 64, "median": 3, "mode": "pad"
+  },
+  {
+    "src": "C:/Users/Administrator/AppData/Local/DouyinAR/Instances/Instance1/ProjectCreatedTmp/未命名/Assets/HpBarFrame.png",
+    "dst": "D:/Project/DouYinTeXiao/effects/ar-boss-raid/assets/px/HpBarFrame_256x64.png",
+    "logical": 256, "median": 3, "mode": "fit", "outW": 1, "outH": 0.25
+  },
+  {
+    "src": "C:/Users/Administrator/AppData/Local/DouyinAR/Instances/Instance1/ProjectCreatedTmp/未命名/Assets/HpBarFill.png",
+    "dst": "D:/Project/DouYinTeXiao/effects/ar-boss-raid/assets/px/HpBarFill_256x64.png",
+    "logical": 256, "median": 3, "mode": "fit", "outW": 1, "outH": 0.25
+  }
+]

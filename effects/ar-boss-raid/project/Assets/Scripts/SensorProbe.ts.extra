@@ -1,0 +1,23 @@
+[
+  {
+    "guid": {
+      "a": "0bd4b6d0-7e0b-41ac-b8ef-a2d477f56f9f",
+      "b": ""
+    },
+    "extraType": "ResItemJSScript",
+    "name": "SensorProbe",
+    "version": "0.1.0",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "objGuid": "",
+    "resourceFilePath": "C:\\Users\\Administrator\\AppData\\Local\\DouyinAR\\Instances\\Instance1\\ProjectCreatedTmp\\未命名\\Assets\\Scripts\\SensorProbe.ts",
+    "references": [],
+    "scriptAnnotation": [],
+    "needCompile": true,
+    "isUserScript": true
+  }
+]

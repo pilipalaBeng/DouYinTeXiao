@@ -1,0 +1,22 @@
+[
+  {
+    "guid": {
+      "a": "39995ca7-9e7b-cbdf-e9db-c93968dc9b96",
+      "b": ""
+    },
+    "extraType": "ResItemJSScript",
+    "name": "FriendAvatars",
+    "version": "0.1.0",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "objGuid": "",
+    "references": [],
+    "scriptAnnotation": [],
+    "needCompile": false,
+    "isUserScript": true
+  }
+]

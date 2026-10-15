@@ -1,0 +1,32 @@
+[
+  {
+    "guid": {
+      "a": "1ca8b296-39a4-99e8-b3ff-5af6e50e34d3",
+      "b": ""
+    },
+    "extraType": "ResItemPNGImage",
+    "name": "HpBarFill_256x64",
+    "version": "0.2.0",
+    "rttiType": "Texture",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "compressionType": 0,
+    "compressQuality": 0,
+    "compressMaxResolution": 512,
+    "enableMipmap": false,
+    "filterMin": 1,
+    "filterMag": 1,
+    "filterMipmap": 0,
+    "wrapModeS": 0,
+    "wrapModeT": 0,
+    "wrapModeR": 0,
+    "premultiplyAlpha": false,
+    "objGuid": "",
+    "resourceFilePath": "D:/Project/DouYinTeXiao/effects/ar-boss-raid/assets/px/HpBarFill_256x64.png",
+    "references": []
+  }
+]

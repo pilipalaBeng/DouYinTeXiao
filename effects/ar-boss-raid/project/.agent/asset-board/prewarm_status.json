@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "status": "completed",
+  "identity": {
+    "key": "f40a634ef59d0fbb2da672db13782885813aa96be0de07cc3852d4adec040583",
+    "designBriefHash": "f5639b34e4d130febb73132466d0af207cff90ff5c2839974906cff5578a8625",
+    "settingImageHash": "474c40a493ff5b29dc3b35fadeed27299a3c375726ef681b0ffc7647dcf4483b",
+    "settingImageTaskId": "wf12026101416142249610124034562"
+  },
+  "attempt": 1,
+  "startedAt": "2026-10-14T08:28:39.067Z",
+  "updatedAt": "2026-10-14T08:29:37.371Z",
+  "finishedAt": "2026-10-14T08:29:37.371Z"
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "guid": {
+      "a": "6b00c02e-5edc-a79c-5075-2f42c5bbd621",
+      "b": ""
+    },
+    "extraType": "ResItemPNGImage",
+    "name": "B_64_db16_x8",
+    "version": "0.2.0",
+    "rttiType": "Texture",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "compressionType": 0,
+    "compressQuality": 0,
+    "compressMaxResolution": 512,
+    "enableMipmap": false,
+    "filterMin": 1,
+    "filterMag": 1,
+    "filterMipmap": 0,
+    "wrapModeS": 0,
+    "wrapModeT": 0,
+    "wrapModeR": 0,
+    "premultiplyAlpha": false,
+    "objGuid": "",
+    "resourceFilePath": "D:/Project/DouYinTeXiao/.workbuddy/scratch/B_64_db16_x8.png",
+    "references": []
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "used": true,
+  "content_features": [
+    "MCP"
+  ],
+  "tools": {
+    "query_knowledge": 12,
+    "list_preview_videos": 2,
+    "update_handoff_context": 7,
+    "describe_project": 2,
+    "list_resources": 6,
+    "save_plan": 2,
+    "get_current_preview_video": 1,
+    "generate_image": 1,
+    "inspect": 15,
+    "project_status": 3,
+    "edit_by_dsl": 36,
+    "get_scene": 18,
+    "generate_assets_batch": 1,
+    "capture_preview": 11,
+    "run_otsc_check": 8,
+    "interact_by_dsl": 32,
+    "get_script_logs": 40,
+    "get_scene_view": 1
+  }
+}

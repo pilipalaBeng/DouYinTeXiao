@@ -1,0 +1,3783 @@
+[
+  {
+    "guid": {
+      "a": "00000000-0000-0000-0000-000000000000",
+      "b": ""
+    },
+    "objGuid": "Guid(7875085725817850609, 329766013828765107)",
+    "extraType": "SceneEditor",
+    "rttiType": "Scene",
+    "signalRegistry": "{\n  \"signals\": []\n}"
+  },
+  {
+    "guid": {
+      "a": "220b45b6-3a9b-133d-234a-fb5498526086",
+      "b": ""
+    },
+    "objGuid": "Guid(5207890065514550523, 11834358961817366150)",
+    "extraType": "Entity",
+    "name": "通用",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "fd08be7e-ff14-f3d9-8351-c97dfd85fb93",
+      "b": ""
+    },
+    "objGuid": "Guid(5496745943817641448, 16486612977695680664)",
+    "extraType": "Transform",
+    "name": "变换",
+    "version": "0.1.0",
+    "rttiType": "Transform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "eulerAngle": [
+      0,
+      0,
+      0
+    ],
+    "linkage": 0
+  },
+  {
+    "guid": {
+      "a": "57d25d2a-2123-a9c6-9360-f83ba75284ba",
+      "b": ""
+    },
+    "objGuid": "Guid(5455470207372717738, 13047428928741013931)",
+    "extraType": "EffectNode",
+    "name": "Render Group",
+    "version": "0.1.0",
+    "rttiType": "EffectNode",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "type": 5,
+    "sortMethod": 2,
+    "enableInputTexture": false,
+    "inputTexture": "00000000-0000-0000-0000-00000000004b"
+  },
+  {
+    "guid": {
+      "a": "cab70ff3-0962-de4b-e05b-2c08a25e1ceb",
+      "b": ""
+    },
+    "objGuid": "Guid(5432057638404821671, 365197958164162184)",
+    "extraType": "Entity",
+    "name": "摄像机",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_utility",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "130d1571-2582-a7c8-70be-dc0013db5278",
+      "b": ""
+    },
+    "objGuid": "Guid(5329664396317756735, 8116175586205189517)",
+    "extraType": "Transform",
+    "name": "变换",
+    "version": "0.1.0",
+    "rttiType": "Transform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "eulerAngle": [
+      0,
+      0,
+      0
+    ],
+    "linkage": 0
+  },
+  {
+    "guid": {
+      "a": "b6be0e9b-2db6-0bea-cf68-7626329d2e84",
+      "b": ""
+    },
+    "objGuid": "Guid(5360985868532781135, 9338280609414994827)",
+    "extraType": "Camera",
+    "name": "摄像机",
+    "version": "0.4.0",
+    "rttiType": "Camera",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "enableMask": false,
+    "maskTexture": "00000000-0000-0000-0000-000000000802",
+    "physicalFovy": false,
+    "fov": 60,
+    "cachedInputTexture": "00000000-0000-0000-0000-00000000004b",
+    "isAnimatorBound": false
+  },
+  {
+    "guid": {
+      "a": "3aa8d803-a69c-ac07-4cf3-7c2b7a6792fc",
+      "b": ""
+    },
+    "objGuid": "Guid(4861860416444869497, 10781631841671416453)",
+    "extraType": "Entity",
+    "name": "平行光",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_utility",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "3D"
+  },
+  {
+    "guid": {
+      "a": "4bad9900-67f4-1946-e53b-2550f72cb2b0",
+      "b": ""
+    },
+    "objGuid": "Guid(4794944029770372631, 9681331689459593407)",
+    "extraType": "Transform",
+    "name": "变换",
+    "version": "0.1.0",
+    "rttiType": "Transform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": false
+    },
+    "eulerAngle": [
+      322,
+      322,
+      10
+    ],
+    "linkage": 0
+  },
+  {
+    "guid": {
+      "a": "0004b813-ef5b-b71a-4f6d-ff86328ba7d0",
+      "b": ""
+    },
+    "objGuid": "Guid(5699844998820526071, 3632627581334582663)",
+    "extraType": "DirectionalLight",
+    "name": "平行光",
+    "version": "0.1.0",
+    "rttiType": "DirectionalLight",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    }
+  },
+  {
+    "guid": {
+      "a": "8d909007-a18f-7637-19c0-e6ecb9e2fcd1",
+      "b": ""
+    },
+    "objGuid": "Guid(5577357421476303547, 8104640551882914988)",
+    "extraType": "Entity",
+    "name": "环境光",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_utility",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "3D"
+  },
+  {
+    "guid": {
+      "a": "dbb17577-b2ec-5d5c-c58b-66baf3c046bf",
+      "b": ""
+    },
+    "objGuid": "Guid(5662226368323509217, 2622327720952821908)",
+    "extraType": "Transform",
+    "name": "变换",
+    "version": "0.1.0",
+    "rttiType": "Transform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "eulerAngle": [
+      0,
+      0,
+      0
+    ],
+    "linkage": 0
+  },
+  {
+    "guid": {
+      "a": "769a2a27-1c42-2964-2919-be4d9ac449cf",
+      "b": ""
+    },
+    "objGuid": "Guid(5089324935107384507, 16293896405677811113)",
+    "extraType": "EnvironmentLighting",
+    "name": "环境光",
+    "version": "0.1.0",
+    "rttiType": "EnvironmentLight",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    }
+  },
+  {
+    "guid": {
+      "a": "1ed8cb84-06b9-f74b-5b3b-4ccadb99a03a",
+      "b": ""
+    },
+    "objGuid": "Guid(4920669658032586937, 5637465638069585576)",
+    "extraType": "Entity",
+    "name": "AR跟踪",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "4378e7d5-5c82-36ac-1b2d-aed7c62b30dc",
+      "b": ""
+    },
+    "objGuid": "Guid(5699545533613524032, 15505657594649376661)",
+    "extraType": "Transform",
+    "name": "变换",
+    "version": "0.1.0",
+    "rttiType": "Transform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "eulerAngle": [
+      0,
+      0,
+      0
+    ],
+    "linkage": 0
+  },
+  {
+    "guid": {
+      "a": "f0c6066f-88ac-d685-e62b-0d4ab6a3dc57",
+      "b": ""
+    },
+    "objGuid": "Guid(5199723492655999725, 7837299797631627435)",
+    "extraType": "EffectNode",
+    "name": "Render Group",
+    "version": "0.1.0",
+    "rttiType": "EffectNode",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "type": 8,
+    "sortMethod": 2,
+    "enableInputTexture": false,
+    "inputTexture": "00000000-0000-0000-0000-00000000004b"
+  },
+  {
+    "guid": {
+      "a": "4296cfa7-98d8-b03b-6ecc-4ead37d26f22",
+      "b": ""
+    },
+    "objGuid": "Guid(4962491901752519165, 14183246592577375910)",
+    "extraType": "Entity",
+    "name": "AR平面跟踪",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_ar_tracking",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "3D"
+  },
+  {
+    "guid": {
+      "a": "b4552c63-4f6a-4803-e189-d8998aff92e6",
+      "b": ""
+    },
+    "objGuid": "Guid(5033012768262560878, 10129465625837821599)",
+    "extraType": "Transform",
+    "name": "变换",
+    "version": "0.1.0",
+    "rttiType": "Transform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "eulerAngle": [
+      0,
+      0,
+      0
+    ],
+    "linkage": 0
+  },
+  {
+    "guid": {
+      "a": "3e9d4cf1-28b8-9825-cb6a-d736e2f1e89c",
+      "b": ""
+    },
+    "objGuid": "Guid(5356633210146127368, 1819726963163858869)",
+    "extraType": "MeshRenderer",
+    "name": "网格渲染",
+    "version": "0.2.0",
+    "rttiType": "MeshRenderer",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.2.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "visualization": false,
+    "shadowMode": 0
+  },
+  {
+    "guid": {
+      "a": "8d350960-8f39-8404-80a6-faed77010576",
+      "b": ""
+    },
+    "objGuid": "Guid(5302335453638720761, 8933229829394109352)",
+    "extraType": "Entity",
+    "name": "Boss3D",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_utility",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "2D"
+  },
+  {
+    "guid": {
+      "a": "cdfa54f1-59ba-6e78-9113-ae3057f0e137",
+      "b": ""
+    },
+    "objGuid": "Guid(5179189143684376197, 16050517658326139525)",
+    "extraType": "Transform",
+    "name": "变换",
+    "version": "0.1.0",
+    "rttiType": "Transform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "eulerAngle": [
+      0,
+      0,
+      0
+    ],
+    "linkage": 0
+  },
+  {
+    "guid": {
+      "a": "3c4bf5f5-308e-a894-ab57-795acec654f8",
+      "b": ""
+    },
+    "objGuid": "Guid(4922381237664734355, 2159229922372590244)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": false,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "9ce683f5-8810-2cc9-0cf3-3bdd7c0485cb",
+      "b": ""
+    },
+    "objGuid": "Guid(5288228316791631163, 256823278424532927)",
+    "extraType": "Entity",
+    "name": "平面跟踪示例模型",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_ar_tracking",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "3D"
+  },
+  {
+    "guid": {
+      "a": "48546cf7-ef2c-69e7-0b84-0f40d1de9488",
+      "b": ""
+    },
+    "objGuid": "Guid(5486089220495553336, 15235544335544383384)",
+    "extraType": "Transform",
+    "name": "变换",
+    "version": "0.1.0",
+    "rttiType": "Transform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "eulerAngle": [
+      0,
+      0,
+      0
+    ],
+    "linkage": 0
+  },
+  {
+    "guid": {
+      "a": "3f2d691c-d856-e21d-8fbd-a1c1759c75c0",
+      "b": ""
+    },
+    "objGuid": "Guid(5324453466829815888, 12356803901901284738)",
+    "extraType": "MeshRenderer",
+    "name": "网格渲染",
+    "version": "0.2.0",
+    "rttiType": "MeshRenderer",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "visualization": false,
+    "shadowMode": 0
+  },
+  {
+    "guid": {
+      "a": "7b0c2786-bf04-9a97-fee0-44e37bba3f6a",
+      "b": ""
+    },
+    "objGuid": "Guid(4944891631455250801, 11514909542985942150)",
+    "extraType": "InteractableObject",
+    "name": "AR手势",
+    "version": "0.1.0",
+    "rttiType": "JSScriptComponent",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    }
+  },
+  {
+    "guid": {
+      "a": "4cd5eb1a-5127-71a2-b502-88fa91f14777",
+      "b": ""
+    },
+    "objGuid": "Guid(4985441177353562042, 2967925417895251605)",
+    "extraType": "Entity",
+    "name": "AR摄像机",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_ar_tracking",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "3D"
+  },
+  {
+    "guid": {
+      "a": "b2e59be9-d981-f788-be39-b1409790f2be",
+      "b": ""
+    },
+    "objGuid": "Guid(4803493745749970803, 17937047802625312151)",
+    "extraType": "Transform",
+    "name": "变换",
+    "version": "0.1.0",
+    "rttiType": "Transform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "eulerAngle": [
+      0,
+      0,
+      0
+    ],
+    "linkage": 0
+  },
+  {
+    "guid": {
+      "a": "e191bbb8-8534-8bee-7512-963e79d7b5bd",
+      "b": ""
+    },
+    "objGuid": "Guid(5402402739560721905, 3573812089796154513)",
+    "extraType": "Camera",
+    "name": "摄像机",
+    "version": "0.4.0",
+    "rttiType": "Camera",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "enableMask": false,
+    "maskTexture": "00000000-0000-0000-0000-000000000802",
+    "physicalFovy": false,
+    "fov": 60,
+    "cachedInputTexture": "00000000-0000-0000-0000-00000000004b",
+    "isAnimatorBound": false
+  },
+  {
+    "guid": {
+      "a": "f9b7d981-a7f7-4096-0010-2a38f338fcda",
+      "b": ""
+    },
+    "objGuid": "Guid(5486708336815967544, 10845948850648865935)",
+    "extraType": "DeviceTracker",
+    "name": "设备跟踪",
+    "version": "0.1.0",
+    "rttiType": "JSScriptComponent",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    }
+  },
+  {
+    "guid": {
+      "a": "987b07c7-ac3e-13a6-36f8-c5c195f838c4",
+      "b": ""
+    },
+    "objGuid": "Guid(5365992802471094352, 1543228042039484327)",
+    "extraType": "Entity",
+    "name": "2D 前景",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "8900b674-67b6-2ac3-5105-8e12b80a731d",
+      "b": ""
+    },
+    "objGuid": "Guid(5145321198217930018, 13416319398036899254)",
+    "extraType": "Transform",
+    "name": "变换",
+    "version": "0.1.0",
+    "rttiType": "Transform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "eulerAngle": [
+      0,
+      0,
+      0
+    ],
+    "linkage": 0
+  },
+  {
+    "guid": {
+      "a": "9c93d651-0d5e-470d-78f9-35428e1a54c8",
+      "b": ""
+    },
+    "objGuid": "Guid(5641661822809058812, 3710227215961987975)",
+    "extraType": "EffectNode",
+    "name": "Render Group",
+    "version": "0.1.0",
+    "rttiType": "EffectNode",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "type": 6,
+    "sortMethod": 1,
+    "enableInputTexture": false,
+    "inputTexture": "00000000-0000-0000-0000-00000000004b"
+  },
+  {
+    "guid": {
+      "a": "699b558d-b8c1-9503-631c-efbc5373f676",
+      "b": ""
+    },
+    "objGuid": "Guid(5307352751059713000, 9342511729737051287)",
+    "extraType": "Entity",
+    "name": "2D 摄像机",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "f9f524ee-8b74-916b-e522-d9f54fa0a041",
+      "b": ""
+    },
+    "objGuid": "Guid(5117798369073054718, 11729555502083707011)",
+    "extraType": "Transform",
+    "name": "变换",
+    "version": "0.1.0",
+    "rttiType": "Transform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "eulerAngle": [
+      0,
+      0,
+      0
+    ],
+    "linkage": 0
+  },
+  {
+    "guid": {
+      "a": "827c6db6-c8c1-f447-27eb-c78f05216c22",
+      "b": ""
+    },
+    "objGuid": "Guid(4675666802812295643, 13683360170108713893)",
+    "extraType": "Camera",
+    "name": "摄像机",
+    "version": "0.4.0",
+    "rttiType": "Camera",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "enableMask": false,
+    "maskTexture": "00000000-0000-0000-0000-000000000802",
+    "physicalFovy": false,
+    "fov": 60,
+    "cachedInputTexture": "00000000-0000-0000-0000-00000000004b",
+    "isAnimatorBound": false
+  },
+  {
+    "guid": {
+      "a": "c2b4720a-d141-5aff-fbf4-e39303889f60",
+      "b": ""
+    },
+    "objGuid": "Guid(4938517662842117089, 17943813840863809448)",
+    "extraType": "Entity",
+    "name": "脚本",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "2D"
+  },
+  {
+    "guid": {
+      "a": "c2927800-b949-08f8-5f76-20ab02bdab78",
+      "b": ""
+    },
+    "objGuid": "Guid(5320594033153380436, 16754503893368075173)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "d2c06c66-8539-127c-d033-d8a6e7044d2f",
+      "b": ""
+    },
+    "objGuid": "Guid(5660434170888753327, 10608496262664238232)",
+    "extraType": "UserComponentEditor",
+    "name": "GameManager",
+    "version": "0.1.0",
+    "rttiType": "GameManager",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "resGuid": "dff5bd03-49f4-72f2-784c-78d738af982c"
+  },
+  {
+    "guid": {
+      "a": "29583994-3fae-596b-3e17-636f76b9fa57",
+      "b": ""
+    },
+    "objGuid": "Guid(5151607013269605525, 9987710372968905124)",
+    "extraType": "Entity",
+    "name": "玩法",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "2D"
+  },
+  {
+    "guid": {
+      "a": "c74c1e54-af21-5741-9ed8-af4093102985",
+      "b": ""
+    },
+    "objGuid": "Guid(5257653324101429050, 10492217137641534107)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "ad8704e0-ccd5-20a7-2afb-ef4cc07809d7",
+      "b": ""
+    },
+    "objGuid": "Guid(5621089905115038080, 11361109513642896542)",
+    "extraType": "Entity",
+    "name": "Boss主体",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "51828048-00d3-26e8-cfb7-b151cd5a4f68",
+      "b": ""
+    },
+    "objGuid": "Guid(4770151470950836044, 17427302155989256626)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "221cb61e-ff65-bece-4f52-ee59a6a794bf",
+      "b": ""
+    },
+    "objGuid": "Guid(5368603868119747449, 16082846638965236100)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "2e95418a-5d5a-96cd-4490-4fbf38c9e044",
+      "b": ""
+    },
+    "objGuid": "Guid(5409989788850657121, 1100660622226026114)",
+    "extraType": "Entity",
+    "name": "Boss出战牌",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "756361b5-c4de-3e40-bcfe-a68b241d9045",
+      "b": ""
+    },
+    "objGuid": "Guid(5062178293324985407, 12709047156620175512)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "d4658147-c8e3-e4ac-6646-664178368a05",
+      "b": ""
+    },
+    "objGuid": "Guid(5091654961740719404, 3417565568462979764)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "1800bbfe-ac30-cf2a-69e1-3ff5c046cbde",
+      "b": ""
+    },
+    "objGuid": "Guid(4823441401461274867, 13733045834635996311)",
+    "extraType": "Entity",
+    "name": "Boss头像",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "8e0f4fce-fdf7-d117-9937-2dbe0636fa6e",
+      "b": ""
+    },
+    "objGuid": "Guid(5639522313582219452, 17324566963669079738)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "aa6acde4-26ec-2aed-5dea-474f074d6b69",
+      "b": ""
+    },
+    "objGuid": "Guid(4765771506291071464, 5718083502391003272)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "a1845a7b-5a8b-dd36-072d-610bede7cd31",
+      "b": ""
+    },
+    "objGuid": "Guid(5026031611892516883, 8407825939038791851)",
+    "extraType": "Entity",
+    "name": "护盾覆盖",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "219668a9-19c2-2cb0-4566-b851ed711a6e",
+      "b": ""
+    },
+    "objGuid": "Guid(5311831700545228897, 17569523657821812358)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "c7507d14-feab-8fe3-e73d-7403c7e6f38f",
+      "b": ""
+    },
+    "objGuid": "Guid(4774906577435618216, 17350633420255407256)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "c1afb936-2a84-f3ce-ab9c-ecef3a442538",
+      "b": ""
+    },
+    "objGuid": "Guid(5605479395282160452, 15443732240214050191)",
+    "extraType": "Entity",
+    "name": "护盾核心",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "2ea7379e-8284-cc1e-af8d-0e1f8aab03d8",
+      "b": ""
+    },
+    "objGuid": "Guid(5619214297614025552, 10554404424039164559)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "d7f4a5de-a067-e798-a2f8-61dd88fc7022",
+      "b": ""
+    },
+    "objGuid": "Guid(5294808423487082577, 8071493814031757222)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "329f4340-7675-cb5c-ea28-172d47dd2336",
+      "b": ""
+    },
+    "objGuid": "Guid(5299079515038352786, 1454321981413554824)",
+    "extraType": "Entity",
+    "name": "小怪模板",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "68764c75-8c8b-9fb8-51e1-e908e0289db1",
+      "b": ""
+    },
+    "objGuid": "Guid(5014376942545487564, 3893186499259081902)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "69e96158-08d9-662d-1b0c-49ec02422a44",
+      "b": ""
+    },
+    "objGuid": "Guid(5591943091031261453, 18162273660478110102)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "85d77740-1c1a-c0f0-d346-55415587c8b3",
+      "b": ""
+    },
+    "objGuid": "Guid(4720699094689351881, 13185489062251559064)",
+    "extraType": "Entity",
+    "name": "弹幕模板",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "4d992cbf-a8db-2864-c8f0-06814374a4aa",
+      "b": ""
+    },
+    "objGuid": "Guid(4728340460300129633, 17774956368959122363)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "20b37228-3012-d228-7f51-652be01c49cc",
+      "b": ""
+    },
+    "objGuid": "Guid(4811406943694015036, 11807984526237815957)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "ffaa1a1f-7afc-11b6-7c46-aee5fcdb0f24",
+      "b": ""
+    },
+    "objGuid": "Guid(4902424202495243641, 17352895791603789733)",
+    "extraType": "Entity",
+    "name": "好友头像选择模板",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "a32025dc-f425-d79a-6dbd-2998046fa105",
+      "b": ""
+    },
+    "objGuid": "Guid(4716923258520034925, 3072360567643714689)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "366b278f-1592-3630-882a-4abc79d82294",
+      "b": ""
+    },
+    "objGuid": "Guid(4928565423331751349, 12906640781036857742)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "92882d1f-9985-7acd-ba06-b8269298eaa9",
+      "b": ""
+    },
+    "objGuid": "Guid(5522223729146415302, 2337640065676448163)",
+    "extraType": "Entity",
+    "name": "UI界面",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "2D"
+  },
+  {
+    "guid": {
+      "a": "57ea644f-5478-b598-690b-1d16641fc481",
+      "b": ""
+    },
+    "objGuid": "Guid(5463180191420506850, 16673588326452610434)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "0e97d97d-1572-aded-6fce-78dd5000cb5c",
+      "b": ""
+    },
+    "objGuid": "Guid(5075850123475008166, 2944028057132349616)",
+    "extraType": "Entity",
+    "name": "战斗HUD底板",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "3ee5a892-c810-b820-4777-bf1f818720de",
+      "b": ""
+    },
+    "objGuid": "Guid(5266253988735593265, 5732337985413801634)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "fa157d42-c45e-f57d-b842-34a96ab918cb",
+      "b": ""
+    },
+    "objGuid": "Guid(5286565403958887481, 18188616801367920281)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "aac49419-f96c-f6b1-f02b-a1bd2cb2081e",
+      "b": ""
+    },
+    "objGuid": "Guid(5737897856010136304, 2424367299033234845)",
+    "extraType": "Entity",
+    "name": "Boss血条填充",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "6ed4d779-abfd-1f34-e5da-0e72db4edcc8",
+      "b": ""
+    },
+    "objGuid": "Guid(5367058898714682943, 1723671046835810978)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "7a1c7e39-0755-ad17-010e-cbc2da349dd0",
+      "b": ""
+    },
+    "objGuid": "Guid(5586927927307505158, 13745227807586400166)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "18e63dfa-5b62-4255-b1d0-4b3e15ec6a91",
+      "b": ""
+    },
+    "objGuid": "Guid(5281858292169442204, 3752128983073048503)",
+    "extraType": "Entity",
+    "name": "HUD文字",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "3758fa9c-b029-a148-b752-20791807af8d",
+      "b": ""
+    },
+    "objGuid": "Guid(4696224518395468873, 7591282806323694762)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "2f013009-a623-076c-bea0-249fe695dd24",
+      "b": ""
+    },
+    "objGuid": "Guid(5373443492276749657, 7827786901762817675)",
+    "extraType": "Text2D",
+    "name": "文字",
+    "version": "1.2.0",
+    "rttiType": "Text",
+    "editable": true,
+    "_lazyUpgrateVersion": "1.2.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "artTextDropdown": "",
+    "artTextNameDropdown": "00000000-0000-0000-0000-000000008000",
+    "totalAnimationTime": 0,
+    "inAnimationAssetID": "",
+    "loopAnimationAssetID": "",
+    "outAnimationAssetID": "",
+    "inAnimationDuration": 0,
+    "loopAnimationDuration": 0,
+    "outAnimationDuration": 0,
+    "userEditable": false,
+    "maxInputWords": 0,
+    "templateId": ""
+  },
+  {
+    "guid": {
+      "a": "f9ac69da-250b-7674-8387-ddcac7dc754c",
+      "b": ""
+    },
+    "objGuid": "Guid(5568321313809682437, 12555743222215063724)",
+    "extraType": "Entity",
+    "name": "固定准星",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "d0a64481-31ac-8cf1-8ffd-65d139afe359",
+      "b": ""
+    },
+    "objGuid": "Guid(4896134162345637693, 8497572242682480567)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "256758e2-3031-4311-d9fa-e9fb840b7362",
+      "b": ""
+    },
+    "objGuid": "Guid(5200528875761002224, 14838128037381400195)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "2984c060-ec7d-35ca-a195-29dc8a7e579e",
+      "b": ""
+    },
+    "objGuid": "Guid(5397969635590780549, 17864521769842853309)",
+    "extraType": "Entity",
+    "name": "准星命中高亮",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "5f8ba7bc-95b1-735c-27ce-412604fd81bc",
+      "b": ""
+    },
+    "objGuid": "Guid(4939942230254332676, 8671613125026457247)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "c9c7dd65-00a2-3186-7ba0-fd31c6a51dc8",
+      "b": ""
+    },
+    "objGuid": "Guid(5369799643053300225, 9234060269039764643)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "6cbd4c3b-911f-f89e-b50b-c6b9e3b3d22a",
+      "b": ""
+    },
+    "objGuid": "Guid(5049197136279601926, 15871599164660637585)",
+    "extraType": "Entity",
+    "name": "像素AK枪",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "b3e2c6dc-3740-7f03-40a9-3306f2bc14a8",
+      "b": ""
+    },
+    "objGuid": "Guid(5171819349865772420, 7397894314524348035)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "da02efe7-49db-b63f-37cd-97354c8a2bf6",
+      "b": ""
+    },
+    "objGuid": "Guid(5075109255744085740, 4818421572625387178)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "9b66d38f-fb6d-9289-84b0-3d582e9a57b1",
+      "b": ""
+    },
+    "objGuid": "Guid(5160540169771002009, 15831557227422842248)",
+    "extraType": "Entity",
+    "name": "开局提示",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "cb19c3be-46a9-1cc4-7b92-944775e32d20",
+      "b": ""
+    },
+    "objGuid": "Guid(4727442715081060566, 16013643489610959272)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "afa52e58-b02b-fbb7-5fa1-c010819a0354",
+      "b": ""
+    },
+    "objGuid": "Guid(4706698959782470014, 765486516800483481)",
+    "extraType": "Text2D",
+    "name": "文字",
+    "version": "1.2.0",
+    "rttiType": "Text",
+    "editable": true,
+    "_lazyUpgrateVersion": "1.2.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "artTextDropdown": "",
+    "artTextNameDropdown": "00000000-0000-0000-0000-000000008000",
+    "totalAnimationTime": 0,
+    "inAnimationAssetID": "",
+    "loopAnimationAssetID": "",
+    "outAnimationAssetID": "",
+    "inAnimationDuration": 0,
+    "loopAnimationDuration": 0,
+    "outAnimationDuration": 0,
+    "userEditable": false,
+    "maxInputWords": 0,
+    "templateId": ""
+  },
+  {
+    "guid": {
+      "a": "241ddec3-e3f2-dc5f-24c0-f8594c476b90",
+      "b": ""
+    },
+    "objGuid": "Guid(5245055645176243058, 3511347266003678114)",
+    "extraType": "Entity",
+    "name": "好友头像选择提示",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "163bb131-5eab-ca97-8b46-0ed6daeb9c32",
+      "b": ""
+    },
+    "objGuid": "Guid(5257815255530680803, 14299028937864492433)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "95f29667-f0cc-b9f7-fdec-da24f23e3a63",
+      "b": ""
+    },
+    "objGuid": "Guid(4696281673738630722, 795096084946316694)",
+    "extraType": "Text2D",
+    "name": "文字",
+    "version": "1.2.0",
+    "rttiType": "Text",
+    "editable": true,
+    "_lazyUpgrateVersion": "1.2.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "artTextDropdown": "",
+    "artTextNameDropdown": "00000000-0000-0000-0000-000000008000",
+    "totalAnimationTime": 0,
+    "inAnimationAssetID": "",
+    "loopAnimationAssetID": "",
+    "outAnimationAssetID": "",
+    "inAnimationDuration": 0,
+    "loopAnimationDuration": 0,
+    "outAnimationDuration": 0,
+    "userEditable": false,
+    "maxInputWords": 0,
+    "templateId": ""
+  },
+  {
+    "guid": {
+      "a": "abf0c802-0e84-45f2-abdc-219c8afe9386",
+      "b": ""
+    },
+    "objGuid": "Guid(4894539192257356010, 13220281176781878461)",
+    "extraType": "Entity",
+    "name": "结算界面",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "2D"
+  },
+  {
+    "guid": {
+      "a": "03754d7a-c30d-0a1e-1b9a-7cb2fb10324d",
+      "b": ""
+    },
+    "objGuid": "Guid(5350893650194717239, 18291238866482709929)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "58e1bbdb-377b-a9ae-9aa9-2c730798fedb",
+      "b": ""
+    },
+    "objGuid": "Guid(5539889078259668433, 11515420624116977854)",
+    "extraType": "Entity",
+    "name": "结算卡",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "e47e0c1b-b1fa-0e6e-a235-8de7cd6bdbb1",
+      "b": ""
+    },
+    "objGuid": "Guid(5586340870879819662, 13498210562179121034)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "7cb7cfca-7fcd-fce5-78fb-4ccba2ec25f5",
+      "b": ""
+    },
+    "objGuid": "Guid(5076710766323321259, 15404059557596434822)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "529b5dfc-8780-8c56-a9f4-9b1df6740034",
+      "b": ""
+    },
+    "objGuid": "Guid(4998189404154850410, 8615564840930722216)",
+    "extraType": "Entity",
+    "name": "胜利彩带",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "1ac2f9c7-7082-b52a-3d1c-3f81ecfe01bf",
+      "b": ""
+    },
+    "objGuid": "Guid(5553396712042379172, 13958213426253366190)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "0f27d9a9-eff0-88aa-5872-5c6266e7c11a",
+      "b": ""
+    },
+    "objGuid": "Guid(5106676572599609036, 14576297144117056959)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "c36e3ebe-221e-4aa2-63b8-2a4d18f30e2e",
+      "b": ""
+    },
+    "objGuid": "Guid(5270303266403931262, 5872530432294985917)",
+    "extraType": "Entity",
+    "name": "结算头像",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "4df27e93-dae0-0cc7-9fb2-00ce9d2c83e2",
+      "b": ""
+    },
+    "objGuid": "Guid(5194425237344163281, 9125525504179606679)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "fbb80cd1-8627-d0aa-ecdc-e6390d172b6e",
+      "b": ""
+    },
+    "objGuid": "Guid(5705374214773232858, 5360536477777194130)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "960161d1-824a-01ec-d8ca-4ce3087906a2",
+      "b": ""
+    },
+    "objGuid": "Guid(4730871480726497501, 7233745021030079122)",
+    "extraType": "Entity",
+    "name": "结算标题",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "21609594-e258-35ab-783b-90a793b2b2fd",
+      "b": ""
+    },
+    "objGuid": "Guid(4884249752187714033, 12784867833058848688)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "a63d9baa-40d6-ef5e-a2cd-38de582b351d",
+      "b": ""
+    },
+    "objGuid": "Guid(5372545308248330021, 10474274112834604188)",
+    "extraType": "Text2D",
+    "name": "文字",
+    "version": "1.2.0",
+    "rttiType": "Text",
+    "editable": true,
+    "_lazyUpgrateVersion": "1.2.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "artTextDropdown": "",
+    "artTextNameDropdown": "00000000-0000-0000-0000-000000008000",
+    "totalAnimationTime": 0,
+    "inAnimationAssetID": "",
+    "loopAnimationAssetID": "",
+    "outAnimationAssetID": "",
+    "inAnimationDuration": 0,
+    "loopAnimationDuration": 0,
+    "outAnimationDuration": 0,
+    "userEditable": false,
+    "maxInputWords": 0,
+    "templateId": ""
+  },
+  {
+    "guid": {
+      "a": "dbc58177-7cc7-dd08-f4dc-459026b58dbc",
+      "b": ""
+    },
+    "objGuid": "Guid(4664589600509441851, 11588451102413801100)",
+    "extraType": "Entity",
+    "name": "结算战绩",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "50445f37-8b2e-7ca7-bf45-fb27164a3e79",
+      "b": ""
+    },
+    "objGuid": "Guid(5355812173365706629, 7316808037633635974)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "85128e16-6dee-40f4-8d62-18d0589765b9",
+      "b": ""
+    },
+    "objGuid": "Guid(5286946667172421297, 12526228892366361790)",
+    "extraType": "Text2D",
+    "name": "文字",
+    "version": "1.2.0",
+    "rttiType": "Text",
+    "editable": true,
+    "_lazyUpgrateVersion": "1.2.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "artTextDropdown": "",
+    "artTextNameDropdown": "00000000-0000-0000-0000-000000008000",
+    "totalAnimationTime": 0,
+    "inAnimationAssetID": "",
+    "loopAnimationAssetID": "",
+    "outAnimationAssetID": "",
+    "inAnimationDuration": 0,
+    "loopAnimationDuration": 0,
+    "outAnimationDuration": 0,
+    "userEditable": false,
+    "maxInputWords": 0,
+    "templateId": ""
+  },
+  {
+    "guid": {
+      "a": "834ae8bd-9e6a-6e5e-43a8-c074ab3e4678",
+      "b": ""
+    },
+    "objGuid": "Guid(4981256970506808576, 4623854580494368701)",
+    "extraType": "Entity",
+    "name": "玩法根",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "2D"
+  },
+  {
+    "guid": {
+      "a": "8a0e3f65-7b83-a6b2-c3c7-7f84c6a8d4b0",
+      "b": ""
+    },
+    "objGuid": "Guid(5324177346065775625, 172286242017059508)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": false
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "16fffe41-b2f8-1315-4ced-781e58fdc20d",
+      "b": ""
+    },
+    "objGuid": "Guid(5062902835688251848, 10339702695076463258)",
+    "extraType": "Entity",
+    "name": "结算文本",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "2D"
+  },
+  {
+    "guid": {
+      "a": "25023dda-207d-7125-feae-de5b15c02745",
+      "b": ""
+    },
+    "objGuid": "Guid(4621451335232254698, 9958714779884447929)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "9f8389c7-4ee2-6feb-4301-24142ea50c33",
+      "b": ""
+    },
+    "objGuid": "Guid(5367677226946060692, 892822513952496812)",
+    "extraType": "Text2D",
+    "name": "文字",
+    "version": "1.2.0",
+    "rttiType": "Text",
+    "editable": true,
+    "_lazyUpgrateVersion": "1.2.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "artTextDropdown": "",
+    "artTextNameDropdown": "00000000-0000-0000-0000-000000008000",
+    "totalAnimationTime": 0,
+    "inAnimationAssetID": "",
+    "loopAnimationAssetID": "",
+    "outAnimationAssetID": "",
+    "inAnimationDuration": 0,
+    "loopAnimationDuration": 0,
+    "outAnimationDuration": 0,
+    "userEditable": false,
+    "maxInputWords": 0,
+    "templateId": ""
+  },
+  {
+    "guid": {
+      "a": "957706ff-27f3-3b0f-181e-d007cdfc0578",
+      "b": ""
+    },
+    "objGuid": "Guid(4735778532339259397, 1221105648878629507)",
+    "extraType": "Entity",
+    "name": "枪",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "2D"
+  },
+  {
+    "guid": {
+      "a": "23b940b4-f552-0b80-fd5a-ef25cc505b4f",
+      "b": ""
+    },
+    "objGuid": "Guid(4713724610656406114, 4975804389872397992)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": false
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "6699af87-1d15-1a39-da39-c624579a69d3",
+      "b": ""
+    },
+    "objGuid": "Guid(5231669296974111707, 7118938133615194522)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "afbeab5d-4692-96a1-7aff-30a8975ef752",
+      "b": ""
+    },
+    "objGuid": "Guid(4652254104900072005, 13980966843617054087)",
+    "extraType": "Entity",
+    "name": "Boss",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "2D"
+  },
+  {
+    "guid": {
+      "a": "4d43ea17-a1cc-3a64-853c-d06118142d6b",
+      "b": ""
+    },
+    "objGuid": "Guid(5602720900825690407, 8484982419438668455)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": false
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "e4699292-079c-014a-6ba9-3c12b603a70c",
+      "b": ""
+    },
+    "objGuid": "Guid(5119435539280737405, 12909773899556698513)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "362600b3-8818-ebac-ac50-c00e1661df63",
+      "b": ""
+    },
+    "objGuid": "Guid(4986349893363918302, 12127857240827196829)",
+    "extraType": "Entity",
+    "name": "准星",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "2D"
+  },
+  {
+    "guid": {
+      "a": "0b9fad9a-8782-8dff-bd5b-0dde92909cd8",
+      "b": ""
+    },
+    "objGuid": "Guid(5241898873600103799, 6230573824597664399)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": false
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "6473d032-2c3c-e1b0-3217-8792129f16fe",
+      "b": ""
+    },
+    "objGuid": "Guid(5214978842040476662, 13582628181486873759)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "061c6582-5ba0-3e84-c972-81a0424c1544",
+      "b": ""
+    },
+    "objGuid": "Guid(4858513494236354469, 18432041973719543194)",
+    "extraType": "Entity",
+    "name": "血条",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "2D"
+  },
+  {
+    "guid": {
+      "a": "99ab3f5b-3bbf-96e1-6967-f525ce76af56",
+      "b": ""
+    },
+    "objGuid": "Guid(5617096148912046549, 5292506037708151485)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": false
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "abda907b-d90a-8e7e-ea73-999818fdc6b8",
+      "b": ""
+    },
+    "objGuid": "Guid(4930183490475713744, 11624573126593720196)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "316e38b6-fa50-f0a7-1eec-af00294d07b3",
+      "b": ""
+    },
+    "objGuid": "Guid(5508185230218625829, 7282096039027511686)",
+    "extraType": "Entity",
+    "name": "血条填充",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "2D"
+  },
+  {
+    "guid": {
+      "a": "15ad76c2-24d4-d28e-51b5-dfbb161fa129",
+      "b": ""
+    },
+    "objGuid": "Guid(4791638865685963602, 13320200992703127460)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": false
+    },
+    "horizontalConstraint": 6,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "e8690afa-8e25-3a7f-6388-2d5c9d7a7cb9",
+      "b": ""
+    },
+    "objGuid": "Guid(5384623006448048782, 17908348801849356933)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "2310f236-e282-a7c5-1295-3cefe399f31f",
+      "b": ""
+    },
+    "objGuid": "Guid(5754016421103052101, 11457477345017370539)",
+    "extraType": "Entity",
+    "name": "命中反馈",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "2D"
+  },
+  {
+    "guid": {
+      "a": "72b2a93c-bdd4-1a1d-0eef-a478970e3b35",
+      "b": ""
+    },
+    "objGuid": "Guid(5374392777140122740, 7110144443085839235)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "24abff87-7061-dfd1-fab1-ab8e89ad8ead",
+      "b": ""
+    },
+    "objGuid": "Guid(5390665581077358337, 2828293109116891278)",
+    "extraType": "Entity",
+    "name": "枪口闪光模板",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "95a8abfb-f5c5-aad5-1395-4954627989dc",
+      "b": ""
+    },
+    "objGuid": "Guid(5179486711198705051, 16063568965313784708)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "f6ac5833-eb15-6394-1656-bd1e9fa35d03",
+      "b": ""
+    },
+    "objGuid": "Guid(4830336097647418811, 2776186707383534491)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "64c01ad7-1db5-ffee-e610-90e1e5b92945",
+      "b": ""
+    },
+    "objGuid": "Guid(5701913044224942577, 18142123927627024772)",
+    "extraType": "Entity",
+    "name": "命中星爆模板",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "3cd7e197-152d-53d2-1f18-8cd171104500",
+      "b": ""
+    },
+    "objGuid": "Guid(5403358080445075228, 9890742151983845053)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "a3d2b3b4-1e4c-50de-cef9-9b41a9c2de1f",
+      "b": ""
+    },
+    "objGuid": "Guid(4810560770739163852, 14209758380282898069)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "c8eba763-aa2a-480c-685e-2056a65b842a",
+      "b": ""
+    },
+    "objGuid": "Guid(4868750541349745894, 2861044395750616737)",
+    "extraType": "Entity",
+    "name": "伤害数字模板",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "14c234aa-de4e-f5b6-ebbf-2a6cd9dd2a89",
+      "b": ""
+    },
+    "objGuid": "Guid(4682667111099291646, 7929871309732668809)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "3493d566-24e2-862f-cb21-18b68b1ac741",
+      "b": ""
+    },
+    "objGuid": "Guid(5129205143721647191, 5519335526575547564)",
+    "extraType": "Text2D",
+    "name": "文字",
+    "version": "1.2.0",
+    "rttiType": "Text",
+    "editable": true,
+    "_lazyUpgrateVersion": "1.2.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "artTextDropdown": "",
+    "artTextNameDropdown": "00000000-0000-0000-0000-000000008000",
+    "totalAnimationTime": 0,
+    "inAnimationAssetID": "",
+    "loopAnimationAssetID": "",
+    "outAnimationAssetID": "",
+    "inAnimationDuration": 0,
+    "loopAnimationDuration": 0,
+    "outAnimationDuration": 0,
+    "userEditable": false,
+    "maxInputWords": 0,
+    "templateId": ""
+  },
+  {
+    "guid": {
+      "a": "4d88eb51-27c1-b045-2e05-b0e5446523bd",
+      "b": ""
+    },
+    "objGuid": "Guid(5077848282957031464, 10579294980562210489)",
+    "extraType": "Entity",
+    "name": "音频",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "2D"
+  },
+  {
+    "guid": {
+      "a": "dee57957-4af9-7305-b15a-5e9c7cef4a71",
+      "b": ""
+    },
+    "objGuid": "Guid(4975454653581855245, 15172432783562306965)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "f2ed4e0f-5ceb-c64a-238f-41084f98a8f1",
+      "b": ""
+    },
+    "objGuid": "Guid(5476277683171499283, 14174978125481630344)",
+    "extraType": "Entity",
+    "name": "对准提示音",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "49a6f81f-c49c-56c4-3695-d5c4a3df8030",
+      "b": ""
+    },
+    "objGuid": "Guid(5262298984030024417, 14154074821178894209)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "a006e476-40bb-3c71-24c3-75b8387cd333",
+      "b": ""
+    },
+    "objGuid": "Guid(4782996423153502192, 5599178980260373635)",
+    "extraType": "AudioComponent",
+    "name": "音频播放器",
+    "version": "0.3.0",
+    "rttiType": "AudioComponent",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.3.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "audioRef": "8753a36f-3ac7-38eb-3049-f1a1e75004ff",
+    "AudioEffectId": "",
+    "AudioEffectCategory": "",
+    "lyricsVolume": 100,
+    "lyricsEntityGuid": "",
+    "lyricsTemplateEntityGuid": "",
+    "subtitleEntityGuid": "",
+    "karaokeEntityGuid": "",
+    "styleResLokiId": "",
+    "prefabGuid": "",
+    "prefabInstanceGuid": ""
+  },
+  {
+    "guid": {
+      "a": "0fd491af-9f67-b0ea-ed6b-d4ae69ee6e1f",
+      "b": ""
+    },
+    "objGuid": "Guid(5065534538530423669, 1669174821916909454)",
+    "extraType": "Entity",
+    "name": "像素开火音",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "bb08897c-f348-28a9-f4bd-f50b1011c24c",
+      "b": ""
+    },
+    "objGuid": "Guid(5015954969217372034, 2419278944780643214)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "69d9b00e-d3cd-e8b5-c825-4a249a7403e5",
+      "b": ""
+    },
+    "objGuid": "Guid(4740638937138536061, 6513946969547912355)",
+    "extraType": "AudioComponent",
+    "name": "音频播放器",
+    "version": "0.3.0",
+    "rttiType": "AudioComponent",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.3.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "audioRef": "0f4f7c0f-b5c9-1f93-df92-134ca154dd71",
+    "AudioEffectId": "",
+    "AudioEffectCategory": "",
+    "lyricsVolume": 100,
+    "lyricsEntityGuid": "",
+    "lyricsTemplateEntityGuid": "",
+    "subtitleEntityGuid": "",
+    "karaokeEntityGuid": "",
+    "styleResLokiId": "",
+    "prefabGuid": "",
+    "prefabInstanceGuid": ""
+  },
+  {
+    "guid": {
+      "a": "536c7c13-5fbb-5e94-2694-f4b6a67580e4",
+      "b": ""
+    },
+    "objGuid": "Guid(5029333243493895666, 17343720807458302115)",
+    "extraType": "Entity",
+    "name": "像素命中音",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "2b1b56a0-cf5a-2b04-61e9-9e9cc0cb0981",
+      "b": ""
+    },
+    "objGuid": "Guid(4795251532913042894, 18111317879464340376)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "f294b11b-44e1-db22-9eb2-cfe2e24fe174",
+      "b": ""
+    },
+    "objGuid": "Guid(4647945340243452877, 17266776069034892962)",
+    "extraType": "AudioComponent",
+    "name": "音频播放器",
+    "version": "0.3.0",
+    "rttiType": "AudioComponent",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.3.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "audioRef": "4cc282b1-1434-0a7f-abba-a264f0f79072",
+    "AudioEffectId": "",
+    "AudioEffectCategory": "",
+    "lyricsVolume": 100,
+    "lyricsEntityGuid": "",
+    "lyricsTemplateEntityGuid": "",
+    "subtitleEntityGuid": "",
+    "karaokeEntityGuid": "",
+    "styleResLokiId": "",
+    "prefabGuid": "",
+    "prefabInstanceGuid": ""
+  },
+  {
+    "guid": {
+      "a": "2cddfaea-c5ee-748e-f2db-1ec23f6e4c10",
+      "b": ""
+    },
+    "objGuid": "Guid(5524731561640492440, 7935605037091691434)",
+    "extraType": "Entity",
+    "name": "人脸重击音",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "965a6fd5-3650-f373-e393-52c4bec905c1",
+      "b": ""
+    },
+    "objGuid": "Guid(5089018136906773229, 9781620321699269300)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "19c84948-f81f-4a96-309e-caf26b1fc4b3",
+      "b": ""
+    },
+    "objGuid": "Guid(4759106711802653566, 3867574160860288938)",
+    "extraType": "AudioComponent",
+    "name": "音频播放器",
+    "version": "0.3.0",
+    "rttiType": "AudioComponent",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.3.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "audioRef": "326a1050-0f70-47d3-f97c-5d8273c79e55",
+    "AudioEffectId": "",
+    "AudioEffectCategory": "",
+    "lyricsVolume": 100,
+    "lyricsEntityGuid": "",
+    "lyricsTemplateEntityGuid": "",
+    "subtitleEntityGuid": "",
+    "karaokeEntityGuid": "",
+    "styleResLokiId": "",
+    "prefabGuid": "",
+    "prefabInstanceGuid": ""
+  },
+  {
+    "guid": {
+      "a": "abac9832-100c-518a-3263-68367f078d1f",
+      "b": ""
+    },
+    "objGuid": "Guid(5491011131732801940, 3105547007384542123)",
+    "extraType": "Entity",
+    "name": "护盾破裂音",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "66483383-e05b-ffb2-b156-5e4396b72437",
+      "b": ""
+    },
+    "objGuid": "Guid(5525113164783517599, 8958240281157474751)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "67595cff-72d5-9341-fa9b-708aa99d2692",
+      "b": ""
+    },
+    "objGuid": "Guid(4631651943905483680, 7078526064673396915)",
+    "extraType": "AudioComponent",
+    "name": "音频播放器",
+    "version": "0.3.0",
+    "rttiType": "AudioComponent",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.3.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "audioRef": "0dbed6c2-9437-6b3b-261e-5937b9c60918",
+    "AudioEffectId": "",
+    "AudioEffectCategory": "",
+    "lyricsVolume": 100,
+    "lyricsEntityGuid": "",
+    "lyricsTemplateEntityGuid": "",
+    "subtitleEntityGuid": "",
+    "karaokeEntityGuid": "",
+    "styleResLokiId": "",
+    "prefabGuid": "",
+    "prefabInstanceGuid": ""
+  },
+  {
+    "guid": {
+      "a": "0842f072-e0b3-4d04-dcf2-d46ac0500693",
+      "b": ""
+    },
+    "objGuid": "Guid(5275789253432883174, 4244348623723628456)",
+    "extraType": "Entity",
+    "name": "胜利庆祝音",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "b980f6e6-224d-8982-227f-f02aeb89be05",
+      "b": ""
+    },
+    "objGuid": "Guid(4942307031401035319, 14329934407162508220)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "f2b82dff-352b-b546-0f6a-ac96a63ae465",
+      "b": ""
+    },
+    "objGuid": "Guid(5671269334601182405, 4348256427987381661)",
+    "extraType": "AudioComponent",
+    "name": "音频播放器",
+    "version": "0.3.0",
+    "rttiType": "AudioComponent",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.3.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "audioRef": "e36677f3-1a94-2934-8b52-b8124dffaadc",
+    "AudioEffectId": "",
+    "AudioEffectCategory": "",
+    "lyricsVolume": 100,
+    "lyricsEntityGuid": "",
+    "lyricsTemplateEntityGuid": "",
+    "subtitleEntityGuid": "",
+    "karaokeEntityGuid": "",
+    "styleResLokiId": "",
+    "prefabGuid": "",
+    "prefabInstanceGuid": ""
+  },
+  {
+    "guid": {
+      "a": "f277b151-0910-d25e-abd6-e53d4689804a",
+      "b": ""
+    },
+    "objGuid": "Guid(4982136856027352911, 2184044437734700951)",
+    "extraType": "Entity",
+    "name": "音乐",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "c4a162c6-af13-630a-4ab6-b33400697f27",
+      "b": ""
+    },
+    "objGuid": "Guid(5672757213211018236, 11597477260014266287)",
+    "extraType": "Transform",
+    "name": "变换",
+    "version": "0.1.0",
+    "rttiType": "Transform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "eulerAngle": [
+      0,
+      0,
+      0
+    ],
+    "linkage": 0
+  },
+  {
+    "guid": {
+      "a": "4ab33865-9d25-899c-2685-e8102619480e",
+      "b": ""
+    },
+    "objGuid": "Guid(4872497489239988183, 14338094244092629149)",
+    "extraType": "EffectNode",
+    "name": "Render Group",
+    "version": "0.1.0",
+    "rttiType": "EffectNode",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "type": 13,
+    "sortMethod": 2,
+    "enableInputTexture": false,
+    "inputTexture": "00000000-0000-0000-0000-00000000004b"
+  },
+  {
+    "guid": {
+      "a": "2d4532b7-250c-1ff4-5102-f2e5b6a1a367",
+      "b": ""
+    },
+    "objGuid": "Guid(5664506684949513678, 7954804249538155167)",
+    "extraType": "Entity",
+    "name": "2D 摄像机",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_music",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": []
+  },
+  {
+    "guid": {
+      "a": "44259449-e24b-d920-0840-4eeba7f495ee",
+      "b": ""
+    },
+    "objGuid": "Guid(5153090210801357493, 2843556445723717517)",
+    "extraType": "Transform",
+    "name": "变换",
+    "version": "0.1.0",
+    "rttiType": "Transform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "eulerAngle": [
+      0,
+      0,
+      0
+    ],
+    "linkage": 0
+  },
+  {
+    "guid": {
+      "a": "b2126fb8-9ab2-4701-3dee-8374ea389e2f",
+      "b": ""
+    },
+    "objGuid": "Guid(4938905197594467622, 17853530923617238670)",
+    "extraType": "Camera",
+    "name": "摄像机",
+    "version": "0.4.0",
+    "rttiType": "Camera",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "enableMask": false,
+    "maskTexture": "00000000-0000-0000-0000-000000000802",
+    "physicalFovy": false,
+    "fov": 60,
+    "cachedInputTexture": "00000000-0000-0000-0000-00000000004b",
+    "isAnimatorBound": false
+  },
+  {
+    "guid": {
+      "a": "509c0a58-b153-4abd-6c4c-9bf7e4f4e336",
+      "b": ""
+    },
+    "objGuid": "Guid(4755063999992598990, 12141518002497393584)",
+    "extraType": "Entity",
+    "name": "音效",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_music",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "2D"
+  },
+  {
+    "guid": {
+      "a": "73b3b0a0-bc44-f2fa-5da0-581534c52bfe",
+      "b": ""
+    },
+    "objGuid": "Guid(4894118829418782977, 5123839200856434561)",
+    "extraType": "Transform",
+    "name": "变换",
+    "version": "0.1.0",
+    "rttiType": "Transform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": false
+    },
+    "eulerAngle": [
+      0,
+      0,
+      0
+    ],
+    "linkage": 0
+  },
+  {
+    "guid": {
+      "a": "6f643ae4-7304-3da8-7835-a4c27bf90dcf",
+      "b": ""
+    },
+    "objGuid": "Guid(5512325434573824339, 5933490194340500654)",
+    "extraType": "AudioComponent",
+    "name": "音频播放器",
+    "version": "0.3.0",
+    "rttiType": "AudioComponent",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.3.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "audioRef": "cff35be9-37c4-2360-5a9b-4088e50a08c8",
+    "AudioEffectId": "",
+    "AudioEffectCategory": "",
+    "lyricsVolume": 100,
+    "lyricsEntityGuid": "",
+    "lyricsTemplateEntityGuid": "",
+    "subtitleEntityGuid": "",
+    "karaokeEntityGuid": "",
+    "styleResLokiId": "",
+    "prefabGuid": "",
+    "prefabInstanceGuid": ""
+  }
+]

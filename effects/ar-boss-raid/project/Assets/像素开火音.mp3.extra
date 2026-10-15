@@ -1,0 +1,21 @@
+[
+  {
+    "guid": {
+      "a": "0f4f7c0f-b5c9-1f93-df92-134ca154dd71",
+      "b": ""
+    },
+    "extraType": "ResItemMP3",
+    "name": "像素开火音",
+    "version": "0.1.0",
+    "rttiType": "AudioAsset",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "mccState": "SUCCESS",
+    "objGuid": "",
+    "references": []
+  }
+]

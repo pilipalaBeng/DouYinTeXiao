@@ -1,0 +1,70 @@
+{
+  "name": "DB16",
+  "count": 16,
+  "colors": [
+    {
+      "hex": "#140c1c",
+      "name": "Deep midnight"
+    },
+    {
+      "hex": "#442434",
+      "name": "Dark plum"
+    },
+    {
+      "hex": "#30346d",
+      "name": "Deep navy"
+    },
+    {
+      "hex": "#4e4a4e",
+      "name": "Dark slate"
+    },
+    {
+      "hex": "#854c30",
+      "name": "Brown rust"
+    },
+    {
+      "hex": "#346524",
+      "name": "Dark olive"
+    },
+    {
+      "hex": "#d04648",
+      "name": "Brick red"
+    },
+    {
+      "hex": "#757161",
+      "name": "Warm gray"
+    },
+    {
+      "hex": "#597dce",
+      "name": "Cornflower"
+    },
+    {
+      "hex": "#d27d2c",
+      "name": "Orange tan"
+    },
+    {
+      "hex": "#8595a1",
+      "name": "Steel gray"
+    },
+    {
+      "hex": "#6daa2c",
+      "name": "Foliage"
+    },
+    {
+      "hex": "#d2aa99",
+      "name": "Tan skin"
+    },
+    {
+      "hex": "#6dc2ca",
+      "name": "Sky cyan"
+    },
+    {
+      "hex": "#dad45e",
+      "name": "Pale gold"
+    },
+    {
+      "hex": "#deeed6",
+      "name": "Bone white"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "guid": {
+      "a": "cff35be9-37c4-2360-5a9b-4088e50a08c8",
+      "b": ""
+    },
+    "extraType": "ResItemMP3",
+    "name": "sfx_hit",
+    "version": "0.1.0",
+    "rttiType": "AudioAsset",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "mccState": "SUCCESS",
+    "objGuid": "",
+    "resourceFilePath": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\dyeh-mcp-aigc\\audio\\1791893446023_r7hq01ndobs\\sfx_hit.mp3",
+    "references": []
+  }
+]

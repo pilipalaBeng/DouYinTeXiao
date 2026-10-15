@@ -1,0 +1,21 @@
+[
+  {
+    "guid": {
+      "a": "4cc282b1-1434-0a7f-abba-a264f0f79072",
+      "b": ""
+    },
+    "extraType": "ResItemMP3",
+    "name": "像素命中音",
+    "version": "0.1.0",
+    "rttiType": "AudioAsset",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "mccState": "SUCCESS",
+    "objGuid": "",
+    "references": []
+  }
+]

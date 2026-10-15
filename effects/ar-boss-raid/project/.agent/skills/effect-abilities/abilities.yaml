@@ -1,0 +1,230 @@
+type: effect-abilities
+abilities:
+  - id: audio-detection
+    skillId: audio-detection
+    name: 音频检测
+    category: 音频
+    description: 识别用户声音中的音量、音高或指定关键词，适合声控互动、喊话触发、唱歌/发声挑战、语音口令等需要声音输入反馈的玩法。
+    icon: online-mention-ability-audio.svg
+    keywords: [音频, 声音, 语音, 音量, 音高, 关键词, 声控, 喊话]
+    mentionEnabled: true
+    defaultEnabled: true
+    subAbilities:
+      - id: volume-detection
+        skillId: audio-detection
+        name: 音量检测
+        description: 检测用户声音音量、响度或音量变化。
+        keywords: [音量检测, 音量, 响度, 分贝, 大声]
+        trackingFeatures: [Audio Detection]
+        supportedConfigs:
+          - 音量范围
+          - 映射方式
+          - 低/高音量触发动作
+      - id: pitch-detection
+        skillId: audio-detection
+        name: 音高检测
+        description: 检测用户声音音高、音调或基频变化。
+        keywords: [音高检测, 音高, 音调, 基频, pitch]
+        trackingFeatures: [Audio Detection]
+        supportedConfigs:
+          - 音高范围
+          - 映射方式
+          - 低/高音调触发动作
+      - id: keyword-detection
+        skillId: audio-detection
+        name: 关键词检测
+        description: 检测音频中是否出现指定关键词或语音口令。
+        keywords: [关键词检测, 关键词, 口令, 唤醒词, keyword]
+        trackingFeatures: [Keyword Detection]
+        supportedConfigs:
+          - 关键词列表
+          - 检测时机
+          - 命中后动作
+          - 未命中反馈
+
+  - id: ranking-list
+    skillId: ranking-list
+    name: 排行榜
+    category: 排行榜
+    description: 为游戏或活动提供好友、全国、地域等多维度榜单展示。游戏排行榜基于得分或成绩排名；打卡排行榜基于打卡次数或连续参与天数排名。
+    icon: online-mention-ability-rankinglist.svg
+    keywords: [排行榜, 排名, 榜单, 好友榜, 全国榜, 地域榜, 分数榜, 打卡榜]
+    mentionEnabled: true
+    defaultEnabled: true
+    subAbilities:
+      - id: game-ranking-list
+        skillId: ranking-list
+        name: 游戏排行榜
+        description: 基于得分或成绩排名，适合竞速、闯关、答题等有明确分数产出的玩法。
+        keywords: [游戏排行榜, 分数榜, 得分排名, 成绩排名]
+        trackingFeatures: [GameRanking]
+        supportedConfigs:
+          - 榜单范围（全国/好友/省/市/区/学校）
+          - 榜单类型（个人/群组）
+          - 分数单位
+          - 升/降序
+          - 展示时机
+      - id: checkin-ranking-list
+        skillId: ranking-list
+        name: 打卡排行榜
+        description: 基于打卡次数或连续参与天数排名，适合签到挑战、习惯养成和活动参与玩法。
+        keywords: [打卡排行榜, 签到排行, 连续打卡, 打卡排名]
+        trackingFeatures: [CheckinRanking]
+        supportedConfigs:
+          - 榜单范围（好友榜/全国榜）
+
+  - id: checkin
+    skillId: checkin
+    name: 打卡签到
+    abilityName: 打卡签到
+    category: 打卡/签到
+    description: 记录用户参与、提交、连续打卡等数据，可展示第几天打卡、已有多少人参与、累计打卡次数等信息。
+    icon: online-mention-ability-social.svg
+    keywords: [打卡, 签到, 连续打卡, 参与记录, 累计打卡]
+    trackingFeatures: [Checkin, CloudDataBase]
+    mentionEnabled: true
+    defaultEnabled: true
+    supportedConfigs:
+      - 参与人数
+      - 投稿次数
+      - 用户投稿次数
+      - 连续投稿天数
+
+  - id: social-profile
+    skillId: social-profile
+    name: 社交资料
+    category: 社交
+    description: 展示用户社交资料、好友头像或地理位置信息，适合资料卡、好友头像墙、地域身份展示和本地化互动等玩法。
+    icon: online-mention-ability-social.svg
+    keywords: [社交资料, 个人信息, 资料卡, 好友头像, 好友墙, 粉丝头像, 关注者头像, 地理位置, 城市, 省份, 国家, POI]
+    mentionEnabled: true
+    defaultEnabled: true
+    subAbilities:
+      - id: personal-info-card
+        skillId: social-profile
+        name: 个人信息卡
+        description: 展示用户或其好友、粉丝、关注者的头像、昵称、年龄、性别、星座、生日、学校和简介等资料。
+        keywords: [个人信息, 个人信息卡, 资料卡, 昵称, 头像, 年龄, 星座, 学校]
+        trackingFeatures: [PersonalCard]
+        supportedConfigs: [昵称, 性别, 年龄, 星座, 生日, 简介, 城市, 学校, 头像]
+      - id: friend-avatars
+        skillId: social-profile
+        name: 好友头像
+        description: 批量展示好友、粉丝或关注者的头像，可用于好友墙、随机好友展示、头像轮播和社交氛围营造。
+        keywords: [好友头像, 好友墙, 粉丝头像, 关注者头像, 头像轮播]
+        trackingFeatures: [DYSocialImageFriends]
+        supportedConfigs:
+          - 社交关系（好友/关注/粉丝）
+          - 好友数量（1-30）
+          - 轮播速度
+          - 轮播停止条件
+      - id: poi
+        skillId: social-profile
+        name: 地理位置展示
+        description: 根据用户所在位置展示国家、省份、城市或区县等地域信息。
+        keywords: [地理位置, 位置, 城市, 省份, 国家, 地域, POI]
+        trackingFeatures: [POI]
+        supportedConfigs: [国家, 省份, 城市, 区县]
+
+  - id: vision-algorithm
+    skillId: vision-algorithm
+    name: 视觉算法
+    category: 视觉
+    description: 接入面部、手势、人体检测和宠物识别等实时视觉能力，让玩法可以根据用户动作、属性、入镜离场、宠物目标位置等产生实时反馈。
+    icon: online-mention-ability-vision.svg
+    keywords: [视觉算法, 视觉, 人脸, 手势, 宠物识别, 猫, 狗, 关键点, 体感]
+    mentionEnabled: true
+    defaultEnabled: true
+    subAbilities:
+      - id: face-landmarks
+        skillId: vision-algorithm
+        name: 面部检测
+        description: 检测面部位置、106个关键点、头姿及FaceAction，支持多人脸跟踪与眼嘴语义部位定位。
+        keywords: [人脸检测, 面部关键点, 头部转动, FaceAction, 人脸动作]
+        supportedConfigs:
+          - 检测目标（人脸框/106 点/头姿/FaceAction/语义部位）
+          - 动作类型
+          - 绑定对象
+          - 置信度阈值
+          - 无脸 fallback
+          - 持续跟踪开关
+      - id: face-attributes
+        skillId: vision-algorithm
+        name: 面部属性
+        description: 识别面部表情、年龄、性别、快乐分(happyScore)及颜值分(attractive)等多种属性特征。
+        keywords: [表情识别, 年龄性别, 颜值, 快乐分, 属性识别]
+        supportedConfigs:
+          - 属性字段（表情/happyScore/年龄/性别/attractive）
+          - 触发条件
+          - 展示对象
+          - 结果映射规则
+          - 默认文案
+      - id: pet-recognition
+        skillId: vision-algorithm
+        name: 宠物脸检测
+        description: 实时检测画面中宠物脸（猫、狗）的位置与头姿，支持贴纸绑定与跟随交互。
+        keywords: [宠物脸, 猫脸, 狗脸, 宠物检测]
+        supportedConfigs: [检测目标, 绑定贴纸/对象, 跟随策略, 置信度阈值, 无宠物 fallback]
+      - id: hand-landmarks
+        skillId: vision-algorithm
+        name: 手部检测
+        description: 检测手部位置（手框）、左右手标识及 HandAction 触发手势，适用于手势交互控制。
+        keywords: [手势识别, 手部检测, 手势, HandAction]
+        supportedConfigs: [检测目标（手框/左右手/HandAction）, 触发手势, 绑定对象, 无手 fallback]
+      - id: body-detection
+        skillId: vision-algorithm
+        name: 身体检测
+        description: 检测人体存在及入镜/离场状态，支持根据人员动态触发进入或离开阶段的交互动作。
+        keywords: [人体检测, 身体检测, 入镜检测, 离场检测, 体感]
+        supportedConfigs: [人体存在/入镜离场, 触发条件, 绑定阶段, 进入/离开动作, 无人 fallback]
+
+  - id: game2d-engine
+    skillId: game2d-engine
+    name: 物理系统
+    abilityName: 物理系统
+    category: 物理
+    description: 为 2D 游戏或互动场景提供重力、碰撞、弹力、摩擦、冲量等物理模拟能力，适合弹射、掉落、碰撞、堆叠、机关等需要真实运动反馈的玩法。
+    icon: online-mention-ability-physic.svg
+    keywords: [物理系统, 2D物理, 2D 物理, 物理, 重力, 碰撞, 弹力, 摩擦, 冲量, Matter2D]
+    mentionEnabled: true
+    defaultEnabled: true
+    supportedConfigs:
+      - 绑定对象
+      - 刚体类型
+      - 是否受重力
+      - 碰撞体类型
+      - 尺寸/半径
+      - 摩擦力
+      - 弹力
+      - 质量
+      - 初始力/冲量
+      - 碰撞反馈
+
+
+  - id: gan
+    skillId: gan
+    name: GAN
+    abilityName: GAN
+    category: 实时效果
+    description: 对实时相机画面应用内置GAN效果，实现全身换装、真人搞怪、表情迁移、真人美化等人物生成与风格化处理，支持“穿越漫画”等实时风格化玩法。
+    icon: online-mention-ability-vision.svg
+    keywords: [GAN, 内置GAN, 全身换装, 真人搞怪, 表情迁移, 真人美化, 人物生成, 风格化, 穿越漫画]
+    mentionEnabled: true
+    defaultEnabled: true
+    supportedConfigs:
+      - 效果类型（全身换装/真人搞怪/表情迁移/真人美化）
+      - 内置GAN效果（暂不支持UGC GAN）
+
+  - id: post-processing
+    skillId: post-processing
+    name: 画面效果
+    abilityName: 画面效果
+    category: 实时效果
+    description: 对最终画面执行屏幕空间后处理，通过泛光、暗角、色像差、扭曲、模糊等效果增强画面质感与氛围，也可通过自定义资源扩展效果；Bling闪光为独立组件包含在本能力内。
+    icon: online-mention-ability-vision.svg
+    keywords: [后处理, 画面效果, 屏幕空间, 发光, 边缘眩光, 扭曲, 粒感, 暗角, 散景模糊, 运动模糊, 自定义, Bling闪光]
+    mentionEnabled: true
+    defaultEnabled: true
+    supportedConfigs:
+      - 效果类型（发光/边缘眩光/扭曲/粒感/暗角/散景模糊/运动模糊/自定义）
+      - Bling闪光（独立组件）

@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "pageNumber": 1,
+  "attempt": 1,
+  "generatedAt": "2026-10-14T08:29:35.555Z",
+  "workflowSource": "loki_material://7660791499554078766",
+  "taskId": "wf12026101416283949610301491970",
+  "logId": "0217919665190712408820760c65e30e4fef7950c91c779e0b86c",
+  "imageUri": "tos-cn-i-cf374c/oIJIg1zECFAPAzqkGFzsBmEAPDeWfzSbZAC1DN",
+  "imageUrl": "https://p26-effect-platform-i-sign.byteimg.com/tos-cn-i-cf374c/oIJIg1zECFAPAzqkGFzsBmEAPDeWfzSbZAC1DN~tplv-3y40q1qpvg-image.image?rk3s=858652e7&x-expires=1794558575&x-signature=InMwrrCIkIU0oyOERvi2WPxginI%3D",
+  "actualWidth": 2160,
+  "actualHeight": 3840,
+  "mimeType": "image/png",
+  "pollDurationMs": 55779,
+  "pollCount": 10,
+  "request": {
+    "settingImageModel": "image2",
+    "generationMaxAttempts": 1,
+    "imageConfig": {
+      "aspectRatio": "9:16",
+      "width": 2160,
+      "height": 3840,
+      "size": "2160x3840",
+      "imageSize": "4K",
+      "mimeType": "image/png",
+      "quality": "medium",
+      "maxTokens": 1000
+    },
+    "referenceImageUri": "tos-cn-i-cf374c/ooGGeAeQAKsnVLACeW7EkPaAIngBdQCAzZMA5Q",
+    "promptPath": ".agent/asset-board/pages/page-01/prompt.txt",
+    "promptHash": "772dd310f308df5469f3b34fd1c17243d15da5a28cda7857e65c28852dee6b9f",
+    "layout": {
+      "columns": 3,
+      "rows": 6,
+      "pageSize": 18
+    }
+  }
+}

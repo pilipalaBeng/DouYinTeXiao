@@ -1,0 +1,21 @@
+[
+  {
+    "guid": {
+      "a": "326a1050-0f70-47d3-f97c-5d8273c79e55",
+      "b": ""
+    },
+    "extraType": "ResItemMP3",
+    "name": "人脸重击音",
+    "version": "0.1.0",
+    "rttiType": "AudioAsset",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "mccState": "SUCCESS",
+    "objGuid": "",
+    "references": []
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "guid": {
+      "a": "74b6adc1-10c4-02ab-dccf-a1753fd6d1ee",
+      "b": ""
+    },
+    "extraType": "ResItemPNGImage",
+    "name": "BossIdlePose_128",
+    "version": "0.2.0",
+    "rttiType": "Texture",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "compressionType": 0,
+    "compressQuality": 0,
+    "compressMaxResolution": 512,
+    "enableMipmap": false,
+    "filterMin": 1,
+    "filterMag": 1,
+    "filterMipmap": 0,
+    "wrapModeS": 0,
+    "wrapModeT": 0,
+    "wrapModeR": 0,
+    "premultiplyAlpha": false,
+    "objGuid": "",
+    "resourceFilePath": "D:/Project/DouYinTeXiao/effects/ar-boss-raid/assets/px/BossIdlePose_128.png",
+    "references": []
+  }
+]

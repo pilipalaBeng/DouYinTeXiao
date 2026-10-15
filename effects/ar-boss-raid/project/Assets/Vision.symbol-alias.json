@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "apjsModule": "APJS.d.ts",
+  "ignoreDependencyFiles": ["Vision.ts"],
+  "allowSymbolDeclarationFiles": ["Vision.ts"],
+  "aliases": {
+    "Vision.getFaces": [
+      "APJS.AlgorithmResult.getFaceCount",
+      "APJS.AlgorithmResult.getFaceBaseInfo"
+    ],
+    "Face.Result": [
+      "APJS.AlgorithmResult.getFaceCount",
+      "APJS.AlgorithmResult.getFaceBaseInfo"
+    ],
+    "Face.Result.getAttr": [
+      "APJS.AlgorithmResult.getFaceAttributeCount",
+      "APJS.AlgorithmResult.getFaceAttributeInfo"
+    ],
+    "Face.Attr": [
+      "APJS.AlgorithmResult.getFaceAttributeCount",
+      "APJS.AlgorithmResult.getFaceAttributeInfo"
+    ],
+    "Face.Result.hasAction": [
+      "APJS.Face106Interface.hasAction"
+    ],
+    "Vision.getPets": [
+      "APJS.AlgorithmResult.getFacePetInfoCount",
+      "APJS.AlgorithmResult.getFacePetInfo"
+    ],
+    "Pet.Result": [
+      "APJS.AlgorithmResult.getFacePetInfoCount",
+      "APJS.AlgorithmResult.getFacePetInfo"
+    ],
+    "Vision.getHands": [
+      "APJS.AlgorithmResult.getHandCount",
+      "APJS.AlgorithmResult.getHandInfo"
+    ],
+    "Hand.Result": [
+      "APJS.AlgorithmResult.getHandCount",
+      "APJS.AlgorithmResult.getHandInfo"
+    ],
+    "Vision.getBodies": [
+      "APJS.AlgorithmResult.getBodyCount",
+      "APJS.AlgorithmResult.getBodyInfo"
+    ],
+    "Body.Result": [
+      "APJS.AlgorithmResult.getBodyCount",
+      "APJS.AlgorithmResult.getBodyInfo"
+    ],
+    "Vision.isBodyDetected": [
+      "APJS.AlgorithmResult.getBodyCount",
+      "APJS.AlgorithmResult.getBodyInfo"
+    ]
+  }
+}

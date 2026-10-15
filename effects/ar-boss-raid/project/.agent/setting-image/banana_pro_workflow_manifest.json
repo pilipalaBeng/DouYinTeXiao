@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "generator": "banana-pro-setting-image",
+  "workflowSource": "loki_material://7660791499554078766",
+  "latestTaskId": "wf12026101416142249610124034562",
+  "updatedAt": "2026-10-14T08:15:12.491Z",
+  "tasks": [
+    {
+      "status": "completed",
+      "settingImageModel": "image2",
+      "workflowSource": "loki_material://7660791499554078766",
+      "taskId": "wf12026101416142249610124034562",
+      "taskNodeIdList": [
+        "539517335554:0"
+      ],
+      "promptPath": ".agent/setting-image/setting_reference.md",
+      "promptBundlePath": ".agent/setting-image/setting_prompt_bundle.json",
+      "gpt54LogId": "0217919656206442408820760c65e30e4fef7950c91c779c555e6",
+      "bananaLogId": "0217919656618732408820760c65e30e4fef7950c91c779d2a4b5",
+      "layoutReferenceHash": "27b14b337645e6b1523ff55e3a1372c70e4d66041f1e1b4c3cd67c8321d9b92f",
+      "styleReference": {
+        "styleId": "pixel",
+        "path": ".agent/setting-image/style_reference_pixel.png",
+        "hash": "7cf239566308947dff34e5faf0702e9ab5b2f8ae0e9c39b4719f50f8aba66d31"
+      },
+      "selectedUserStyleReferenceImages": [],
+      "skippedUserReferenceImages": [],
+      "startedAt": "2026-10-14T08:13:39.565Z",
+      "submittedAt": "2026-10-14T08:15:12.491Z",
+      "finishedAt": "2026-10-14T08:15:12.491Z",
+      "durationMs": 92926,
+      "settingImagePath": ".agent/setting-image/设定图.png",
+      "settingImageUri": "tos-cn-i-cf374c/ooGGeAeQAKsnVLACeW7EkPaAIngBdQCAzZMA5Q",
+      "pollDurationMs": 49380,
+      "pollCount": 9,
+      "pollIntervalMs": 6000,
+      "actualWidth": 720,
+      "actualHeight": 1280,
+      "workflowUsage": {
+        "input_tokens": 3157,
+        "output_tokens": 947,
+        "total_tokens": 3469
+      },
+      "settingImageHash": "474c40a493ff5b29dc3b35fadeed27299a3c375726ef681b0ffc7647dcf4483b"
+    }
+  ]
+}

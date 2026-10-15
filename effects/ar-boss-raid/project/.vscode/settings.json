@@ -1,0 +1,42 @@
+{
+  "files.exclude": {
+    "Assets/temp.folder": true,
+    "Assets/main.scene": true,
+    "Assets/**/*.log": true,
+    "EffectSettings": true,
+    "EventChains": true,
+    "Graph": true,
+    "Icon": true,
+    "Library/CompiledScripts/Editor": true,
+    "Library/CompiledScripts/Src": true,
+    "Library/CompiledScripts/Out": true,
+    "Library/CompiledScripts/tsconfig.json": true,
+    "Library/CompiledScripts/package.json": true,
+    "Library/CacheData*": true,
+    "userjson": true,
+    "Record": true,
+    "**/*.extra": true
+  },
+  "files.readonlyInclude": {
+    "Library/**/*.js": true,
+    "Library/**/*.ts": true
+  },
+  "search.exclude": {
+    "Assets/temp.folder": true,
+    "Assets/main.scene": true,
+    "Assets/**/*.log": true,
+    "EffectSettings": true,
+    "EventChains": true,
+    "Graph": true,
+    "Icon": true,
+    "Library/CompiledScripts/Editor": true,
+    "Library/CompiledScripts/Src": true,
+    "Library/CompiledScripts/Out": true,
+    "Library/CompiledScripts/tsconfig.json": true,
+    "Library/CompiledScripts/package.json": true,
+    "Library/CacheData*": true,
+    "userjson": true,
+    "Record": true,
+    "**/*.extra": true
+  }
+}

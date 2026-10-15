@@ -1,0 +1,21 @@
+[
+  {
+    "guid": {
+      "a": "8753a36f-3ac7-38eb-3049-f1a1e75004ff",
+      "b": ""
+    },
+    "extraType": "ResItemMP3",
+    "name": "对准提示音",
+    "version": "0.1.0",
+    "rttiType": "AudioAsset",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "mccState": "SUCCESS",
+    "objGuid": "",
+    "references": []
+  }
+]

@@ -1,0 +1,130 @@
+{
+  "sourceManifestPath": "Assets/audio_asset_generation_manifest.json",
+  "failureManifestPath": "Assets/audio_asset_generation_failures.json",
+  "workflowSource": "loki_material://7659277819859484698",
+  "format": "mp3",
+  "sampleRate": 44100,
+  "updatedAt": "2026-10-14T08:17:01.268Z",
+  "assets": [
+    {
+      "clipKey": "对准提示音",
+      "status": "completed",
+      "prompt": "即刻响起一声短促的像素风电子嘀声（清晰, 穿透力强, 约0.12s）",
+      "isBgm": false,
+      "finalPath": "Assets/对准提示音.mp3",
+      "taskId": "wf12026101416164349608305201154",
+      "failed_taskIds": [],
+      "audioUrl": "tos://tos-cn-v-cf374c/o0OCYQgMA9AEfTeX8AVzBAkLEpPennAunlLDla",
+      "sizeBytes": 2866,
+      "stageDurationsMs": {
+        "submit": 477,
+        "poll": 12371,
+        "download": 469,
+        "finalize": 0
+      },
+      "startedAt": "2026-10-14T08:16:42.261Z",
+      "finishedAt": "2026-10-14T08:16:55.579Z",
+      "durationMs": 13318
+    },
+    {
+      "clipKey": "人脸重击音",
+      "status": "completed",
+      "prompt": "即刻响起一声更有力度的像素风重击确认音（响亮, 饱满, 带短促下砸感, 约0.20s）",
+      "isBgm": false,
+      "finalPath": "Assets/人脸重击音.mp3",
+      "taskId": "wf12026101416164349614967428866",
+      "failed_taskIds": [],
+      "audioUrl": "tos://tos-cn-v-cf374c/ogaqn0PzPQeFCd2BQVnAfTMLWj8AkEOAMAreAb",
+      "sizeBytes": 1088,
+      "stageDurationsMs": {
+        "submit": 618,
+        "poll": 12660,
+        "download": 40,
+        "finalize": 0
+      },
+      "startedAt": "2026-10-14T08:16:42.264Z",
+      "finishedAt": "2026-10-14T08:16:55.582Z",
+      "durationMs": 13318
+    },
+    {
+      "clipKey": "胜利庆祝音",
+      "status": "completed",
+      "prompt": "即刻响起一段像素风胜利庆祝提示音（明亮, 清晰, 上扬收尾, 约0.55s）",
+      "isBgm": false,
+      "finalPath": "Assets/胜利庆祝音.mp3",
+      "taskId": "wf12026101416164349618028580098",
+      "failed_taskIds": [],
+      "audioUrl": "tos://tos-cn-v-cf374c/osiAsDiZLEBa56AJ04AQfyiF1PAOsV2gGAn5OB",
+      "sizeBytes": 5624,
+      "stageDurationsMs": {
+        "submit": 620,
+        "poll": 12663,
+        "download": 46,
+        "finalize": 0
+      },
+      "startedAt": "2026-10-14T08:16:42.265Z",
+      "finishedAt": "2026-10-14T08:16:55.594Z",
+      "durationMs": 13329
+    },
+    {
+      "clipKey": "护盾破裂音",
+      "status": "completed",
+      "prompt": "即刻响起一段像素风护盾碎裂的电子破碎声（响亮, 清晰, 颗粒感, 约0.30s）",
+      "isBgm": false,
+      "finalPath": "Assets/护盾破裂音.mp3",
+      "taskId": "wf12026101416164349608319842818",
+      "failed_taskIds": [],
+      "audioUrl": "tos://tos-cn-v-cf374c/o0D0EGiBAdfg81OAO15PASLAnAijvsJZr5BhbQ",
+      "sizeBytes": 4894,
+      "stageDurationsMs": {
+        "submit": 675,
+        "poll": 12689,
+        "download": 39,
+        "finalize": 0
+      },
+      "startedAt": "2026-10-14T08:16:42.264Z",
+      "finishedAt": "2026-10-14T08:16:55.668Z",
+      "durationMs": 13404
+    },
+    {
+      "clipKey": "像素命中音",
+      "status": "completed",
+      "prompt": "即刻响起一声明亮的像素风命中确认叮声（清晰, 穿透力强, 快速衰减, 约0.14s）",
+      "isBgm": false,
+      "finalPath": "Assets/像素命中音.mp3",
+      "taskId": "wf12026101416164349609892898562",
+      "failed_taskIds": [],
+      "audioUrl": "tos://tos-cn-v-cf374c/oEA2dnY2GAMOMeUTkjLAa4znCEeeVABQIxAbCn",
+      "sizeBytes": 2866,
+      "stageDurationsMs": {
+        "submit": 631,
+        "poll": 12782,
+        "download": 37,
+        "finalize": 0
+      },
+      "startedAt": "2026-10-14T08:16:42.263Z",
+      "finishedAt": "2026-10-14T08:16:55.713Z",
+      "durationMs": 13450
+    },
+    {
+      "clipKey": "像素开火音",
+      "status": "completed",
+      "prompt": "即刻响起一声短促的像素风激光射击哔哔声（清晰, 偏尖, 穿透力强, 约0.10s）",
+      "isBgm": false,
+      "finalPath": "Assets/像素开火音.mp3",
+      "taskId": "wf12026101416164349610294125570",
+      "failed_taskIds": [],
+      "audioUrl": "tos://tos-cn-v-cf374c/oo3RIeWnATUzkEXnVAADFuLKCxBPaneOELAfGA",
+      "sizeBytes": 2444,
+      "stageDurationsMs": {
+        "submit": 593,
+        "poll": 18375,
+        "download": 36,
+        "finalize": 0
+      },
+      "startedAt": "2026-10-14T08:16:42.263Z",
+      "finishedAt": "2026-10-14T08:17:01.267Z",
+      "durationMs": 19004
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+[
+  {
+    "guid": {
+      "a": "0dbed6c2-9437-6b3b-261e-5937b9c60918",
+      "b": ""
+    },
+    "extraType": "ResItemMP3",
+    "name": "护盾破裂音",
+    "version": "0.1.0",
+    "rttiType": "AudioAsset",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "mccState": "SUCCESS",
+    "objGuid": "",
+    "references": []
+  }
+]

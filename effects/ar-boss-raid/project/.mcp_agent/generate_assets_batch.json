@@ -1,0 +1,176 @@
+{
+  "batchId": "63421786-b52f-4692-bbb0-7e46b85bb233",
+  "projectPath": "C:\\Users\\Administrator\\AppData\\Local\\DouyinAR\\Instances\\Instance1\\ProjectCreatedTmp\\未命名",
+  "projectName": "未命名",
+  "status": "completed",
+  "createdAt": "2026-10-13T12:10:36.853Z",
+  "updatedAt": "2026-10-13T12:11:02.465Z",
+  "total": 5,
+  "imageCount": 4,
+  "audioCount": 1,
+  "pendingCount": 0,
+  "runningCount": 0,
+  "completedCount": 5,
+  "failedCount": 0,
+  "items": [
+    {
+      "index": 0,
+      "request": {
+        "kind": "image",
+        "name": "BossIdlePose",
+        "prompt": "Retro 16-bit pixel art game sprite of a round chubby stone golem boss. Single huge cyclops eye with a red iris centered on its face. Two small pointed horns on top of its round head. Two short stubby legs at the bottom. No arms. Dark brown and grey rocky body. Front facing, perfectly symmetrical, centered, full body visible. Flat solid colors only, hard pixel edges, NO anti-aliasing, NO gradients, NO dithering, NO texture noise, NO shading gradient. Clean chunky readable silhouette. Isolated on transparent background.",
+        "width": 1024,
+        "height": 1024,
+        "needSeg": true,
+        "timeoutMs": 180000
+      },
+      "status": "completed",
+      "startedAt": "2026-10-13T12:10:36.855Z",
+      "finishedAt": "2026-10-13T12:11:02.463Z",
+      "durationMs": 25608,
+      "output": {
+        "task_id": "wf12026101320103849487760257026",
+        "actual_width": 1024,
+        "actual_height": 1024,
+        "prompt": "Retro 16-bit pixel art game sprite of a round chubby stone golem boss. Single huge cyclops eye with a red iris centered on its face. Two small pointed horns on top of its round head. Two short stubby legs at the bottom. No arms. Dark brown and grey rocky body. Front facing, perfectly symmetrical, centered, full body visible. Flat solid colors only, hard pixel edges, NO anti-aliasing, NO gradients, NO dithering, NO texture noise, NO shading gradient. Clean chunky readable silhouette. Isolated on transparent background.",
+        "asset": {
+          "kind": "resource",
+          "name": "BossIdlePose",
+          "type": "Texture2D",
+          "group": "Texture",
+          "guid": "r7",
+          "filePath": "C:\\Users\\Administrator\\AppData\\Local\\DouyinAR\\Instances\\Instance1\\ProjectCreatedTmp\\未命名\\Assets\\BossIdlePose.png",
+          "provider": "Texture2D"
+        }
+      }
+    },
+    {
+      "index": 1,
+      "request": {
+        "kind": "image",
+        "name": "Crosshair",
+        "prompt": "Retro 16-bit pixel art crosshair reticle for a shooting game HUD. Four short thick brackets forming a square sight with a single center dot. Colors limited to white and bright yellow. Flat solid colors only, hard pixel edges, NO anti-aliasing, NO gradients, NO glow, NO dithering. Perfectly symmetrical, centered. Isolated on transparent background.",
+        "width": 512,
+        "height": 512,
+        "needSeg": true,
+        "timeoutMs": 180000
+      },
+      "status": "completed",
+      "startedAt": "2026-10-13T12:10:36.857Z",
+      "finishedAt": "2026-10-13T12:11:01.188Z",
+      "durationMs": 24331,
+      "output": {
+        "task_id": "wf12026101320103849482377690626",
+        "actual_width": 960,
+        "actual_height": 960,
+        "prompt": "Retro 16-bit pixel art crosshair reticle for a shooting game HUD. Four short thick brackets forming a square sight with a single center dot. Colors limited to white and bright yellow. Flat solid colors only, hard pixel edges, NO anti-aliasing, NO gradients, NO glow, NO dithering. Perfectly symmetrical, centered. Isolated on transparent background.",
+        "asset": {
+          "kind": "resource",
+          "name": "Crosshair",
+          "type": "Texture2D",
+          "group": "Texture",
+          "guid": "r6",
+          "filePath": "C:\\Users\\Administrator\\AppData\\Local\\DouyinAR\\Instances\\Instance1\\ProjectCreatedTmp\\未命名\\Assets\\Crosshair.png",
+          "provider": "Texture2D"
+        }
+      }
+    },
+    {
+      "index": 2,
+      "request": {
+        "kind": "image",
+        "name": "HpBarFrame",
+        "prompt": "Retro 16-bit pixel art horizontal empty HP bar frame, wide banner shape. Dark grey stone-textured border with small rivets at the corners, completely hollow empty interior. Flat solid colors only, hard pixel edges, NO anti-aliasing, NO gradients, NO dithering. Symmetrical, centered, horizontal. Isolated on transparent background.",
+        "width": 1024,
+        "height": 256,
+        "needSeg": true,
+        "timeoutMs": 180000
+      },
+      "status": "completed",
+      "startedAt": "2026-10-13T12:10:36.858Z",
+      "finishedAt": "2026-10-13T12:10:57.441Z",
+      "durationMs": 20583,
+      "output": {
+        "task_id": "wf12026101320103849487661963010",
+        "actual_width": 1920,
+        "actual_height": 480,
+        "prompt": "Retro 16-bit pixel art horizontal empty HP bar frame, wide banner shape. Dark grey stone-textured border with small rivets at the corners, completely hollow empty interior. Flat solid colors only, hard pixel edges, NO anti-aliasing, NO gradients, NO dithering. Symmetrical, centered, horizontal. Isolated on transparent background.",
+        "asset": {
+          "kind": "resource",
+          "name": "HpBarFrame",
+          "type": "Texture2D",
+          "group": "Texture",
+          "guid": "r5",
+          "filePath": "C:\\Users\\Administrator\\AppData\\Local\\DouyinAR\\Instances\\Instance1\\ProjectCreatedTmp\\未命名\\Assets\\HpBarFrame.png",
+          "provider": "Texture2D"
+        }
+      }
+    },
+    {
+      "index": 3,
+      "request": {
+        "kind": "image",
+        "name": "HpBarFill",
+        "prompt": "Retro 16-bit pixel art horizontal health bar fill, a single solid bright red rectangle with one lighter red highlight line along the top edge. Flat solid colors only, hard pixel edges, NO anti-aliasing, NO gradients, NO dithering. Perfectly rectangular, horizontal, centered. Isolated on transparent background.",
+        "width": 1024,
+        "height": 256,
+        "needSeg": true,
+        "timeoutMs": 180000
+      },
+      "status": "completed",
+      "startedAt": "2026-10-13T12:10:36.860Z",
+      "finishedAt": "2026-10-13T12:10:55.682Z",
+      "durationMs": 18822,
+      "output": {
+        "task_id": "wf12026101320103849482054791170",
+        "actual_width": 1920,
+        "actual_height": 480,
+        "prompt": "Retro 16-bit pixel art horizontal health bar fill, a single solid bright red rectangle with one lighter red highlight line along the top edge. Flat solid colors only, hard pixel edges, NO anti-aliasing, NO gradients, NO dithering. Perfectly rectangular, horizontal, centered. Isolated on transparent background.",
+        "asset": {
+          "kind": "resource",
+          "name": "HpBarFill",
+          "type": "Texture2D",
+          "group": "Texture",
+          "guid": "r4",
+          "filePath": "C:\\Users\\Administrator\\AppData\\Local\\DouyinAR\\Instances\\Instance1\\ProjectCreatedTmp\\未命名\\Assets\\HpBarFill.png",
+          "provider": "Texture2D"
+        }
+      }
+    },
+    {
+      "index": 4,
+      "request": {
+        "kind": "audio",
+        "name": "sfx_hit",
+        "prompt": "Short punchy retro 8-bit video game hit impact sound effect, a brief thud with a small high-pitched blip, no voice, no music, under one second",
+        "timeoutMs": 120000
+      },
+      "status": "completed",
+      "startedAt": "2026-10-13T12:10:36.861Z",
+      "finishedAt": "2026-10-13T12:10:47.364Z",
+      "durationMs": 10503,
+      "output": {
+        "task_id": "wf12026101320103849498230952706",
+        "format": "mp3",
+        "sample_rate": 44100,
+        "size_bytes": 6406,
+        "trim_silence": {
+          "trimmed": true,
+          "originalBytes": 10076,
+          "finalBytes": 6406
+        },
+        "prompt": "Short punchy retro 8-bit video game hit impact sound effect, a brief thud with a small high-pitched blip, no voice, no music, under one second",
+        "asset": {
+          "kind": "resource",
+          "name": "sfx_hit",
+          "type": "AudioAsset",
+          "group": "Audio",
+          "guid": "r3",
+          "filePath": "C:\\Users\\Administrator\\AppData\\Local\\DouyinAR\\Instances\\Instance1\\ProjectCreatedTmp\\未命名\\Assets\\sfx_hit.mp3",
+          "provider": "AudioAsset"
+        }
+      }
+    }
+  ],
+  "finishedAt": "2026-10-13T12:11:02.465Z"
+}

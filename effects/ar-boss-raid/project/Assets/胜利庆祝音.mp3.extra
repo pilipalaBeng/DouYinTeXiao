@@ -1,0 +1,21 @@
+[
+  {
+    "guid": {
+      "a": "e36677f3-1a94-2934-8b52-b8124dffaadc",
+      "b": ""
+    },
+    "extraType": "ResItemMP3",
+    "name": "胜利庆祝音",
+    "version": "0.1.0",
+    "rttiType": "AudioAsset",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "mccState": "SUCCESS",
+    "objGuid": "",
+    "references": []
+  }
+]

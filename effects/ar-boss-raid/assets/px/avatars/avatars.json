@@ -1,0 +1,439 @@
+{
+  "palette": "DB16",
+  "export": 512,
+  "grids": {
+    "64": {
+      "logical": 64,
+      "scale": 8,
+      "usedBy": "开局头像选择器"
+    },
+    "16": {
+      "logical": 16,
+      "scale": 32,
+      "usedBy": "Boss 头顶出战牌（与相框 boss_head_frame_a 孔径对齐，孔径 16 逻辑 px）"
+    }
+  },
+  "avatars": [
+    {
+      "id": "avatar_01",
+      "name": "热血红发",
+      "brief": "红色刺猬头 + 金头带的暴躁少年，一眼热血",
+      "mainColor": "#d04648",
+      "file": "avatar_01_64.png",
+      "source64": "avatar_01_64x_source.png",
+      "dominantColors": [
+        {
+          "hex": "#d2aa99",
+          "name": "SKN",
+          "px": 696
+        },
+        {
+          "hex": "#d04648",
+          "name": "RED",
+          "px": 418
+        },
+        {
+          "hex": "#140c1c",
+          "name": "BLK",
+          "px": 377
+        },
+        {
+          "hex": "#30346d",
+          "name": "NVY",
+          "px": 166
+        },
+        {
+          "hex": "#dad45e",
+          "name": "GLD",
+          "px": 44
+        }
+      ],
+      "colorCount": 7,
+      "logical": "64x64",
+      "scale": 8,
+      "file16": "avatar_01_16.png",
+      "source16": "avatar_01_16x_source.png",
+      "dominantColors16": [
+        {
+          "hex": "#d2aa99",
+          "name": "SKN",
+          "px": 78
+        },
+        {
+          "hex": "#140c1c",
+          "name": "BLK",
+          "px": 76
+        },
+        {
+          "hex": "#d04648",
+          "name": "RED",
+          "px": 32
+        },
+        {
+          "hex": "#30346d",
+          "name": "NVY",
+          "px": 24
+        },
+        {
+          "hex": "#dad45e",
+          "name": "GLD",
+          "px": 12
+        }
+      ],
+      "colorCount16": 5,
+      "logical16": "16x16",
+      "scale16": 32,
+      "export": "512x512"
+    },
+    {
+      "id": "avatar_02",
+      "name": "冷静蓝发",
+      "brief": "蓝色中分 + 黑框眼镜的文气学长，沉着冷静",
+      "mainColor": "#597dce",
+      "file": "avatar_02_64.png",
+      "source64": "avatar_02_64x_source.png",
+      "dominantColors": [
+        {
+          "hex": "#d2aa99",
+          "name": "SKN",
+          "px": 619
+        },
+        {
+          "hex": "#597dce",
+          "name": "BLU",
+          "px": 564
+        },
+        {
+          "hex": "#140c1c",
+          "name": "BLK",
+          "px": 338
+        },
+        {
+          "hex": "#4e4a4e",
+          "name": "GRY",
+          "px": 166
+        },
+        {
+          "hex": "#30346d",
+          "name": "NVY",
+          "px": 68
+        }
+      ],
+      "colorCount": 7,
+      "logical": "64x64",
+      "scale": 8,
+      "file16": "avatar_02_16.png",
+      "source16": "avatar_02_16x_source.png",
+      "dominantColors16": [
+        {
+          "hex": "#140c1c",
+          "name": "BLK",
+          "px": 88
+        },
+        {
+          "hex": "#d2aa99",
+          "name": "SKN",
+          "px": 64
+        },
+        {
+          "hex": "#597dce",
+          "name": "BLU",
+          "px": 52
+        },
+        {
+          "hex": "#4e4a4e",
+          "name": "GRY",
+          "px": 12
+        },
+        {
+          "hex": "#deeed6",
+          "name": "WHT",
+          "px": 4
+        }
+      ],
+      "colorCount16": 5,
+      "logical16": "16x16",
+      "scale16": 32,
+      "export": "512x512"
+    },
+    {
+      "id": "avatar_03",
+      "name": "绿帽小子",
+      "brief": "绿头帽 + 帽徽的丛林探险家，活泼跳脱",
+      "mainColor": "#6daa2c",
+      "file": "avatar_03_64.png",
+      "source64": "avatar_03_64x_source.png",
+      "dominantColors": [
+        {
+          "hex": "#d2aa99",
+          "name": "SKN",
+          "px": 768
+        },
+        {
+          "hex": "#346524",
+          "name": "DGR",
+          "px": 371
+        },
+        {
+          "hex": "#140c1c",
+          "name": "BLK",
+          "px": 348
+        },
+        {
+          "hex": "#6daa2c",
+          "name": "GRN",
+          "px": 287
+        },
+        {
+          "hex": "#854c30",
+          "name": "BRN",
+          "px": 19
+        }
+      ],
+      "colorCount": 6,
+      "logical": "64x64",
+      "scale": 8,
+      "file16": "avatar_03_16.png",
+      "source16": "avatar_03_16x_source.png",
+      "dominantColors16": [
+        {
+          "hex": "#140c1c",
+          "name": "BLK",
+          "px": 74
+        },
+        {
+          "hex": "#d2aa99",
+          "name": "SKN",
+          "px": 66
+        },
+        {
+          "hex": "#6daa2c",
+          "name": "GRN",
+          "px": 42
+        },
+        {
+          "hex": "#346524",
+          "name": "DGR",
+          "px": 38
+        },
+        {
+          "hex": "#dad45e",
+          "name": "GLD",
+          "px": 2
+        }
+      ],
+      "colorCount16": 5,
+      "logical16": "16x16",
+      "scale16": 32,
+      "export": "512x512"
+    },
+    {
+      "id": "avatar_04",
+      "name": "金发骑士",
+      "brief": "金色偏分长发 + 红披肩，自信阳光",
+      "mainColor": "#dad45e",
+      "file": "avatar_04_64.png",
+      "source64": "avatar_04_64x_source.png",
+      "dominantColors": [
+        {
+          "hex": "#dad45e",
+          "name": "GLD",
+          "px": 780
+        },
+        {
+          "hex": "#d2aa99",
+          "name": "SKN",
+          "px": 605
+        },
+        {
+          "hex": "#140c1c",
+          "name": "BLK",
+          "px": 292
+        },
+        {
+          "hex": "#d04648",
+          "name": "RED",
+          "px": 166
+        },
+        {
+          "hex": "#d27d2c",
+          "name": "ORG",
+          "px": 46
+        }
+      ],
+      "colorCount": 8,
+      "logical": "64x64",
+      "scale": 8,
+      "file16": "avatar_04_16.png",
+      "source16": "avatar_04_16x_source.png",
+      "dominantColors16": [
+        {
+          "hex": "#dad45e",
+          "name": "GLD",
+          "px": 80
+        },
+        {
+          "hex": "#d2aa99",
+          "name": "SKN",
+          "px": 76
+        },
+        {
+          "hex": "#140c1c",
+          "name": "BLK",
+          "px": 72
+        },
+        {
+          "hex": "#d04648",
+          "name": "RED",
+          "px": 12
+        }
+      ],
+      "colorCount16": 4,
+      "logical16": "16x16",
+      "scale16": 32,
+      "export": "512x512"
+    },
+    {
+      "id": "avatar_05",
+      "name": "白须智者",
+      "brief": "银灰短发 + 大胡子的长者，严肃而沧桑",
+      "mainColor": "#8595a1",
+      "file": "avatar_05_64.png",
+      "source64": "avatar_05_64x_source.png",
+      "dominantColors": [
+        {
+          "hex": "#d2aa99",
+          "name": "SKN",
+          "px": 488
+        },
+        {
+          "hex": "#deeed6",
+          "name": "WHT",
+          "px": 360
+        },
+        {
+          "hex": "#8595a1",
+          "name": "SIL",
+          "px": 264
+        },
+        {
+          "hex": "#140c1c",
+          "name": "BLK",
+          "px": 236
+        },
+        {
+          "hex": "#4e4a4e",
+          "name": "GRY",
+          "px": 142
+        }
+      ],
+      "colorCount": 7,
+      "logical": "64x64",
+      "scale": 8,
+      "file16": "avatar_05_16.png",
+      "source16": "avatar_05_16x_source.png",
+      "dominantColors16": [
+        {
+          "hex": "#140c1c",
+          "name": "BLK",
+          "px": 70
+        },
+        {
+          "hex": "#d2aa99",
+          "name": "SKN",
+          "px": 52
+        },
+        {
+          "hex": "#deeed6",
+          "name": "WHT",
+          "px": 50
+        },
+        {
+          "hex": "#8595a1",
+          "name": "SIL",
+          "px": 36
+        },
+        {
+          "hex": "#4e4a4e",
+          "name": "GRY",
+          "px": 12
+        }
+      ],
+      "colorCount16": 6,
+      "logical16": "16x16",
+      "scale16": 32,
+      "export": "512x512"
+    },
+    {
+      "id": "avatar_06",
+      "name": "暗影术士",
+      "brief": "紫色兜帽遮面 + 青色发光眼，神秘阴冷",
+      "mainColor": "#442434",
+      "file": "avatar_06_64.png",
+      "source64": "avatar_06_64x_source.png",
+      "dominantColors": [
+        {
+          "hex": "#442434",
+          "name": "PUR",
+          "px": 677
+        },
+        {
+          "hex": "#d2aa99",
+          "name": "SKN",
+          "px": 386
+        },
+        {
+          "hex": "#30346d",
+          "name": "NVY",
+          "px": 312
+        },
+        {
+          "hex": "#140c1c",
+          "name": "BLK",
+          "px": 306
+        },
+        {
+          "hex": "#854c30",
+          "name": "BRN",
+          "px": 20
+        }
+      ],
+      "colorCount": 6,
+      "logical": "64x64",
+      "scale": 8,
+      "file16": "avatar_06_16.png",
+      "source16": "avatar_06_16x_source.png",
+      "dominantColors16": [
+        {
+          "hex": "#442434",
+          "name": "PUR",
+          "px": 72
+        },
+        {
+          "hex": "#140c1c",
+          "name": "BLK",
+          "px": 68
+        },
+        {
+          "hex": "#d2aa99",
+          "name": "SKN",
+          "px": 36
+        },
+        {
+          "hex": "#30346d",
+          "name": "NVY",
+          "px": 32
+        },
+        {
+          "hex": "#6dc2ca",
+          "name": "CYN",
+          "px": 8
+        }
+      ],
+      "colorCount16": 5,
+      "logical16": "16x16",
+      "scale16": 32,
+      "export": "512x512"
+    }
+  ]
+}

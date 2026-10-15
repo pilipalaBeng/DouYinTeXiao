@@ -1,0 +1,32 @@
+[
+  {
+    "guid": {
+      "a": "8803f96e-d3bc-3d34-58b9-6a139630a5b6",
+      "b": ""
+    },
+    "extraType": "ResItemPNGImage",
+    "name": "Crosshair_64",
+    "version": "0.2.0",
+    "rttiType": "Texture",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "compressionType": 0,
+    "compressQuality": 0,
+    "compressMaxResolution": 512,
+    "enableMipmap": false,
+    "filterMin": 1,
+    "filterMag": 1,
+    "filterMipmap": 0,
+    "wrapModeS": 0,
+    "wrapModeT": 0,
+    "wrapModeR": 0,
+    "premultiplyAlpha": false,
+    "objGuid": "",
+    "resourceFilePath": "D:/Project/DouYinTeXiao/effects/ar-boss-raid/assets/px/Crosshair_64.png",
+    "references": []
+  }
+]

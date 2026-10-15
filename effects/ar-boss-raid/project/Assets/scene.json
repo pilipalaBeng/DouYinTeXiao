@@ -1,0 +1,560 @@
+{
+  "displayList": [
+    {
+      "type": "Image",
+      "id": "战斗HUD底板",
+      "guid": "0e97d97d-1572-aded-6fce-78dd5000cb5c",
+      "x": 360,
+      "y": 196,
+      "width": 640,
+      "height": 96,
+      "groupId": "UI界面",
+      "visible": false,
+      "texture": {
+        "key": "像素Boss血条框"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "Boss血条填充",
+      "guid": "aac49419-f96c-f6b1-f02b-a1bd2cb2081e",
+      "x": 245,
+      "y": 192,
+      "width": 330,
+      "height": 45,
+      "groupId": "UI界面",
+      "visible": false,
+      "texture": {
+        "key": "像素血条填充"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Text",
+      "id": "HUD文字",
+      "guid": "18e63dfa-5b62-4255-b1d0-4b3e15ec6a91",
+      "x": 490,
+      "y": 192,
+      "width": 260,
+      "height": 48,
+      "groupId": "UI界面",
+      "visible": false,
+      "text": "HP 2400   30s",
+      "textContainerId": "战斗HUD底板",
+      "style": {
+        "fontSize": 30,
+        "color": "#FFFFFF",
+        "shadow": {
+          "enabled": true,
+          "color": "#122718",
+          "alpha": 0.5,
+          "distance": 2,
+          "angle": -45,
+          "feather": 4
+        },
+        "boxDimension": "fixedSize",
+        "lineBreakType": "autoLineBreak",
+        "horizontalAlignment": "center",
+        "verticalAlignment": "center"
+      }
+    },
+    {
+      "type": "Image",
+      "id": "Boss主体",
+      "guid": "ad8704e0-ccd5-20a7-2afb-ef4cc07809d7",
+      "x": 360,
+      "y": 500,
+      "width": 236,
+      "height": 156,
+      "groupId": "玩法",
+      "visible": false,
+      "texture": {
+        "key": "像素飞行Boss待机"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "Boss出战牌",
+      "guid": "2e95418a-5d5a-96cd-4490-4fbf38c9e044",
+      "x": 360,
+      "y": 382,
+      "width": 112,
+      "height": 80,
+      "groupId": "玩法",
+      "visible": false,
+      "texture": {
+        "key": "像素出战牌"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "Boss头像",
+      "guid": "1800bbfe-ac30-cf2a-69e1-3ff5c046cbde",
+      "x": 360,
+      "y": 382,
+      "width": 49,
+      "height": 50,
+      "groupId": "玩法",
+      "visible": false,
+      "texture": {
+        "key": "好友头像占位"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "护盾覆盖",
+      "guid": "a1845a7b-5a8b-dd36-072d-610bede7cd31",
+      "x": 360,
+      "y": 500,
+      "width": 280,
+      "height": 195,
+      "groupId": "玩法",
+      "visible": false,
+      "texture": {
+        "key": "像素护盾"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "护盾核心",
+      "guid": "c1afb936-2a84-f3ce-ab9c-ecef3a442538",
+      "x": 360,
+      "y": 500,
+      "width": 52,
+      "height": 52,
+      "groupId": "玩法",
+      "visible": false,
+      "texture": {
+        "key": "像素闪烁核心"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "小怪模板",
+      "guid": "329f4340-7675-cb5c-ea28-172d47dd2336",
+      "x": -120,
+      "y": -120,
+      "width": 78,
+      "height": 32,
+      "groupId": "玩法",
+      "visible": false,
+      "texture": {
+        "key": "像素小怪"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "弹幕模板",
+      "guid": "85d77740-1c1a-c0f0-d346-55415587c8b3",
+      "x": -80,
+      "y": -80,
+      "width": 28,
+      "height": 27,
+      "groupId": "玩法",
+      "visible": false,
+      "texture": {
+        "key": "像素弹幕"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "固定准星",
+      "guid": "f9ac69da-250b-7674-8387-ddcac7dc754c",
+      "x": 360,
+      "y": 520,
+      "width": 96,
+      "height": 96,
+      "groupId": "UI界面",
+      "visible": false,
+      "texture": {
+        "key": "像素准星"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "准星命中高亮",
+      "guid": "2984c060-ec7d-35ca-a195-29dc8a7e579e",
+      "x": 360,
+      "y": 520,
+      "width": 111,
+      "height": 112,
+      "groupId": "UI界面",
+      "visible": false,
+      "texture": {
+        "key": "准星命中高亮细线框"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "像素AK枪",
+      "guid": "6cbd4c3b-911f-f89e-b50b-c6b9e3b3d22a",
+      "x": 560,
+      "y": 1000,
+      "width": 160,
+      "height": 174,
+      "groupId": "UI界面",
+      "visible": false,
+      "texture": {
+        "key": "像素AK枪"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "枪口闪光模板",
+      "guid": "24abff87-7061-dfd1-fab1-ab8e89ad8ead",
+      "x": -80,
+      "y": -80,
+      "width": 76,
+      "height": 80,
+      "groupId": "命中反馈",
+      "visible": false,
+      "texture": {
+        "key": "像素枪口闪光"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "命中星爆模板",
+      "guid": "64c01ad7-1db5-ffee-e610-90e1e5b92945",
+      "x": -140,
+      "y": -140,
+      "width": 140,
+      "height": 118,
+      "groupId": "命中反馈",
+      "visible": false,
+      "texture": {
+        "key": "像素命中星爆"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Text",
+      "id": "伤害数字模板",
+      "guid": "c8eba763-aa2a-480c-685e-2056a65b842a",
+      "x": -100,
+      "y": -100,
+      "width": 120,
+      "height": 44,
+      "groupId": "命中反馈",
+      "visible": false,
+      "text": "80",
+      "style": {
+        "fontSize": 30,
+        "boxDimension": "fixedSize",
+        "lineBreakType": "autoLineBreak",
+        "horizontalAlignment": "center",
+        "verticalAlignment": "center",
+        "color": "#FFEE00",
+        "shadow": {
+          "enabled": true,
+          "color": "#000000",
+          "alpha": 0.25,
+          "distance": 3,
+          "angle": 45,
+          "feather": 4
+        }
+      }
+    },
+    {
+      "type": "Text",
+      "id": "开局提示",
+      "guid": "9b66d38f-fb6d-9289-84b0-3d582e9a57b1",
+      "x": 360,
+      "y": 278,
+      "width": 480,
+      "height": 36,
+      "groupId": "UI界面",
+      "visible": false,
+      "text": "转动手机对准，按住开火",
+      "style": {
+        "fontSize": 28,
+        "boxDimension": "fixedSize",
+        "lineBreakType": "autoLineBreak",
+        "horizontalAlignment": "center",
+        "verticalAlignment": "center",
+        "color": "#FFFFFF",
+        "shadow": {
+          "enabled": true,
+          "color": "#000000",
+          "alpha": 0.5,
+          "distance": 3,
+          "angle": 45,
+          "feather": 4
+        }
+      }
+    },
+    {
+      "type": "Image",
+      "id": "结算卡",
+      "guid": "58e1bbdb-377b-a9ae-9aa9-2c730798fedb",
+      "x": 360,
+      "y": 640,
+      "width": 339,
+      "height": 410,
+      "groupId": "结算界面",
+      "visible": false,
+      "texture": {
+        "key": "像素结算卡"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "胜利彩带",
+      "guid": "529b5dfc-8780-8c56-a9f4-9b1df6740034",
+      "x": 360,
+      "y": 425,
+      "width": 210,
+      "height": 176,
+      "groupId": "结算界面",
+      "visible": false,
+      "texture": {
+        "key": "像素彩带庆祝"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "结算头像",
+      "guid": "c36e3ebe-221e-4aa2-63b8-2a4d18f30e2e",
+      "x": 360,
+      "y": 530,
+      "width": 78,
+      "height": 80,
+      "groupId": "结算界面",
+      "visible": false,
+      "texture": {
+        "key": "好友头像占位"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Text",
+      "id": "结算标题",
+      "guid": "960161d1-824a-01ec-d8ca-4ce3087906a2",
+      "x": 360,
+      "y": 602,
+      "width": 280,
+      "height": 50,
+      "groupId": "结算界面",
+      "visible": false,
+      "text": "胜利！",
+      "textContainerId": "结算卡",
+      "style": {
+        "fontSize": 42,
+        "color": "#FFFFFF",
+        "shadow": {
+          "enabled": true,
+          "color": "#0A1C1B",
+          "alpha": 0.5,
+          "distance": 2,
+          "angle": -45,
+          "feather": 4
+        },
+        "boxDimension": "fixedSize",
+        "lineBreakType": "autoLineBreak",
+        "horizontalAlignment": "center",
+        "verticalAlignment": "center"
+      }
+    },
+    {
+      "type": "Text",
+      "id": "结算战绩",
+      "guid": "dbc58177-7cc7-dd08-f4dc-459026b58dbc",
+      "x": 360,
+      "y": 686,
+      "width": 280,
+      "height": 104,
+      "groupId": "结算界面",
+      "visible": false,
+      "text": "耗时 0.0s\n命中率 0%\n连击 0 评级 S",
+      "textContainerId": "结算卡",
+      "style": {
+        "fontSize": 28,
+        "color": "#FFFFFF",
+        "shadow": {
+          "enabled": true,
+          "color": "#0A1C1B",
+          "alpha": 0.5,
+          "distance": 2,
+          "angle": -45,
+          "feather": 4
+        },
+        "boxDimension": "fixedSize",
+        "lineBreakType": "autoLineBreak",
+        "horizontalAlignment": "center",
+        "verticalAlignment": "center",
+        "lineSpacing": 0.15
+      }
+    },
+    {
+      "type": "Audio",
+      "id": "对准提示音",
+      "guid": "f2ed4e0f-5ceb-c64a-238f-41084f98a8f1",
+      "groupId": "音频",
+      "visible": false,
+      "clip": "对准提示音.mp3",
+      "isBgm": false,
+      "x": 360,
+      "y": 640,
+      "width": 0,
+      "height": 0
+    },
+    {
+      "type": "Audio",
+      "id": "像素开火音",
+      "guid": "0fd491af-9f67-b0ea-ed6b-d4ae69ee6e1f",
+      "groupId": "音频",
+      "visible": false,
+      "clip": "像素开火音.mp3",
+      "isBgm": false,
+      "x": 360,
+      "y": 640,
+      "width": 0,
+      "height": 0
+    },
+    {
+      "type": "Audio",
+      "id": "像素命中音",
+      "guid": "536c7c13-5fbb-5e94-2694-f4b6a67580e4",
+      "groupId": "音频",
+      "visible": false,
+      "clip": "像素命中音.mp3",
+      "isBgm": false,
+      "x": 360,
+      "y": 640,
+      "width": 0,
+      "height": 0
+    },
+    {
+      "type": "Audio",
+      "id": "人脸重击音",
+      "guid": "2cddfaea-c5ee-748e-f2db-1ec23f6e4c10",
+      "groupId": "音频",
+      "visible": false,
+      "clip": "人脸重击音.mp3",
+      "isBgm": false,
+      "x": 360,
+      "y": 640,
+      "width": 0,
+      "height": 0
+    },
+    {
+      "type": "Audio",
+      "id": "护盾破裂音",
+      "guid": "abac9832-100c-518a-3263-68367f078d1f",
+      "groupId": "音频",
+      "visible": false,
+      "clip": "护盾破裂音.mp3",
+      "isBgm": false,
+      "x": 360,
+      "y": 640,
+      "width": 0,
+      "height": 0
+    },
+    {
+      "type": "Audio",
+      "id": "胜利庆祝音",
+      "guid": "0842f072-e0b3-4d04-dcf2-d46ac0500693",
+      "groupId": "音频",
+      "visible": false,
+      "clip": "胜利庆祝音.mp3",
+      "isBgm": false,
+      "x": 360,
+      "y": 640,
+      "width": 0,
+      "height": 0
+    },
+    {
+      "type": "Image",
+      "id": "好友头像选择模板",
+      "guid": "ffaa1a1f-7afc-11b6-7c46-aee5fcdb0f24",
+      "x": -120,
+      "y": -120,
+      "width": 62,
+      "height": 64,
+      "groupId": "玩法",
+      "visible": false,
+      "texture": {
+        "key": "好友头像占位"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Text",
+      "id": "好友头像选择提示",
+      "guid": "241ddec3-e3f2-dc5f-24c0-f8594c476b90",
+      "x": 360,
+      "y": 884,
+      "width": 420,
+      "height": 32,
+      "groupId": "UI界面",
+      "visible": false,
+      "text": "选一位好友出战",
+      "style": {
+        "fontSize": 28,
+        "boxDimension": "fixedSize",
+        "lineBreakType": "autoLineBreak",
+        "horizontalAlignment": "center",
+        "verticalAlignment": "center",
+        "color": "#FFFFFF",
+        "shadow": {
+          "enabled": true,
+          "color": "#000000",
+          "alpha": 0.5,
+          "distance": 3,
+          "angle": 45,
+          "feather": 4
+        }
+      }
+    }
+  ]
+}

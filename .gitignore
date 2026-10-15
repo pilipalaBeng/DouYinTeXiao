@@ -1,0 +1,21 @@
+# ============ Effect House 编译产物 / 缓存（可随时重建）============
+effects/*/project/Library/
+effects/*/project/CacheData
+effects/*/project/CacheData-lock
+
+# ============ MCP / AI 生成日志与中间产物（纯垃圾，可批量删）============
+effects/*/project/.mcp_agent/logs/
+effects/*/project/.agent/asset-board/*/textless/
+
+# ============ 本地临时区 ============
+.workbuddy/scratch/
+.backup/
+
+# ============ 系统 ============
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ============ Python ============
+__pycache__/
+*.pyc
