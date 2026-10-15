@@ -19,15 +19,18 @@ const AIM_RADIUS = 122;
 
 /** 3D Boss 的空间参数，单位：米。
  *  BOSS_MIN/MAX_DIST 是「距开局锚点」的球壳半径；锚点本身在相机视轴前方 SPAWN_DIST 米。
- *  BOSS_CORE_SIZE 是 3D 图片的世界尺寸：3 米实体在 1 米锚点距离约 112° 张角（贴脸巨物）。
- *  想整体调大/调小 Boss 观感，只改这一个数字即可（场景里该组件默认 size 是 10，脚本会覆盖它）。
+ *  尺寸依据（探针实测）：AR 相机 fov=60°、fovType=Custom(0)，距离 D 处屏幕竖向覆盖 ≈ 1.155×D 米。
+ *  故 BOSS_CORE_SIZE=1.5 + SPAWN_DIST=2 → 约占屏高 65%（最近 1.4m 处约 93%，最远 2.6m 处约 50%）。
+ *  想整体调大/调小观感，只改 BOSS_CORE_SIZE 即可（场景里该组件默认 size 是 10，脚本会覆盖它）。
  */
-const BOSS_CORE_SIZE = 3.0;
-const BOSS_MIN_DIST = 0.4;
-const BOSS_MAX_DIST = 0.8;
+const BOSS_CORE_SIZE = 1.5;
+const BOSS_MIN_DIST = 0.3;
+const BOSS_MAX_DIST = 0.6;
 const BOSS_SPEED = 0.05;
 /** 开局投放距离：沿相机视轴前方多少米。 */
-const SPAWN_DIST = 1;
+const SPAWN_DIST = 2;
+/** 投放闸门兜底：等 AR 相机离原点（SLAM 就位）最多等多久，超时则按当前位置投放。 */
+const SPAWN_WAIT_MS = 2500;
 
 /**
  * Main Scene
@@ -72,6 +75,9 @@ class MainScene extends Scene {
     private bossScreenX: number = CROSS_X;
     private bossScreenY: number = CROSS_Y;
     private bossOnScreen: boolean = false;
+    /** 开局投放闸门：等 AR 相机被 SLAM 就位后再投放，避免锚点算在世界原点。 */
+    private spawnReady: boolean = false;
+    private spawnWait: number = 0;
 
     // ---- 2D 资源与跟随物 ----
     private idleTexture: APJS.Texture | null = null;
@@ -225,12 +231,32 @@ class MainScene extends Scene {
      * 每帧把世界坐标投影到屏幕，驱动 2D 跟随物与命中判定。
      */
     private updateBossSpatial(delta: number): void {
+        if (!this.spawnReady) { this.trySpawnBoss(delta); return; }
         const dt = Math.min(0.05, delta / 1000);
         const rage = this.phase === 'rage' ? 1.6 : 1;
         this.driftStep(dt, rage);
         if (this.bossSpatial) this.bossSpatial.getTransform().setWorldPosition(this.bossPos);
         this.projectBoss();
         this.syncFollowers();
+    }
+
+    /**
+     * 投放闸门：AR 相机的世界位置由 DeviceTracker / SLAM 驱动，开局瞬间多半仍在原点，
+     * 此时算出的锚点必然错误（探针实测 cam=(0,0,0) → origin=(0,0,-2)）。
+     * 因此等相机离开原点后再投放；最多等 SPAWN_WAIT_MS 兜底，避免设备始终为原点时永不出现。
+     */
+    private trySpawnBoss(delta: number): void {
+        this.spawnWait += delta;
+        const camObj = this.sys.engineScene.findSceneObject('AR摄像机');
+        const cp = camObj ? camObj.getTransform().getWorldPosition() : null;
+        const camMoved = !!cp && (Math.abs(cp.x) + Math.abs(cp.y) + Math.abs(cp.z)) > 0.01;
+        if (!camMoved && this.spawnWait < SPAWN_WAIT_MS) {
+            if (this.bossSpatial) this.bossSpatial.enabled = false;
+            return;
+        }
+        this.spawnBossInSpace();
+        this.spawnReady = true;
+        console.log(`[probe] spawn fired: camMoved=${camMoved} waited=${Math.round(this.spawnWait)}ms`);
     }
 
     private driftStep(dt: number, rage: number): void {
@@ -256,6 +282,25 @@ class MainScene extends Scene {
         } else {
             this.bossVel.x += nx * push * 0.5; this.bossVel.y += ny * push * 0.5; this.bossVel.z += nz * push * 0.5;
         }
+    }
+
+    /** 真机诊断探针：打印相机、朝向、锚点、Boss 世界坐标与投影结果。定位完毕后应移除。 */
+    private probeSpatial(tag: string): void {
+        const camObj = this.sys.engineScene.findSceneObject('AR摄像机');
+        const cp = camObj ? camObj.getTransform().getWorldPosition() : null;
+        const look = this.arCamera ? this.arCamera.getLookAt() : null;
+        const len = look ? Math.sqrt(look.x * look.x + look.y * look.y + look.z * look.z) : 0;
+        const sp = this.arCamera ? this.arCamera.worldToScreenPoint(this.bossPos) : null;
+        const n = (v: number): string => (Math.round(v * 100) / 100).toString();
+        const p = (v: APJS.Vector3f | null): string => (v ? `(${n(v.x)},${n(v.y)},${n(v.z)})` : 'null');
+        const fov = this.arCamera ? n(this.arCamera.fov) : 'n/a';
+        const fovType = this.arCamera ? String(this.arCamera.fovType) : 'n/a';
+        let dist = 0;
+        if (cp) {
+            const dx = this.bossPos.x - cp.x, dy = this.bossPos.y - cp.y, dz = this.bossPos.z - cp.z;
+            dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        }
+        console.log(`[probe ${tag}] dist=${n(dist)}m cam=${p(cp)} look=${p(look)} |look|=${n(len)} origin=${p(this.spawnOrigin)} boss=${p(this.bossPos)} screen=${p(sp)} on=${this.bossOnScreen} size=${BOSS_CORE_SIZE} spawnReady=${this.spawnReady} wait=${Math.round(this.spawnWait)}ms fov=${fov} fovType=${fovType}`);
     }
 
     /** 世界坐标 → 屏幕像素（worldToScreenPoint 返回左下原点，此处翻转为左上原点）。 */
@@ -362,10 +407,18 @@ class MainScene extends Scene {
         this.time.clear(); this.sound.stopAll(); for (const item of this.runtimeObjects) item.destroy(); this.runtimeObjects = []; this.flyingArrows = [];
         this.phase = 'warmup'; this.hp = 2400; this.elapsed = 0; this.fireHeld = false; this.fireGate = 0; this.faceGate = 0; this.coreHits = 0; this.shieldRounds = 0; this.windowLeft = 0; this.shots = 0; this.hits = 0; this.combo = 0; this.maxCombo = 0; this.gunKickLeft = 0; this.gunAnimLeft = 0; this.resultDelay = 0; this.hitHighlightLeft = 0;
         this.wingFrameIndex = 0; this.wingFrameLeft = 115;
-        this.spawnBossInSpace();
+        // 不在 reset 内立即投放：此刻 AR 相机多半还没被 SLAM 驱动（世界位置=原点），
+        // 锚点会算到错误位置，表现为「Boss 极小」或「跑到相机背后完全看不见」。
+        // 改为交给 update 里的投放闸门，等相机就位后再算锚点。
+        this.spawnReady = false; this.spawnWait = 0;
+        if (this.bossSpatial) this.bossSpatial.enabled = false;
         this.setBossTexture(this.idleTexture);
         this.crosshair.setVisible(true); this.highlight.setVisible(false); this.gun.setFlipX(false).setPosition(this.gunBaseX, this.gunBaseY).setAngle(this.gunBaseAngle).setTexture(this.gunBaseTexture).setVisible(true); this.shield.setVisible(false); this.core.setVisible(false); this.hpFill.setVisible(true); this.setHpFillAmount(); this.hud.setText('稳定 2400   30s').setVisible(true); this.hint.setText('转动手机对准，按住能量脉冲').setVisible(true);
         this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(false);
+        // 真机空间诊断探针：每次开局分三个时间点采样，用于定位「看不见 Boss」。
+        this.time.delayedCall(1500, () => this.probeSpatial('t1.5'), [], this);
+        this.time.delayedCall(3000, () => this.probeSpatial('t3.0'), [], this);
+        this.time.delayedCall(4500, () => this.probeSpatial('t4.5'), [], this);
     }
 
     /**
@@ -381,9 +434,11 @@ class MainScene extends Scene {
             // 用相机世界位置 + getLookAt() 朝向（单位向量）沿视轴前推 SPAWN_DIST 米作为开局锚点。
             const camPos = camObj.getTransform().getWorldPosition();
             const look = this.arCamera.getLookAt();
-            this.spawnOrigin.x = camPos.x + look.x * SPAWN_DIST;
-            this.spawnOrigin.y = camPos.y + look.y * SPAWN_DIST;
-            this.spawnOrigin.z = camPos.z + look.z * SPAWN_DIST;
+            // 防御：getLookAt 若返回非单位向量，直接乘米数会把锚点甩到很远（表现为"Boss 极小/找不到"）。
+            const lookLen = Math.sqrt(look.x * look.x + look.y * look.y + look.z * look.z) || 1;
+            this.spawnOrigin.x = camPos.x + (look.x / lookLen) * SPAWN_DIST;
+            this.spawnOrigin.y = camPos.y + (look.y / lookLen) * SPAWN_DIST;
+            this.spawnOrigin.z = camPos.z + (look.z / lookLen) * SPAWN_DIST;
         }
         this.bossPos.x = this.spawnOrigin.x + (Math.random() - 0.5) * 0.6;
         this.bossPos.y = this.spawnOrigin.y + (Math.random() - 0.5) * 0.4;

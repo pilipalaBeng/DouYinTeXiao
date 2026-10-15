@@ -623,7 +623,7 @@ assets/
 | 11 | boss_head_frame_a.png | 24×32 | 384×512 | 6–12 KB | L2 | 全状态常显 |
 | 12 | avatar_placeholder.png | 16×16 | 512×512 | 2–4 KB | L2 | 未选图兜底 |
 | 13 | avatar_placeholder_locked.png | 16×16 | 512×512 | 2–4 KB | L2 | 权限被拒兜底 |
-| 14 | crossbow.png | 56×22 | 448×176 | 12–20 KB | L3 | 常显（古代战弩，斜向 45°）|
+| 14 | crossbow.png | 64×55 | 512×440 | 4.2 KB | L3 | 常显（古代战弩，箭身**斜向 36.5°**，右侧弩托出画）|
 | 15 | crosshair.png | 32×32 | 512×512 | 2–4 KB | L3 | 常态 |
 | 16 | crosshair_lock.png | 32×32 | 512×512 | 3–5 KB | L3 | 命中态 |
 | 17 | fx_lock_ring.png | 32×32 | 512×512 | 2–4 KB | L3 | 命中瞬间 |
