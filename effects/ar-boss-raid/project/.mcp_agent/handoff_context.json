@@ -1,15 +1,15 @@
 {
   "formatVersion": 2,
-  "revision": 8,
-  "mutationRevision": 105,
-  "updatedAt": "2026-10-14T08:19:52.253Z",
+  "revision": 15,
+  "mutationRevision": 139,
+  "updatedAt": "2026-10-15T14:36:38.006Z",
   "writerInstanceId": "1",
   "task": {
-    "objective": "AR 像素 Boss 战特效：枪贴图/飞行怪换模/准星结算隐藏/失败文案 四项细节修改",
+    "objective": "把 ar-boss-raid 改为真 3D 空间玩法并调通",
     "workflow": "EffectWorkflow",
-    "currentStage": "细节修改-已完成",
-    "status": "completed",
-    "summary": "四项需求全部落地并经运行期验证：①AK 枪贴图+对象（renderOrder 10）②飞行怪换模+空间飞行（已实测可行）③准星结算隐藏（双路径验证闭环）④失败文案。另两条硬实测：脚本层无传感器（砍吐火球）、3D Transform 可脚本驱动。文档已同步 4 份。"
+    "currentStage": "Boss 体积调整 + 头像链路移除-已完成",
+    "status": "verifying",
+    "summary": "移除好友头像残留链路：删场景对象 Boss出战牌/Boss头像/结算头像，脚本中 badge/avatar/resultAvatar 共 10 处引用清光；Boss 载体 Image.size 0.5→1.0（场景默认原为 10，脚本曾压到 1/20，是观感过小的主因），漂移球壳收紧至 0.4~0.8m。三份 brief 与提审文案等 10 份文档已同步。"
   },
   "knowledge": {
     "rulesDigest": "sha256:8833b06622258c7ff9181204bd4b86d74622dff6714909d205ca1bf969a8a580",
@@ -99,73 +99,70 @@
   "semanticReady": true,
   "needsAlignment": false,
   "implementation": [
-    "BossRaidGame.ts：新增 @serializeProperty flyAmp/flySpeed/flySway/flySwaySpeed（默认即正式值）+ debugEnd（仅调试，默认 0）；新方法 updateFly(dt) 在 onUpdate 中叠加 sin 位移；setCrosshairVisible() 控制准星；win()→'胜利！'、lose()→'失败！'。",
-    "场景：枪挂在玩法根下 renderOrder=10；Boss3D localScale 4.8。",
-    "推送脚本必须内联 code 字符串（不支持 $FILE:）；引擎会改写脚本文件，推送后以 Assets/Scripts 版本为准回同步 src/。"
+    "GameManager.ts 已 3D 化：Boss = 「Boss空间体」s68（3D Image，ARTracking 组 s8），旧 2D「Boss主体」s16 已删",
+    "取对象：this.sys.engineScene.findSceneObject(name)；3D 对象不走 Game2D.existing()（那条路要求 ScreenTransform）",
+    "关键 API：obj.getTransform().setWorldPosition(v) / cam.worldToScreenPoint(v) / cam.getLookAt() / image.size、image.texture",
+    "命中判定：Boss 世界坐标 → worldToScreenPoint（左下原点）→ 翻 y → 与准星 (360,520) 比距离 ≤122",
+    "投放：相机世界位置 + getLookAt()*3 米为锚点，漂移约束以该锚点（固定值）为球心；不可用相机当前位置，否则会失去转身寻找的意义",
+    "场景对象可见性用 SceneObject.enabled（不是 visible）"
   ],
   "latestInput": {
     "conversationId": "conversation-5f7406cb8b73f4a8c81f8b67830e4f3e",
-    "messageId": "u-2026-10-14-05",
+    "messageId": "79ea3a9b-32ee-4a5a-a580-262f3b864257",
     "traceContextId": "5f97c60c744d9125e6b42a37cde04bcf2d2746a5a82b8bf84a351ee55b3e8974"
   },
   "artifacts": [
     {
-      "role": "主玩法脚本",
+      "role": "主玩法脚本（已移除头像链路、放大 Boss 载体）",
       "kind": "script",
-      "path": "Assets/Scripts/BossRaidGame.ts",
-      "name": "BossRaidGame"
+      "path": "Assets/GameManager.ts",
+      "name": "GameManager"
     },
     {
-      "role": "枪贴图",
-      "kind": "resource",
-      "name": "gun"
+      "role": "3D Boss 载体（Image.size 0.5→1.0）",
+      "kind": "sceneObject",
+      "parent": "AR跟踪",
+      "name": "Boss空间体"
     },
     {
-      "role": "飞行怪贴图",
-      "kind": "resource",
-      "name": "BossFlyPose_128"
+      "role": "预览实际运行的编译产物",
+      "kind": "script",
+      "path": "Library/CompiledScripts/Editor/GameManager.js",
+      "name": "GameManager.js"
     }
   ],
   "verification": [
     {
       "kind": "scene",
       "status": "passed",
-      "summary": "场景 18 对象 / 4 渲染组（未破≤6 红线）/ 枪 renderOrder 10 / Boss3D localScale 4.8 已确认",
-      "at": "2026-10-14T07:06:04.937Z"
-    },
-    {
-      "kind": "preview",
-      "status": "passed",
-      "summary": "The latest capture_preview call completed successfully.",
-      "at": "2026-10-14T08:13:23.426Z"
+      "summary": "s17/s18/s40 已删；Boss空间体 Image.size 由 10 改为 1，与脚本 BOSS_CORE_SIZE=1.0 一致",
+      "at": "2026-10-15T14:36:37.834Z"
     },
     {
       "kind": "script",
       "status": "passed",
-      "summary": "The latest run_otsc_check call completed without compilation errors.",
-      "at": "2026-10-14T08:17:43.150Z"
+      "summary": "run_otsc_check exit_code=0；编译产物 badge/resultAvatar 计数归零",
+      "at": "2026-10-15T14:36:37.834Z"
     },
     {
-      "kind": "interaction",
+      "kind": "preview",
       "status": "passed",
-      "summary": "The latest interact_by_dsl sequence completed successfully.",
-      "at": "2026-10-14T08:19:52.253Z"
+      "summary": "初始截图：HUD 稳定 2400 29s，无头顶头像/出战牌，无结算文字泄漏，无模板残留",
+      "at": "2026-10-15T14:36:37.834Z"
     }
   ],
   "openIssues": [
-    "飞行怪尺寸 4.8 与飞行档位为 AI 默认值（用户跳过了确认提问），待真机观感反馈",
-    "预览取景不可控（AR 相机姿态随机），Boss3D 时而出框；非 bug"
+    "3D 位置与手感无法在 PC 预览验证：AR 相机世界位置飘移（探针实测 y=-50m），属无 SLAM 环境限制"
   ],
   "nextActions": [
-    "提醒用户在像塑编辑器自行保存工程（本 workflow 不调 save_project）",
-    "用户真机看效果后可能需微调 localScale / flyAmp"
+    "作者在像塑内保存工程",
+    "真机验证 Boss 尺寸与 3D 手感，反馈后调 BOSS_CORE_SIZE / SPAWN_DIST"
   ],
   "lastMutation": {
-    "at": "2026-10-14T07:00:24.822Z",
+    "at": "2026-10-15T14:29:26.416Z",
     "status": "success",
-    "mutationRevision": 93,
+    "mutationRevision": 137,
     "commandTypes": [
-      "set_scene_object",
       "set_component"
     ]
   }

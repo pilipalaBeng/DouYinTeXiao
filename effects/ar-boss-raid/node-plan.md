@@ -1,5 +1,7 @@
 # ar-boss-raid · 节点/图层结构方案（node-plan）
 
+> ⚠️ **2026-10-15 废除通告**：本文所有「出战牌 / 头像 / `HeadMount` / `HeadFrame` / `FaceImage` / 头像挂点」相关内容**已随好友头像功能整体废除**（作者决定）；现行实现无任何头像与社交元素。相关章节仅作历史档案，**不得据此制作或验收**。
+
 > 职责：技术架构总监 / 柯桥良
 > 上游：`game-design-doc.md`（游有方 v1.0）+ `tech-spec.md`（柯桥良）+ `animation-spec.md`（关建帧）+ `vfx-spec.md`（霍炜然）+ `art-spec.md` + `AGENTS.md`（项目宪法）
 > 出口：抖音特效开放平台（像塑 / Effect House）提审 —— 本文件是**制作与提审准备包**的工程结构定义，不是已过审上架包。

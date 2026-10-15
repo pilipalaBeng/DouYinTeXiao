@@ -9,10 +9,33 @@ const GroupDepth = {
     结算界面: 4000,
 } as const;
 
+/** 预览/渲染分辨率（左上原点）。 */
+const SCREEN_W = 720;
+const SCREEN_H = 1280;
+/** 准星中心与命中容差半径，单位像素（左上原点）。 */
+const CROSS_X = 360;
+const CROSS_Y = 520;
+const AIM_RADIUS = 122;
+
+/** 3D Boss 的空间参数，单位：米。
+ *  BOSS_MIN/MAX_DIST 是「距开局锚点」的球壳半径；锚点本身在相机视轴前方 SPAWN_DIST 米。
+ *  BOSS_CORE_SIZE 是 3D 图片的世界尺寸：1 米距离时约 1 米宽，接近"怼到面前的怪物"。
+ *  想整体调大/调小 Boss 观感，只改这一个数字即可（场景里该组件默认 size 是 10，脚本会覆盖它）。
+ */
+const BOSS_CORE_SIZE = 1.0;
+const BOSS_MIN_DIST = 0.4;
+const BOSS_MAX_DIST = 0.8;
+const BOSS_SPEED = 0.1;
+/** 开局投放距离：沿相机视轴前方多少米。 */
+const SPAWN_DIST = 1;
+
 /**
  * Main Scene
  * Grow gameplay behavior in small passes (Phaser-style).
  * Update visual-effect interactions and dynamic behavior in real time.
+ *
+ * v3：Boss 改为真 3D 空间锚定对象（世界坐标 + AR 相机投影），
+ * 转动手机即可在空间中寻找它；准星固定屏幕中心，命中判定基于投影坐标。
  */
 class MainScene extends Scene {
     public vision!: Vision;
@@ -37,15 +60,26 @@ class MainScene extends Scene {
     private gunBaseAngle: number = 0;
     private resultDelay: number = 0;
     private flyingArrows: {sprite: Sprite; startX: number; startY: number; endX: number; endY: number; elapsed: number; duration: number}[] = [];
-    private boss!: Sprite;
-    private idleTexture!: APJS.Texture;
-    private wingTemplates: Sprite[] = [];
+
+    // ---- 3D 空间 Boss ----
+    private bossSpatial: APJS.SceneObject | null = null;
+    private bossImage: APJS.Image | null = null;
+    private arCamera: APJS.Camera | null = null;
+    /** 开局锚点（固定值）：屏幕中心前方 SPAWN_DIST 米的世界坐标，用于投放与漂移约束。 */
+    private spawnOrigin: APJS.Vector3f = new APJS.Vector3f(0, 0, -3);
+    private bossPos: APJS.Vector3f = new APJS.Vector3f(0, 1.2, 3.5);
+    private bossVel: APJS.Vector3f = new APJS.Vector3f(0.6, 0.25, 0.4);
+    private bossScreenX: number = CROSS_X;
+    private bossScreenY: number = CROSS_Y;
+    private bossOnScreen: boolean = false;
+
+    // ---- 2D 资源与跟随物 ----
+    private idleTexture: APJS.Texture | null = null;
+    private wingTextures: (APJS.Texture | null)[] = [];
+    private rageTexture: APJS.Texture | null = null;
+    private friendlyTexture: APJS.Texture | null = null;
     private wingFrameIndex: number = 0;
     private wingFrameLeft: number = 0;
-    private rageTemplate!: Sprite;
-    private friendlyTemplate!: Sprite;
-    private badge!: Sprite;
-    private avatar!: Sprite;
     private shield!: Sprite;
     private core!: Sprite;
     private crosshair!: Sprite;
@@ -60,26 +94,22 @@ class MainScene extends Scene {
     private hud!: Text;
     private hint!: Text;
     private resultCard!: Sprite;
-    private resultAvatar!: Sprite;
     private resultTitle!: Text;
     private resultStats!: Text;
     private confetti!: Sprite;
     private hitHighlightLeft: number = 0;
-    private bossWorld = { yaw: 0, pitch: 0, distance: 0.5, time: 0 };
-    private faceSmooth = { x: 0.5, y: 0.5 };
-    private faceHasRef: boolean = false;
-    private readonly FOV_PX: number = 700;
-    private readonly PARALLAX_MAX: number = 220;
 
     create(): void {
         this.resetSceneDepths(GroupDepth);
         this.vision = install(this);
-        this.boss = this.object<Sprite>('Boss主体'); this.idleTexture = this.boss.getTexture()!;
-        this.wingTemplates = [
-            this.object<Sprite>('Boss振翅帧1模板'), this.object<Sprite>('Boss振翅帧2模板'),
-            this.object<Sprite>('Boss振翅帧3模板'), this.object<Sprite>('Boss振翅帧4模板'),
+        this.initSpatialBoss();
+        // 阶段与动画帧贴图仍从 2D 模板对象取纹理，再贴到 3D 本体上。
+        this.wingTextures = [
+            this.optionalTexture('Boss振翅帧1模板'), this.optionalTexture('Boss振翅帧2模板'),
+            this.optionalTexture('Boss振翅帧3模板'), this.optionalTexture('Boss振翅帧4模板'),
         ];
-        this.rageTemplate = this.object<Sprite>('能量核心活跃模板'); this.friendlyTemplate = this.object<Sprite>('能量核心友好模板'); this.badge = this.object<Sprite>('Boss出战牌'); this.avatar = this.object<Sprite>('Boss头像');
+        this.rageTexture = this.optionalTexture('能量核心活跃模板');
+        this.friendlyTexture = this.optionalTexture('能量核心友好模板');
         this.shield = this.object<Sprite>('护盾覆盖'); this.core = this.object<Sprite>('护盾核心'); this.crosshair = this.object<Sprite>('固定准星');
         this.highlight = this.object<Sprite>('准星命中高亮'); this.gun = this.object<Sprite>('古代战弩'); this.hpFill = this.object<Sprite>('Boss血条填充');
         this.gunBaseTexture = this.gun.getTexture()!;
@@ -88,7 +118,7 @@ class MainScene extends Scene {
         this.gunFireTexture = this.optionalTexture('战弩击发模板') || this.gunBaseTexture;
         this.gunReturnTexture = this.optionalTexture('战弩回位模板') || this.gunBaseTexture;
         this.hud = this.object<Text>('HUD文字'); this.hint = this.object<Text>('开局提示'); this.resultCard = this.object<Sprite>('结算卡');
-        this.resultAvatar = this.object<Sprite>('结算头像'); this.resultTitle = this.object<Text>('结算标题'); this.resultStats = this.object<Text>('结算战绩'); this.confetti = this.object<Sprite>('胜利彩带');
+        this.resultTitle = this.object<Text>('结算标题'); this.resultStats = this.object<Text>('结算战绩'); this.confetti = this.object<Sprite>('胜利彩带');
         this.input.on('pointerdown', this.beginFire, this); this.input.on('pointerup', this.endFire, this);
         this.input.on('RecordStart', this.handleRecordStart, this); this.input.on('RecordEnd', this.handleRecordEnd, this);
         // 旧场景对象不参与当前 2D 能量挑战。
@@ -109,7 +139,7 @@ class MainScene extends Scene {
         this.updateGunKick();
         this.updateFlyingArrows(delta);
         this.updateWingAnimation(delta);
-        this.updateBoss3D(time, delta);
+        this.updateBossSpatial(delta);
         this.detectFaceHeavy();
         if (this.fireHeld && this.fireGate <= 0) this.fire();
         if (this.phase === 'window' && this.windowLeft <= 0) this.restoreShield();
@@ -123,6 +153,21 @@ class MainScene extends Scene {
     private optionalTexture(id: string): APJS.Texture | null {
         const sprite = this.object<Sprite>(id);
         return sprite ? sprite.getTexture() : null;
+    }
+
+    /** 取得 3D Boss 载体与 AR 相机；缺任一项时降级（Boss 不显示、不可命中），不抛错。 */
+    private initSpatialBoss(): void {
+        const engine = this.sys.engineScene;
+        const bossObj = engine.findSceneObject('Boss空间体');
+        this.bossSpatial = bossObj;
+        this.bossImage = bossObj ? (bossObj.getComponent('Image') as APJS.Image) : null;
+        if (this.bossImage) this.bossImage.size = new APJS.Vector2f(BOSS_CORE_SIZE, BOSS_CORE_SIZE);
+        const camObj = engine.findSceneObject('AR摄像机');
+        this.arCamera = camObj ? (camObj.getComponent('Camera') as APJS.Camera) : null;
+        this.idleTexture = this.bossImage ? this.bossImage.texture : null;
+        if (!this.bossImage || !this.arCamera) {
+            console.warn(`[guard] spatial boss not ready: image=${!!this.bossImage} camera=${!!this.arCamera}`);
+        }
     }
 
     private beginFire(): void { if (this.isRecording && this.phase !== 'result') this.fireHeld = true; }
@@ -167,59 +212,87 @@ class MainScene extends Scene {
     }
 
     private updateWingAnimation(delta: number): void {
-        if (this.phase === 'result') return;
+        if (this.phase === 'result' || this.wingTextures.length === 0) return;
         this.wingFrameLeft -= delta;
         if (this.wingFrameLeft > 0) return;
         this.wingFrameLeft += 115;
-        this.wingFrameIndex = (this.wingFrameIndex + 1) % this.wingTemplates.length;
-        const texture = this.wingTemplates[this.wingFrameIndex].getTexture();
-        if (texture) this.boss.setTexture(texture);
+        this.wingFrameIndex = (this.wingFrameIndex + 1) % this.wingTextures.length;
+        this.setBossTexture(this.wingTextures[this.wingFrameIndex]);
     }
 
-    private updateBoss3D(time: number, delta: number): void {
-        const rage = this.phase === 'rage' ? 1.7 : 1;
-        this.bossWorld.time += delta * 0.001 * rage;
-        this.bossWorld.yaw = Math.sin(this.bossWorld.time * 0.7) * 0.55 + Math.sin(this.bossWorld.time * 1.3) * 0.15;
-        this.bossWorld.pitch = Math.sin(this.bossWorld.time * 0.9 + 1.0) * 0.35 + Math.cos(this.bossWorld.time * 1.1) * 0.1;
-        this.bossWorld.distance = 0.35 + 0.35 * (Math.sin(this.bossWorld.time * 0.4) + 1);
-        const faces: Face.Result[] = this.vision.getFaces();
-        const face: Face.Result | undefined = faces[0];
-        if (face) {
-            const cx = face.box.x + face.box.width * 0.5;
-            const cy = face.box.y + face.box.height * 0.5;
-            const k = 1 - Math.exp(-delta * 0.004);
-            this.faceSmooth.x += (cx - this.faceSmooth.x) * k;
-            this.faceSmooth.y += (cy - this.faceSmooth.y) * k;
-            this.faceHasRef = true;
-        } else if (!this.faceHasRef) {
-            this.faceSmooth.x = 0.5;
-            this.faceSmooth.y = 0.5;
-        }
-        const z = this.bossWorld.distance;
-        const fov = (0.4 + 0.6 * z) * this.FOV_PX;
-        const parallaxX = (this.faceSmooth.x - 0.5) * this.PARALLAX_MAX * z;
-        const parallaxY = (this.faceSmooth.y - 0.5) * this.PARALLAX_MAX * z;
-        let x = 360 + this.bossWorld.yaw * fov + parallaxX;
-        let y = 520 - this.bossWorld.pitch * fov + parallaxY;
-        x = Math.max(130, Math.min(590, x));
-        y = Math.max(320, Math.min(780, y));
-        this.boss.setPosition(x, y); this.badge.setPosition(x, y - 104); this.avatar.setPosition(x, y - 104); this.shield.setPosition(x, y); this.core.setPosition(x, y);
-        const dx = x - 360; const dy = y - 520; const aimed = dx * dx + dy * dy <= 122 * 122;
-        this.highlight.setVisible(this.hitHighlightLeft > 0);
-        const aimScale = aimed ? 1.06 : 1;
-        const distScale = 0.65 + 0.55 * z;
-        this.boss.setDisplaySize(236 * distScale * aimScale, 126 * distScale * aimScale);
+    /**
+     * 真 3D：Boss 在世界空间随机漂移，约束在以玩家为球心的球壳内；
+     * 每帧把世界坐标投影到屏幕，驱动 2D 跟随物与命中判定。
+     */
+    private updateBossSpatial(delta: number): void {
+        const dt = Math.min(0.05, delta / 1000);
+        const rage = this.phase === 'rage' ? 1.6 : 1;
+        this.driftStep(dt, rage);
+        if (this.bossSpatial) this.bossSpatial.getTransform().setWorldPosition(this.bossPos);
+        this.projectBoss();
+        this.syncFollowers();
     }
+
+    private driftStep(dt: number, rage: number): void {
+        const jitter = 1.2 * dt;
+        this.bossVel.x += (Math.random() - 0.5) * jitter;
+        this.bossVel.y += (Math.random() - 0.5) * jitter * 0.7;
+        this.bossVel.z += (Math.random() - 0.5) * jitter * 0.7;
+        const speed = Math.sqrt(this.bossVel.x ** 2 + this.bossVel.y ** 2 + this.bossVel.z ** 2) || 0.0001;
+        const scale = Math.max(0.85, Math.min(1.15, BOSS_SPEED * rage / speed));
+        this.bossVel.x *= scale; this.bossVel.y *= scale; this.bossVel.z *= scale;
+        this.bossPos.x += this.bossVel.x * dt;
+        this.bossPos.y += this.bossVel.y * dt;
+        this.bossPos.z += this.bossVel.z * dt;
+        // 球壳约束以「开局锚点」为球心（固定值）。若以相机为球心会把 Boss 绑在镜头前，失去"转身寻找"的意义。
+        const rx = this.bossPos.x - this.spawnOrigin.x, ry = this.bossPos.y - this.spawnOrigin.y, rz = this.bossPos.z - this.spawnOrigin.z;
+        const dist = Math.sqrt(rx * rx + ry * ry + rz * rz) || 0.0001;
+        if (dist >= BOSS_MIN_DIST && dist <= BOSS_MAX_DIST) return;
+        const nx = rx / dist, ny = ry / dist, nz = rz / dist;
+        const push = dist > BOSS_MAX_DIST ? 1 : -1;
+        const outward = (this.bossVel.x * nx + this.bossVel.y * ny + this.bossVel.z * nz) * push;
+        if (outward > 0) {
+            this.bossVel.x -= 2 * outward * nx; this.bossVel.y -= 2 * outward * ny; this.bossVel.z -= 2 * outward * nz;
+        } else {
+            this.bossVel.x += nx * push * 0.5; this.bossVel.y += ny * push * 0.5; this.bossVel.z += nz * push * 0.5;
+        }
+    }
+
+    /** 世界坐标 → 屏幕像素（worldToScreenPoint 返回左下原点，此处翻转为左上原点）。 */
+    private projectBoss(): void {
+        if (!this.arCamera) { this.bossOnScreen = false; return; }
+        const sp = this.arCamera.worldToScreenPoint(this.bossPos);
+        this.bossOnScreen = sp.z > 0.2;
+        this.bossScreenX = sp.x;
+        this.bossScreenY = SCREEN_H - sp.y;
+    }
+
+    private syncFollowers(): void {
+        const visible = this.bossOnScreen && this.phase !== 'result';
+        this.shield.setPosition(this.bossScreenX, this.bossScreenY);
+        this.core.setPosition(this.bossScreenX, this.bossScreenY);
+        this.highlight.setPosition(this.bossScreenX, this.bossScreenY);
+        this.highlight.setVisible(visible && this.hitHighlightLeft > 0);
+        if (this.bossSpatial) this.bossSpatial.enabled = visible;
+    }
+
+    private isAimed(): boolean {
+        if (!this.bossOnScreen) return false;
+        const dx = this.bossScreenX - CROSS_X;
+        const dy = this.bossScreenY - CROSS_Y;
+        return dx * dx + dy * dy <= AIM_RADIUS * AIM_RADIUS;
+    }
+
     private detectFaceHeavy(): void {
         if (this.faceGate > 0) return;
         const faces: Face.Result[] = this.vision.getFaces(); const face: Face.Result | undefined = faces[0];
         if (face && (face.hasAction('EyeBlink') || face.hasAction('MouthAh'))) { this.faceGate = 900; this.hit(160, true); }
     }
+
     private fire(): void {
         this.fireGate = 250; this.gunKickLeft = 140; this.gunAnimLeft = 140; this.shots += 1; this.sound.play('像素开火音');
-        const dx = this.boss.x - 360; const dy = this.boss.y - 520;
-        const aimed = dx * dx + dy * dy <= 122 * 122;
-        this.spawnArrow(aimed ? this.boss.x : 360, aimed ? this.boss.y : 520);
+        const aimed = this.isAimed();
+        this.spawnArrow(aimed ? this.bossScreenX : CROSS_X, aimed ? this.bossScreenY : CROSS_Y);
         if (!aimed) { this.combo = 0; return; }
         const hitShieldCore = this.phase === 'shield';
         this.time.delayedCall(160, () => this.resolveArrowHit(hitShieldCore), [], this);
@@ -234,26 +307,28 @@ class MainScene extends Scene {
         }
         if (!hitShieldCore && this.phase !== 'shield') this.hit(80, false);
     }
+
     private hit(amount: number, heavy: boolean): void {
-        if (this.phase === 'shield' || this.phase === 'result') return;
+        if (this.phase === 'shield' || this.phase === 'result' || !this.bossOnScreen) return;
         this.hp = Math.max(0, this.hp - amount); this.hits += 1; this.combo += 1; this.maxCombo = Math.max(this.maxCombo, this.combo);
         this.sound.play(heavy ? '人脸重击音' : '像素命中音');
         this.hitHighlightLeft = 140;
         this.highlight.setVisible(true);
-        const spark = this.add.sprite(this.boss.x, this.boss.y, '命中星爆模板'); spark.setVisible(true).setActive(true); this.runtimeObjects.push(spark);
+        const spark = this.add.sprite(this.bossScreenX, this.bossScreenY, '命中星爆模板'); spark.setVisible(true).setActive(true); this.runtimeObjects.push(spark);
         this.time.delayedCall(180, () => { spark.destroy(); this.runtimeObjects = this.runtimeObjects.filter((value: GameObject) => value !== spark); }, [], this);
         if (this.hp <= 0) { this.finish(true); return; }
-        if (this.hp <= 1584 && this.phase === 'warmup') { this.phase = 'rage'; this.applyBossTexture(this.rageTemplate); }
+        if (this.hp <= 1584 && this.phase === 'warmup') { this.phase = 'rage'; this.setBossTexture(this.rageTexture); }
         if (this.hp <= 792 && (this.phase === 'warmup' || this.phase === 'rage')) this.enterShield();
     }
-    private applyBossTexture(template: Sprite): void {
-        const texture = template.getTexture();
-        if (texture) this.boss.setTexture(texture);
+
+    private setBossTexture(texture: APJS.Texture | null): void {
+        if (texture && this.bossImage) this.bossImage.texture = texture;
     }
 
     private enterShield(): void { this.phase = 'shield'; this.coreHits = 0; this.shield.setVisible(true); this.core.setVisible(true); }
     private breakShield(): void { this.phase = 'window'; this.windowLeft = 2000; this.shieldRounds += 1; this.shield.setVisible(false); this.core.setVisible(false); this.sound.play('护盾破裂音'); }
     private restoreShield(): void { if (this.shieldRounds < 3) this.enterShield(); else { this.phase = 'window'; this.windowLeft = 2000; } }
+
     private setHpFillAmount(): void {
         const ratio = Math.max(0, Math.min(1, this.hp / 2400));
         const image = this.hpFill.getEngineComponent('Image') as {fillAmount: number} | null;
@@ -264,13 +339,13 @@ class MainScene extends Scene {
         this.hud.setText(`稳定 ${this.hp}   ${Math.max(0, Math.ceil(30 - this.elapsed))}s`);
         this.setHpFillAmount();
     }
+
     private finish(win: boolean): void {
         if (this.phase === 'result') return; this.phase = 'result'; this.resultDelay = 450; this.fireHeld = false;
         for (const item of this.runtimeObjects) item.destroy(); this.runtimeObjects = []; this.flyingArrows = [];
         this.crosshair.setVisible(false); this.highlight.setVisible(false); this.gun.setVisible(true); this.hud.setVisible(false); this.hpFill.setVisible(false); this.hint.setVisible(false); this.shield.setVisible(false); this.core.setVisible(false);
-        this.applyBossTexture(win ? this.friendlyTemplate : this.rageTemplate);
-        this.boss.setVisible(true).setActive(true);
-        this.resultCard.setVisible(false); this.resultAvatar.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(win);
+        this.setBossTexture(win ? this.friendlyTexture : this.rageTexture);
+        this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(win);
         this.resultTitle.setText(win ? '警报解除！' : '挑战结束');
         this.resultStats.setText(`同步率 ${this.shots > 0 ? Math.round(this.hits * 100 / this.shots) : 0}%\n连击 ${this.maxCombo} 评级 ${win ? 'B' : 'C'}`);
         if (win) this.sound.play('胜利庆祝音');
@@ -281,17 +356,47 @@ class MainScene extends Scene {
         this.resultTitle.setVisible(true);
         this.resultStats.setVisible(true);
         this.resultCard.setVisible(true);
-        this.resultAvatar.setVisible(false);
     }
 
     private resetGame() {
         this.time.clear(); this.sound.stopAll(); for (const item of this.runtimeObjects) item.destroy(); this.runtimeObjects = []; this.flyingArrows = [];
         this.phase = 'warmup'; this.hp = 2400; this.elapsed = 0; this.fireHeld = false; this.fireGate = 0; this.faceGate = 0; this.coreHits = 0; this.shieldRounds = 0; this.windowLeft = 0; this.shots = 0; this.hits = 0; this.combo = 0; this.maxCombo = 0; this.gunKickLeft = 0; this.gunAnimLeft = 0; this.resultDelay = 0; this.hitHighlightLeft = 0;
-        this.bossWorld = { yaw: 0, pitch: 0, distance: 0.5, time: 0 };
-        this.faceSmooth = { x: 0.5, y: 0.5 }; this.faceHasRef = false;
-        this.boss.setTexture(this.idleTexture).setPosition(360, 500).setDisplaySize(236, 126).setVisible(true).setActive(true); this.wingFrameIndex = 0; this.wingFrameLeft = 115; this.badge.setPosition(360, 396).setVisible(true); this.avatar.setPosition(360, 396).setVisible(true);
+        this.wingFrameIndex = 0; this.wingFrameLeft = 115;
+        this.spawnBossInSpace();
+        this.setBossTexture(this.idleTexture);
         this.crosshair.setVisible(true); this.highlight.setVisible(false); this.gun.setFlipX(false).setPosition(this.gunBaseX, this.gunBaseY).setAngle(this.gunBaseAngle).setTexture(this.gunBaseTexture).setVisible(true); this.shield.setVisible(false); this.core.setVisible(false); this.hpFill.setVisible(true); this.setHpFillAmount(); this.hud.setText('稳定 2400   30s').setVisible(true); this.hint.setText('转动手机对准，按住能量脉冲').setVisible(true);
-        this.resultCard.setVisible(false); this.resultAvatar.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(false);
+        this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(false);
+    }
+
+    /**
+     * 每局开局把 Boss 投放到「屏幕中心前方 SPAWN_DIST 米」附近。
+     * AR 相机由 DeviceTracker 驱动，其世界位置并不在原点，因此必须用
+     * 「相机世界位置 + getLookAt() 朝向」沿视轴前推取锚点，否则 Boss 会落到视野之外。
+     * （早前试过 viewportToWorldPoint / screenToWorldPoint，实测与 worldToScreenPoint 基准不一致，已弃用。）
+     */
+    private spawnBossInSpace(): void {
+        const camObj = this.sys.engineScene.findSceneObject('AR摄像机');
+        if (this.arCamera && camObj) {
+            // AR 相机由 DeviceTracker 驱动，其位置/朝向只能运行时读取：
+            // 用相机世界位置 + getLookAt() 朝向（单位向量）沿视轴前推 SPAWN_DIST 米作为开局锚点。
+            const camPos = camObj.getTransform().getWorldPosition();
+            const look = this.arCamera.getLookAt();
+            this.spawnOrigin.x = camPos.x + look.x * SPAWN_DIST;
+            this.spawnOrigin.y = camPos.y + look.y * SPAWN_DIST;
+            this.spawnOrigin.z = camPos.z + look.z * SPAWN_DIST;
+        }
+        this.bossPos.x = this.spawnOrigin.x + (Math.random() - 0.5) * 0.6;
+        this.bossPos.y = this.spawnOrigin.y + (Math.random() - 0.5) * 0.4;
+        this.bossPos.z = this.spawnOrigin.z + (Math.random() - 0.5) * 0.6;
+        this.bossVel.x = (Math.random() - 0.5) * BOSS_SPEED * 2;
+        this.bossVel.y = (Math.random() - 0.5) * BOSS_SPEED;
+        this.bossVel.z = (Math.random() - 0.5) * BOSS_SPEED * 2;
+        if (this.bossSpatial) {
+            this.bossSpatial.getTransform().setWorldPosition(this.bossPos);
+            this.bossSpatial.enabled = true;
+        }
+        this.projectBoss();
+        this.syncFollowers();
     }
 }
 
