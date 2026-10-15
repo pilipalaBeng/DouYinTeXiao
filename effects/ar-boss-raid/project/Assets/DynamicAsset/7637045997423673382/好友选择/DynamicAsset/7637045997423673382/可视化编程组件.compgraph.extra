@@ -1,0 +1,25 @@
+[
+  {
+    "guid": {
+      "a": "3eec52f4-3ac5-cd8d-a84c-1f513b7a1391",
+      "b": ""
+    },
+    "extraType": "ResItemComponentGraph",
+    "name": "可视化编程组件",
+    "version": "0.0.0",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "objGuid": "",
+    "resourceFilePath": "C:\\Users\\Administrator\\AppData\\Local\\DouyinAR\\Instances\\Instance1\\EHpackage\\7637045997423673382\\好友选择\\DynamicAsset\\7637045997423673382\\可视化编程组件.compgraph",
+    "references": [
+      {
+        "guid": "0e24cf05-37a4-c346-2f5b-faf0b35ba6f5",
+        "propertyName": "ComponentGraphReference_0"
+      }
+    ]
+  }
+]

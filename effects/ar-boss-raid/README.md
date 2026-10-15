@@ -133,4 +133,13 @@
 | 7 | 轨 B 摄像头取像（`captureCameraOutput` 真机帧延迟 + `Texture`→`ImageEntity` 挂载） | 未知（**API 已验存在**） | 真机（**通过前轨 B 不上线**，回落轨 A） |
 | 8 | MP3 `INFINITE` 循环接缝 | 未知 | 真机听测 |
 
+### 九之二、2026-10-15 体检新增（按优先级）
+
+| # | 项 | 当前状态 | 关闭方式 |
+|---|---|---|---|
+| 9 | ★ **战弩三帧模板未建** | `main.scene` 内对象数 = 0；`GameManager` 已加容错回退基础帧，不再崩 | 像塑内补「战弩拉弦/击发/回位模板」三对象 |
+| 10 | ★ **工程内 24 张 PNG 未像素化** | 非 DB16（>99% 越界）、含半透明、尺寸非整数倍，合计 **1.47 MB** | 重跑 `pixelize.py` 覆盖后核对场景尺寸（详见 `assets/PLACEHOLDERS.md §3`）|
+| 11 | **好友头像链路半落地** | 脚本侧已实现（拉取→点选→替换 Boss 头像/结算头像）；场景侧缺对象 | 像塑内按 `design_brief_ui §105–107` 建 3 个对象 |
+| 12 | **音频仍为枪械命名** | `assets/audio/sfx/sfx_gun_{shoot_1..3,reload,empty}` 5 个 | 改弩语义；须同步 `audio.json` 的 counts/bytes 与 `audio-spec.md` 衍生数字 |
+
 > **口径纪律（本轮立）**：跨文档共享数值**必须单一来源**——hitstop 看 `vfx-spec §6.1`；对齐点时间偏移看 `animation-spec §5.2`；包体看 `tech-spec §3.2`；结构见 `implement-plan §2.0.2`。任何文档不得另立数值。

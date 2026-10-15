@@ -5,7 +5,10 @@ effects/*/project/CacheData-lock
 
 # ============ MCP / AI 生成日志与中间产物（纯垃圾，可批量删）============
 effects/*/project/.mcp_agent/logs/
-effects/*/project/.agent/asset-board/*/textless/
+effects/*/project/.agent/asset-board/**/textless/
+
+# ============ 像塑自动生成的临时目录（残留物，非工程资产）============
+effects/*/project/Assets/temp*.folder/
 
 # ============ 本地临时区 ============
 .workbuddy/scratch/

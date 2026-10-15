@@ -1,0 +1,75 @@
+{
+  "slug": "ar-boss-raid",
+  "name": "AR 像素 Boss 战",
+  "version": "2.0",
+  "status": "方案冻结 v1.0 / 工程未开始 / 不具备提审条件",
+  "updated": "2026-10-15",
+
+  "governance": {
+    "notes": "宪法 AGENTS.md §七.1『问答先于生成』要求：用途 / 对象 / 风格三问齐了才动手。此处沉淀本特效的三问答案。",
+    "question_1_purpose": {
+      "q": "这个特效用来做什么？",
+      "a": "休闲射击爽感。手机镜头拍实景，在真实空间里锚定一只像素大 Boss，通过转动手机把它转进屏幕正中的准星、按住屏幕开火，把它打服认输。"
+    },
+    "question_2_audience": {
+      "q": "给谁用？",
+      "a": "抖音普通用户，偏休闲向。追求 30 秒内一局的短循环，目标体验是『打完想 @ 朋友』。"
+    },
+    "question_3_style": {
+      "q": "什么风格？",
+      "a": "8-bit 像素风。固定 DB16 色板，Nearest Neighbor 点采样，禁止抗锯齿与羽化。"
+    }
+  },
+
+  "core_loop": {
+    "length_sec": 30,
+    "steps": [
+      "打开特效，镜头对准房间 → Boss 锚定在真实物理空间",
+      "进局前预设头像 6 选 1 当 Boss 头像（3 秒无操作自动用默认款，不阻断）",
+      "转动手机把 Boss 转进屏幕正中准星 → 按住屏幕开火",
+      "打空血条三阶段 → Boss 举手认输 → 结算"
+    ],
+    "aim_method": "AR 空间锚定 + 屏幕正中固定准星 + 转手机瞄准。准星不可拖拽。",
+    "fire_rate": "闸门 250 ms = 严格 4 发/秒",
+    "crosshair_tolerance": 0.17,
+    "tolerance_basis": "视口归一化，基准为屏幕正中 0.5/0.5"
+  },
+
+  "boss_phases": {
+    "name": "圆滚魔像",
+    "form": "空中飞行怪（蝙蝠状），具备空间内浮沉/漂移飞行",
+    "phases": [
+      { "trigger": "HP <= 66%", "state": "暴怒变奏" },
+      { "trigger": "HP <= 33%", "state": "举盾。打核心点 3 次破盾 → 2s 全额伤害窗 → 最多回盾 2 轮" },
+      { "trigger": "HP ~= 15%", "state": "装死 0.8s（别停火）" },
+      { "trigger": "HP = 0", "state": "认输 → 彩带 + 星星爆炸 + 结算" }
+    ],
+    "end_semantics": "『认输 / 被放倒』，不是『杀死』。这是去暴力化的核心表述约定。"
+  },
+
+  "hard_constraints": {
+    "logical_canvas": "Boss 128×128；小元素 32/64（仅整数倍关系）",
+    "export": "×4（128 基准）→ 512×512 PNG 透明；小元素 ×8",
+    "palette": "DB16 固定 16 色。禁用 #ffffff（闪白用 #deeed6）；受击反馈禁用 #d04648（会被读成血）",
+    "sampling": "Nearest Neighbor，禁双线性/抗锯齿/羽化",
+    "layers_max": 6,
+    "particles_max": 50,
+    "package_max_bytes": 2097152,
+    "anim_frames_per_clip_max": 24,
+    "anim_frames_total": 53,
+    "triggers_max": 2
+  },
+
+  "removed_features": [
+    { "item": "吐火球 + 下蹲躲避", "reason": "2026-10-14 实测脚本层无任何设备姿态/高度传感器，做不到" },
+    { "item": "手指拖准星（v1）", "reason": "v2 改为转手机瞄准" },
+    { "item": "手搓陀螺仪 @alpha 方案（v1）", "reason": "由官方 AR Plane 取代" }
+  ],
+
+  "open_risk": [
+    { "id": "R-01", "level": "high", "item": "武器题材（AK 造型枪 + 空仓/换弹语义）", "decision": "2026-10-15 作者决定暂缓改造", "detail": "见 compliance.md §2" },
+    { "id": "R-02", "level": "high", "item": "轨 B 摄像头取像贴 Boss 头部", "decision": "2026-10-15 作者决定保留不动", "detail": "见 compliance.md §3" },
+    { "id": "R-03", "level": "medium", "item": "包体未实测，最坏口径 2.10–3.00 MB 可能破 2 MB 线", "detail": "见 README.md §五" },
+    { "id": "R-04", "level": "medium", "item": "端到端音频延迟最坏 ≈98 ms", "detail": "需真机实测" }
+  ]
+}

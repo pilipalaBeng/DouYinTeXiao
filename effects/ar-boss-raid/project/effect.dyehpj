@@ -1,6 +1,6 @@
 {
   "name": "未命名",
-  "lastModified": "Thu, 15 Oct 2026 04:17:50 GMT",
+  "lastModified": "Thu, 15 Oct 2026 09:08:46 GMT",
   "version": "9.5.2",
   "toolName": "Douyin AR",
   "renderNames": {
@@ -69,9 +69,9 @@
     "62": "Layer 62",
     "63": "Layer 63"
   },
-  "durationToCreate": 150711082,
-  "durationCreation": 47702839,
-  "durationBackground": 42358171,
+  "durationToCreate": 168167466,
+  "durationCreation": 64859259,
+  "durationBackground": 52018830,
   "effectHint": "",
   "templateID": "templateID_none",
   "overwriteBuiltinGAN": 1,
@@ -93,13 +93,13 @@
   "soundStartTime": 0,
   "soundEndTime": 0,
   "LastVideoInput": {
-    "type": "preview_camera",
-    "name": "No Camera",
-    "index": 0,
-    "resourceUrl": ""
+    "type": "preview_environment",
+    "name": "preview_env_ceiling",
+    "index": 82,
+    "resourceUrl": "D:\\Software\\XiangSu\\Douyin AR\\Resources\\BuiltinResource\\preview\\video\\preview_environment\\ceiling.mp4"
   },
   "selectedIdList": [],
-  "lastSceneView": 1,
+  "lastSceneView": 0,
   "perfTested": true,
   "effectSize": 1660160,
   "effectPackagePath": "C:\\Users\\Administrator\\AppData\\Local\\DouyinAR\\Instances\\Instance1\\submit\\package\\effect.zip",

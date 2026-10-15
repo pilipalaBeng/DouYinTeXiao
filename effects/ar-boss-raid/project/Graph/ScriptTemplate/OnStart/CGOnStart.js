@@ -1,0 +1,1 @@
+Object.defineProperty(exports,"__esModule",{value:!0}),exports.CGOnStart=void 0;const ScriptNodeAPI_1=require("../Utils/ScriptNodeAPI");class CGOnStart extends ScriptNodeAPI_1.BaseNode{onStart(t){void 0!==this.nexts[0]&&this.nexts[0]()}}exports.CGOnStart=CGOnStart;

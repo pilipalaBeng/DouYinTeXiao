@@ -24,7 +24,7 @@
       "x": 245,
       "y": 192,
       "width": 330,
-      "height": 45,
+      "height": 40,
       "groupId": "UI界面",
       "visible": false,
       "texture": {
@@ -32,7 +32,8 @@
       },
       "image": {
         "alpha": 1
-      }
+      },
+      "drawMode": "Filled"
     },
     {
       "type": "Text",
@@ -44,7 +45,7 @@
       "height": 48,
       "groupId": "UI界面",
       "visible": false,
-      "text": "HP 2400   30s",
+      "text": "稳定 2400   30s",
       "textContainerId": "战斗HUD底板",
       "style": {
         "fontSize": 30,
@@ -70,7 +71,7 @@
       "x": 360,
       "y": 500,
       "width": 236,
-      "height": 156,
+      "height": 126,
       "groupId": "玩法",
       "visible": false,
       "texture": {
@@ -87,7 +88,7 @@
       "x": 360,
       "y": 382,
       "width": 112,
-      "height": 80,
+      "height": 69,
       "groupId": "玩法",
       "visible": false,
       "texture": {
@@ -121,7 +122,7 @@
       "x": 360,
       "y": 500,
       "width": 280,
-      "height": 195,
+      "height": 178,
       "groupId": "玩法",
       "visible": false,
       "texture": {
@@ -155,7 +156,7 @@
       "x": -120,
       "y": -120,
       "width": 78,
-      "height": 32,
+      "height": 30,
       "groupId": "玩法",
       "visible": false,
       "texture": {
@@ -172,7 +173,7 @@
       "x": -80,
       "y": -80,
       "width": 28,
-      "height": 27,
+      "height": 23,
       "groupId": "玩法",
       "visible": false,
       "texture": {
@@ -218,29 +219,12 @@
     },
     {
       "type": "Image",
-      "id": "像素AK枪",
-      "guid": "6cbd4c3b-911f-f89e-b50b-c6b9e3b3d22a",
-      "x": 560,
-      "y": 1000,
-      "width": 160,
-      "height": 174,
-      "groupId": "UI界面",
-      "visible": false,
-      "texture": {
-        "key": "像素AK枪"
-      },
-      "image": {
-        "alpha": 1
-      }
-    },
-    {
-      "type": "Image",
       "id": "枪口闪光模板",
       "guid": "24abff87-7061-dfd1-fab1-ab8e89ad8ead",
       "x": -80,
       "y": -80,
       "width": 76,
-      "height": 80,
+      "height": 69,
       "groupId": "命中反馈",
       "visible": false,
       "texture": {
@@ -305,7 +289,7 @@
       "height": 36,
       "groupId": "UI界面",
       "visible": false,
-      "text": "转动手机对准，按住开火",
+      "text": "转动手机对准，按住能量脉冲",
       "style": {
         "fontSize": 28,
         "boxDimension": "fixedSize",
@@ -329,7 +313,7 @@
       "guid": "58e1bbdb-377b-a9ae-9aa9-2c730798fedb",
       "x": 360,
       "y": 640,
-      "width": 339,
+      "width": 323,
       "height": 410,
       "groupId": "结算界面",
       "visible": false,
@@ -345,9 +329,9 @@
       "id": "胜利彩带",
       "guid": "529b5dfc-8780-8c56-a9f4-9b1df6740034",
       "x": 360,
-      "y": 425,
+      "y": 441.073,
       "width": 210,
-      "height": 176,
+      "height": 155,
       "groupId": "结算界面",
       "visible": false,
       "texture": {
@@ -384,7 +368,7 @@
       "height": 50,
       "groupId": "结算界面",
       "visible": false,
-      "text": "胜利！",
+      "text": "警报解除！",
       "textContainerId": "结算卡",
       "style": {
         "fontSize": 42,
@@ -518,7 +502,7 @@
       "x": -120,
       "y": -120,
       "width": 62,
-      "height": 64,
+      "height": 63,
       "groupId": "玩法",
       "visible": false,
       "texture": {
@@ -554,6 +538,176 @@
           "angle": 45,
           "feather": 4
         }
+      }
+    },
+    {
+      "type": "Image",
+      "id": "能量核心活跃模板",
+      "guid": "2335a8fe-e93b-6d42-5311-0603f9af4e55",
+      "x": -180,
+      "y": -180,
+      "width": 236,
+      "height": 129,
+      "groupId": "玩法",
+      "visible": false,
+      "texture": {
+        "key": "像素飞行Boss暴怒"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "能量核心友好模板",
+      "guid": "3c9c605f-5066-8a0a-2e62-fbae58139e62",
+      "x": -180,
+      "y": -360,
+      "width": 236,
+      "height": 376,
+      "groupId": "玩法",
+      "visible": false,
+      "texture": {
+        "key": "像素飞行Boss投降"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "Boss振翅帧1模板",
+      "guid": "658f260c-020f-bfe5-56c5-a348beca7ff3",
+      "x": -180,
+      "y": -500,
+      "width": 236,
+      "height": 215,
+      "groupId": "玩法",
+      "visible": false,
+      "texture": {
+        "key": "像素飞行Boss振翅1"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "Boss振翅帧2模板",
+      "guid": "7c39cbf9-a79d-717a-d2ca-7881e8cb507a",
+      "x": -180,
+      "y": -650,
+      "width": 236,
+      "height": 137,
+      "groupId": "玩法",
+      "visible": false,
+      "texture": {
+        "key": "像素飞行Boss振翅2"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "Boss振翅帧3模板",
+      "guid": "7abb57ed-1988-8deb-1c03-80010d368049",
+      "x": -180,
+      "y": -800,
+      "width": 236,
+      "height": 130,
+      "groupId": "玩法",
+      "visible": false,
+      "texture": {
+        "key": "像素飞行Boss振翅3"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "Boss振翅帧4模板",
+      "guid": "6961e511-0ad9-e84e-1b99-d75e9673b3cd",
+      "x": -180,
+      "y": -950,
+      "width": 236,
+      "height": 125,
+      "groupId": "玩法",
+      "visible": false,
+      "texture": {
+        "key": "像素飞行Boss振翅4"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "古代战弩",
+      "guid": "602d3175-e02c-01e0-17e3-1181319463f0",
+      "x": 506,
+      "y": 1004,
+      "width": 392,
+      "height": 287,
+      "groupId": "UI界面",
+      "visible": true,
+      "texture": {
+        "key": "古代像素战弩"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "战弩拉弦模板",
+      "guid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "x": -200,
+      "y": -200,
+      "width": 389,
+      "height": 176,
+      "groupId": "命中反馈",
+      "visible": false,
+      "texture": {
+        "key": "古代像素战弩拉弦"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "战弩击发模板",
+      "guid": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+      "x": -200,
+      "y": -200,
+      "width": 415,
+      "height": 176,
+      "groupId": "命中反馈",
+      "visible": false,
+      "texture": {
+        "key": "古代像素战弩击发"
+      },
+      "image": {
+        "alpha": 1
+      }
+    },
+    {
+      "type": "Image",
+      "id": "战弩回位模板",
+      "guid": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+      "x": -200,
+      "y": -200,
+      "width": 388,
+      "height": 176,
+      "groupId": "命中反馈",
+      "visible": false,
+      "texture": {
+        "key": "古代像素战弩回位"
+      },
+      "image": {
+        "alpha": 1
       }
     }
   ]

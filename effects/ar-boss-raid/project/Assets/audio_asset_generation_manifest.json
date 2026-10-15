@@ -4,127 +4,127 @@
   "workflowSource": "loki_material://7659277819859484698",
   "format": "mp3",
   "sampleRate": 44100,
-  "updatedAt": "2026-10-14T08:17:01.268Z",
+  "updatedAt": "2026-10-15T07:47:03.602Z",
   "assets": [
+    {
+      "clipKey": "人脸重击音",
+      "status": "completed",
+      "prompt": "即刻响起一段较强的像素能量冲击提示音（清晰, 饱满, 低中频冲击带轻微电子波纹, 约1s）",
+      "isBgm": false,
+      "finalPath": "Assets/人脸重击音.mp3",
+      "taskId": "wf12026101514392249769885359106",
+      "failed_taskIds": [],
+      "audioUrl": "tos://tos-cn-v-cf374c/ocAAfJIAIBAVDfoeB6LagZG4okpIuCkKGEOzA5",
+      "sizeBytes": 18189,
+      "stageDurationsMs": {
+        "submit": 326,
+        "poll": 12361,
+        "download": 56,
+        "finalize": 0
+      },
+      "startedAt": "2026-10-15T06:39:22.355Z",
+      "finishedAt": "2026-10-15T06:39:35.099Z",
+      "durationMs": 12744
+    },
     {
       "clipKey": "对准提示音",
       "status": "completed",
       "prompt": "即刻响起一声短促的像素风电子嘀声（清晰, 穿透力强, 约0.12s）",
       "isBgm": false,
       "finalPath": "Assets/对准提示音.mp3",
-      "taskId": "wf12026101416164349608305201154",
+      "taskId": "wf12026101514392249759563670530",
       "failed_taskIds": [],
-      "audioUrl": "tos://tos-cn-v-cf374c/o0OCYQgMA9AEfTeX8AVzBAkLEpPennAunlLDla",
-      "sizeBytes": 2866,
+      "audioUrl": "tos://tos-cn-v-cf374c/ock0Eue0gUrZSIKkqAAGXjFtBtAgNHf6CvAGDA",
+      "sizeBytes": 1948,
       "stageDurationsMs": {
-        "submit": 477,
-        "poll": 12371,
-        "download": 469,
+        "submit": 297,
+        "poll": 12435,
+        "download": 30,
         "finalize": 0
       },
-      "startedAt": "2026-10-14T08:16:42.261Z",
-      "finishedAt": "2026-10-14T08:16:55.579Z",
-      "durationMs": 13318
-    },
-    {
-      "clipKey": "人脸重击音",
-      "status": "completed",
-      "prompt": "即刻响起一声更有力度的像素风重击确认音（响亮, 饱满, 带短促下砸感, 约0.20s）",
-      "isBgm": false,
-      "finalPath": "Assets/人脸重击音.mp3",
-      "taskId": "wf12026101416164349614967428866",
-      "failed_taskIds": [],
-      "audioUrl": "tos://tos-cn-v-cf374c/ogaqn0PzPQeFCd2BQVnAfTMLWj8AkEOAMAreAb",
-      "sizeBytes": 1088,
-      "stageDurationsMs": {
-        "submit": 618,
-        "poll": 12660,
-        "download": 40,
-        "finalize": 0
-      },
-      "startedAt": "2026-10-14T08:16:42.264Z",
-      "finishedAt": "2026-10-14T08:16:55.582Z",
-      "durationMs": 13318
+      "startedAt": "2026-10-15T06:39:22.353Z",
+      "finishedAt": "2026-10-15T06:39:35.115Z",
+      "durationMs": 12762
     },
     {
       "clipKey": "胜利庆祝音",
       "status": "completed",
-      "prompt": "即刻响起一段像素风胜利庆祝提示音（明亮, 清晰, 上扬收尾, 约0.55s）",
+      "prompt": "即刻响起一段挑战完成的温和庆祝提示音（明亮, 像素电子和弦上行, 清晰, 愉悦但不过分响亮, 约2s）",
       "isBgm": false,
       "finalPath": "Assets/胜利庆祝音.mp3",
-      "taskId": "wf12026101416164349618028580098",
+      "taskId": "wf12026101514392249759833239810",
       "failed_taskIds": [],
-      "audioUrl": "tos://tos-cn-v-cf374c/osiAsDiZLEBa56AJ04AQfyiF1PAOsV2gGAn5OB",
-      "sizeBytes": 5624,
+      "audioUrl": "tos://tos-cn-v-cf374c/ooAAyUqpA6ZJEg3BFHSGGIADggeN0AtCWCfSkv",
+      "sizeBytes": 24497,
       "stageDurationsMs": {
-        "submit": 620,
-        "poll": 12663,
-        "download": 46,
+        "submit": 378,
+        "poll": 12369,
+        "download": 53,
         "finalize": 0
       },
-      "startedAt": "2026-10-14T08:16:42.265Z",
-      "finishedAt": "2026-10-14T08:16:55.594Z",
-      "durationMs": 13329
+      "startedAt": "2026-10-15T06:39:22.356Z",
+      "finishedAt": "2026-10-15T06:39:35.157Z",
+      "durationMs": 12801
     },
     {
       "clipKey": "护盾破裂音",
       "status": "completed",
-      "prompt": "即刻响起一段像素风护盾碎裂的电子破碎声（响亮, 清晰, 颗粒感, 约0.30s）",
+      "prompt": "即刻响起一声护盾解除的能量消散音（清晰, 轻柔下滑音调, 伴随细碎像素闪烁, 约1s）",
       "isBgm": false,
       "finalPath": "Assets/护盾破裂音.mp3",
-      "taskId": "wf12026101416164349608319842818",
+      "taskId": "wf12026101514392249772985238786",
       "failed_taskIds": [],
-      "audioUrl": "tos://tos-cn-v-cf374c/o0D0EGiBAdfg81OAO15PASLAnAijvsJZr5BhbQ",
-      "sizeBytes": 4894,
+      "audioUrl": "tos://tos-cn-v-cf374c/oMAAxHiAEgQ1QjafqdiGQNDvPSqq1AJxBBDsAz",
+      "sizeBytes": 17357,
       "stageDurationsMs": {
-        "submit": 675,
-        "poll": 12689,
-        "download": 39,
+        "submit": 440,
+        "poll": 12401,
+        "download": 46,
         "finalize": 0
       },
-      "startedAt": "2026-10-14T08:16:42.264Z",
-      "finishedAt": "2026-10-14T08:16:55.668Z",
-      "durationMs": 13404
-    },
-    {
-      "clipKey": "像素命中音",
-      "status": "completed",
-      "prompt": "即刻响起一声明亮的像素风命中确认叮声（清晰, 穿透力强, 快速衰减, 约0.14s）",
-      "isBgm": false,
-      "finalPath": "Assets/像素命中音.mp3",
-      "taskId": "wf12026101416164349609892898562",
-      "failed_taskIds": [],
-      "audioUrl": "tos://tos-cn-v-cf374c/oEA2dnY2GAMOMeUTkjLAa4znCEeeVABQIxAbCn",
-      "sizeBytes": 2866,
-      "stageDurationsMs": {
-        "submit": 631,
-        "poll": 12782,
-        "download": 37,
-        "finalize": 0
-      },
-      "startedAt": "2026-10-14T08:16:42.263Z",
-      "finishedAt": "2026-10-14T08:16:55.713Z",
-      "durationMs": 13450
+      "startedAt": "2026-10-15T06:39:22.355Z",
+      "finishedAt": "2026-10-15T06:39:35.243Z",
+      "durationMs": 12888
     },
     {
       "clipKey": "像素开火音",
       "status": "completed",
-      "prompt": "即刻响起一声短促的像素风激光射击哔哔声（清晰, 偏尖, 穿透力强, 约0.10s）",
+      "prompt": "即刻响起一段持续触发的柔和像素能量脉冲声（清晰, 温和不刺耳, 细密脉冲律动, 约1s）",
       "isBgm": false,
       "finalPath": "Assets/像素开火音.mp3",
-      "taskId": "wf12026101416164349610294125570",
+      "taskId": "wf12026101514392249759878941954",
       "failed_taskIds": [],
-      "audioUrl": "tos://tos-cn-v-cf374c/oo3RIeWnATUzkEXnVAADFuLKCxBPaneOELAfGA",
-      "sizeBytes": 2444,
+      "audioUrl": "tos://tos-cn-v-cf374c/o41qbAGB1Bd6Gq8iiAADBJEGAgcQfaPQXsASDR",
+      "sizeBytes": 17826,
       "stageDurationsMs": {
-        "submit": 593,
-        "poll": 18375,
-        "download": 36,
+        "submit": 374,
+        "poll": 12489,
+        "download": 45,
         "finalize": 0
       },
-      "startedAt": "2026-10-14T08:16:42.263Z",
-      "finishedAt": "2026-10-14T08:17:01.267Z",
-      "durationMs": 19004
+      "startedAt": "2026-10-15T06:39:22.354Z",
+      "finishedAt": "2026-10-15T06:39:35.262Z",
+      "durationMs": 12908
+    },
+    {
+      "clipKey": "像素命中音",
+      "status": "completed",
+      "prompt": "即刻响起一次干净有力度的复古8-bit能量确认音：先是一声短促木质/机械战弩释放的click（清晰, 近距离, 干脆），紧接着一声明亮的青绿色能量ping（清晰, 上扬但不刺耳, 快速衰减）。整体无爆炸无枪声无语音，约0.18s。",
+      "isBgm": false,
+      "finalPath": "Assets/像素命中音.mp3",
+      "taskId": "wf12026101515465149774164084226",
+      "failed_taskIds": [],
+      "audioUrl": "tos://tos-cn-v-cf374c/o0GAnWtiREB8Eb9DzaAAQLhkhPEQiAjC2JIvg",
+      "sizeBytes": 2366,
+      "stageDurationsMs": {
+        "submit": 169,
+        "poll": 12330,
+        "download": 38,
+        "finalize": 0
+      },
+      "startedAt": "2026-10-15T07:46:51.064Z",
+      "finishedAt": "2026-10-15T07:47:03.602Z",
+      "durationMs": 12538
     }
   ]
 }

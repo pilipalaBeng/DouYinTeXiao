@@ -1,0 +1,32 @@
+[
+  {
+    "guid": {
+      "a": "8c35bd6c-d175-e6fe-ea68-150f13aebb27",
+      "b": ""
+    },
+    "extraType": "ResItemPNGImage",
+    "name": "像素飞行Boss振翅2",
+    "version": "0.2.0",
+    "rttiType": "Texture",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "compressionType": 0,
+    "compressQuality": 0,
+    "compressMaxResolution": 512,
+    "enableMipmap": false,
+    "filterMin": 1,
+    "filterMag": 1,
+    "filterMipmap": 0,
+    "wrapModeS": 0,
+    "wrapModeT": 0,
+    "wrapModeR": 0,
+    "premultiplyAlpha": false,
+    "objGuid": "",
+    "resourceFilePath": "D:\\Project\\DouYinTeXiao\\effects\\ar-boss-raid\\project\\Assets\\像素飞行Boss振翅2.png",
+    "references": []
+  }
+]

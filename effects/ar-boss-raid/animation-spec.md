@@ -652,7 +652,7 @@ L3 武器层（2D 屏幕空间）
 - 文件：**`anim_001.png` 起**（宪法死规定），例：`anm_idle/anim_001.png … anim_006.png`
 - 一个动作一个目录 → 满足"单动作 ≤24 帧"且"`anim_001.png` 起"
 
-**静态贴图**：`英文小写 + 下划线`，例：`white_flash_mask.png`、`gun.png`、`crosshair_lock.png`、`hp_fill.png`、`head_frame.png`。
+**静态贴图**：`英文小写 + 下划线`，例：`white_flash_mask.png`、`crossbow.png`、`crosshair_lock.png`、`hp_fill.png`、`head_frame.png`。
 
 **其他**：禁中文、禁空格；资源 key 允许中文（官方规则），脚本/DSL 命令走英文。
 

@@ -1,0 +1,1 @@
+Object.defineProperty(exports,"__esModule",{value:!0}),exports.CGOnUpdate=void 0;const ScriptNodeAPI_1=require("../Utils/ScriptNodeAPI");class CGOnUpdate extends ScriptNodeAPI_1.BaseNode{onUpdate(e,t){this.outputs[1]=t,void 0!==this.nexts[0]&&this.nexts[0]()}}exports.CGOnUpdate=CGOnUpdate;

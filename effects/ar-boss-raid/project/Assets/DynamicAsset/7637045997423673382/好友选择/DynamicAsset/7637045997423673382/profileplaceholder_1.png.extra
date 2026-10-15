@@ -1,0 +1,32 @@
+[
+  {
+    "guid": {
+      "a": "0e24cf05-37a4-c346-2f5b-faf0b35ba6f5",
+      "b": ""
+    },
+    "extraType": "ResItemPNGImage",
+    "name": "profileplaceholder_1",
+    "version": "0.2.0",
+    "rttiType": "Texture",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "compressionType": 0,
+    "compressQuality": 0,
+    "compressMaxResolution": 512,
+    "enableMipmap": false,
+    "filterMin": 1,
+    "filterMag": 1,
+    "filterMipmap": 0,
+    "wrapModeS": 0,
+    "wrapModeT": 0,
+    "wrapModeR": 0,
+    "premultiplyAlpha": false,
+    "objGuid": "",
+    "resourceFilePath": "C:\\Users\\Administrator\\AppData\\Local\\DouyinAR\\Instances\\Instance1\\EHpackage\\7637045997423673382\\好友选择\\DynamicAsset\\7637045997423673382\\profileplaceholder_1.png",
+    "references": []
+  }
+]

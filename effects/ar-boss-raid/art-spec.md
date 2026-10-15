@@ -621,11 +621,11 @@ assets/
 | 11 | boss_head_frame_a.png | 24×32 | 384×512 | 6–12 KB | L2 | 全状态常显 |
 | 12 | avatar_placeholder.png | 16×16 | 512×512 | 2–4 KB | L2 | 未选图兜底 |
 | 13 | avatar_placeholder_locked.png | 16×16 | 512×512 | 2–4 KB | L2 | 权限被拒兜底 |
-| 14 | gun.png | 128×64 | 512×256 | 12–20 KB | L3 | 常显 |
+| 14 | crossbow.png | 56×22 | 448×176 | 12–20 KB | L3 | 常显（古代战弩，斜向 45°）|
 | 15 | crosshair.png | 32×32 | 512×512 | 2–4 KB | L3 | 常态 |
 | 16 | crosshair_lock.png | 32×32 | 512×512 | 3–5 KB | L3 | 命中态 |
 | 17 | fx_lock_ring.png | 32×32 | 512×512 | 2–4 KB | L3 | 命中瞬间 |
-| 18 | muzzle_flash.png | 32×32 | 512×512 | 4–8 KB | L3 | 开火 |
+| 18 | crossbow_flash.png | 32×32 | 512×512 | 4–8 KB | L3 | 击发 |
 | 19 | hit_spark.png | 16×16 | 512×512 | 1–3 KB | L4 | 命中 |
 | 20 | hit_spark_alt.png | 16×16 | 512×512 | 1–3 KB | L4 | 命中 |
 | 21 | fx_num_atlas.png | 160×16 | 480×48 | 3–6 KB | L4/L5 | 伤害/数据 |

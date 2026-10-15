@@ -1,8 +1,94 @@
 {
   "version": 1,
   "generator": "image-generator",
-  "updatedAt": "2026-10-14T08:29:42.527Z",
+  "updatedAt": "2026-10-15T09:11:46.219Z",
   "sourceManifestPath": "Assets/asset_generation_manifest.json",
-  "failedCount": 0,
-  "assets": []
+  "failedCount": 5,
+  "assets": [
+    {
+      "assetKey": "像素小怪.png",
+      "prompt": "目标主体可见外接矩形比例（宽:高）为 1:1；该比例约束主体本身，不是输出画布。\n指定的纯色抠图底为 `#D8D8D8`。\n提取输入图的完整内容并放置到画面中心。禁止删减或仅提取部分元素。保持输入图完整造型、内部构成、方向、视角、透视、主要配色、材质、描边、装饰和美术风格。\r\n参考图主体比例与目标比例不一致时，不得照搬错误比例；允许为符合目标比例重新构图，但必须保持内部部件比例和视觉特征，禁止非等比缩放、压扁、拉伸、旋转、裁切或改变透视，禁止添加其他物体、场景、地面或相邻对象。最终输出必须移除文字、数字、字母、logo、水印、伪文字，并将原白色展示背景替换为指定抠图底。\r\nUI 容器只保留面板自身的形状、材质、描边、圆角和装饰，移除内部图标、文字占位、文本区和其它运行时内容；\r\n特效保持单一、边界清晰，不扩展为粒子场、碎片雨、烟雾场或连续爆炸。素材放置在画面中心，完整呈现且不裁切。\r\n主体外接矩形应接近 Brief 目标比例，允许保留必要安全边，禁止填满输出画布。\r\n背景必须完全使用指定的纯色抠图底，无渐变、阴影、地面或场景；主体、描边、高光、阴影和特效均不得改写为该背景色。图像清晰、边缘完整，最终只输出素材图，不输出解释。",
+      "assetType": "gameplay_sprite",
+      "processingMode": "segment_only",
+      "workflowSource": "loki_material://7678146505320054847",
+      "warnings": [
+        "scene refresh failed for 像素小怪.png: success=false, applied=0, failed=1",
+        "asset processing failed before a fallback could be published"
+      ],
+      "failed_taskIds": [],
+      "requestedWidth": 96,
+      "requestedHeight": 96,
+      "targetWidth": 96,
+      "targetHeight": 96,
+      "chromaKeyColor": "#D8D8D8"
+    },
+    {
+      "assetKey": "好友头像占位.png",
+      "prompt": "目标主体可见外接矩形比例（宽:高）为 1:1；该比例约束主体本身，不是输出画布。\n指定的纯色抠图底为 `#D8D8D8`。\n提取输入图的完整内容并放置到画面中心。禁止删减或仅提取部分元素。保持输入图完整造型、内部构成、方向、视角、透视、主要配色、材质、描边、装饰和美术风格。\r\n参考图主体比例与目标比例不一致时，不得照搬错误比例；允许为符合目标比例重新构图，但必须保持内部部件比例和视觉特征，禁止非等比缩放、压扁、拉伸、旋转、裁切或改变透视，禁止添加其他物体、场景、地面或相邻对象。最终输出必须移除文字、数字、字母、logo、水印、伪文字，并将原白色展示背景替换为指定抠图底。\r\nUI 容器只保留面板自身的形状、材质、描边、圆角和装饰，移除内部图标、文字占位、文本区和其它运行时内容；\r\n特效保持单一、边界清晰，不扩展为粒子场、碎片雨、烟雾场或连续爆炸。素材放置在画面中心，完整呈现且不裁切。\r\n主体外接矩形应接近 Brief 目标比例，允许保留必要安全边，禁止填满输出画布。\r\n背景必须完全使用指定的纯色抠图底，无渐变、阴影、地面或场景；主体、描边、高光、阴影和特效均不得改写为该背景色。图像清晰、边缘完整，最终只输出素材图，不输出解释。",
+      "assetType": "ui_icon",
+      "processingMode": "segment_only",
+      "workflowSource": "loki_material://7678146505320054847",
+      "warnings": [
+        "scene refresh failed for 好友头像占位.png: success=false, applied=2, failed=1",
+        "asset processing failed before a fallback could be published"
+      ],
+      "failed_taskIds": [],
+      "requestedWidth": 64,
+      "requestedHeight": 64,
+      "targetWidth": 64,
+      "targetHeight": 64,
+      "chromaKeyColor": "#D8D8D8"
+    },
+    {
+      "assetKey": "古代像素战弩击发.png",
+      "prompt": "目标主体可见外接矩形比例（宽:高）为 28:11；该比例约束主体本身，不是输出画布。\n指定的纯色抠图底为 `#D8D8D8`。\n提取输入图的完整内容并放置到画面中心。禁止删减或仅提取部分元素。保持输入图完整造型、内部构成、方向、视角、透视、主要配色、材质、描边、装饰和美术风格。\r\n参考图主体比例与目标比例不一致时，不得照搬错误比例；允许为符合目标比例重新构图，但必须保持内部部件比例和视觉特征，禁止非等比缩放、压扁、拉伸、旋转、裁切或改变透视，禁止添加其他物体、场景、地面或相邻对象。最终输出必须移除文字、数字、字母、logo、水印、伪文字，并将原白色展示背景替换为指定抠图底。\r\nUI 容器只保留面板自身的形状、材质、描边、圆角和装饰，移除内部图标、文字占位、文本区和其它运行时内容；\r\n特效保持单一、边界清晰，不扩展为粒子场、碎片雨、烟雾场或连续爆炸。素材放置在画面中心，完整呈现且不裁切。\r\n主体外接矩形应接近 Brief 目标比例，允许保留必要安全边，禁止填满输出画布。\r\n背景必须完全使用指定的纯色抠图底，无渐变、阴影、地面或场景；主体、描边、高光、阴影和特效均不得改写为该背景色。图像清晰、边缘完整，最终只输出素材图，不输出解释。",
+      "assetType": "gameplay_sprite",
+      "processingMode": "segment_only",
+      "workflowSource": "loki_material://7678146505320054847",
+      "warnings": [
+        "scene refresh failed for 古代像素战弩击发.png: success=false, applied=0, failed=1",
+        "asset processing failed before a fallback could be published"
+      ],
+      "failed_taskIds": [],
+      "requestedWidth": 448,
+      "requestedHeight": 176,
+      "targetWidth": 448,
+      "targetHeight": 176,
+      "chromaKeyColor": "#D8D8D8"
+    },
+    {
+      "assetKey": "古代像素战弩回位.png",
+      "prompt": "目标主体可见外接矩形比例（宽:高）为 28:11；该比例约束主体本身，不是输出画布。\n指定的纯色抠图底为 `#D8D8D8`。\n提取输入图的完整内容并放置到画面中心。禁止删减或仅提取部分元素。保持输入图完整造型、内部构成、方向、视角、透视、主要配色、材质、描边、装饰和美术风格。\r\n参考图主体比例与目标比例不一致时，不得照搬错误比例；允许为符合目标比例重新构图，但必须保持内部部件比例和视觉特征，禁止非等比缩放、压扁、拉伸、旋转、裁切或改变透视，禁止添加其他物体、场景、地面或相邻对象。最终输出必须移除文字、数字、字母、logo、水印、伪文字，并将原白色展示背景替换为指定抠图底。\r\nUI 容器只保留面板自身的形状、材质、描边、圆角和装饰，移除内部图标、文字占位、文本区和其它运行时内容；\r\n特效保持单一、边界清晰，不扩展为粒子场、碎片雨、烟雾场或连续爆炸。素材放置在画面中心，完整呈现且不裁切。\r\n主体外接矩形应接近 Brief 目标比例，允许保留必要安全边，禁止填满输出画布。\r\n背景必须完全使用指定的纯色抠图底，无渐变、阴影、地面或场景；主体、描边、高光、阴影和特效均不得改写为该背景色。图像清晰、边缘完整，最终只输出素材图，不输出解释。",
+      "assetType": "gameplay_sprite",
+      "processingMode": "segment_only",
+      "workflowSource": "loki_material://7678146505320054847",
+      "warnings": [
+        "scene refresh failed for 古代像素战弩回位.png: success=false, applied=0, failed=1",
+        "asset processing failed before a fallback could be published"
+      ],
+      "failed_taskIds": [],
+      "requestedWidth": 448,
+      "requestedHeight": 176,
+      "targetWidth": 448,
+      "targetHeight": 176,
+      "chromaKeyColor": "#D8D8D8"
+    },
+    {
+      "assetKey": "古代像素战弩拉弦.png",
+      "prompt": "目标主体可见外接矩形比例（宽:高）为 28:11；该比例约束主体本身，不是输出画布。\n指定的纯色抠图底为 `#D8D8D8`。\n提取输入图的完整内容并放置到画面中心。禁止删减或仅提取部分元素。保持输入图完整造型、内部构成、方向、视角、透视、主要配色、材质、描边、装饰和美术风格。\r\n参考图主体比例与目标比例不一致时，不得照搬错误比例；允许为符合目标比例重新构图，但必须保持内部部件比例和视觉特征，禁止非等比缩放、压扁、拉伸、旋转、裁切或改变透视，禁止添加其他物体、场景、地面或相邻对象。最终输出必须移除文字、数字、字母、logo、水印、伪文字，并将原白色展示背景替换为指定抠图底。\r\nUI 容器只保留面板自身的形状、材质、描边、圆角和装饰，移除内部图标、文字占位、文本区和其它运行时内容；\r\n特效保持单一、边界清晰，不扩展为粒子场、碎片雨、烟雾场或连续爆炸。素材放置在画面中心，完整呈现且不裁切。\r\n主体外接矩形应接近 Brief 目标比例，允许保留必要安全边，禁止填满输出画布。\r\n背景必须完全使用指定的纯色抠图底，无渐变、阴影、地面或场景；主体、描边、高光、阴影和特效均不得改写为该背景色。图像清晰、边缘完整，最终只输出素材图，不输出解释。",
+      "assetType": "gameplay_sprite",
+      "processingMode": "segment_only",
+      "workflowSource": "loki_material://7678146505320054847",
+      "warnings": [
+        "scene refresh failed for 古代像素战弩拉弦.png: success=false, applied=0, failed=1",
+        "asset processing failed before a fallback could be published"
+      ],
+      "failed_taskIds": [],
+      "requestedWidth": 448,
+      "requestedHeight": 176,
+      "targetWidth": 448,
+      "targetHeight": 176,
+      "chromaKeyColor": "#D8D8D8"
+    }
+  ]
 }

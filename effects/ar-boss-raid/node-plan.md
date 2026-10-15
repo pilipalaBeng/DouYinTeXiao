@@ -253,7 +253,7 @@ READY ──(触摸按下/开拍)──> FIGHTING ──(HP<=0)──> WIN
 
 | 类别 | 规则 | 示例 |
 |---|---|---|
-| 资源文件 | **英文小写 + 下划线**，禁中文/空格 | `white_flash_mask.png`、`gun.png`、`crosshair_lock.png`、`hp_fill.png`、`head_frame.png` |
+| 资源文件 | **英文小写 + 下划线**，禁中文/空格 | `white_flash_mask.png`、`crossbow.png`、`crosshair_lock.png`、`hp_fill.png`、`head_frame.png` |
 | 序列帧目录 | **`anm_<action>/`** | `assets/boss/anm_idle/`、`assets/boss/anm_enrage_intro/` |
 | 序列帧文件 | **`anim_001.png` 起**（一动作一目录） | `anm_idle/anim_001.png … anim_006.png` |
 | 粒子/特效贴图 | 前缀 `fx_` | `fx_hit_star_a.png`、`fx_shield_shard.png`、`fx_confetti_strip.png` |

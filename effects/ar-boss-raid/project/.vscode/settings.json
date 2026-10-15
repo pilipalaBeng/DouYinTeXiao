@@ -1,6 +1,5 @@
 {
   "files.exclude": {
-    "Assets/temp.folder": true,
     "Assets/main.scene": true,
     "Assets/**/*.log": true,
     "EffectSettings": true,
@@ -22,7 +21,6 @@
     "Library/**/*.ts": true
   },
   "search.exclude": {
-    "Assets/temp.folder": true,
     "Assets/main.scene": true,
     "Assets/**/*.log": true,
     "EffectSettings": true,
