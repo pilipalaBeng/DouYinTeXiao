@@ -78,54 +78,6 @@ entities:
           value: OpenGLES30
     layer: 0
   - __class: Entity
-    name: !<str> AR跟踪 (2)
-    guid: {a: 4936701024971497422, b: 15699924863789727423}
-    scene: {localId: 1}
-    selfvisible: true
-    components:
-      - {localId: 12}
-      - __class: EffectNode
-        name: !<str> ""
-        guid: {a: 5394360848985666316, b: 11146585308100868536}
-        enabled: true
-        algorithmInput: {localId: 1, path: share://input.texture}
-        outputTextures:
-          - {localId: 1, path: 00000000-0000-0000-0000-000000000009}
-        renderOrder: 8903
-        minorOrder: 0
-        type:
-          __class: EffectNodeTag
-          value: Other
-        version: 2
-        rendererType:
-          __class: RendererType
-          value: OpenGLES30
-    layer: 0
-  - __class: Entity
-    name: !<str> AR跟踪 (3)
-    guid: {a: 5716343193713080083, b: 15726627191139997067}
-    scene: {localId: 1}
-    selfvisible: true
-    components:
-      - {localId: 13}
-      - __class: EffectNode
-        name: !<str> ""
-        guid: {a: 5324887293547098149, b: 7861193746084953767}
-        enabled: true
-        algorithmInput: {localId: 1, path: share://input.texture}
-        outputTextures:
-          - {localId: 1, path: 00000000-0000-0000-0000-000000000009}
-        renderOrder: 8904
-        minorOrder: 0
-        type:
-          __class: EffectNodeTag
-          value: Other
-        version: 2
-        rendererType:
-          __class: RendererType
-          value: OpenGLES30
-    layer: 0
-  - __class: Entity
     name: !<str> 2D 前景
     guid: {a: 5365992802471094352, b: 1543228042039484327}
     scene: {localId: 1}
@@ -303,7 +255,7 @@ entities:
         enabled: true
         sharedMaterials:
           - {localId: 1, path: 00000000-0000-0000-0000-000000000112--00000000-0000-0000-0000-000000000112.material}
-        sortingOrder: 0
+        sortingOrder: 1
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: false
@@ -380,7 +332,7 @@ entities:
         enabled: true
         sharedMaterials:
           - {localId: 1, path: 00000000-0000-0000-0000-00000000000c--00000000-0000-0000-0000-00000000000c.material}
-        sortingOrder: 1
+        sortingOrder: 2
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: false
@@ -509,133 +461,6 @@ entities:
         tintColor: {r: 1, g: 1, b: 1, a: 1}
     layer: 0
   - __class: Entity
-    name: !<str> 结算文本
-    guid: {a: 5062902835688251848, b: 10339702695076463258}
-    scene: {localId: 1}
-    selfvisible: true
-    components:
-      - {localId: 46}
-      - __class: Text
-        name: !<str> ""
-        guid: {a: 5367677226946060692, b: 892822513952496812}
-        serializedProperty:
-          __class: ScriptSerializedProperty
-          name: !<str> ""
-          guid: {a: 5335124206843871680, b: 16954989971095809665}
-          properties:
-            __class: Map
-            _arcAngle: 0
-            _autoFontSizeMax: 96
-            _autoFontSizeMin: 24
-            _bendType: 0
-            _bloomOption: 0
-            _currAnimationType: 0
-            _glowHAngle: 0
-            _glowVAngle: 0
-            _horizontalAlignment: 1
-            _inAnimationAssetID: !<str> ""
-            _inner_input: !<str> 胜利！
-            _lineBreakType: 1
-            _loopAnimationAssetID: !<str> ""
-            _maxInputWords: 0
-            _outAnimationAssetID: !<str> ""
-            _tabType: 0
-            _textAdaptiveCanvasEnabled: false
-            _totalAnimationTime: 0
-            _userEditable: false
-            _verticalAlignment: 1
-            textLocale: 0
-        enabled: true
-        sortingOrder: 28
-        autoSortingOrder: true
-        useFrustumCulling: true
-        receiveShadow: true
-        lightProbeBlendMode:
-          __class: LightProbeBlendMode
-          value: OFF
-        entirePingPong: false
-        activeTextStyle: {localId: 61}
-        letters:
-          - __class: Letter
-            name: !<str> ""
-            guid: {a: 5171405280467364056, b: 2799609433974743964}
-            utf8: !<str> 胜
-            initialPosition: {x: -2398.8, y: 1.199951}
-            position: {x: -2398.8, y: 1.199951}
-            rotate: {x: 0, y: 0, z: 0}
-            scale: {x: 1, y: 1}
-            anchor: {x: 0, y: 0}
-            extraMatrix: {__class: Matrix4x4f, values: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
-            instanceColor: {r: 1, g: 1, b: 1, a: 1}
-            letterStyle: {localId: 61}
-          - __class: Letter
-            name: !<str> ""
-            guid: {a: 4981695319814326185, b: 3370902921845919894}
-            utf8: !<str> 利
-            initialPosition: {x: -25.20007, y: 0}
-            position: {x: -25.20007, y: 0}
-            rotate: {x: 0, y: 0, z: 0}
-            scale: {x: 1, y: 1}
-            anchor: {x: 0, y: 0}
-            extraMatrix: {__class: Matrix4x4f, values: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
-            instanceColor: {r: 1, g: 1, b: 1, a: 1}
-            letterStyle: {localId: 61}
-          - __class: Letter
-            name: !<str> ""
-            guid: {a: 5664293341812488199, b: 7573869259638350005}
-            utf8: !<str> ！
-            initialPosition: {x: 1800, y: 0}
-            position: {x: 1800, y: 0}
-            rotate: {x: 0, y: 0, z: 0}
-            scale: {x: 1, y: 1}
-            anchor: {x: 0, y: 0}
-            extraMatrix: {__class: Matrix4x4f, values: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
-            instanceColor: {r: 1, g: 1, b: 1, a: 1}
-            letterStyle: {localId: 61}
-        str: !<str> 胜利！
-        richStr: !<str> 胜利！
-        typeSettingParam: {localId: 64}
-        canvas: {localId: 65}
-        globalBackground: {localId: 66}
-        textLocale:
-          __class: TextLocale
-          value: LTRLocale
-        textDirectionLevel:
-          __class: TextDirectionLevel
-          value: LTR
-        globalAlpha: 1
-        resolutionAdapt: true
-        outlineMaxWidth: 0.2000000029802322
-        fixFontSize: true
-        useOwnRenderer: true
-        bloomEnable: false
-        bloomPath: !<str> ""
-        bloomColorCustomized: false
-        bloomColor: {x: 1, y: 1, z: 1, w: 1}
-        bloomStrength: 1
-        bloomRange: 1
-        bloomDirX: 0.5
-        bloomDirY: 0.5
-        bloomBlurDegree: 1
-        bloomRtSize: {x: 1440, y: 2560}
-        bloomRtSizeCoeff: 0
-        bloomMaterialProperties:
-          __class: Map
-          blurscale: 1
-          blurscale1: 1
-          sizeScale: 2
-          u_Strength: 2
-          u_StrengthX: 1
-          u_StrengthY: 1
-          u_light: 1
-          v_bloomPara: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-          v_color: {x: 1, y: 1, z: 1, w: 1}
-        vectorBackgroundEnabled: true
-        compatConfigs:
-          __class: Map
-          EnableBloomOptimization: false
-    layer: 0
-  - __class: Entity
     name: !<str> UI界面
     guid: {a: 5522223729146415302, b: 2337640065676448163}
     scene: {localId: 1}
@@ -654,7 +479,7 @@ entities:
         name: !<str> ""
         guid: {a: 5286565403958887481, b: 18188616801367920281}
         enabled: true
-        sortingOrder: 15
+        sortingOrder: 16
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -700,7 +525,7 @@ entities:
         name: !<str> ""
         guid: {a: 5586927927307505158, b: 13745227807586400166}
         enabled: true
-        sortingOrder: 16
+        sortingOrder: 17
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -773,7 +598,7 @@ entities:
             _verticalAlignment: 1
             textLocale: 0
         enabled: true
-        sortingOrder: 17
+        sortingOrder: 18
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -991,144 +816,6 @@ entities:
       - {localId: 17}
     layer: 0
   - __class: Entity
-    name: !<str> Boss主体
-    guid: {a: 5621089905115038080, b: 11361109513642896542}
-    scene: {localId: 1}
-    selfvisible: true
-    components:
-      - {localId: 18}
-      - __class: ImageRenderer
-        name: !<str> ""
-        guid: {a: 5368603868119747449, b: 16082846638965236100}
-        enabled: true
-        sortingOrder: 3
-        autoSortingOrder: true
-        useFrustumCulling: true
-        receiveShadow: true
-        lightProbeBlendMode:
-          __class: LightProbeBlendMode
-          value: OFF
-        entirePingPong: false
-        texture: {localId: 1, path: c44c6a28-be39-3462-0712-322674480ad9--c44c6a28-be39-3462-0712-322674480ad9.png}
-        opacity: 1
-        color: {r: 1, g: 1, b: 1, a: 1}
-        size: {x: 10, y: 10}
-        pivot: {x: 0.5, y: 0.5}
-        flipX: false
-        flipY: false
-        stretchMode:
-          __class: ImageStretchMode
-          value: Fit
-        atlasIndex: 0
-        horizontalAlignment:
-          __class: LinearAlignment
-          value: Center
-        verticalAlignment:
-          __class: LinearAlignment
-          value: Center
-        imageMaterialProperties:
-          __class: Map
-          _ellipseX: 1
-          _ellipseY: 1
-          _filledRange: 1
-          _filledType: 0
-          _startPoint: 0
-        batchingEnabled: false
-        reservedField: {x: -1, y: -1, z: -1, w: -1}
-    layer: 0
-  - __class: Entity
-    name: !<str> Boss出战牌
-    guid: {a: 5409989788850657121, b: 1100660622226026114}
-    scene: {localId: 1}
-    selfvisible: true
-    components:
-      - {localId: 19}
-      - __class: ImageRenderer
-        name: !<str> ""
-        guid: {a: 5091654961740719404, b: 3417565568462979764}
-        enabled: true
-        sortingOrder: 4
-        autoSortingOrder: true
-        useFrustumCulling: true
-        receiveShadow: true
-        lightProbeBlendMode:
-          __class: LightProbeBlendMode
-          value: OFF
-        entirePingPong: false
-        texture: {localId: 1, path: 92d426f7-9394-2ac4-4c2d-dec4cfc9ddfd--92d426f7-9394-2ac4-4c2d-dec4cfc9ddfd.png}
-        opacity: 1
-        color: {r: 1, g: 1, b: 1, a: 1}
-        size: {x: 10, y: 10}
-        pivot: {x: 0.5, y: 0.5}
-        flipX: false
-        flipY: false
-        stretchMode:
-          __class: ImageStretchMode
-          value: Fit
-        atlasIndex: 0
-        horizontalAlignment:
-          __class: LinearAlignment
-          value: Center
-        verticalAlignment:
-          __class: LinearAlignment
-          value: Center
-        imageMaterialProperties:
-          __class: Map
-          _ellipseX: 1
-          _ellipseY: 1
-          _filledRange: 1
-          _filledType: 0
-          _startPoint: 0
-        batchingEnabled: false
-        reservedField: {x: -1, y: -1, z: -1, w: -1}
-    layer: 0
-  - __class: Entity
-    name: !<str> Boss头像
-    guid: {a: 4823441401461274867, b: 13733045834635996311}
-    scene: {localId: 1}
-    selfvisible: true
-    components:
-      - {localId: 20}
-      - __class: ImageRenderer
-        name: !<str> ""
-        guid: {a: 4765771506291071464, b: 5718083502391003272}
-        enabled: true
-        sortingOrder: 5
-        autoSortingOrder: true
-        useFrustumCulling: true
-        receiveShadow: true
-        lightProbeBlendMode:
-          __class: LightProbeBlendMode
-          value: OFF
-        entirePingPong: false
-        texture: {localId: 1, path: 5775c954-8fb9-86a9-d6e3-a31e914197d4--5775c954-8fb9-86a9-d6e3-a31e914197d4.png}
-        opacity: 1
-        color: {r: 1, g: 1, b: 1, a: 1}
-        size: {x: 10, y: 10}
-        pivot: {x: 0.5, y: 0.5}
-        flipX: false
-        flipY: false
-        stretchMode:
-          __class: ImageStretchMode
-          value: Fit
-        atlasIndex: 0
-        horizontalAlignment:
-          __class: LinearAlignment
-          value: Center
-        verticalAlignment:
-          __class: LinearAlignment
-          value: Center
-        imageMaterialProperties:
-          __class: Map
-          _ellipseX: 1
-          _ellipseY: 1
-          _filledRange: 1
-          _filledType: 0
-          _startPoint: 0
-        batchingEnabled: false
-        reservedField: {x: -1, y: -1, z: -1, w: -1}
-    layer: 0
-  - __class: Entity
     name: !<str> 护盾覆盖
     guid: {a: 5026031611892516883, b: 8407825939038791851}
     scene: {localId: 1}
@@ -1139,7 +826,7 @@ entities:
         name: !<str> ""
         guid: {a: 4774906577435618216, b: 17350633420255407256}
         enabled: true
-        sortingOrder: 6
+        sortingOrder: 4
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -1185,7 +872,7 @@ entities:
         name: !<str> ""
         guid: {a: 5294808423487082577, b: 8071493814031757222}
         enabled: true
-        sortingOrder: 7
+        sortingOrder: 5
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -1224,14 +911,14 @@ entities:
     name: !<str> 弹幕模板
     guid: {a: 4720699094689351881, b: 13185489062251559064}
     scene: {localId: 1}
-    selfvisible: true
+    selfvisible: false
     components:
       - {localId: 23}
       - __class: ImageRenderer
         name: !<str> ""
         guid: {a: 4811406943694015036, b: 11807984526237815957}
         enabled: true
-        sortingOrder: 8
+        sortingOrder: 6
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -1277,7 +964,7 @@ entities:
         name: !<str> ""
         guid: {a: 5200528875761002224, b: 14838128037381400195}
         enabled: true
-        sortingOrder: 18
+        sortingOrder: 19
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -1323,7 +1010,7 @@ entities:
         name: !<str> ""
         guid: {a: 5369799643053300225, b: 9234060269039764643}
         enabled: true
-        sortingOrder: 19
+        sortingOrder: 20
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -1370,14 +1057,14 @@ entities:
     name: !<str> 枪口闪光模板
     guid: {a: 5390665581077358337, b: 2828293109116891278}
     scene: {localId: 1}
-    selfvisible: true
+    selfvisible: false
     components:
       - {localId: 48}
       - __class: ImageRenderer
         name: !<str> ""
         guid: {a: 4830336097647418811, b: 2776186707383534491}
         enabled: true
-        sortingOrder: 29
+        sortingOrder: 27
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -1416,14 +1103,14 @@ entities:
     name: !<str> 命中星爆模板
     guid: {a: 5701913044224942577, b: 18142123927627024772}
     scene: {localId: 1}
-    selfvisible: true
+    selfvisible: false
     components:
       - {localId: 49}
       - __class: ImageRenderer
         name: !<str> ""
         guid: {a: 4810560770739163852, b: 14209758380282898069}
         enabled: true
-        sortingOrder: 30
+        sortingOrder: 28
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -1462,7 +1149,7 @@ entities:
     name: !<str> 伤害数字模板
     guid: {a: 4868750541349745894, b: 2861044395750616737}
     scene: {localId: 1}
-    selfvisible: true
+    selfvisible: false
     components:
       - {localId: 50}
       - __class: Text
@@ -1496,7 +1183,7 @@ entities:
             _verticalAlignment: 1
             textLocale: 0
         enabled: true
-        sortingOrder: 31
+        sortingOrder: 29
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -1611,7 +1298,7 @@ entities:
             _verticalAlignment: 1
             textLocale: 0
         enabled: true
-        sortingOrder: 20
+        sortingOrder: 21
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -1921,52 +1608,6 @@ entities:
         reservedField: {x: -1, y: -1, z: -1, w: -1}
     layer: 0
   - __class: Entity
-    name: !<str> 结算头像
-    guid: {a: 5270303266403931262, b: 5872530432294985917}
-    scene: {localId: 1}
-    selfvisible: true
-    components:
-      - {localId: 42}
-      - __class: ImageRenderer
-        name: !<str> ""
-        guid: {a: 5705374214773232858, b: 5360536477777194130}
-        enabled: true
-        sortingOrder: 25
-        autoSortingOrder: true
-        useFrustumCulling: true
-        receiveShadow: true
-        lightProbeBlendMode:
-          __class: LightProbeBlendMode
-          value: OFF
-        entirePingPong: false
-        texture: {localId: 1, path: 5775c954-8fb9-86a9-d6e3-a31e914197d4--5775c954-8fb9-86a9-d6e3-a31e914197d4.png}
-        opacity: 1
-        color: {r: 1, g: 1, b: 1, a: 1}
-        size: {x: 10, y: 10}
-        pivot: {x: 0.5, y: 0.5}
-        flipX: false
-        flipY: false
-        stretchMode:
-          __class: ImageStretchMode
-          value: Fit
-        atlasIndex: 0
-        horizontalAlignment:
-          __class: LinearAlignment
-          value: Center
-        verticalAlignment:
-          __class: LinearAlignment
-          value: Center
-        imageMaterialProperties:
-          __class: Map
-          _ellipseX: 1
-          _ellipseY: 1
-          _filledRange: 1
-          _filledType: 0
-          _startPoint: 0
-        batchingEnabled: false
-        reservedField: {x: -1, y: -1, z: -1, w: -1}
-    layer: 0
-  - __class: Entity
     name: !<str> 结算标题
     guid: {a: 4730871480726497501, b: 7233745021030079122}
     scene: {localId: 1}
@@ -2004,7 +1645,7 @@ entities:
             _verticalAlignment: 1
             textLocale: 0
         enabled: true
-        sortingOrder: 26
+        sortingOrder: 25
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -2155,7 +1796,7 @@ entities:
             _verticalAlignment: 1
             textLocale: 0
         enabled: true
-        sortingOrder: 27
+        sortingOrder: 26
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -2680,192 +2321,17 @@ entities:
         className: !<str> AudioComponent
     layer: 0
   - __class: Entity
-    name: !<str> 好友头像选择提示
-    guid: {a: 5245055645176243058, b: 3511347266003678114}
-    scene: {localId: 1}
-    selfvisible: true
-    components:
-      - {localId: 37}
-      - __class: Text
-        name: !<str> ""
-        guid: {a: 4696281673738630722, b: 795096084946316694}
-        serializedProperty:
-          __class: ScriptSerializedProperty
-          name: !<str> ""
-          guid: {a: 4787473880065775569, b: 2209952540481968527}
-          properties:
-            __class: Map
-            _arcAngle: 0
-            _autoFontSizeMax: 96
-            _autoFontSizeMin: 24
-            _bendType: 0
-            _bloomOption: 0
-            _currAnimationType: 0
-            _glowHAngle: 0
-            _glowVAngle: 0
-            _horizontalAlignment: 1
-            _inAnimationAssetID: !<str> ""
-            _inner_input: !<str> 选一位好友出战
-            _lineBreakType: 1
-            _loopAnimationAssetID: !<str> ""
-            _maxInputWords: 0
-            _outAnimationAssetID: !<str> ""
-            _tabType: 0
-            _textAdaptiveCanvasEnabled: false
-            _totalAnimationTime: 0
-            _userEditable: false
-            _verticalAlignment: 1
-            textLocale: 0
-        enabled: true
-        sortingOrder: 21
-        autoSortingOrder: true
-        useFrustumCulling: true
-        receiveShadow: true
-        lightProbeBlendMode:
-          __class: LightProbeBlendMode
-          value: OFF
-        entirePingPong: false
-        activeTextStyle: {localId: 107}
-        letters:
-          - __class: Letter
-            name: !<str> ""
-            guid: {a: 4640390167363653119, b: 15746996829187774854}
-            utf8: !<str> 选
-            initialPosition: {x: -1680, y: -1.399963}
-            position: {x: -1680, y: -1.399963}
-            rotate: {x: 0, y: 0, z: 0}
-            scale: {x: 1, y: 1}
-            anchor: {x: 0, y: 0}
-            extraMatrix: {__class: Matrix4x4f, values: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
-            instanceColor: {r: 1, g: 1, b: 1, a: 1}
-            letterStyle: {localId: 107}
-          - __class: Letter
-            name: !<str> ""
-            guid: {a: 5090237338563407439, b: 16492452491504964788}
-            utf8: !<str> 一
-            initialPosition: {x: -1120.28, y: 24.07999}
-            position: {x: -1120.28, y: 24.07999}
-            rotate: {x: 0, y: 0, z: 0}
-            scale: {x: 1, y: 1}
-            anchor: {x: 0, y: 0}
-            extraMatrix: {__class: Matrix4x4f, values: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
-            instanceColor: {r: 1, g: 1, b: 1, a: 1}
-            letterStyle: {localId: 107}
-          - __class: Letter
-            name: !<str> ""
-            guid: {a: 5379231391055940898, b: 17537412384863467923}
-            utf8: !<str> 位
-            initialPosition: {x: -557.4801, y: 0}
-            position: {x: -557.4801, y: 0}
-            rotate: {x: 0, y: 0, z: 0}
-            scale: {x: 1, y: 1}
-            anchor: {x: 0, y: 0}
-            extraMatrix: {__class: Matrix4x4f, values: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
-            instanceColor: {r: 1, g: 1, b: 1, a: 1}
-            letterStyle: {localId: 107}
-          - __class: Letter
-            name: !<str> ""
-            guid: {a: 5518441618364487961, b: 5876476443659949733}
-            utf8: !<str> 好
-            initialPosition: {x: -0.8399658, y: -0.2799988}
-            position: {x: -0.8399658, y: -0.2799988}
-            rotate: {x: 0, y: 0, z: 0}
-            scale: {x: 1, y: 1}
-            anchor: {x: 0, y: 0}
-            extraMatrix: {__class: Matrix4x4f, values: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
-            instanceColor: {r: 1, g: 1, b: 1, a: 1}
-            letterStyle: {localId: 107}
-          - __class: Letter
-            name: !<str> ""
-            guid: {a: 5710821237796472218, b: 4657555427801872771}
-            utf8: !<str> 友
-            initialPosition: {x: 552.9999, y: -0.2799988}
-            position: {x: 552.9999, y: -0.2799988}
-            rotate: {x: 0, y: 0, z: 0}
-            scale: {x: 1, y: 1}
-            anchor: {x: 0, y: 0}
-            extraMatrix: {__class: Matrix4x4f, values: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
-            instanceColor: {r: 1, g: 1, b: 1, a: 1}
-            letterStyle: {localId: 107}
-          - __class: Letter
-            name: !<str> ""
-            guid: {a: 5487795499333546251, b: 16256722281170028938}
-            utf8: !<str> 出
-            initialPosition: {x: 1120, y: 8.399994}
-            position: {x: 1120, y: 8.399994}
-            rotate: {x: 0, y: 0, z: 0}
-            scale: {x: 1, y: 1}
-            anchor: {x: 0, y: 0}
-            extraMatrix: {__class: Matrix4x4f, values: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
-            instanceColor: {r: 1, g: 1, b: 1, a: 1}
-            letterStyle: {localId: 107}
-          - __class: Letter
-            name: !<str> ""
-            guid: {a: 5523989768360191030, b: 9683105130460588175}
-            utf8: !<str> 战
-            initialPosition: {x: 1689.52, y: -8.399994}
-            position: {x: 1689.52, y: -8.399994}
-            rotate: {x: 0, y: 0, z: 0}
-            scale: {x: 1, y: 1}
-            anchor: {x: 0, y: 0}
-            extraMatrix: {__class: Matrix4x4f, values: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
-            instanceColor: {r: 1, g: 1, b: 1, a: 1}
-            letterStyle: {localId: 107}
-        str: !<str> 选一位好友出战
-        richStr: !<str> 选一位好友出战
-        typeSettingParam: {localId: 112}
-        canvas: {localId: 113}
-        globalBackground: {localId: 114}
-        textLocale:
-          __class: TextLocale
-          value: LTRLocale
-        textDirectionLevel:
-          __class: TextDirectionLevel
-          value: LTR
-        globalAlpha: 1
-        resolutionAdapt: true
-        outlineMaxWidth: 0.2000000029802322
-        fixFontSize: true
-        useOwnRenderer: true
-        bloomEnable: false
-        bloomPath: !<str> ""
-        bloomColorCustomized: false
-        bloomColor: {x: 1, y: 1, z: 1, w: 1}
-        bloomStrength: 1
-        bloomRange: 1
-        bloomDirX: 0.5
-        bloomDirY: 0.5
-        bloomBlurDegree: 1
-        bloomRtSize: {x: 1440, y: 2560}
-        bloomRtSizeCoeff: 0
-        bloomMaterialProperties:
-          __class: Map
-          blurscale: 1
-          blurscale1: 1
-          sizeScale: 2
-          u_Strength: 2
-          u_StrengthX: 1
-          u_StrengthY: 1
-          u_light: 1
-          v_bloomPara: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-          v_color: {x: 1, y: 1, z: 1, w: 1}
-        vectorBackgroundEnabled: true
-        compatConfigs:
-          __class: Map
-          EnableBloomOptimization: false
-    layer: 0
-  - __class: Entity
     name: !<str> 能量核心活跃模板
     guid: {a: 5090333383480359264, b: 6799093869057659540}
     scene: {localId: 1}
-    selfvisible: true
+    selfvisible: false
     components:
       - {localId: 24}
       - __class: ImageRenderer
         name: !<str> ""
         guid: {a: 4751186805182988400, b: 16053244813176253334}
         enabled: true
-        sortingOrder: 9
+        sortingOrder: 7
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -2904,14 +2370,14 @@ entities:
     name: !<str> 能量核心友好模板
     guid: {a: 4839176680697774097, b: 9505902449719057539}
     scene: {localId: 1}
-    selfvisible: true
+    selfvisible: false
     components:
       - {localId: 25}
       - __class: ImageRenderer
         name: !<str> ""
         guid: {a: 4798134021606273631, b: 520537931378945418}
         enabled: true
-        sortingOrder: 10
+        sortingOrder: 8
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -2959,7 +2425,7 @@ entities:
         enabled: true
         sharedMaterials:
           - {localId: 1, path: b8f0938e-1541-5145-9f26-3b8db7bb789d--b8f0938e-1541-5145-9f26-3b8db7bb789d.material}
-        sortingOrder: 2
+        sortingOrder: 3
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: false
@@ -2981,7 +2447,7 @@ entities:
         name: !<str> ""
         guid: {a: 5334329503180263705, b: 5007923880809505951}
         enabled: true
-        sortingOrder: 11
+        sortingOrder: 9
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -3027,7 +2493,7 @@ entities:
         name: !<str> ""
         guid: {a: 5256636575025530704, b: 1841280802680890542}
         enabled: true
-        sortingOrder: 12
+        sortingOrder: 10
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -3073,7 +2539,7 @@ entities:
         name: !<str> ""
         guid: {a: 4939191792444874148, b: 8441659396584136887}
         enabled: true
-        sortingOrder: 13
+        sortingOrder: 11
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -3119,7 +2585,7 @@ entities:
         name: !<str> ""
         guid: {a: 5761596660226393042, b: 6833875033398667947}
         enabled: true
-        sortingOrder: 14
+        sortingOrder: 12
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -3201,56 +2667,17 @@ entities:
         reservedField: {x: -1, y: -1, z: -1, w: -1}
     layer: 0
   - __class: Entity
-    name: !<str> 好友选择
-    guid: {a: 5201282323229227840, b: 16876075002199414161}
+    name: !<str> 战弩拉弦模板
+    guid: {a: 4688706825474038790, b: 8535525103017125511}
     scene: {localId: 1}
-    selfvisible: true
+    selfvisible: false
     components:
-      - {localId: 115}
-      - __class: JSScriptComponent
-        name: !<str> ""
-        guid: {a: 5487435618129073103, b: 9230418422581636997}
-        enabled: true
-        path: !<str> js/FriendNotification.js
-        properties:
-          __class: Map
-          extraType: !<str> FriendNotificationComponent
-    layer: 0
-  - __class: Entity
-    name: !<str> 好友选择
-    guid: {a: 4747389677504459017, b: 16324647431321630122}
-    scene: {localId: 1}
-    selfvisible: true
-    components:
-      - {localId: 116}
-      - __class: JSScriptComponent
-        name: !<str> ""
-        guid: {a: 5283845622040096625, b: 17402798135779174560}
-        enabled: true
-        path: !<str> js/Graph/Component/ScriptGraph_f7b2a61f43cdadfcc9cc159c0b78d5e4.js
-        properties:
-          __class: Map
-          componentAlgorithmMap:
-            __class: Map
-          componentValueMap:
-            __class: Map
-            Variable_0dd856b1af747aac04f27a6ca42c9caf: {localId: 118}
-            Variable_9e1f65f981c90071281a1b62f7ab7c99: {localId: 119}
-            Variable_fe5870f47e15a3066ced7d8bda927fae: {localId: 117}
-          extraType: !<str> ComponentGraph
-    layer: 0
-  - __class: Entity
-    name: !<str> 图片
-    guid: {a: 5600550471372667240, b: 10866688562998644628}
-    scene: {localId: 1}
-    selfvisible: true
-    components:
-      - {localId: 117}
+      - {localId: 128}
       - __class: ImageRenderer
         name: !<str> ""
-        guid: {a: 5519470891840869702, b: 36059790914931098}
+        guid: {a: 4973167867487180041, b: 7761614582591483275}
         enabled: true
-        sortingOrder: 32
+        sortingOrder: 15
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -3258,10 +2685,10 @@ entities:
           __class: LightProbeBlendMode
           value: OFF
         entirePingPong: false
-        texture: {localId: 1, path: 0e24cf05-37a4-c346-2f5b-faf0b35ba6f5--0e24cf05-37a4-c346-2f5b-faf0b35ba6f5.png}
+        texture: {localId: 1, path: b7713a21-d8f6-e0c1-9f16-07e757d8ac62--b7713a21-d8f6-e0c1-9f16-07e757d8ac62.png}
         opacity: 1
         color: {r: 1, g: 1, b: 1, a: 1}
-        size: {x: 9.86491, y: 10}
+        size: {x: 10, y: 10}
         pivot: {x: 0.5, y: 0.5}
         flipX: false
         flipY: false
@@ -3286,145 +2713,17 @@ entities:
         reservedField: {x: -1, y: -1, z: -1, w: -1}
     layer: 0
   - __class: Entity
-    name: !<str> 2D 文字
-    guid: {a: 4688999217176838493, b: 17922668122203796384}
+    name: !<str> 战弩击发模板
+    guid: {a: 5421016801190098927, b: 6424408695308290967}
     scene: {localId: 1}
-    selfvisible: true
+    selfvisible: false
     components:
-      - {localId: 118}
-      - __class: Text
-        name: !<str> ""
-        guid: {a: 4978678045154110231, b: 6104076868897670326}
-        serializedProperty:
-          __class: ScriptSerializedProperty
-          name: !<str> ""
-          guid: {a: 5569353133591971217, b: 14101968700639094940}
-          properties:
-            __class: Map
-            _arcAngle: 0
-            _autoFontSizeMax: 83.33333333333333
-            _autoFontSizeMin: 20.83333333333333
-            _bendType: 0
-            _bloomOption: 0
-            _currAnimationType: 0
-            _glowHAngle: 0
-            _glowVAngle: 0
-            _horizontalAlignment: 1
-            _inAnimationAssetID: !<str> ""
-            _inner_input: !<str> "@昵称"
-            _lineBreakType: 1
-            _loopAnimationAssetID: !<str> ""
-            _maxInputWords: 0
-            _outAnimationAssetID: !<str> ""
-            _tabType: 0
-            _textAdaptiveCanvasEnabled: false
-            _totalAnimationTime: 0
-            _userEditable: false
-            _verticalAlignment: 1
-            bloomOption: 0
-            textLocale: 0
-        enabled: true
-        sortingOrder: 33
-        autoSortingOrder: true
-        useFrustumCulling: true
-        receiveShadow: true
-        lightProbeBlendMode:
-          __class: LightProbeBlendMode
-          value: OFF
-        entirePingPong: false
-        activeTextStyle: {localId: 120}
-        letters:
-          - __class: Letter
-            name: !<str> ""
-            guid: {a: 5266888205295158867, b: 9484932995272418448}
-            utf8: !<str> "@"
-            initialPosition: {x: -1250, y: -50.625}
-            position: {x: -1250, y: -50.625}
-            rotate: {x: 0, y: 0, z: 0}
-            scale: {x: 1, y: 1}
-            anchor: {x: 0, y: 0}
-            extraMatrix: {__class: Matrix4x4f, values: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
-            instanceColor: {r: 1, g: 1, b: 1, a: 1}
-            letterStyle: {localId: 120}
-          - __class: Letter
-            name: !<str> ""
-            guid: {a: 4878806146256968464, b: 3544842150935417494}
-            utf8: !<str> 昵
-            initialPosition: {x: -53.75, y: -20}
-            position: {x: -53.75, y: -20}
-            rotate: {x: 0, y: 0, z: 0}
-            scale: {x: 1, y: 1}
-            anchor: {x: 0, y: 0}
-            extraMatrix: {__class: Matrix4x4f, values: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
-            instanceColor: {r: 1, g: 1, b: 1, a: 1}
-            letterStyle: {localId: 120}
-          - __class: Letter
-            name: !<str> ""
-            guid: {a: 5687529704130679647, b: 412596647136347041}
-            utf8: !<str> 称
-            initialPosition: {x: 1178.125, y: -1.875}
-            position: {x: 1178.125, y: -1.875}
-            rotate: {x: 0, y: 0, z: 0}
-            scale: {x: 1, y: 1}
-            anchor: {x: 0, y: 0}
-            extraMatrix: {__class: Matrix4x4f, values: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
-            instanceColor: {r: 1, g: 1, b: 1, a: 1}
-            letterStyle: {localId: 120}
-        str: !<str> "@昵称"
-        richStr: !<str> "@昵称"
-        typeSettingParam: {localId: 123}
-        canvas: {localId: 124}
-        globalBackground: {localId: 125}
-        textLocale:
-          __class: TextLocale
-          value: LTRLocale
-        textDirectionLevel:
-          __class: TextDirectionLevel
-          value: LTR
-        globalAlpha: 1
-        resolutionAdapt: true
-        outlineMaxWidth: 0.2000000029802322
-        fixFontSize: true
-        useOwnRenderer: true
-        bloomEnable: false
-        bloomPath: !<str> ""
-        bloomColorCustomized: false
-        bloomColor: {x: 1, y: 1, z: 1, w: 1}
-        bloomStrength: 1
-        bloomRange: 1
-        bloomDirX: 0.5
-        bloomDirY: 0.5
-        bloomBlurDegree: 1
-        bloomRtSize: {x: 1440, y: 2560}
-        bloomRtSizeCoeff: 0
-        bloomMaterialProperties:
-          __class: Map
-          blurscale: 1
-          blurscale1: 1
-          sizeScale: 2
-          u_Strength: 2
-          u_StrengthX: 1
-          u_StrengthY: 1
-          u_light: 1
-          v_bloomPara: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-          v_color: {x: 1, y: 1, z: 1, w: 1}
-        vectorBackgroundEnabled: true
-        compatConfigs:
-          __class: Map
-          EnableBloomOptimization: false
-    layer: 0
-  - __class: Entity
-    name: !<str> 前景贴纸
-    guid: {a: 5188690630953464726, b: 10146553471084673434}
-    scene: {localId: 1}
-    selfvisible: true
-    components:
-      - {localId: 119}
+      - {localId: 127}
       - __class: ImageRenderer
         name: !<str> ""
-        guid: {a: 5164539375738870088, b: 9515918180534669452}
+        guid: {a: 4688103280570799025, b: 7630734938755498914}
         enabled: true
-        sortingOrder: 34
+        sortingOrder: 14
         autoSortingOrder: true
         useFrustumCulling: true
         receiveShadow: true
@@ -3432,10 +2731,102 @@ entities:
           __class: LightProbeBlendMode
           value: OFF
         entirePingPong: false
-        texture: {localId: 1, path: 55325bd6-d9b3-fa7f-6896-9d126e07297a--55325bd6-d9b3-fa7f-6896-9d126e07297a.png}
+        texture: {localId: 1, path: 3f7df707-c861-4dea-bc50-9ecc45e46f50--3f7df707-c861-4dea-bc50-9ecc45e46f50.png}
         opacity: 1
         color: {r: 1, g: 1, b: 1, a: 1}
         size: {x: 10, y: 10}
+        pivot: {x: 0.5, y: 0.5}
+        flipX: false
+        flipY: false
+        stretchMode:
+          __class: ImageStretchMode
+          value: Fit
+        atlasIndex: 0
+        horizontalAlignment:
+          __class: LinearAlignment
+          value: Center
+        verticalAlignment:
+          __class: LinearAlignment
+          value: Center
+        imageMaterialProperties:
+          __class: Map
+          _ellipseX: 1
+          _ellipseY: 1
+          _filledRange: 1
+          _filledType: 0
+          _startPoint: 0
+        batchingEnabled: false
+        reservedField: {x: -1, y: -1, z: -1, w: -1}
+    layer: 0
+  - __class: Entity
+    name: !<str> 战弩回位模板
+    guid: {a: 5655635010741105411, b: 4328105427910491288}
+    scene: {localId: 1}
+    selfvisible: false
+    components:
+      - {localId: 126}
+      - __class: ImageRenderer
+        name: !<str> ""
+        guid: {a: 4976748868172572543, b: 10729638960979296914}
+        enabled: true
+        sortingOrder: 13
+        autoSortingOrder: true
+        useFrustumCulling: true
+        receiveShadow: true
+        lightProbeBlendMode:
+          __class: LightProbeBlendMode
+          value: OFF
+        entirePingPong: false
+        texture: {localId: 1, path: 18e1afc4-98ce-5fc0-dcef-7b3365190c25--18e1afc4-98ce-5fc0-dcef-7b3365190c25.png}
+        opacity: 1
+        color: {r: 1, g: 1, b: 1, a: 1}
+        size: {x: 10, y: 10}
+        pivot: {x: 0.5, y: 0.5}
+        flipX: false
+        flipY: false
+        stretchMode:
+          __class: ImageStretchMode
+          value: Fit
+        atlasIndex: 0
+        horizontalAlignment:
+          __class: LinearAlignment
+          value: Center
+        verticalAlignment:
+          __class: LinearAlignment
+          value: Center
+        imageMaterialProperties:
+          __class: Map
+          _ellipseX: 1
+          _ellipseY: 1
+          _filledRange: 1
+          _filledType: 0
+          _startPoint: 0
+        batchingEnabled: false
+        reservedField: {x: -1, y: -1, z: -1, w: -1}
+    layer: 0
+  - __class: Entity
+    name: !<str> Boss空间体
+    guid: {a: 5078269060916482487, b: 6540477145350359211}
+    scene: {localId: 1}
+    selfvisible: true
+    components:
+      - {localId: 129}
+      - __class: ImageRenderer
+        name: !<str> ""
+        guid: {a: 4688276104695422139, b: 1262597945376319163}
+        enabled: true
+        sortingOrder: 0
+        autoSortingOrder: true
+        useFrustumCulling: true
+        receiveShadow: true
+        lightProbeBlendMode:
+          __class: LightProbeBlendMode
+          value: OFF
+        entirePingPong: false
+        texture: {localId: 1, path: c44c6a28-be39-3462-0712-322674480ad9--c44c6a28-be39-3462-0712-322674480ad9.png}
+        opacity: 1
+        color: {r: 1, g: 1, b: 1, a: 1}
+        size: {x: 1, y: 1}
         pivot: {x: 0.5, y: 0.5}
         flipX: false
         flipY: false
@@ -3535,6 +2926,7 @@ localPosition: {x: 0, y: 0, z: 0}
 localScale: {x: 1, y: 1, z: 1}
 localOrientation: {w: 1, x: 0, y: 0, z: 0}
 children:
+  - {localId: 129}
   - {localId: 7}
   - {localId: 9}
 mobility:
@@ -3598,26 +2990,6 @@ parent: {localId: 10}
 mobility:
   __class: Mobility
   value: Dynamic
---- !Transform &12
-name: !<str> ""
-guid: {a: 5693363269476475009, b: 10584280851718855064}
-enabled: true
-localPosition: {x: 0, y: 0, z: 0}
-localScale: {x: 1, y: 1, z: 1}
-localOrientation: {w: 1, x: 0, y: 0, z: 0}
-mobility:
-  __class: Mobility
-  value: Dynamic
---- !Transform &13
-name: !<str> ""
-guid: {a: 4741693039196333791, b: 16826490424771836346}
-enabled: true
-localPosition: {x: 0, y: 0, z: 0}
-localScale: {x: 1, y: 1, z: 1}
-localOrientation: {w: 1, x: 0, y: 0, z: 0}
-mobility:
-  __class: Mobility
-  value: Dynamic
 --- !Transform &14
 name: !<str> ""
 guid: {a: 5145321198217930018, b: 13416319398036899254}
@@ -3646,7 +3018,6 @@ children:
   - {localId: 45}
   - {localId: 47}
   - {localId: 51}
-  - {localId: 115}
 mobility:
   __class: Mobility
   value: Dynamic
@@ -3676,9 +3047,6 @@ localScale: {x: 1, y: 1, z: 1}
 localOrientation: {w: 1, x: 0, y: 0, z: 0}
 parent: {localId: 15}
 children:
-  - {localId: 18}
-  - {localId: 19}
-  - {localId: 20}
   - {localId: 21}
   - {localId: 22}
   - {localId: 23}
@@ -3693,57 +3061,6 @@ mobility:
   value: Dynamic
 anchoredPosition: {x: 0, y: 0}
 sizeDelta: {x: 720, y: 1280}
-pivot: {x: 0.5, y: 0.5}
-anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-pixelsPerUnit: 32
-enablePivotMatrix: false
---- !ScreenTransform &18
-name: !<str> ""
-guid: {a: 4770151470950836044, b: 17427302155989256626}
-enabled: true
-localPosition: {x: 0, y: 4.375, z: 0}
-localScale: {x: 1, y: 1, z: 1}
-localOrientation: {w: 1, x: 0, y: 0, z: 0}
-parent: {localId: 17}
-mobility:
-  __class: Mobility
-  value: Dynamic
-anchoredPosition: {x: 0, y: 140}
-sizeDelta: {x: 236, y: 126}
-pivot: {x: 0.5, y: 0.5}
-anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-pixelsPerUnit: 32
-enablePivotMatrix: false
---- !ScreenTransform &19
-name: !<str> ""
-guid: {a: 5062178293324985407, b: 12709047156620175512}
-enabled: true
-localPosition: {x: 0, y: 8.0625, z: 0}
-localScale: {x: 1, y: 1, z: 1}
-localOrientation: {w: 1, x: 0, y: 0, z: 0}
-parent: {localId: 17}
-mobility:
-  __class: Mobility
-  value: Dynamic
-anchoredPosition: {x: 0, y: 258}
-sizeDelta: {x: 112, y: 69}
-pivot: {x: 0.5, y: 0.5}
-anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-pixelsPerUnit: 32
-enablePivotMatrix: false
---- !ScreenTransform &20
-name: !<str> ""
-guid: {a: 5639522313582219452, b: 17324566963669079738}
-enabled: true
-localPosition: {x: 0, y: 8.0625, z: 0}
-localScale: {x: 1, y: 1, z: 1}
-localOrientation: {w: 1, x: 0, y: 0, z: 0}
-parent: {localId: 17}
-mobility:
-  __class: Mobility
-  value: Dynamic
-anchoredPosition: {x: 0, y: 258}
-sizeDelta: {x: 49, y: 50}
 pivot: {x: 0.5, y: 0.5}
 anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
 pixelsPerUnit: 32
@@ -3910,13 +3227,15 @@ localScale: {x: 1, y: 1, z: 1}
 localOrientation: {w: 1, x: 0, y: 0, z: 0}
 parent: {localId: 15}
 children:
+  - {localId: 126}
+  - {localId: 127}
+  - {localId: 128}
   - {localId: 31}
   - {localId: 32}
   - {localId: 33}
   - {localId: 34}
   - {localId: 35}
   - {localId: 36}
-  - {localId: 37}
   - {localId: 38}
 mobility:
   __class: Mobility
@@ -4029,23 +3348,6 @@ pivot: {x: 0.5, y: 0.5}
 anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
 pixelsPerUnit: 32
 enablePivotMatrix: true
---- !ScreenTransform &37
-name: !<str> ""
-guid: {a: 5257815255530680803, b: 14299028937864492433}
-enabled: true
-localPosition: {x: 0, y: -7.625, z: 0}
-localScale: {x: 1, y: 1, z: 1}
-localOrientation: {w: 1, x: 0, y: 0, z: 0}
-parent: {localId: 30}
-mobility:
-  __class: Mobility
-  value: Dynamic
-anchoredPosition: {x: 0, y: -244}
-sizeDelta: {x: 420, y: 32}
-pivot: {x: 0.5, y: 0.5}
-anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-pixelsPerUnit: 32
-enablePivotMatrix: true
 --- !ScreenTransform &38
 name: !<str> ""
 guid: {a: 5119655065878392194, b: 17037362078210685599}
@@ -4058,7 +3360,7 @@ mobility:
   __class: Mobility
   value: Dynamic
 anchoredPosition: {x: 146, y: -364}
-sizeDelta: {x: 392, y: 287}
+sizeDelta: {x: 392, y: 271}
 pivot: {x: 0.5, y: 0.5}
 anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
 pixelsPerUnit: 32
@@ -4074,7 +3376,6 @@ parent: {localId: 15}
 children:
   - {localId: 40}
   - {localId: 41}
-  - {localId: 42}
   - {localId: 43}
   - {localId: 44}
 mobility:
@@ -4116,23 +3417,6 @@ mobility:
   value: Dynamic
 anchoredPosition: {x: 0, y: 198.9269}
 sizeDelta: {x: 210, y: 155}
-pivot: {x: 0.5, y: 0.5}
-anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-pixelsPerUnit: 32
-enablePivotMatrix: false
---- !ScreenTransform &42
-name: !<str> ""
-guid: {a: 5194425237344163281, b: 9125525504179606679}
-enabled: true
-localPosition: {x: 0, y: 3.4375, z: 0}
-localScale: {x: 1, y: 1, z: 1}
-localOrientation: {w: 1, x: 0, y: 0, z: 0}
-parent: {localId: 39}
-mobility:
-  __class: Mobility
-  value: Dynamic
-anchoredPosition: {x: 0, y: 110}
-sizeDelta: {x: 78, y: 80}
 pivot: {x: 0.5, y: 0.5}
 anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
 pixelsPerUnit: 32
@@ -4179,8 +3463,6 @@ localPosition: {x: 0, y: 0, z: -40}
 localScale: {x: 1, y: 1, z: 1}
 localOrientation: {w: 1, x: 0, y: 0, z: 0}
 parent: {localId: 15}
-children:
-  - {localId: 46}
 mobility:
   __class: Mobility
   value: Dynamic
@@ -4190,23 +3472,6 @@ pivot: {x: 0.5, y: 0.5}
 anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
 pixelsPerUnit: 32
 enablePivotMatrix: false
---- !ScreenTransform &46
-name: !<str> ""
-guid: {a: 4621451335232254698, b: 9958714779884447929}
-enabled: true
-localPosition: {x: 0, y: 0, z: 0}
-localScale: {x: 1, y: 1, z: 1}
-localOrientation: {w: 1, x: 0, y: 0, z: 0}
-parent: {localId: 45}
-mobility:
-  __class: Mobility
-  value: Dynamic
-anchoredPosition: {x: 0, y: 0}
-sizeDelta: {x: 360, y: 120}
-pivot: {x: 0.5, y: 0.5}
-anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-pixelsPerUnit: 32
-enablePivotMatrix: true
 --- !ScreenTransform &47
 name: !<str> ""
 guid: {a: 5374392777140122740, b: 7110144443085839235}
@@ -6791,86 +6056,6 @@ gradientAngle: 90
 gradientStyle:
   __class: GradientStyle
   value: Linear
---- !ScreenTransform &115
-name: !<str> ""
-guid: {a: 4800062505994165459, b: 2197694860082504602}
-enabled: true
-localPosition: {x: 0, y: 0, z: -40}
-localScale: {x: 1, y: 1, z: 1}
-localOrientation: {w: 1, x: 0, y: 0, z: 0}
-parent: {localId: 15}
-children:
-  - {localId: 116}
-mobility:
-  __class: Mobility
-  value: Dynamic
-anchoredPosition: {x: 0, y: 0}
-sizeDelta: {x: 720, y: 1280}
-pivot: {x: 0.5, y: 0.5}
-anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-pixelsPerUnit: 32
-enablePivotMatrix: false
---- !Transform &116
-name: !<str> ""
-guid: {a: 5449170313381026666, b: 7361816443900486305}
-enabled: true
-localPosition: {x: 0, y: 0, z: -40}
-localScale: {x: 1, y: 1, z: 1}
-localOrientation: {w: 1, x: 0, y: 0, z: 0}
-parent: {localId: 115}
-children:
-  - {localId: 117}
-  - {localId: 119}
-mobility:
-  __class: Mobility
-  value: Dynamic
---- !Transform &117
-name: !<str> ""
-guid: {a: 4687267248355139859, b: 1766215622811867783}
-enabled: true
-localPosition: {x: -1.283349, y: 11.75278, z: 0}
-localScale: {x: 1, y: 1, z: 1}
-localOrientation: {w: 1, x: 0, y: 0, z: 0}
-parent: {localId: 116}
-children:
-  - {localId: 118}
-mobility:
-  __class: Mobility
-  value: Dynamic
---- !ScreenTransform &118
-name: !<str> ""
-guid: {a: 5660197253835964081, b: 9042277212336601992}
-enabled: true
-localPosition: {x: 0.2026286, y: -3.783394, z: 40}
-localScale: {x: 1, y: 1, z: 1}
-localOrientation: {w: 1, x: 0, y: 0, z: 0}
-parent: {localId: 117}
-mobility:
-  __class: Mobility
-  value: Dynamic
-anchoredPosition: {x: 6.484116, y: -121.0686}
-sizeDelta: {x: 415.4194, y: 136.0912}
-pivot: {x: 0.5, y: 0.5}
-anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-pixelsPerUnit: 32
-enablePivotMatrix: true
---- !ScreenTransform &119
-name: !<str> ""
-guid: {a: 5539512693629033706, b: 7653005758553170322}
-enabled: true
-localPosition: {x: -1.327598, y: 5.3125, z: 40}
-localScale: {x: 1, y: 1, z: 1}
-localOrientation: {w: 1, x: 0, y: 0, z: 0}
-parent: {localId: 116}
-mobility:
-  __class: Mobility
-  value: Dynamic
-anchoredPosition: {x: -42.48312, y: 170}
-sizeDelta: {x: 128, y: 60}
-pivot: {x: 0.5, y: 0.5}
-anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-pixelsPerUnit: 32
-enablePivotMatrix: false
 --- !LetterStyle &120
 name: !<str> ""
 guid: {a: 5247710941685955158, b: 3497153601443336887}
@@ -7115,3 +6300,65 @@ gradientAngle: 90
 gradientStyle:
   __class: GradientStyle
   value: Linear
+--- !ScreenTransform &126
+name: !<str> ""
+guid: {a: 4666014215366845248, b: 7429979584861008805}
+enabled: true
+localPosition: {x: 0, y: 0, z: 0}
+localScale: {x: 1, y: 1, z: 1}
+localOrientation: {w: 1, x: 0, y: 0, z: 0}
+parent: {localId: 30}
+mobility:
+  __class: Mobility
+  value: Dynamic
+anchoredPosition: {x: 0, y: 0}
+sizeDelta: {x: 336, y: 336}
+pivot: {x: 0.5, y: 0.5}
+anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
+pixelsPerUnit: 32
+enablePivotMatrix: false
+--- !ScreenTransform &127
+name: !<str> ""
+guid: {a: 5571390591130269079, b: 4151712144210103466}
+enabled: true
+localPosition: {x: 0, y: 0, z: 0}
+localScale: {x: 1, y: 1, z: 1}
+localOrientation: {w: 1, x: 0, y: 0, z: 0}
+parent: {localId: 30}
+mobility:
+  __class: Mobility
+  value: Dynamic
+anchoredPosition: {x: 0, y: 0}
+sizeDelta: {x: 336, y: 336}
+pivot: {x: 0.5, y: 0.5}
+anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
+pixelsPerUnit: 32
+enablePivotMatrix: false
+--- !ScreenTransform &128
+name: !<str> ""
+guid: {a: 5638004406234803342, b: 14224472629491463559}
+enabled: true
+localPosition: {x: 0, y: 0, z: 0}
+localScale: {x: 1, y: 1, z: 1}
+localOrientation: {w: 1, x: 0, y: 0, z: 0}
+parent: {localId: 30}
+mobility:
+  __class: Mobility
+  value: Dynamic
+anchoredPosition: {x: 0, y: 0}
+sizeDelta: {x: 336, y: 336}
+pivot: {x: 0.5, y: 0.5}
+anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
+pixelsPerUnit: 32
+enablePivotMatrix: false
+--- !Transform &129
+name: !<str> ""
+guid: {a: 4669412650983052089, b: 6194369150060328346}
+enabled: true
+localPosition: {x: 0, y: 0, z: 0}
+localScale: {x: 1, y: 1, z: 1}
+localOrientation: {w: 1, x: 0, y: 0, z: 0}
+parent: {localId: 6}
+mobility:
+  __class: Mobility
+  value: Dynamic

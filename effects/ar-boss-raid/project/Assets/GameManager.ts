@@ -19,13 +19,13 @@ const AIM_RADIUS = 122;
 
 /** 3D Boss 的空间参数，单位：米。
  *  BOSS_MIN/MAX_DIST 是「距开局锚点」的球壳半径；锚点本身在相机视轴前方 SPAWN_DIST 米。
- *  BOSS_CORE_SIZE 是 3D 图片的世界尺寸：1 米距离时约 1 米宽，接近"怼到面前的怪物"。
+ *  BOSS_CORE_SIZE 是 3D 图片的世界尺寸：3 米实体在 1 米锚点距离约 112° 张角（贴脸巨物）。
  *  想整体调大/调小 Boss 观感，只改这一个数字即可（场景里该组件默认 size 是 10，脚本会覆盖它）。
  */
-const BOSS_CORE_SIZE = 1.0;
+const BOSS_CORE_SIZE = 3.0;
 const BOSS_MIN_DIST = 0.4;
 const BOSS_MAX_DIST = 0.8;
-const BOSS_SPEED = 0.1;
+const BOSS_SPEED = 0.05;
 /** 开局投放距离：沿相机视轴前方多少米。 */
 const SPAWN_DIST = 1;
 
