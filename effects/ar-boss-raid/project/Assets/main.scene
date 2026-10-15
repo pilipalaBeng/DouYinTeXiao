@@ -819,7 +819,7 @@ entities:
     name: !<str> 护盾覆盖
     guid: {a: 5026031611892516883, b: 8407825939038791851}
     scene: {localId: 1}
-    selfvisible: true
+    selfvisible: false
     components:
       - {localId: 17}
       - __class: ImageRenderer
@@ -865,7 +865,7 @@ entities:
     name: !<str> 护盾核心
     guid: {a: 5605479395282160452, b: 15443732240214050191}
     scene: {localId: 1}
-    selfvisible: true
+    selfvisible: false
     components:
       - {localId: 18}
       - __class: ImageRenderer
@@ -1003,7 +1003,7 @@ entities:
     name: !<str> 准星命中高亮
     guid: {a: 5397969635590780549, b: 17864521769842853309}
     scene: {localId: 1}
-    selfvisible: true
+    selfvisible: false
     components:
       - {localId: 34}
       - __class: ImageRenderer
@@ -1519,7 +1519,7 @@ entities:
     name: !<str> 结算卡
     guid: {a: 5539889078259668433, b: 11515420624116977854}
     scene: {localId: 1}
-    selfvisible: true
+    selfvisible: false
     components:
       - {localId: 38}
       - __class: ImageRenderer
@@ -1565,7 +1565,7 @@ entities:
     name: !<str> 胜利彩带
     guid: {a: 4998189404154850410, b: 8615564840930722216}
     scene: {localId: 1}
-    selfvisible: true
+    selfvisible: false
     components:
       - {localId: 39}
       - __class: ImageRenderer
@@ -1611,7 +1611,7 @@ entities:
     name: !<str> 结算标题
     guid: {a: 4730871480726497501, b: 7233745021030079122}
     scene: {localId: 1}
-    selfvisible: true
+    selfvisible: false
     components:
       - {localId: 40}
       - __class: Text
@@ -1762,7 +1762,7 @@ entities:
     name: !<str> 结算战绩
     guid: {a: 4664589600509441851, b: 11588451102413801100}
     scene: {localId: 1}
-    selfvisible: true
+    selfvisible: false
     components:
       - {localId: 41}
       - __class: Text

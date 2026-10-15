@@ -30,7 +30,7 @@ const AIM_RADIUS = 122;
  *  想调观感大小只动 BOSS_CORE_SIZE 即可（场景里该组件默认 size 是 10，脚本会覆盖它）。
  */
 const BOSS_CORE_SIZE = 3.0;
-/** 环绕飞行的俯仰上限（弧度）：限制在用户周围「平飞」，不飞到头顶或脚下。 */
+/** 环绕飞行的俯仰上限（弧度）：限制在用户周围「平飞」（±约 28°），不飞到头顶或脚下。 */
 const ORBIT_PITCH_MAX = 0.5;
 const BOSS_SPEED = 0.025;
 /** 开局投放距离：沿相机视轴前方多少米。
@@ -170,7 +170,9 @@ class MainScene extends Scene {
     private tick(time: number, delta: number): void {
         if (!this.isRecording) return;
         if (this.phase === 'result') { this.resultDelay = Math.max(0, this.resultDelay - delta); if (this.resultDelay <= 0) this.showMinimalResult(); return; }
-        this.elapsed += delta / 1000; this.fireGate = Math.max(0, this.fireGate - delta); this.faceGate = Math.max(0, this.faceGate - delta);
+        // 限幅：单帧步进不超过 0.1s。否则引擎首帧/卡顿后给出的超大 delta 会让 elapsed 瞬间越过 30s，
+        // 直接触发 finish() 进入结算态（表现为"开局就弹结算卡、HUD 停在 30s"）。
+        this.elapsed += Math.min(0.1, delta / 1000); this.fireGate = Math.max(0, this.fireGate - delta); this.faceGate = Math.max(0, this.faceGate - delta);
         this.windowLeft = Math.max(0, this.windowLeft - delta);
         this.gunKickLeft = Math.max(0, this.gunKickLeft - delta);
         this.gunAnimLeft = Math.max(0, this.gunAnimLeft - delta);
@@ -482,7 +484,7 @@ class MainScene extends Scene {
         this.setBossTexture(this.idleTexture);
         this.crosshair.setVisible(true); this.highlight.setVisible(false); this.gun.setFlipX(false).setPosition(this.gunBaseX, this.gunBaseY).setAngle(this.gunBaseAngle).setTexture(this.gunBaseTexture).setVisible(true); this.shield.setVisible(false); this.core.setVisible(false); this.hpFill.setVisible(true); this.setHpFillAmount(); this.hud.setText('稳定 2400   30s').setVisible(true); this.hint.setText('转动手机对准，按住能量脉冲').setVisible(true);
         this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(false);
-        // 真机空间诊断探针：每次开局分三个时间点采样，用于定位「看不见 Boss」。
+        // 真机空间诊断探针：每次开局分时间点采样，用于定位「看不见 Boss」。
         this.time.delayedCall(1500, () => this.probeSpatial('t1.5'), [], this);
         this.time.delayedCall(3000, () => this.probeSpatial('t3.0'), [], this);
         this.time.delayedCall(4500, () => this.probeSpatial('t4.5'), [], this);

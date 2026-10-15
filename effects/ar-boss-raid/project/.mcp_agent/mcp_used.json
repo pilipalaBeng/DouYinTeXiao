@@ -6,7 +6,7 @@
   "tools": {
     "query_knowledge": 14,
     "list_preview_videos": 2,
-    "update_handoff_context": 19,
+    "update_handoff_context": 20,
     "describe_project": 3,
     "list_resources": 7,
     "save_plan": 3,
@@ -14,13 +14,14 @@
     "generate_image": 1,
     "inspect": 20,
     "project_status": 3,
-    "edit_by_dsl": 46,
-    "get_scene": 27,
+    "edit_by_dsl": 48,
+    "get_scene": 28,
     "generate_assets_batch": 1,
-    "capture_preview": 14,
-    "run_otsc_check": 27,
-    "interact_by_dsl": 69,
-    "get_script_logs": 72,
-    "get_scene_view": 1
+    "capture_preview": 15,
+    "run_otsc_check": 32,
+    "interact_by_dsl": 78,
+    "get_script_logs": 83,
+    "get_scene_view": 1,
+    "save_project": 1
   }
 }
