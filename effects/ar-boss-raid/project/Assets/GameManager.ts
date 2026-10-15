@@ -23,14 +23,20 @@ const AIM_RADIUS = 122;
  *  当前 BOSS_CORE_SIZE=3.0 + SPAWN_DIST=4 → 约占屏高 65%（最近 3.4m 处约 76%，最远 4.6m 处约 56%）。
  *  改观感只动 BOSS_CORE_SIZE 即可（场景里该组件默认 size 是 10，脚本会覆盖它）。
  */
+/** 3D Boss 的空间参数，单位：米。
+ *  BOSS_MIN/MAX_DIST 是「距开局锚点」的球壳半径；锚点本身在相机视轴前方 SPAWN_DIST 米。
+ *  尺寸依据（探针实测）：AR 相机 fov=60°、fovType=Custom(0)，距离 D 处屏幕竖向覆盖 ≈ 1.155×D 米。
+ *  当前 BOSS_CORE_SIZE=3.0 + SPAWN_DIST=6 → 约占屏高 43%（较 4 米时明显变小，属作者要的"单纯推远"效果）。
+ *  想调观感大小只动 BOSS_CORE_SIZE 即可（场景里该组件默认 size 是 10，脚本会覆盖它）。
+ */
 const BOSS_CORE_SIZE = 3.0;
 const BOSS_MIN_DIST = 0.3;
 const BOSS_MAX_DIST = 0.6;
-const BOSS_SPEED = 0.05;
+const BOSS_SPEED = 0.025;
 /** 开局投放距离：沿相机视轴前方多少米。
- *  2 -> 4（作者要求再远一倍）；实体同步 1.5 -> 3.0，保持屏幕观感大小不变。
+ *  2 -> 4 -> 6（作者三次要求更远）。**实体恒为 3.0，不随距离放大**（作者明确"单纯推远"）。
  */
-const SPAWN_DIST = 4;
+const SPAWN_DIST = 6;
 /** 投放闸门兜底：等 AR 相机离原点（SLAM 就位）最多等多久，超时则按当前位置投放。 */
 const SPAWN_WAIT_MS = 2500;
 
