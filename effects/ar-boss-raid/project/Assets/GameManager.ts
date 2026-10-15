@@ -30,8 +30,8 @@ const AIM_RADIUS = 122;
  *  想调观感大小只动 BOSS_CORE_SIZE 即可（场景里该组件默认 size 是 10，脚本会覆盖它）。
  */
 const BOSS_CORE_SIZE = 3.0;
-const BOSS_MIN_DIST = 0.3;
-const BOSS_MAX_DIST = 0.6;
+/** 环绕飞行的俯仰上限（弧度）：限制在用户周围「平飞」，不飞到头顶或脚下。 */
+const ORBIT_PITCH_MAX = 0.5;
 const BOSS_SPEED = 0.025;
 /** 开局投放距离：沿相机视轴前方多少米。
  *  2 -> 4 -> 6（作者三次要求更远）。**实体恒为 3.0，不随距离放大**（作者明确"单纯推远"）。
@@ -79,7 +79,18 @@ class MainScene extends Scene {
     /** 开局锚点（固定值）：屏幕中心前方 SPAWN_DIST 米的世界坐标，用于投放与漂移约束。 */
     private spawnOrigin: APJS.Vector3f = new APJS.Vector3f(0, 0, -3);
     private bossPos: APJS.Vector3f = new APJS.Vector3f(0, 1.2, 3.5);
-    private bossVel: APJS.Vector3f = new APJS.Vector3f(0.6, 0.25, 0.4);
+    /** 环绕飞行的球面坐标（相对开局视轴基）：yaw 水平、pitch 俯仰，半径恒为 SPAWN_DIST。 */
+    private orbitYaw: number = 0;
+    private orbitErrLeft: number = 6;
+    private orbitPitch: number = 0;
+    private orbitYawVel: number = 0;
+    private orbitPitchVel: number = 0;
+    /** 球心 = 开局时相机（用户）所在位置，整局固定不变。 */
+    private userOrigin: APJS.Vector3f = new APJS.Vector3f(0, 0, 0);
+    /** 开局视轴方向，作为 yaw=0 / pitch=0 的参考基，保证初始位置正好在手机正前方。 */
+    private baseForward: APJS.Vector3f = new APJS.Vector3f(0, 0, -1);
+    private baseRight: APJS.Vector3f = new APJS.Vector3f(1, 0, 0);
+    private baseUp: APJS.Vector3f = new APJS.Vector3f(0, 1, 0);
     private bossScreenX: number = CROSS_X;
     private bossScreenY: number = CROSS_Y;
     private bossOnScreen: boolean = false;
@@ -144,6 +155,19 @@ class MainScene extends Scene {
     }
 
     update(time: number, delta: number): void {
+        try {
+            this.tick(time, delta);
+        } catch (e) {
+            if (this.orbitErrLeft > 0) {
+                this.orbitErrLeft -= 1;
+                const err = e as Error;
+                const st = (err.stack || '').split('\n').map((s: string) => s.trim()).slice(1, 4).join(' || ');
+                console.log(`[tick-err] msg=${err.message} | stack=${st}`);
+            }
+        }
+    }
+
+    private tick(time: number, delta: number): void {
         if (!this.isRecording) return;
         if (this.phase === 'result') { this.resultDelay = Math.max(0, this.resultDelay - delta); if (this.resultDelay <= 0) this.showMinimalResult(); return; }
         this.elapsed += delta / 1000; this.fireGate = Math.max(0, this.fireGate - delta); this.faceGate = Math.max(0, this.faceGate - delta);
@@ -238,20 +262,29 @@ class MainScene extends Scene {
     }
 
     /**
-     * 真 3D：Boss 在世界空间随机漂移，约束在以玩家为球心的球壳内；
+     * 真 3D：Boss 以「开局时用户所在位置」为球心、以 SPAWN_DIST 为**恒定半径**在球面上绕飞。
+     * 半径不变 ⇒ 与用户的距离始终固定（不再是原来的球壳内忽远忽近）。
      * 每帧把世界坐标投影到屏幕，驱动 2D 跟随物与命中判定。
      */
     private updateBossSpatial(delta: number): void {
-        if (!this.spawnReady) { this.trySpawnBoss(delta); return; }
         const dt = Math.min(0.05, delta / 1000);
-        const rage = this.phase === 'rage' ? 1.6 : 1;
-        this.driftStep(dt, rage);
-        if (this.bossSpatial) {
-            this.bossSpatial.getTransform().setWorldPosition(this.bossPos);
-            this.billboardBoss();
+        try {
+            if (!this.spawnReady) { this.trySpawnBoss(delta); return; }
+            this.orbitStep(dt);
+            if (this.bossSpatial) {
+                this.bossSpatial.getTransform().setWorldPosition(this.bossPos);
+                this.billboardBoss();
+            }
+            this.projectBoss();
+            this.syncFollowers();
+        } catch (e) {
+            if (this.orbitErrLeft > 0) {
+                this.orbitErrLeft -= 1;
+                const err = e as Error;
+                const st = (err.stack || '').split('\n').map((s: string) => s.trim()).slice(1, 4).join(' || ');
+                console.log(`[orbit-err] msg=${err.message} | bossPos=${!!this.bossPos} userOrigin=${!!this.userOrigin} baseForward=${!!this.baseForward} baseRight=${!!this.baseRight} baseUp=${!!this.baseUp} | stack=${st}`);
+            }
         }
-        this.projectBoss();
-        this.syncFollowers();
     }
 
     /**
@@ -285,29 +318,37 @@ class MainScene extends Scene {
         console.log(`[probe] spawn fired: camMoved=${camMoved} waited=${Math.round(this.spawnWait)}ms`);
     }
 
-    private driftStep(dt: number, rage: number): void {
-        const jitter = 1.2 * dt;
-        this.bossVel.x += (Math.random() - 0.5) * jitter;
-        this.bossVel.y += (Math.random() - 0.5) * jitter * 0.7;
-        this.bossVel.z += (Math.random() - 0.5) * jitter * 0.7;
-        const speed = Math.sqrt(this.bossVel.x ** 2 + this.bossVel.y ** 2 + this.bossVel.z ** 2) || 0.0001;
-        const scale = Math.max(0.85, Math.min(1.15, BOSS_SPEED * rage / speed));
-        this.bossVel.x *= scale; this.bossVel.y *= scale; this.bossVel.z *= scale;
-        this.bossPos.x += this.bossVel.x * dt;
-        this.bossPos.y += this.bossVel.y * dt;
-        this.bossPos.z += this.bossVel.z * dt;
-        // 球壳约束以「开局锚点」为球心（固定值）。若以相机为球心会把 Boss 绑在镜头前，失去"转身寻找"的意义。
-        const rx = this.bossPos.x - this.spawnOrigin.x, ry = this.bossPos.y - this.spawnOrigin.y, rz = this.bossPos.z - this.spawnOrigin.z;
-        const dist = Math.sqrt(rx * rx + ry * ry + rz * rz) || 0.0001;
-        if (dist >= BOSS_MIN_DIST && dist <= BOSS_MAX_DIST) return;
-        const nx = rx / dist, ny = ry / dist, nz = rz / dist;
-        const push = dist > BOSS_MAX_DIST ? 1 : -1;
-        const outward = (this.bossVel.x * nx + this.bossVel.y * ny + this.bossVel.z * nz) * push;
-        if (outward > 0) {
-            this.bossVel.x -= 2 * outward * nx; this.bossVel.y -= 2 * outward * ny; this.bossVel.z -= 2 * outward * nz;
-        } else {
-            this.bossVel.x += nx * push * 0.5; this.bossVel.y += ny * push * 0.5; this.bossVel.z += nz * push * 0.5;
-        }
+    /**
+     * 球面环绕推进：角速度大小恒为 v/R（线速度由 BOSS_SPEED 控制），方向缓慢随机游走。
+     * pitch 撞到上下限即反弹，保证始终绕着用户「平飞」。
+     */
+    private orbitStep(dt: number): void {
+        const omega = (BOSS_SPEED * (this.phase === 'rage' ? 1.6 : 1)) / Math.max(0.5, SPAWN_DIST);
+        this.orbitYawVel += (Math.random() - 0.5) * omega * dt * 2;
+        this.orbitPitchVel += (Math.random() - 0.5) * omega * dt * 2;
+        const mag = Math.sqrt(this.orbitYawVel ** 2 + this.orbitPitchVel ** 2) || 0.0001;
+        const s = omega / mag;
+        this.orbitYawVel *= s; this.orbitPitchVel *= s;
+        this.orbitYaw += this.orbitYawVel * dt;
+        this.orbitPitch += this.orbitPitchVel * dt;
+        if (this.orbitPitch > ORBIT_PITCH_MAX) { this.orbitPitch = ORBIT_PITCH_MAX; this.orbitPitchVel = -Math.abs(this.orbitPitchVel); }
+        if (this.orbitPitch < -ORBIT_PITCH_MAX) { this.orbitPitch = -ORBIT_PITCH_MAX; this.orbitPitchVel = Math.abs(this.orbitPitchVel); }
+        this.placeBossOnOrbit();
+    }
+
+    /**
+     * 把 (yaw, pitch) 映射到世界坐标：球心恒为 userOrigin，半径恒为 SPAWN_DIST。
+     * yaw=pitch=0 时方向 = baseForward（开局视轴）⇒ 出生就停在手机正前方。
+     */
+    private placeBossOnOrbit(): void {
+        const cp = Math.cos(this.orbitPitch), sp = Math.sin(this.orbitPitch);
+        const cy = Math.cos(this.orbitYaw), sy = Math.sin(this.orbitYaw);
+        const f = this.baseForward, r = this.baseRight, u = this.baseUp;
+        const kf = cp * cy, kr = sy * cp;
+        const nx = this.userOrigin.x + (f.x * kf + r.x * kr + u.x * sp) * SPAWN_DIST;
+        const ny = this.userOrigin.y + (f.y * kf + r.y * kr + u.y * sp) * SPAWN_DIST;
+        const nz = this.userOrigin.z + (f.z * kf + r.z * kr + u.z * sp) * SPAWN_DIST;
+        this.bossPos.x = nx; this.bossPos.y = ny; this.bossPos.z = nz;
     }
 
     /** 真机诊断探针：打印相机、朝向、锚点、Boss 世界坐标与投影结果。定位完毕后应移除。 */
@@ -326,7 +367,7 @@ class MainScene extends Scene {
             const dx = this.bossPos.x - cp.x, dy = this.bossPos.y - cp.y, dz = this.bossPos.z - cp.z;
             dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
         }
-        console.log(`[probe ${tag}] dist=${n(dist)}m cam=${p(cp)} look=${p(look)} |look|=${n(len)} origin=${p(this.spawnOrigin)} boss=${p(this.bossPos)} screen=${p(sp)} on=${this.bossOnScreen} size=${BOSS_CORE_SIZE} spawnReady=${this.spawnReady} wait=${Math.round(this.spawnWait)}ms fov=${fov} fovType=${fovType}`);
+        console.log(`[probe ${tag}] dist=${n(dist)}m yaw=${n(this.orbitYaw)} pitch=${n(this.orbitPitch)} cam=${p(cp)} look=${p(look)} origin=${p(this.userOrigin)} boss=${p(this.bossPos)} screen=${p(sp)} on=${this.bossOnScreen} size=${BOSS_CORE_SIZE} spawnReady=${this.spawnReady} fov=${fov}`);
     }
 
     /** 世界坐标 → 屏幕像素（worldToScreenPoint 返回左下原点，此处翻转为左上原点）。 */
@@ -455,22 +496,33 @@ class MainScene extends Scene {
      */
     private spawnBossInSpace(): void {
         if (this.arCamera && this.arCamTransform) {
-            // AR 相机由 DeviceTracker 驱动，其位置/朝向只能运行时读取：
-            // 用相机世界位置 + getLookAt() 朝向（单位向量）沿视轴前推 SPAWN_DIST 米作为开局锚点。
+            // AR 相机由 DeviceTracker 驱动，其位置/朝向只能运行时读取。
             const camPos = this.arCamTransform.getWorldPosition();
             const look = this.arCamera.getLookAt();
-            // 防御：getLookAt 若返回非单位向量，直接乘米数会把锚点甩到很远（表现为"Boss 极小/找不到"）。
+            // 防御：getLookAt 若返回非单位向量，直接乘米数会把锚点甩到很远。
             const lookLen = Math.sqrt(look.x * look.x + look.y * look.y + look.z * look.z) || 1;
-            this.spawnOrigin.x = camPos.x + (look.x / lookLen) * SPAWN_DIST;
-            this.spawnOrigin.y = camPos.y + (look.y / lookLen) * SPAWN_DIST;
-            this.spawnOrigin.z = camPos.z + (look.z / lookLen) * SPAWN_DIST;
+            // 球心 = 开局时用户（相机）所在位置。整局不变 ⇒ 与用户的距离恒定。
+            this.userOrigin.x = camPos.x; this.userOrigin.y = camPos.y; this.userOrigin.z = camPos.z;
+            // 开局视轴作为参考基：yaw=pitch=0 即"手机正前方"。
+            this.baseForward.x = look.x / lookLen;
+            this.baseForward.y = look.y / lookLen;
+            this.baseForward.z = look.z / lookLen;
+            // 与世界上方向构造正交基；手机近乎朝天/朝地时叉乘会退化，换一个参考轴。
+            const refUp = Math.abs(this.baseForward.y) > 0.99
+                ? new APJS.Vector3f(0, 0, 1) : new APJS.Vector3f(0, 1, 0);
+            const right = this.baseForward.cross(refUp).normalize();
+            this.baseRight.x = right.x; this.baseRight.y = right.y; this.baseRight.z = right.z;
+            const up = this.baseRight.cross(this.baseForward).normalize();
+            this.baseUp.x = up.x; this.baseUp.y = up.y; this.baseUp.z = up.z;
+            // 沿用旧字段语义：spawnOrigin 仍保留为"出生点"（= 球心 + 视轴 × 半径）。
+            this.spawnOrigin.x = camPos.x + this.baseForward.x * SPAWN_DIST;
+            this.spawnOrigin.y = camPos.y + this.baseForward.y * SPAWN_DIST;
+            this.spawnOrigin.z = camPos.z + this.baseForward.z * SPAWN_DIST;
         }
-        this.bossPos.x = this.spawnOrigin.x + (Math.random() - 0.5) * 0.6;
-        this.bossPos.y = this.spawnOrigin.y + (Math.random() - 0.5) * 0.4;
-        this.bossPos.z = this.spawnOrigin.z + (Math.random() - 0.5) * 0.6;
-        this.bossVel.x = (Math.random() - 0.5) * BOSS_SPEED * 2;
-        this.bossVel.y = (Math.random() - 0.5) * BOSS_SPEED;
-        this.bossVel.z = (Math.random() - 0.5) * BOSS_SPEED * 2;
+        // 出生即正前方（yaw=pitch=0），随后才开始绕飞。
+        this.orbitYaw = 0; this.orbitPitch = 0;
+        this.orbitYawVel = 0; this.orbitPitchVel = 0;
+        this.placeBossOnOrbit();
         if (this.bossSpatial) {
             this.bossSpatial.getTransform().setWorldPosition(this.bossPos);
             this.bossSpatial.enabled = true;
