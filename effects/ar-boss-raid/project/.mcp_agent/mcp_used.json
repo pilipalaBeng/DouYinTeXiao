@@ -6,7 +6,7 @@
   "tools": {
     "query_knowledge": 14,
     "list_preview_videos": 2,
-    "update_handoff_context": 17,
+    "update_handoff_context": 18,
     "describe_project": 3,
     "list_resources": 7,
     "save_plan": 3,
@@ -19,8 +19,8 @@
     "generate_assets_batch": 1,
     "capture_preview": 14,
     "run_otsc_check": 25,
-    "interact_by_dsl": 55,
-    "get_script_logs": 61,
+    "interact_by_dsl": 56,
+    "get_script_logs": 62,
     "get_scene_view": 1
   }
 }

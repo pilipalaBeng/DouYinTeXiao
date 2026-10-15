@@ -1702,7 +1702,9 @@
     "_lazyUpgrateVersion": "0.1.0",
     "extendedInfo": {
       "isVisibleInInspector": true,
-      "expanded": true
+      "expanded": true,
+      "[object Object]_show_e95cfce0-167e-19a2-8338-fee0896517aa": false,
+      "allExpanded": true
     },
     "sharedMaterial": "00000000-0000-0000-0000-000000000132",
     "segBlendMode": "Normal_v2",
