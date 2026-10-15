@@ -18,25 +18,18 @@ const CROSS_Y = 520;
 const AIM_RADIUS = 122;
 
 /** 3D Boss 的空间参数，单位：米。
- *  BOSS_MIN/MAX_DIST 是「距开局锚点」的球壳半径；锚点本身在相机视轴前方 SPAWN_DIST 米。
  *  尺寸依据（探针实测）：AR 相机 fov=60°、fovType=Custom(0)，距离 D 处屏幕竖向覆盖 ≈ 1.155×D 米。
- *  当前 BOSS_CORE_SIZE=3.0 + SPAWN_DIST=4 → 约占屏高 65%（最近 3.4m 处约 76%，最远 4.6m 处约 56%）。
- *  改观感只动 BOSS_CORE_SIZE 即可（场景里该组件默认 size 是 10，脚本会覆盖它）。
- */
-/** 3D Boss 的空间参数，单位：米。
- *  BOSS_MIN/MAX_DIST 是「距开局锚点」的球壳半径；锚点本身在相机视轴前方 SPAWN_DIST 米。
- *  尺寸依据（探针实测）：AR 相机 fov=60°、fovType=Custom(0)，距离 D 处屏幕竖向覆盖 ≈ 1.155×D 米。
- *  当前 BOSS_CORE_SIZE=3.0 + SPAWN_DIST=6 → 约占屏高 43%（较 4 米时明显变小，属作者要的"单纯推远"效果）。
+ *  当前 BOSS_CORE_SIZE=3.0 + SPAWN_DIST=3 → 约占屏高 87%。
  *  想调观感大小只动 BOSS_CORE_SIZE 即可（场景里该组件默认 size 是 10，脚本会覆盖它）。
  */
 const BOSS_CORE_SIZE = 3.0;
 /** 环绕飞行的俯仰上限（弧度）：限制在用户周围「平飞」（±约 28°），不飞到头顶或脚下。 */
 const ORBIT_PITCH_MAX = 0.5;
 const BOSS_SPEED = 0.025;
-/** 开局投放距离：沿相机视轴前方多少米。
- *  2 -> 4 -> 6（作者三次要求更远）。**实体恒为 3.0，不随距离放大**（作者明确"单纯推远"）。
+/** 开局投放距离：沿相机视轴前方多少米（= 环绕飞行的恒定半径）。
+ *  2 -> 4 -> 6 -> 3（作者最后一次要求拉近到二分之一）。**实体恒为 3.0，不随距离缩放**。
  */
-const SPAWN_DIST = 6;
+const SPAWN_DIST = 3;
 /** 投放闸门兜底：等 AR 相机离原点（SLAM 就位）最多等多久，超时则按当前位置投放。 */
 const SPAWN_WAIT_MS = 2500;
 
@@ -213,10 +206,13 @@ class MainScene extends Scene {
         }
     }
 
-    private beginFire(): void { if (this.isRecording && this.phase !== 'result') this.fireHeld = true; }
+    // 开火只受「是否已进入结算」约束。不再叠加 isRecording：该标志由录制事件驱动、
+    // 一旦收到 RecordEnd 就永久为 false，会让"按屏幕毫无反应"（表现为开火失效）。
+    private beginFire(): void { if (this.phase !== 'result') this.fireHeld = true; }
     private endFire(): void { this.fireHeld = false; }
     private handleRecordStart(): void { this.isRecording = true; this.resetGame(); }
-    private handleRecordEnd(): void { this.isRecording = false; this.fireHeld = false; this.sound.stopAll(); }
+    // 录制结束只收火、停音效，不再把整局冻结（冻结会导致后续任何输入都无响应）。
+    private handleRecordEnd(): void { this.fireHeld = false; this.sound.stopAll(); }
 
     private updateGunKick(): void {
         const recoil = this.gunKickLeft > 0 ? Math.min(1, this.gunKickLeft / 90) : 0;
@@ -369,7 +365,7 @@ class MainScene extends Scene {
             const dx = this.bossPos.x - cp.x, dy = this.bossPos.y - cp.y, dz = this.bossPos.z - cp.z;
             dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
         }
-        console.log(`[probe ${tag}] dist=${n(dist)}m yaw=${n(this.orbitYaw)} pitch=${n(this.orbitPitch)} cam=${p(cp)} look=${p(look)} origin=${p(this.userOrigin)} boss=${p(this.bossPos)} screen=${p(sp)} on=${this.bossOnScreen} size=${BOSS_CORE_SIZE} spawnReady=${this.spawnReady} fov=${fov}`);
+        console.log(`[probe ${tag}] dist=${n(dist)}m yaw=${n(this.orbitYaw)} pitch=${n(this.orbitPitch)} cam=${p(cp)} look=${p(look)} origin=${p(this.userOrigin)} boss=${p(this.bossPos)} raw=${p(sp)} screen=(${Math.round(this.bossScreenX)},${Math.round(this.bossScreenY)}) cross=(${CROSS_X},${CROSS_Y}) aimed=${this.isAimed()} on=${this.bossOnScreen} size=${BOSS_CORE_SIZE} spawnReady=${this.spawnReady} fov=${fov}`);
     }
 
     /** 世界坐标 → 屏幕像素（worldToScreenPoint 返回左下原点，此处翻转为左上原点）。 */
@@ -404,12 +400,18 @@ class MainScene extends Scene {
     }
 
     private fire(): void {
-        this.fireGate = 250; this.gunKickLeft = 140; this.gunAnimLeft = 140; this.shots += 1; this.sound.play('像素开火音');
-        const aimed = this.isAimed();
-        this.spawnArrow(aimed ? this.bossScreenX : CROSS_X, aimed ? this.bossScreenY : CROSS_Y);
-        if (!aimed) { this.combo = 0; return; }
-        const hitShieldCore = this.phase === 'shield';
-        this.time.delayedCall(160, () => this.resolveArrowHit(hitShieldCore), [], this);
+        try {
+            this.fireGate = 250; this.gunKickLeft = 140; this.gunAnimLeft = 140; this.shots += 1; this.sound.play('像素开火音');
+            const aimed = this.isAimed();
+            this.spawnArrow(aimed ? this.bossScreenX : CROSS_X, aimed ? this.bossScreenY : CROSS_Y);
+            if (this.shots <= 3) console.log(`[fire] #${this.shots} aimed=${aimed} boss=(${Math.round(this.bossScreenX)},${Math.round(this.bossScreenY)}) cross=(${CROSS_X},${CROSS_Y}) on=${this.bossOnScreen} phase=${this.phase} hp=${this.hp}`);
+            if (!aimed) { this.combo = 0; return; }
+            const hitShieldCore = this.phase === 'shield';
+            this.time.delayedCall(160, () => this.resolveArrowHit(hitShieldCore), [], this);
+        } catch (e) {
+            const err = e as Error;
+            console.log(`[fire-err] msg=${err.message} shots=${this.shots} sound=${!!this.sound} gun=${!!this.gun} crosshair=${!!this.crosshair} hl=${!!this.highlight}`);
+        }
     }
 
     private resolveArrowHit(hitShieldCore: boolean): void {

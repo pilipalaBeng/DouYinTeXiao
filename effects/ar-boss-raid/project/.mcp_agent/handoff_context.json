@@ -1,8 +1,8 @@
 {
   "formatVersion": 2,
-  "revision": 21,
-  "mutationRevision": 198,
-  "updatedAt": "2026-10-15T16:04:25.561Z",
+  "revision": 22,
+  "mutationRevision": 206,
+  "updatedAt": "2026-10-15T16:28:49.973Z",
   "writerInstanceId": "1",
   "task": {
     "objective": "把 ar-boss-raid 改为真 3D 空间玩法并调通",
@@ -108,7 +108,7 @@
   ],
   "latestInput": {
     "conversationId": "conversation-5f7406cb8b73f4a8c81f8b67830e4f3e",
-    "messageId": "daeb2663-bfc9-4314-b312-92f5e1a9ce31",
+    "messageId": "3d57a72c-0542-49b0-8f46-30b6c2ae6d04",
     "traceContextId": "5f97c60c744d9125e6b42a37cde04bcf2d2746a5a82b8bf84a351ee55b3e8974"
   },
   "artifacts": [
@@ -139,12 +139,6 @@
       "at": "2026-10-15T14:36:37.834Z"
     },
     {
-      "kind": "script",
-      "status": "passed",
-      "summary": "The latest run_otsc_check call completed without compilation errors.",
-      "at": "2026-10-15T16:03:07.050Z"
-    },
-    {
       "kind": "preview",
       "status": "passed",
       "summary": "The latest capture_preview call completed successfully.",
@@ -154,7 +148,13 @@
       "kind": "interaction",
       "status": "passed",
       "summary": "The latest interact_by_dsl sequence completed successfully.",
-      "at": "2026-10-15T16:04:25.561Z"
+      "at": "2026-10-15T16:27:59.059Z"
+    },
+    {
+      "kind": "script",
+      "status": "passed",
+      "summary": "The latest run_otsc_check call completed without compilation errors.",
+      "at": "2026-10-15T16:28:49.973Z"
     }
   ],
   "openIssues": [
@@ -165,11 +165,11 @@
     "真机验证 Boss 尺寸与 3D 手感，反馈后调 BOSS_CORE_SIZE / SPAWN_DIST"
   ],
   "lastMutation": {
-    "at": "2026-10-15T16:03:42.063Z",
+    "at": "2026-10-15T16:28:21.707Z",
     "status": "success",
-    "mutationRevision": 194,
+    "mutationRevision": 205,
     "commandTypes": [
-      "set_scene_object"
+      "import_resource"
     ]
   },
   "autoBrief": {
