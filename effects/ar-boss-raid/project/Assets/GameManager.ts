@@ -1,6 +1,5 @@
 import {Game2D, GameObject, Scene, Sprite, Text} from './Game2D';
 import {Face, install, Vision} from './Vision';
-import {FriendAvatarInfo, FriendAvatarScene, getFriendAvatars} from './FriendAvatars';
 
 const GroupDepth = {
     // Use scene-builder group names. Game2D will reset all direct children under each group.
@@ -66,9 +65,6 @@ class MainScene extends Scene {
     private resultStats!: Text;
     private confetti!: Sprite;
     private hitHighlightLeft: number = 0;
-    private friendAvatarTexture: APJS.Texture | null = null;
-    private friendChips: {sprite: Sprite; x: number; y: number; texture: APJS.Texture}[] = [];
-    private selectingFriend: boolean = false;
     private bossWorld = { yaw: 0, pitch: 0, distance: 0.5, time: 0 };
     private faceSmooth = { x: 0.5, y: 0.5 };
     private faceHasRef: boolean = false;
@@ -93,18 +89,16 @@ class MainScene extends Scene {
         this.gunReturnTexture = this.optionalTexture('战弩回位模板') || this.gunBaseTexture;
         this.hud = this.object<Text>('HUD文字'); this.hint = this.object<Text>('开局提示'); this.resultCard = this.object<Sprite>('结算卡');
         this.resultAvatar = this.object<Sprite>('结算头像'); this.resultTitle = this.object<Text>('结算标题'); this.resultStats = this.object<Text>('结算战绩'); this.confetti = this.object<Sprite>('胜利彩带');
-        this.input.on('pointerdown', this.handlePointerDown, this); this.input.on('pointerup', this.endFire, this);
+        this.input.on('pointerdown', this.beginFire, this); this.input.on('pointerup', this.endFire, this);
         this.input.on('RecordStart', this.handleRecordStart, this); this.input.on('RecordEnd', this.handleRecordEnd, this);
         // 旧场景对象不参与当前 2D 能量挑战。
         // 真机预览若未及时分发 RecordStart，仍保持可玩的本地初态；收到 RecordStart 后会完整重置。
         this.isRecording = true;
         this.resetGame();
-        this.buildFriendSelection();
     }
 
     update(time: number, delta: number): void {
         if (!this.isRecording) return;
-        if (this.selectingFriend) { this.updateWingAnimation(delta); this.updateBoss3D(time, delta); this.updateHud(); return; }
         if (this.phase === 'result') { this.resultDelay = Math.max(0, this.resultDelay - delta); if (this.resultDelay <= 0) this.showMinimalResult(); return; }
         this.elapsed += delta / 1000; this.fireGate = Math.max(0, this.fireGate - delta); this.faceGate = Math.max(0, this.faceGate - delta);
         this.windowLeft = Math.max(0, this.windowLeft - delta);
@@ -131,78 +125,9 @@ class MainScene extends Scene {
         return sprite ? sprite.getTexture() : null;
     }
 
-    private handlePointerDown(pointer: {x: number; y: number}): void {
-        if (this.selectingFriend) { this.pickFriendAt(pointer.x, pointer.y); return; }
-        this.beginFire();
-    }
-
-    /**
-     * 好友头像流程：拉取 → 展示点选 → 选中后替换 Boss 头顶头像与结算头像。
-     * 任一环节缺失（API 不可用 / 场景无「好友头像选择模板」）都平滑降级，不影响玩法。
-     */
-    private buildFriendSelection(): void {
-        getFriendAvatars(this, {scene: FriendAvatarScene.Friend, count: 5}, {
-            onSuccess: (list: FriendAvatarInfo[]) => this.showFriendChips(list),
-            onError: () => this.finishFriendSelection(null),
-        });
-    }
-
-    private showFriendChips(list: FriendAvatarInfo[]): void {
-        const textures = (list || [])
-            .map((item) => item.texture as APJS.Texture)
-            .filter((texture) => !!texture);
-        const template = this.object<Sprite>('好友头像选择模板');
-        if (textures.length === 0 || !template) { this.finishFriendSelection(textures[0] || null); return; }
-        const chipY = 884;
-        const step = 84;
-        const startX = 360 - (textures.length - 1) * step * 0.5;
-        this.friendChips = [];
-        for (let i = 0; i < textures.length; i += 1) {
-            const chipX = startX + i * step;
-            const chip = this.add.sprite(chipX, chipY, '好友头像选择模板');
-            chip.setDisplaySize(64, 64).setVisible(true).setActive(true).setTexture(textures[i]);
-            this.runtimeObjects.push(chip);
-            this.friendChips.push({sprite: chip, x: chipX, y: chipY, texture: textures[i]});
-        }
-        this.selectingFriend = true;
-        const hint = this.object<Text>('好友头像选择提示');
-        if (hint) hint.setVisible(true);
-    }
-
-    private pickFriendAt(x: number, y: number): void {
-        for (const chip of this.friendChips) {
-            if (Math.abs(x - chip.x) <= 42 && Math.abs(y - chip.y) <= 42) { this.finishFriendSelection(chip.texture); return; }
-        }
-    }
-
-    private finishFriendSelection(texture: APJS.Texture | null): void {
-        this.selectingFriend = false;
-        for (const chip of this.friendChips) {
-            chip.sprite.destroy();
-            this.runtimeObjects = this.runtimeObjects.filter((value: GameObject) => value !== chip.sprite);
-        }
-        this.friendChips = [];
-        const hint = this.object<Text>('好友头像选择提示');
-        if (hint) hint.setVisible(false);
-        this.applyFriendAvatar(texture);
-        this.resetGame();
-    }
-
-    private applyFriendAvatar(texture: APJS.Texture | null): void {
-        this.friendAvatarTexture = texture;
-        if (!texture) return;
-        this.avatar.setTexture(texture);
-        this.resultAvatar.setTexture(texture);
-    }
-
     private beginFire(): void { if (this.isRecording && this.phase !== 'result') this.fireHeld = true; }
     private endFire(): void { this.fireHeld = false; }
-    private handleRecordStart(): void {
-        this.isRecording = true;
-        // 若开拍时仍在选头像，用首个候选收尾，避免卡在选择态不进玩法。
-        if (this.selectingFriend) { this.finishFriendSelection(this.friendChips.length > 0 ? this.friendChips[0].texture : null); return; }
-        this.resetGame();
-    }
+    private handleRecordStart(): void { this.isRecording = true; this.resetGame(); }
     private handleRecordEnd(): void { this.isRecording = false; this.fireHeld = false; this.sound.stopAll(); }
 
     private updateGunKick(): void {
@@ -364,10 +289,7 @@ class MainScene extends Scene {
         this.phase = 'warmup'; this.hp = 2400; this.elapsed = 0; this.fireHeld = false; this.fireGate = 0; this.faceGate = 0; this.coreHits = 0; this.shieldRounds = 0; this.windowLeft = 0; this.shots = 0; this.hits = 0; this.combo = 0; this.maxCombo = 0; this.gunKickLeft = 0; this.gunAnimLeft = 0; this.resultDelay = 0; this.hitHighlightLeft = 0;
         this.bossWorld = { yaw: 0, pitch: 0, distance: 0.5, time: 0 };
         this.faceSmooth = { x: 0.5, y: 0.5 }; this.faceHasRef = false;
-        this.boss.setTexture(this.idleTexture).setPosition(360, 500).setDisplaySize(236, 126).setVisible(true).setActive(true); this.wingFrameIndex = 0; this.wingFrameLeft = 115;
-        // 出战牌与头像按设计仅在好友头像就绪时显示（design_brief_ui §107）。
-        const hasFriendAvatar = !!this.friendAvatarTexture;
-        this.badge.setPosition(360, 396).setVisible(hasFriendAvatar); this.avatar.setPosition(360, 396).setVisible(hasFriendAvatar);
+        this.boss.setTexture(this.idleTexture).setPosition(360, 500).setDisplaySize(236, 126).setVisible(true).setActive(true); this.wingFrameIndex = 0; this.wingFrameLeft = 115; this.badge.setPosition(360, 396).setVisible(true); this.avatar.setPosition(360, 396).setVisible(true);
         this.crosshair.setVisible(true); this.highlight.setVisible(false); this.gun.setFlipX(false).setPosition(this.gunBaseX, this.gunBaseY).setAngle(this.gunBaseAngle).setTexture(this.gunBaseTexture).setVisible(true); this.shield.setVisible(false); this.core.setVisible(false); this.hpFill.setVisible(true); this.setHpFillAmount(); this.hud.setText('稳定 2400   30s').setVisible(true); this.hint.setText('转动手机对准，按住能量脉冲').setVisible(true);
         this.resultCard.setVisible(false); this.resultAvatar.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(false);
     }
