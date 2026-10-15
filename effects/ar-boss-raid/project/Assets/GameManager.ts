@@ -75,6 +75,8 @@ class MainScene extends Scene {
     /** 环绕飞行的球面坐标（相对开局视轴基）：yaw 水平、pitch 俯仰，半径恒为 SPAWN_DIST。 */
     private orbitYaw: number = 0;
     private orbitErrLeft: number = 6;
+    /** 主循环异常打印配额：够查清问题，又不会刷屏。 */
+    private errQuota: number = 6;
     private orbitPitch: number = 0;
     private orbitYawVel: number = 0;
     private orbitPitchVel: number = 0;
@@ -151,11 +153,14 @@ class MainScene extends Scene {
         try {
             this.tick(time, delta);
         } catch (e) {
-            if (this.orbitErrLeft > 0) {
-                this.orbitErrLeft -= 1;
+            // 主循环未捕获异常在此收口，用独立配额打印。
+            // （此前与其它探针共用配额，被耗尽后异常被静默吞掉 —— 这正是
+            //   「游戏冻结却在日志里看不到任何报错」的隐蔽之处。）
+            if (this.errQuota > 0) {
+                this.errQuota -= 1;
                 const err = e as Error;
                 const st = (err.stack || '').split('\n').map((s: string) => s.trim()).slice(1, 4).join(' || ');
-                console.log(`[tick-err] msg=${err.message} | stack=${st}`);
+                console.warn(`[tick-err] ${err.message} | ${st}`);
             }
         }
     }
@@ -395,8 +400,14 @@ class MainScene extends Scene {
 
     private detectFaceHeavy(): void {
         if (this.faceGate > 0) return;
-        const faces: Face.Result[] = this.vision.getFaces(); const face: Face.Result | undefined = faces[0];
-        if (face && (face.hasAction('EyeBlink') || face.hasAction('MouthAh'))) { this.faceGate = 900; this.hit(160, true); }
+        // 人脸追踪在部分环境（PC 预览、未授权、追踪器初始化失败）可能不可用。
+        // 必须隔离：它的异常会中断整个 tick，进而冻结 HUD 与开火。
+        try {
+            const faces: Face.Result[] = this.vision.getFaces(); const face: Face.Result | undefined = faces[0];
+            if (face && (face.hasAction('EyeBlink') || face.hasAction('MouthAh'))) { this.faceGate = 900; this.hit(160, true); }
+        } catch (e) {
+            if (this.errQuota > 0) { this.errQuota -= 1; console.warn(`[face-err] vision=${!!this.vision} ${(e as Error).message}`); }
+        }
     }
 
     private fire(): void {
