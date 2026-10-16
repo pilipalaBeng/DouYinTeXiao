@@ -17,6 +17,9 @@ const CROSS_X = 360;
 const CROSS_Y = 520;
 const AIM_RADIUS = 122;
 
+/** Boss 总血量。血条填充比例 = hp / MAX_HP；阶段阈值也由它派生，不写散魔法数字。 */
+const MAX_HP = 2400;
+
 /** 3D Boss 的空间参数，单位：米。
  *  尺寸依据（探针实测）：AR 相机 fov=60°、fovType=Custom(0)，距离 D 处屏幕竖向覆盖 ≈ 1.155×D 米。
  *  当前 BOSS_CORE_SIZE=3.0 + SPAWN_DIST=1.5 → 占屏约 173%，**已超过满屏**（会顶到脸、甚至穿进相机）。
@@ -53,7 +56,7 @@ class MainScene extends Scene {
     private runtimeObjects: GameObject[] = [];
     private isRecording: boolean = false;
     private phase: 'warmup' | 'rage' | 'shield' | 'window' | 'feign' | 'result' = 'warmup';
-    private hp: number = 2400;
+    private hp: number = MAX_HP;
     private elapsed: number = 0;
     private fireHeld: boolean = false;
     private fireGate: number = 0;
@@ -122,6 +125,8 @@ class MainScene extends Scene {
     private gunReturnTexture!: APJS.Texture;
     private gunAnimLeft: number = 0;
     private hpFill!: Sprite;
+    /** 血条填充比例脏检查缓存：与上传给材质的 _filledRange 保持一致，避免每帧重复写共享材质。 */
+    private hpFillRatio: number = -1;
     private hud!: Text;
     private hint!: Text;
     private resultCard!: Sprite;
@@ -496,8 +501,8 @@ class MainScene extends Scene {
         const spark = this.add.sprite(this.bossScreenX, this.bossScreenY, '命中星爆模板'); spark.setVisible(true).setActive(true); this.runtimeObjects.push(spark);
         this.time.delayedCall(180, () => { spark.destroy(); this.runtimeObjects = this.runtimeObjects.filter((value: GameObject) => value !== spark); }, [], this);
         if (this.hp <= 0) { this.finish(true); return; }
-        if (this.hp <= 1584 && this.phase === 'warmup') { this.phase = 'rage'; this.setBossTexture(this.rageTexture); }
-        if (this.hp <= 792 && (this.phase === 'warmup' || this.phase === 'rage')) this.enterShield();
+        if (this.hp <= MAX_HP * 0.66 && this.phase === 'warmup') { this.phase = 'rage'; this.setBossTexture(this.rageTexture); }
+        if (this.hp <= MAX_HP * 0.33 && (this.phase === 'warmup' || this.phase === 'rage')) this.enterShield();
     }
 
     private setBossTexture(texture: APJS.Texture | null): void {
@@ -508,10 +513,19 @@ class MainScene extends Scene {
     private breakShield(): void { this.phase = 'window'; this.windowLeft = 2000; this.shieldRounds += 1; this.shield.setVisible(false); this.core.setVisible(false); this.sound.play('护盾破裂音'); }
     private restoreShield(): void { if (this.shieldRounds < 3) this.enterShield(); else { this.phase = 'window'; this.windowLeft = 2000; } }
 
+    /**
+     * 血条填充：Boss血条填充 的 Image DrawMode 已在场景里配为 Filled（横向 / startPoint=0），
+     * 运行时唯一能驱动它的接口是 setMaterialProperty("_filledRange", ratio)。
+     * （早期写成 image.fillAmount = ratio —— APJS.Image 并没有 fillAmount 这个属性，
+     *   赋值只是落到 JS 对象的临时字段上，渲染端完全不买账，血条永远是满的。）
+     * 带脏检查：_filledRange 写的是与战斗HUD底板共享的材质，没必要每帧重复写。
+     */
     private setHpFillAmount(): void {
-        const ratio = Math.max(0, Math.min(1, this.hp / 2400));
-        const image = this.hpFill.getEngineComponent('Image') as {fillAmount: number} | null;
-        if (image) image.fillAmount = ratio;
+        const ratio = Math.max(0, Math.min(1, this.hp / MAX_HP));
+        if (ratio === this.hpFillRatio) return;
+        this.hpFillRatio = ratio;
+        const image = this.hpFill.getEngineComponent('Image') as APJS.Image | null;
+        if (image) image.setMaterialProperty('_filledRange', ratio);
     }
 
     private updateHud(): void {
@@ -539,15 +553,17 @@ class MainScene extends Scene {
 
     private resetGame() {
         this.time.clear(); this.sound.stopAll(); for (const item of this.runtimeObjects) item.destroy(); this.runtimeObjects = []; this.flyingArrows = [];
-        this.phase = 'warmup'; this.hp = 2400; this.elapsed = 0; this.fireHeld = false; this.fireGate = 0; this.faceGate = 0; this.coreHits = 0; this.shieldRounds = 0; this.windowLeft = 0; this.shots = 0; this.hits = 0; this.combo = 0; this.maxCombo = 0; this.gunKickLeft = 0; this.gunAnimLeft = 0; this.resultDelay = 0; this.hitHighlightLeft = 0;
+        this.phase = 'warmup'; this.hp = MAX_HP; this.elapsed = 0; this.fireHeld = false; this.fireGate = 0; this.faceGate = 0; this.coreHits = 0; this.shieldRounds = 0; this.windowLeft = 0; this.shots = 0; this.hits = 0; this.combo = 0; this.maxCombo = 0; this.gunKickLeft = 0; this.gunAnimLeft = 0; this.resultDelay = 0; this.hitHighlightLeft = 0;
         this.wingFrameIndex = 0; this.wingFrameLeft = 115;
         // 不在 reset 内立即投放：此刻 AR 相机多半还没被 SLAM 驱动（世界位置=原点），
         // 锚点会算到错误位置，表现为「Boss 极小」或「跑到相机背后完全看不见」。
         // 改为交给 update 里的投放闸门，等相机就位后再算锚点。
         this.spawnReady = false; this.spawnWait = 0;
         if (this.bossSpatial) this.bossSpatial.enabled = false;
+        // 强制下一帧重写一次血条材质，避免复用上一局的缓存比例。
+        this.hpFillRatio = -1;
         this.setBossTexture(this.idleTexture);
-        this.crosshair.setVisible(true); this.highlight.setVisible(false); this.gun.setFlipX(false).setPosition(this.gunBaseX, this.gunBaseY).setAngle(this.gunBaseAngle).setTexture(this.gunBaseTexture).setVisible(true); this.shield.setVisible(false); this.core.setVisible(false); this.hpFill.setVisible(true); this.setHpFillAmount(); this.hud.setText('稳定 2400   30s').setVisible(true); this.hint.setText('转动手机对准，按住能量脉冲').setVisible(true);
+        this.crosshair.setVisible(true); this.highlight.setVisible(false); this.gun.setFlipX(false).setPosition(this.gunBaseX, this.gunBaseY).setAngle(this.gunBaseAngle).setTexture(this.gunBaseTexture).setVisible(true); this.shield.setVisible(false); this.core.setVisible(false); this.hpFill.setVisible(true); this.setHpFillAmount(); this.hud.setText(`稳定 ${MAX_HP}   30s`).setVisible(true); this.hint.setText('转动手机对准，按住能量脉冲').setVisible(true);
         this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(false);
         // 真机空间诊断探针：每次开局分时间点采样，用于定位「看不见 Boss」。
         this.time.delayedCall(1500, () => this.probeSpatial('t1.5'), [], this);

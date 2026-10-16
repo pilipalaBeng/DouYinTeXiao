@@ -13,15 +13,15 @@
     "get_current_preview_video": 1,
     "generate_image": 1,
     "inspect": 22,
-    "project_status": 4,
+    "project_status": 5,
     "edit_by_dsl": 48,
-    "get_scene": 29,
+    "get_scene": 33,
     "generate_assets_batch": 1,
-    "capture_preview": 15,
-    "run_otsc_check": 40,
-    "interact_by_dsl": 90,
-    "get_script_logs": 97,
-    "get_scene_view": 1,
+    "capture_preview": 16,
+    "run_otsc_check": 43,
+    "interact_by_dsl": 95,
+    "get_script_logs": 101,
+    "get_scene_view": 2,
     "save_project": 1
   }
 }

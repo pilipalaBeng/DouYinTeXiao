@@ -1,8 +1,8 @@
 {
   "formatVersion": 2,
   "revision": 26,
-  "mutationRevision": 219,
-  "updatedAt": "2026-10-15T16:58:13.827Z",
+  "mutationRevision": 228,
+  "updatedAt": "2026-10-16T01:24:40.432Z",
   "writerInstanceId": "1",
   "task": {
     "objective": "把 ar-boss-raid 改为真 3D 空间玩法并调通",
@@ -123,20 +123,20 @@
     {
       "kind": "preview",
       "status": "passed",
-      "summary": "tick 入口/出口探针确认主循环健康（n=1..3 均 el 递增、每帧完整跑完无异常）；SPAWN_DIST=1.5 已在探针中实测生效（boss=(1.5,0,0)）",
-      "at": "2026-10-15T16:44:29.514Z"
+      "summary": "The latest capture_preview call completed successfully.",
+      "at": "2026-10-16T01:12:25.498Z"
     },
     {
       "kind": "script",
       "status": "passed",
       "summary": "The latest run_otsc_check call completed without compilation errors.",
-      "at": "2026-10-15T16:57:52.030Z"
+      "at": "2026-10-16T01:24:25.516Z"
     },
     {
       "kind": "interaction",
       "status": "passed",
       "summary": "The latest interact_by_dsl sequence completed successfully.",
-      "at": "2026-10-15T16:58:13.827Z"
+      "at": "2026-10-16T01:24:40.432Z"
     }
   ],
   "openIssues": [
