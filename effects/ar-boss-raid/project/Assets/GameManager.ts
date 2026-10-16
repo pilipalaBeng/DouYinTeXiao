@@ -45,20 +45,23 @@ const BORN_HOLD_MS = 2500;
  */
 const SPAWN_DIST = 9.0;
 
-/** 环绕「球心」是否每帧跟随相机位置（= 用户走动时 Boss 是否跟着一起平移）。
- *  true  = 平移跟随（当前）：Boss 跟着走，与用户距离恒为 SPAWN_DIST，射击手感最稳。
- *  false = 世界锚定：球心钉在开局位置，用户可以走近它、绕到它背后；
- *          代价是走远之后 Boss 会出视野，得转头去找。 */
-const ORBIT_FOLLOW_CAMERA = true;
+/** 环绕「球心」是否每帧跟随相机位置。
+ *  **false（当前）= 世界锚定**：球心钉在**开局那一刻用户站的世界坐标**上，整局不再动。
+ *    Boss 因此固定在真实空间里 —— 转头它留在原处、走近它会变大、退远它会变小，
+ *    这才是 AR 该有的空间感。
+ *  true = 平移跟随：球心每帧跟着相机走，Boss 像黏在身上（作者 2026-10-16 反馈「怪恒定在
+ *    屏幕位置上、不在 3D 空间里」，就是它 + ORBIT_FOLLOW_HEADING 一起打开造成的）。
+ *  代价：走远之后 Boss 会出视野，得转头去找。 */
+const ORBIT_FOLLOW_CAMERA = false;
 
-/** 参考基（前 / 右 / 上）是否每帧跟随相机的**当前**朝向。
- *  **true（当前）= 朝向跟随**：Boss 永远落在用户当前朝向的正前方。
- *    这是「开局出生偏到右侧 90°」的正解 —— 出生那一刻的 getLookAt() 未必等于玩家真正想看的朝向
- *    （按下播放 → 举起手机 → SLAM 初始化，这期间设备姿态还在变），把基定死一次就会整局都偏。
- *    每帧重算 ⇒ 无论出生时姿态如何，Boss 都稳定落在视野中心，也不需要硬补固定角度。
- *  false = 沿用开局朝向：原地转身后 Boss 不跟转、会落到身后。
- *  代价：快速转身时 Boss 会跟着平移，观感像「被粘在视野里」（对射击玩法反而更友好）。 */
-const ORBIT_FOLLOW_HEADING = true;
+/** 参考基（前 / 右 / 上）是否每帧跟随相机**当前**朝向。
+ *  **false（当前）= 沿用开局朝向**：Boss 钉在「开局朝向」的前方，你转头它**不跟转** ⇒ 有空间感。
+ *  true = 朝向跟随：Boss 永远顶在你当前朝向的正前方。
+ *    ⚠️ 与 ORBIT_FOLLOW_CAMERA=true 叠加时，Boss 相对相机的位移**两项都恒定**
+ *    ⇒ 投影永远落在同一个屏幕像素上，看起来就是「贴在屏幕上」，完全没有 3D 感。
+ *    当初打开它，是为了绕开 `Vector3f.cross` 原地修改污染 baseForward 的 bug；
+ *    那个 bug 已经在 `updateBasisFromCamera()` 里用 clone 修掉了，这里不再需要它兜底。 */
+const ORBIT_FOLLOW_HEADING = false;
 /** 投放闸门兜底：等 AR 相机离原点（SLAM 就位）最多等多久，超时则按当前位置投放。
  *  2500 -> 1200：真机实测相机 590~900ms 就位，缩短后玩家几乎无感；
  *  且现在球心每帧跟随相机，即便开局锚点算错也会立刻被纠正（不再需要长等待兜底）。
@@ -360,26 +363,21 @@ class MainScene extends Scene {
     }
 
     /**
-     * 真 3D：Boss 以**用户当前位置**为球心、以 SPAWN_DIST 为**恒定半径**在球面上绕飞。
-     * 球心每帧同步相机位置 ⇒ 用户走动（平移）时 Boss 跟着走，距离始终等于半径，不会忽远忽近。
-     * 参考基是否跟随当前朝向由 ORBIT_FOLLOW_HEADING 决定：
-     *   true （当前）每帧用当前 getLookAt() 重算 ⇒ Boss 始终落在用户**当前朝向**的正前方；
-     *   false 沿用开局朝向 ⇒ 原地转身后 Boss 不跟转，会落到身后。
-     * 每帧把世界坐标投影到屏幕，驱动 2D 跟随物与命中判定。
+     * 真 3D：Boss 以**开局时用户所在的世界坐标**为球心、以 SPAWN_DIST 为恒定半径在球面上绕飞。
+     * 球心与参考基是否跟随相机，由文件头 ORBIT_FOLLOW_CAMERA / ORBIT_FOLLOW_HEADING 决定；
+     * 当前两者都关 ⇒ Boss 固定在真实空间里（转头它在原处、走近会变大、退远会变小），
+     * 而不是「贴在屏幕上」。每帧把世界坐标投影到屏幕，驱动 2D 跟随物与命中判定。
      */
     private updateBossSpatial(delta: number): void {
         const dt = Math.min(0.05, delta / 1000);
         try {
             if (!this.spawnReady) { this.trySpawnBoss(delta); return; }
-            // 球心是否跟随相机的**当前**位置，由 ORBIT_FOLLOW_CAMERA 决定：
-            //   true （当前）平移跟随：用户走动时 Boss 跟着平移，距离恒为半径；
-            //                  若球心固定为开局位置，玩家一走 Boss 就「忽远忽近」。
-            //   false 世界锚定：Boss 钉在空间里，可以走近它、绕到它背后，代价是走远会出视野。
+            // 球心 / 参考基是否跟随相机，见文件头两个 ORBIT_FOLLOW_* 常量的说明。
+            // 当前两者都为 false ⇒ Boss 完全锚定在开局时算出的世界坐标上，具有真实空间感。
             if (ORBIT_FOLLOW_CAMERA && this.arCamTransform) {
                 const cp = this.arCamTransform.getWorldPosition();
                 this.userOrigin.x = cp.x; this.userOrigin.y = cp.y; this.userOrigin.z = cp.z;
             }
-            // 参考基是否跟随**当前**朝向：关着（当前）就是沿用开局朝向 ⇒ 原地转身 Boss 不跟转。
             if (ORBIT_FOLLOW_HEADING) this.updateBasisFromCamera();
             // 投放后先定住 BORN_HOLD_MS，让玩家先看清 Boss 在哪，再开始绕飞。
             if (this.bornHoldLeft > 0) {
