@@ -65,6 +65,11 @@ const ORBIT_FOLLOW_HEADING = true;
  */
 const SPAWN_WAIT_MS = 1200;
 
+/** 真机空间诊断探针开关。打开后每局在 1.5 / 3.0 / 4.5 秒各打一次：
+ *  相机世界坐标、getLookAt、基向量、Boss 世界坐标、投影结果、是否命中。
+ *  只在真机上排查「看不见 Boss」「位置偏了」时打开；平时关着，免得刷日志。 */
+const DEBUG_SPATIAL_PROBE = false;
+
 /** 「古代像素战弩」贴图的原始像素尺寸。
  *  贴图宽高比 (1.164) 与显示框 sizeDelta 的宽高比 (1.092) 不一致，
  *  Image 是 Fit 模式 ⇒ 宽度撑满、高度居中留边。算枪口时要把这个留边算进去。 */
@@ -116,8 +121,6 @@ class MainScene extends Scene {
     private bossSpatial: APJS.SceneObject | null = null;
     private bossImage: APJS.Image | null = null;
     private arCamera: APJS.Camera | null = null;
-    /** 开局锚点（固定值）：屏幕中心前方 SPAWN_DIST 米的世界坐标，用于投放与漂移约束。 */
-    private spawnOrigin: APJS.Vector3f = new APJS.Vector3f(0, 0, -3);
     private bossPos: APJS.Vector3f = new APJS.Vector3f(0, 1.2, 3.5);
     /** 环绕飞行的球面坐标（相对开局视轴基）：yaw 水平、pitch 俯仰，半径恒为 SPAWN_DIST。 */
     private orbitYaw: number = 0;
@@ -165,6 +168,8 @@ class MainScene extends Scene {
     /** 血条填充比例脏检查缓存：与上传给材质的 _filledRange 保持一致，避免每帧重复写共享材质。 */
     private hpFillRatio: number = -1;
     private hud!: Text;
+    /** HUD 文本脏检查缓存：每帧 setText 会触发一次重排版，只在数字真的变了才写。 */
+    private hudText: string = '';
     private hint!: Text;
     private resultCard!: Sprite;
     private resultTitle!: Text;
@@ -357,9 +362,9 @@ class MainScene extends Scene {
     /**
      * 真 3D：Boss 以**用户当前位置**为球心、以 SPAWN_DIST 为**恒定半径**在球面上绕飞。
      * 球心每帧同步相机位置 ⇒ 用户走动（平移）时 Boss 跟着走，距离始终等于半径，不会忽远忽近。
-     * ⚠️ 但参考基 baseForward / baseRight / baseUp 是**开局那一刻**的视轴，整局不再更新：
-     *    所以是「平移跟随、转向不跟随」——用户原地转身后，Boss 仍留在「开局朝向」的前方
-     *    6m 处（对转身后的用户而言就是跑到身后去了）。这是当前的设计语义，不是 bug。
+     * 参考基是否跟随当前朝向由 ORBIT_FOLLOW_HEADING 决定：
+     *   true （当前）每帧用当前 getLookAt() 重算 ⇒ Boss 始终落在用户**当前朝向**的正前方；
+     *   false 沿用开局朝向 ⇒ 原地转身后 Boss 不跟转，会落到身后。
      * 每帧把世界坐标投影到屏幕，驱动 2D 跟随物与命中判定。
      */
     private updateBossSpatial(delta: number): void {
@@ -581,13 +586,17 @@ class MainScene extends Scene {
     }
 
     private updateHud(): void {
-        this.hud.setText(`稳定 ${this.hp}   ${Math.max(0, Math.ceil(30 - this.elapsed))}s`);
+        const text = `稳定 ${this.hp}   ${Math.max(0, Math.ceil(30 - this.elapsed))}s`;
+        if (text !== this.hudText) { this.hudText = text; this.hud.setText(text); }
         this.setHpFillAmount();
     }
 
     private finish(win: boolean): void {
         if (this.phase === 'result') return; this.phase = 'result'; this.resultDelay = 450; this.fireHeld = false;
         for (const item of this.runtimeObjects) item.destroy(); this.runtimeObjects = []; this.flyingArrows = [];
+        // 结算后 tick 会直接 return、不再走 syncFollowers ⇒ 这里必须显式收起 3D Boss，
+        // 否则它会一直飘在结算画面里（enabled 停在最后一次 syncFollowers 的值）。
+        if (this.bossSpatial) this.bossSpatial.enabled = false;
         this.crosshair.setVisible(false); this.highlight.setVisible(false); this.gun.setVisible(true); this.hud.setVisible(false); this.hpFill.setVisible(false); this.hint.setVisible(false); this.shield.setVisible(false); this.core.setVisible(false);
         this.setBossTexture(win ? this.friendlyTexture : this.rageTexture);
         this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(win);
@@ -607,20 +616,25 @@ class MainScene extends Scene {
         this.time.clear(); this.sound.stopAll(); for (const item of this.runtimeObjects) item.destroy(); this.runtimeObjects = []; this.flyingArrows = [];
         this.phase = 'warmup'; this.hp = MAX_HP; this.elapsed = 0; this.fireHeld = false; this.fireGate = 0; this.faceGate = 0; this.coreHits = 0; this.shieldRounds = 0; this.windowLeft = 0; this.shots = 0; this.hits = 0; this.combo = 0; this.maxCombo = 0; this.gunKickLeft = 0; this.gunAnimLeft = 0; this.resultDelay = 0; this.hitHighlightLeft = 0;
         this.wingFrameIndex = 0; this.wingFrameLeft = 115;
+        // 异常打印配额一并归零：否则某一局把配额用光后，后面几局的异常会被永久静默，
+        // 表现成「游戏卡住但日志里什么都没有」。
+        this.errQuota = 6; this.orbitErrLeft = 6;
         // 不在 reset 内立即投放：此刻 AR 相机多半还没被 SLAM 驱动（世界位置=原点），
         // 锚点会算到错误位置，表现为「Boss 极小」或「跑到相机背后完全看不见」。
         // 改为交给 update 里的投放闸门，等相机就位后再算锚点。
         this.spawnReady = false; this.spawnWait = 0;
         if (this.bossSpatial) this.bossSpatial.enabled = false;
-        // 强制下一帧重写一次血条材质，避免复用上一局的缓存比例。
-        this.hpFillRatio = -1;
+        // 强制下一帧重写一次血条材质 / HUD 文本，避免复用上一局的缓存。
+        this.hpFillRatio = -1; this.hudText = '';
         this.setBossTexture(this.idleTexture);
         this.crosshair.setVisible(true); this.highlight.setVisible(false); this.gun.setFlipX(false).setPosition(this.gunBaseX, this.gunBaseY).setAngle(this.gunBaseAngle).setTexture(this.gunBaseTexture).setVisible(true); this.shield.setVisible(false); this.core.setVisible(false); this.hpFill.setVisible(true); this.setHpFillAmount(); this.hud.setText(`稳定 ${MAX_HP}   30s`).setVisible(true); this.hint.setText('转动手机对准，按住能量脉冲').setVisible(true);
         this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(false);
-        // 真机空间诊断探针：每次开局分时间点采样，用于定位「看不见 Boss」。
-        this.time.delayedCall(1500, () => this.probeSpatial('t1.5'), [], this);
-        this.time.delayedCall(3000, () => this.probeSpatial('t3.0'), [], this);
-        this.time.delayedCall(4500, () => this.probeSpatial('t4.5'), [], this);
+        // 真机空间诊断探针（默认关闭，见 DEBUG_SPATIAL_PROBE）。
+        if (DEBUG_SPATIAL_PROBE) {
+            this.time.delayedCall(1500, () => this.probeSpatial('t1.5'), [], this);
+            this.time.delayedCall(3000, () => this.probeSpatial('t3.0'), [], this);
+            this.time.delayedCall(4500, () => this.probeSpatial('t4.5'), [], this);
+        }
     }
 
     /**
@@ -638,10 +652,6 @@ class MainScene extends Scene {
             this.userOrigin.x = camPos.x; this.userOrigin.y = camPos.y; this.userOrigin.z = camPos.z;
             // 开局视轴作为参考基：yaw=pitch=0 即"手机正前方"。
             this.updateBasisFromCamera();
-            // 沿用旧字段语义：spawnOrigin 仍保留为"出生点"（= 球心 + 视轴 × 半径）。
-            this.spawnOrigin.x = camPos.x + this.baseForward.x * SPAWN_DIST;
-            this.spawnOrigin.y = camPos.y + this.baseForward.y * SPAWN_DIST;
-            this.spawnOrigin.z = camPos.z + this.baseForward.z * SPAWN_DIST;
         }
         // 出生即正前方（yaw=pitch=0），随后才开始绕飞。
         this.orbitYaw = 0; this.orbitPitch = 0;

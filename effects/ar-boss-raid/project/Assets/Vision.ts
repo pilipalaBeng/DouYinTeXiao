@@ -439,15 +439,17 @@ export namespace Face {
         return typeof code === 'number' ? code : -1;
     }
 
+    // APJS.FaceAttrExpression: Unknown=0, Angry=1, Disgust=2, Fear=3, Happy=4, Sad=5, Surprise=6, Neutral=7
+    // （原实现漏算了 Unknown 这一位 ⇒ 每个表情都串到下一个，Neutral 还直接掉进 default 变成 Unknown）
     function getExpressionLabel(type: number): ExpressionType {
         switch (type) {
-            case 0: return 'Angry';
-            case 1: return 'Disgust';
-            case 2: return 'Fear';
-            case 3: return 'Happy';
-            case 4: return 'Sad';
-            case 5: return 'Surprise';
-            case 6: return 'Neutral';
+            case 1: return 'Angry';
+            case 2: return 'Disgust';
+            case 3: return 'Fear';
+            case 4: return 'Happy';
+            case 5: return 'Sad';
+            case 6: return 'Surprise';
+            case 7: return 'Neutral';
             default: return 'Unknown';
         }
     }
@@ -618,12 +620,13 @@ export namespace Pet {
         score: number;
     }
 
+    // APJS.FacePetType: Cat=0, Dog=1, Human=2, Others=3
+    // （原实现整体多算一位，且 case 99 是个永远不存在的值）
     function getPetTypeLabel(type: number): PetType {
         switch (type) {
-            case 1: return 'Cat';
-            case 2: return 'Dog';
-            case 3: return 'Human';
-            case 99: return 'Others';
+            case 0: return 'Cat';
+            case 1: return 'Dog';
+            case 2: return 'Human';
             default: return 'Others';
         }
     }
