@@ -15,13 +15,13 @@
     "inspect": 22,
     "project_status": 8,
     "edit_by_dsl": 48,
-    "get_scene": 35,
+    "get_scene": 36,
     "generate_assets_batch": 1,
     "capture_preview": 16,
-    "run_otsc_check": 55,
+    "run_otsc_check": 56,
     "interact_by_dsl": 102,
     "get_script_logs": 107,
     "get_scene_view": 2,
-    "save_project": 9
+    "save_project": 10
   }
 }
