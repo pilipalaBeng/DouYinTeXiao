@@ -38,7 +38,7 @@ const ORBIT_PITCH_MAX = 0.5;
 /** 环绕**线速度**（米/秒）。角速度 = BOSS_SPEED / SPAWN_DIST，所以半径越大转得越慢。
  *  0.025 在真机上几乎看不出在动（作者反馈「怪是不动的」）→ 提到 0.1。
  *  18m 半径下 0.1 m/s ≈ 绕一整圈要 19 分钟，加上方向本身随机游走，观感是「缓慢飘移」。 */
-const BOSS_SPEED = 0.1;
+const BOSS_SPEED = 5;
 /** 投放后先「定在原地」多久（毫秒），让玩家先看清 Boss 在哪，再开始绕飞。
  *  作者要求：不要一上来就飞，避免玩家像抓瞎一样找。
  */
@@ -49,7 +49,7 @@ const BORN_HOLD_MS = 2500;
  *  **默认实体不随距离缩放**；本次 9 -> 18 是作者明确要求「推远 2 倍 + 体型放大 1 倍」同时下达的，
  *  两者同倍 ⇒ 占屏比例不变（约 29%），但透视更远、空间感更强。
  */
-const SPAWN_DIST = 18.0;
+const SPAWN_DIST = 30.0;
 
 /** 环绕「球心」是否每帧跟随相机位置。
  *  **false（当前）= 世界锚定**：球心钉在**开局那一刻用户站的世界坐标**上，整局不再动。
@@ -159,7 +159,6 @@ class MainScene extends Scene {
     // ---- 2D 资源与跟随物 ----
     private idleTexture: APJS.Texture | null = null;
     private wingTextures: (APJS.Texture | null)[] = [];
-    private rageTexture: APJS.Texture | null = null;
     private friendlyTexture: APJS.Texture | null = null;
     private wingFrameIndex: number = 0;
     private wingFrameLeft: number = 0;
@@ -195,7 +194,6 @@ class MainScene extends Scene {
             this.optionalTexture('Boss振翅帧1模板'), this.optionalTexture('Boss振翅帧2模板'),
             this.optionalTexture('Boss振翅帧3模板'), this.optionalTexture('Boss振翅帧4模板'),
         ];
-        this.rageTexture = this.optionalTexture('能量核心活跃模板');
         this.friendlyTexture = this.optionalTexture('能量核心友好模板');
         this.shield = this.object<Sprite>('护盾覆盖'); this.core = this.object<Sprite>('护盾核心'); this.crosshair = this.object<Sprite>('固定准星');
         this.highlight = this.object<Sprite>('准星命中高亮'); this.gun = this.object<Sprite>('古代战弩'); this.hpFill = this.object<Sprite>('Boss血条填充');
@@ -353,14 +351,13 @@ class MainScene extends Scene {
     }
 
     /**
-     * 振翅序列帧：**只在 warmup 阶段播**。
-     * 之前只判了 `result`，于是进入 rage 后仍在每 115ms 把贴图刷成振翅帧，
-     * 把 hit() 刚设上的「暴怒」贴图盖掉 —— 阶段反馈能看见多久完全看运气
-     * （撞上振翅刚换完帧 ≈115ms 看得见；撞上即将换帧只闪几毫秒，看不见）。
-     * 这正是作者反馈的「受击/阶段效果有时好使有时不好使」。
+     * 振翅序列帧：**只在结算时停**。
+     * （中途曾限制成「只在 warmup 播」，那是为了不让振翅帧把「暴怒」贴图刷掉；
+     *   暴怒贴图已按作者要求弃用 —— 胸口红球看起来像「被击后怪物变红」——
+     *   所以这个限制也随之取消，进入 rage 后 Boss 仍在扇翅膀，不会一动不动。）
      */
     private updateWingAnimation(delta: number): void {
-        if (this.phase !== 'warmup' || this.wingTextures.length === 0) return;
+        if (this.phase === 'result' || this.wingTextures.length === 0) return;
         this.wingFrameLeft -= delta;
         if (this.wingFrameLeft > 0) return;
         this.wingFrameLeft += 115;
@@ -562,7 +559,10 @@ class MainScene extends Scene {
         const spark = this.add.sprite(this.bossScreenX, this.bossScreenY, '命中星爆模板'); spark.setVisible(true).setActive(true); this.runtimeObjects.push(spark);
         this.time.delayedCall(180, () => { spark.destroy(); this.runtimeObjects = this.runtimeObjects.filter((value: GameObject) => value !== spark); }, [], this);
         if (this.hp <= 0) { this.finish(true); return; }
-        if (this.hp <= MAX_HP * 0.66 && this.phase === 'warmup') { this.phase = 'rage'; this.setBossTexture(this.rageTexture); }
+        // 阶段照常推进（rage 影响绕飞速度与护盾判定），但**不再换「暴怒」贴图**：
+        // 那张图胸口是亮红色，作者反馈看起来像「被击后怪物变红」，已按要求去掉。
+        // 受击反馈仍由「像素命中音 / 人脸重击音」+「准星命中高亮」+「命中星爆」承担。
+        if (this.hp <= MAX_HP * 0.66 && this.phase === 'warmup') this.phase = 'rage';
         if (this.hp <= MAX_HP * 0.33 && (this.phase === 'warmup' || this.phase === 'rage')) this.enterShield();
     }
 
@@ -602,7 +602,8 @@ class MainScene extends Scene {
         // 否则它会一直飘在结算画面里（enabled 停在最后一次 syncFollowers 的值）。
         if (this.bossSpatial) this.bossSpatial.enabled = false;
         this.crosshair.setVisible(false); this.highlight.setVisible(false); this.gun.setVisible(true); this.hud.setVisible(false); this.hpFill.setVisible(false); this.hint.setVisible(false); this.shield.setVisible(false); this.core.setVisible(false);
-        this.setBossTexture(win ? this.friendlyTexture : this.rageTexture);
+        // 胜利才换「投降」贴图；失败时保持当前振翅帧（不再用「暴怒」红球图）。
+        if (win) this.setBossTexture(this.friendlyTexture);
         this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(win);
         this.resultTitle.setText(win ? '警报解除！' : '挑战结束');
         this.resultStats.setText(`同步率 ${this.shots > 0 ? Math.round(this.hits * 100 / this.shots) : 0}%\n连击 ${this.maxCombo} 评级 ${win ? 'B' : 'C'}`);
