@@ -4,24 +4,24 @@
     "MCP"
   ],
   "tools": {
-    "query_knowledge": 14,
+    "query_knowledge": 15,
     "list_preview_videos": 2,
-    "update_handoff_context": 25,
+    "update_handoff_context": 26,
     "describe_project": 3,
-    "list_resources": 7,
+    "list_resources": 8,
     "save_plan": 3,
     "get_current_preview_video": 1,
     "generate_image": 1,
-    "inspect": 22,
+    "inspect": 24,
     "project_status": 8,
-    "edit_by_dsl": 48,
+    "edit_by_dsl": 51,
     "get_scene": 37,
     "generate_assets_batch": 1,
     "capture_preview": 16,
-    "run_otsc_check": 63,
-    "interact_by_dsl": 106,
+    "run_otsc_check": 65,
+    "interact_by_dsl": 109,
     "get_script_logs": 114,
     "get_scene_view": 2,
-    "save_project": 15
+    "save_project": 16
   }
 }

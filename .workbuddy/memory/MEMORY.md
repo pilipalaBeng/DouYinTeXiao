@@ -75,3 +75,13 @@
   ```
   后果：出生方向变成「用户右侧 90°」+ `baseRight/baseUp` 全零 ⇒ yaw/pitch 偏移失效（怪不绕飞）。
   正确写法：`const right = fwd.clone().cross(refUp).normalize();`
+- **纯色块不需要任何素材**：`Image.texture` 默认值就是内置 `Default_Texture`
+  （guid `00000000-0000-0000-0000-0000000000c0`）⇒ 设 `color` 即得纯色块。
+  ⚠️ **必须同时把 `stretchMode` 从默认 `Fit` 改成 `Stretch`** —— 内置白图是**正方形**，
+  Fit 会保持比例 ⇒ 640×96 的长条框只渲染出中间一个小方块（2026-10-17 踩过）。
+- **同一材质上的 `_filledRange` 会互相打架**：HUD 底板 / 血条 / 延迟条共用材质 `r4`，
+  所以只能让**一个**对象走 `setMaterialProperty('_filledRange')`（血条填充），
+  其余条（延迟条）要用 **sizeDelta 缩放**实现 —— 且缩放时同步挪中心点**保持左边界固定**，
+  否则会从中间往两边缩、方向感全错。
+- **`$ref` 塞短 id 会报 "has no X component"**：`{"$ref":"s28","component_type":"Image"}` 失败，
+  要**直接传组件 GUID**（`"guid":"c50"`）—— 实测于 2026-10-17 血条改造。

@@ -21,10 +21,10 @@
       "type": "Image",
       "id": "Boss血条填充",
       "guid": "aac49419-f96c-f6b1-f02b-a1bd2cb2081e",
-      "x": 245,
+      "x": 353.333,
       "y": 192,
       "width": 330,
-      "height": 40,
+      "height": 53,
       "groupId": "UI界面",
       "visible": false,
       "texture": {

@@ -2,17 +2,17 @@
   "version": 1,
   "pageNumber": 1,
   "attempt": 1,
-  "generatedAt": "2026-10-15T09:11:38.336Z",
+  "generatedAt": "2026-10-16T03:12:26.812Z",
   "workflowSource": "loki_material://7660791499554078766",
-  "taskId": "wf12026101517104149800599316994",
-  "logId": "0217920554413712408820760c65e30e4fef7950c91c7799a52e3",
-  "imageUri": "tos-cn-i-cf374c/oQSAhFMFj0NYDMfAZfTCJpBwgNElAGAQlqnuI6",
-  "imageUrl": "https://p26-effect-platform-i-sign.byteimg.com/tos-cn-i-cf374c/oQSAhFMFj0NYDMfAZfTCJpBwgNElAGAQlqnuI6~tplv-3y40q1qpvg-image.image?rk3s=858652e7&x-expires=1794647497&x-signature=3KvehjZuTi%2FedDu2s0YHkSLAW6k%3D",
+  "taskId": "wf12026101611112549934218554114",
+  "logId": "0217921202841352408820760c65e30e4fef7950c91c7799d85a5",
+  "imageUri": "tos-cn-i-cf374c/o0yVERCAInhLfDlkxAGEonUAzweDGBA0CePIBa",
+  "imageUrl": "https://p26-effect-platform-i-sign.byteimg.com/tos-cn-i-cf374c/o0yVERCAInhLfDlkxAGEonUAzweDGBA0CePIBa~tplv-3y40q1qpvg-image.image?rk3s=858652e7&x-expires=1794712346&x-signature=QFI1PrvhPLwc7LGule2X4mizCK4%3D",
   "actualWidth": 2160,
   "actualHeight": 3840,
   "mimeType": "image/png",
-  "pollDurationMs": 56117,
-  "pollCount": 10,
+  "pollDurationMs": 61558,
+  "pollCount": 11,
   "request": {
     "settingImageModel": "image2",
     "generationMaxAttempts": 1,
@@ -28,11 +28,11 @@
     },
     "referenceImageUri": "tos-cn-i-cf374c/ooGGeAeQAKsnVLACeW7EkPaAIngBdQCAzZMA5Q",
     "promptPath": ".agent/asset-board/pages/page-01/prompt.txt",
-    "promptHash": "7f9584a950ddb469c624711795f0f3dc79f355884e51c4927e7e8f79e03f781c",
+    "promptHash": "13d8de797d2b87256c34e73f4c127009546acc2c31ffcaa75a7585aa91711141",
     "layout": {
       "columns": 4,
-      "rows": 7,
-      "pageSize": 28
+      "rows": 6,
+      "pageSize": 24
     }
   }
 }

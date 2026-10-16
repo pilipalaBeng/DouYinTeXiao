@@ -26,6 +26,11 @@ const AIM_RADIUS = 122;
 /** Boss 总血量。血条填充比例 = hp / MAX_HP；阶段阈值也由它派生，不写散魔法数字。 */
 const MAX_HP = 2400;
 
+/** Delay Health Bar（延迟血条）：受伤后「延迟条」先停顿多久（毫秒），再以多快追平（每秒收掉的比例）。
+ *  观感 = 红条立刻缩短、露出一截黄条，黄条停一下后缓慢收掉 —— 让玩家看清这一下掉了多少血。 */
+const HP_DELAY_WAIT_MS = 400;
+const HP_DELAY_SPEED = 0.7;
+
 /** 3D Boss 的空间参数，单位：米。
  *  尺寸依据（探针实测）：AR 相机 fov=60°、fovType=Custom(0)，距离 D 处屏幕竖向覆盖 ≈ 1.155×D 米。
  *  当前 BOSS_CORE_SIZE=6.0 + SPAWN_DIST=18.0 → 占屏约 29%
@@ -175,6 +180,13 @@ class MainScene extends Scene {
     private hpFill!: Sprite;
     /** 血条填充比例脏检查缓存：与上传给材质的 _filledRange 保持一致，避免每帧重复写共享材质。 */
     private hpFillRatio: number = -1;
+    /** Delay Health Bar 的延迟条（纯色黄）：受伤后缓慢追上即时条，中间露出的黄就是「刚掉的血」。 */
+    private hpDelay!: Sprite;
+    private hpDelayRatio: number = 1;
+    private hpDelayWait: number = 0;
+    /** 延迟条的满宽 / 左边界（屏幕坐标，开局从场景读一次）—— 缩放时左边界固定，否则会从中间缩。 */
+    private hpDelayFull: number = 0;
+    private hpDelayLeft: number = 0;
     private hud!: Text;
     /** HUD 文本脏检查缓存：每帧 setText 会触发一次重排版，只在数字真的变了才写。 */
     private hudText: string = '';
@@ -197,6 +209,10 @@ class MainScene extends Scene {
         this.friendlyTexture = this.optionalTexture('能量核心友好模板');
         this.shield = this.object<Sprite>('护盾覆盖'); this.core = this.object<Sprite>('护盾核心'); this.crosshair = this.object<Sprite>('固定准星');
         this.highlight = this.object<Sprite>('准星命中高亮'); this.gun = this.object<Sprite>('古代战弩'); this.hpFill = this.object<Sprite>('Boss血条填充');
+        this.hpDelay = this.object<Sprite>('Boss血条延迟');
+        // 记下延迟条的满宽与左边界：之后按比例缩放时保持左边界不动（否则会从中间缩，方向感全错）。
+        this.hpDelayFull = this.hpDelay.width;
+        this.hpDelayLeft = this.hpDelay.x - this.hpDelayFull / 2;
         this.gunBaseTexture = this.gun.getTexture()!;
         this.captureGunHome();
         // 战弩三张动作帧属可选素材：对象缺失或尚未生成时回退到基础帧，避免对 null 取贴图直接崩。
@@ -249,6 +265,7 @@ class MainScene extends Scene {
         if (this.phase === 'window' && this.windowLeft <= 0) this.restoreShield();
         if (this.elapsed >= 30) this.finish(false);
         this.updateHud();
+        this.updateHpDelay(delta);
     }
 
     private object<T extends GameObject>(id: string): T { return this.add.existing(id) as T; }
@@ -556,6 +573,8 @@ class MainScene extends Scene {
         this.sound.play(heavy ? '人脸重击音' : '像素命中音');
         this.hitHighlightLeft = 140;
         this.highlight.setVisible(true);
+        // 触发延迟条：先停顿 HP_DELAY_WAIT_MS，再缓慢追平（见 updateHpDelay）。
+        this.hpDelayWait = HP_DELAY_WAIT_MS;
         const spark = this.add.sprite(this.bossScreenX, this.bossScreenY, '命中星爆模板'); spark.setVisible(true).setActive(true); this.runtimeObjects.push(spark);
         this.time.delayedCall(180, () => { spark.destroy(); this.runtimeObjects = this.runtimeObjects.filter((value: GameObject) => value !== spark); }, [], this);
         if (this.hp <= 0) { this.finish(true); return; }
@@ -595,13 +614,35 @@ class MainScene extends Scene {
         this.setHpFillAmount();
     }
 
+    /**
+     * Delay Health Bar 的延迟条。
+     * 即时条（hpFill）由材质 `_filledRange` 立刻跟随血量；这条黄条先停顿 HP_DELAY_WAIT_MS，
+     * 再以 HP_DELAY_SPEED/秒 追平 —— 中间露出的那一截黄，就是「这一下掉了多少血」，看清后才收掉。
+     * 缩放宽度的同时要同步挪中心点，保持**左边界固定**（否则会从中间往两边缩，方向感全错）。
+     */
+    private updateHpDelay(delta: number): void {
+        if (!this.hpDelay) return;
+        const ratio = Math.max(0, Math.min(1, this.hp / MAX_HP));
+        if (this.hpDelayRatio <= ratio) {
+            // 加血 / 重开：直接跟平，不走延迟。
+            this.hpDelayRatio = ratio; this.hpDelayWait = 0;
+        } else if (this.hpDelayWait > 0) {
+            this.hpDelayWait -= delta;
+        } else {
+            this.hpDelayRatio = Math.max(ratio, this.hpDelayRatio - HP_DELAY_SPEED * delta / 1000);
+        }
+        const w = this.hpDelayFull * this.hpDelayRatio;
+        this.hpDelay.setDisplaySize(w, this.hpDelay.height);
+        this.hpDelay.setPosition(this.hpDelayLeft + w / 2, this.hpDelay.y);
+    }
+
     private finish(win: boolean): void {
         if (this.phase === 'result') return; this.phase = 'result'; this.resultDelay = 450; this.fireHeld = false;
         for (const item of this.runtimeObjects) item.destroy(); this.runtimeObjects = []; this.flyingArrows = [];
         // 结算后 tick 会直接 return、不再走 syncFollowers ⇒ 这里必须显式收起 3D Boss，
         // 否则它会一直飘在结算画面里（enabled 停在最后一次 syncFollowers 的值）。
         if (this.bossSpatial) this.bossSpatial.enabled = false;
-        this.crosshair.setVisible(false); this.highlight.setVisible(false); this.gun.setVisible(true); this.hud.setVisible(false); this.hpFill.setVisible(false); this.hint.setVisible(false); this.shield.setVisible(false); this.core.setVisible(false);
+        this.crosshair.setVisible(false); this.highlight.setVisible(false); this.gun.setVisible(true); this.hud.setVisible(false); this.hpFill.setVisible(false); this.hpDelay.setVisible(false); this.hint.setVisible(false); this.shield.setVisible(false); this.core.setVisible(false);
         // 胜利才换「投降」贴图；失败时保持当前振翅帧（不再用「暴怒」红球图）。
         if (win) this.setBossTexture(this.friendlyTexture);
         this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(win);
@@ -631,8 +672,9 @@ class MainScene extends Scene {
         if (this.bossSpatial) this.bossSpatial.enabled = false;
         // 强制下一帧重写一次血条材质 / HUD 文本，避免复用上一局的缓存。
         this.hpFillRatio = -1; this.hudText = '';
+        this.hpDelayRatio = 1; this.hpDelayWait = 0;
         this.setBossTexture(this.idleTexture);
-        this.crosshair.setVisible(true); this.highlight.setVisible(false); this.gun.setFlipX(false).setPosition(this.gunBaseX, this.gunBaseY).setAngle(this.gunBaseAngle).setTexture(this.gunBaseTexture).setVisible(true); this.shield.setVisible(false); this.core.setVisible(false); this.hpFill.setVisible(true); this.setHpFillAmount(); this.hud.setText(`稳定 ${MAX_HP}   30s`).setVisible(true); this.hint.setText('转动手机对准，按住能量脉冲').setVisible(true);
+        this.crosshair.setVisible(true); this.highlight.setVisible(false); this.gun.setFlipX(false).setPosition(this.gunBaseX, this.gunBaseY).setAngle(this.gunBaseAngle).setTexture(this.gunBaseTexture).setVisible(true); this.shield.setVisible(false); this.core.setVisible(false); this.hpFill.setVisible(true); this.hpDelay.setVisible(true); this.setHpFillAmount(); this.hud.setText(`稳定 ${MAX_HP}   30s`).setVisible(true); this.hint.setText('转动手机对准，按住能量脉冲').setVisible(true);
         this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(false);
         // 真机空间诊断探针（默认关闭，见 DEBUG_SPATIAL_PROBE）。
         if (DEBUG_SPATIAL_PROBE) {

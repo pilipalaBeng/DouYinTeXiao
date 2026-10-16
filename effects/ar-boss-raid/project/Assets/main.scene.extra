@@ -3622,5 +3622,77 @@
     "styleResLokiId": "",
     "prefabGuid": "",
     "prefabInstanceGuid": ""
+  },
+  {
+    "guid": {
+      "a": "9b5c8b95-6d87-ced1-0478-287056853b29",
+      "b": ""
+    },
+    "objGuid": "Guid(4705003891543650751, 17074767393544797100)",
+    "extraType": "Entity",
+    "name": "Boss血条延迟",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "2D"
+  },
+  {
+    "guid": {
+      "a": "8b64f7a9-05d8-0d47-6c8b-f3b44a4b31db",
+      "b": ""
+    },
+    "objGuid": "Guid(5350593762817376167, 17553255752512232590)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": false
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "846c53a0-dea8-8642-c8d6-ab3f3654fa41",
+      "b": ""
+    },
+    "objGuid": "Guid(5168150130884867478, 14301974390011083922)",
+    "extraType": "Image",
+    "name": "图片",
+    "version": "0.1.0",
+    "rttiType": "Image",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "sharedMaterial": "00000000-0000-0000-0000-000000000132",
+    "segBlendMode": "Normal_v2",
+    "segRadius": 0.5,
+    "segSoftness": 0.5,
+    "blendMode": "Normal",
+    "sizeMode": 0,
+    "isScreenImage": true,
+    "drawMode": "Normal",
+    "filledType": 0,
+    "startPoint": 0,
+    "filledRange": 1,
+    "ellipseX": 1,
+    "ellipseY": 1,
+    "alphaNOPM": true
   }
 ]
