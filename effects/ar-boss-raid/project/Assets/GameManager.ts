@@ -322,8 +322,15 @@ class MainScene extends Scene {
         this.flyingArrows.push({sprite: arrow, startX, startY, endX: targetX, endY: targetY, elapsed: 0, duration: 160});
     }
 
+    /**
+     * 振翅序列帧：**只在 warmup 阶段播**。
+     * 之前只判了 `result`，于是进入 rage 后仍在每 115ms 把贴图刷成振翅帧，
+     * 把 hit() 刚设上的「暴怒」贴图盖掉 —— 阶段反馈能看见多久完全看运气
+     * （撞上振翅刚换完帧 ≈115ms 看得见；撞上即将换帧只闪几毫秒，看不见）。
+     * 这正是作者反馈的「受击/阶段效果有时好使有时不好使」。
+     */
     private updateWingAnimation(delta: number): void {
-        if (this.phase === 'result' || this.wingTextures.length === 0) return;
+        if (this.phase !== 'warmup' || this.wingTextures.length === 0) return;
         this.wingFrameLeft -= delta;
         if (this.wingFrameLeft > 0) return;
         this.wingFrameLeft += 115;
