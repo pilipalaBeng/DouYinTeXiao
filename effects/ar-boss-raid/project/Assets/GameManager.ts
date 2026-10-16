@@ -51,6 +51,15 @@ const SPAWN_DIST = 3.0;
  */
 const SPAWN_WAIT_MS = 1200;
 
+/** 「古代像素战弩」贴图的原始像素尺寸。
+ *  贴图宽高比 (1.164) 与显示框 sizeDelta 的宽高比 (1.092) 不一致，
+ *  Image 是 Fit 模式 ⇒ 宽度撑满、高度居中留边。算枪口时要把这个留边算进去。 */
+const GUN_TEX_W = 512;
+const GUN_TEX_H = 440;
+/** 枪口在**贴图**内的归一化位置：弩箭尖端落在贴图左上角（实测贴图内容 bbox 0~20 / 0~40 px）。 */
+const GUN_MUZZLE_NX = 0.02;
+const GUN_MUZZLE_NY = 0.045;
+
 /**
  * Main Scene
  * Grow gameplay behavior in small passes (Phaser-style).
@@ -288,9 +297,26 @@ class MainScene extends Scene {
         this.flyingArrows = active;
     }
 
+    /**
+     * 算出战弩枪口的屏幕坐标（左上原点）。
+     * 子弹必须**从枪口出来**，所以起点得跟着战弩的实时位置走（含开火后坐力偏移）；
+     * 之前写死 (426, 938) 而战弩在别处 ⇒ 子弹从虚空里冒出来，跟枪口对不上。
+     * 作者在编辑器里挪战弩 / 改尺寸，这里都会自动跟随，不需要再改数值。
+     */
+    private gunMuzzle(): {x: number, y: number} {
+        const boxW = this.gun.width, boxH = this.gun.height;
+        const texAspect = GUN_TEX_W / GUN_TEX_H;
+        // Fit：框比贴图「宽」时按高度撑满、左右留边；否则按宽度撑满、上下留边。
+        const dispW = boxW > boxH * texAspect ? boxH * texAspect : boxW;
+        const dispH = dispW / texAspect;
+        const left = this.gun.x - dispW / 2;
+        const top = this.gun.y - dispH / 2;
+        return {x: left + dispW * GUN_MUZZLE_NX, y: top + dispH * GUN_MUZZLE_NY};
+    }
+
     private spawnArrow(targetX: number, targetY: number): void {
-        const startX = 426;
-        const startY = 938;
+        const muzzle = this.gunMuzzle();
+        const startX = muzzle.x, startY = muzzle.y;
         const arrow = this.add.sprite(startX, startY, '弹幕模板');
         const angle = Math.atan2(targetY - startY, targetX - startX) * 180 / Math.PI;
         arrow.setDisplaySize(52, 16).setAngle(angle).setVisible(true).setActive(true);
