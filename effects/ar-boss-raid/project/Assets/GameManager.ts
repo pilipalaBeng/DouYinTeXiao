@@ -111,7 +111,7 @@ class MainScene extends Scene {
     private orbitPitch: number = 0;
     private orbitYawVel: number = 0;
     private orbitPitchVel: number = 0;
-    /** 球心 = 开局时相机（用户）所在位置，整局固定不变。 */
+    /** 球心 = 相机（用户）的**当前**位置，每帧同步 ⇒ 用户走动时 Boss 跟着平移，距离恒为 SPAWN_DIST。 */
     private userOrigin: APJS.Vector3f = new APJS.Vector3f(0, 0, 0);
     /** 开局视轴方向，作为 yaw=0 / pitch=0 的参考基，保证初始位置正好在手机正前方。 */
     private baseForward: APJS.Vector3f = new APJS.Vector3f(0, 0, -1);
@@ -339,8 +339,11 @@ class MainScene extends Scene {
     }
 
     /**
-     * 真 3D：Boss 以「开局时用户所在位置」为球心、以 SPAWN_DIST 为**恒定半径**在球面上绕飞。
-     * 半径不变 ⇒ 与用户的距离始终固定（不再是原来的球壳内忽远忽近）。
+     * 真 3D：Boss 以**用户当前位置**为球心、以 SPAWN_DIST 为**恒定半径**在球面上绕飞。
+     * 球心每帧同步相机位置 ⇒ 用户走动（平移）时 Boss 跟着走，距离始终等于半径，不会忽远忽近。
+     * ⚠️ 但参考基 baseForward / baseRight / baseUp 是**开局那一刻**的视轴，整局不再更新：
+     *    所以是「平移跟随、转向不跟随」——用户原地转身后，Boss 仍留在「开局朝向」的前方
+     *    6m 处（对转身后的用户而言就是跑到身后去了）。这是当前的设计语义，不是 bug。
      * 每帧把世界坐标投影到屏幕，驱动 2D 跟随物与命中判定。
      */
     private updateBossSpatial(delta: number): void {
