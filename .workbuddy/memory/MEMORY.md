@@ -56,3 +56,9 @@
   - 只读探针 `project_status` 返回 `is_saved` / `is_changed` / `scene_dirty`，可判断是否真有改动。
   - 备用：`tools/xs_autosave.py`（外挂守护，默认 3 秒轮询脏标记自动存）。作者说过"那算了"→ **不主动推他启动**，
     他哪天想全自动再说（双击 `tools/autosave.cmd`）。
+- **坐标基准铁律：`worldToScreenPoint` 的像素基准 ≠ 设计分辨率 720×1280**。
+  APJS.d.ts 原文：*pixel coordinates with a bottom-left origin, in the **current render target and camera viewport***
+  —— 基准由运行时决定。**别拿它的返回值跟 `SCREEN_W/H` 比大小，更别当"屏幕像素目标"去纠偏**；
+  PC 预览无 SLAM 时它还会返回离谱值（实测 `boss=(152049,14588)`），只能真机参考。
+  ⇒ **AR 里「用户面前」的可靠定义 = 相机 `getLookAt()` 方向（baseForward）**，不要用投影反推。
+  （2026-10-16 踩坑：用它做 yaw 纠偏，Boss 被固定推到用户右前方约 34°，得转头才看得见。）

@@ -17,13 +17,11 @@ const CROSS_X = 360;
 const CROSS_Y = 520;
 const AIM_RADIUS = 122;
 
-/** 开局出生点对准的屏幕像素坐标 = 画面几何中心（即相机视野中心）。
- *  作者要求：按下播放后 Boss 直接停在屏幕正中，玩家一睁眼就能看见，不用满世界找。
- *  注意这不是准星位置（准星在 CROSS_Y=520，比几何中心偏上）——准星不动，只把出生点居中。 */
-const BORN_X = SCREEN_W / 2;
-const BORN_Y = SCREEN_H / 2;
-/** 出生居中校准的试探幅度上限（弧度）。yaw/pitch 各试一次 ±这个值，取投影更贴近中心的那组。 */
-const ORBIT_AIM_MAX = 0.6;
+/** 出生位置 = **相机视轴正前方**（baseForward），不做任何投影纠偏。
+ *  曾有过 aimAtScreenCenter()：按 worldToScreenPoint 的投影把 Boss「纠」到屏幕像素 (360,640)。
+ *  但那个投影的像素基准和 720×1280 并不一致（实测返回值远超画面，如 (152049,14588)），
+ *  ⇒ 纠偏拿着错误的目标像素下手，把 Boss 稳定推到用户**右侧**（作者反馈：得转头才看得见）。
+ *  「用户面前」的可靠定义就是相机 getLookAt() 方向，不要用投影去反推 —— 已整段移除。 */
 
 /** Boss 总血量。血条填充比例 = hp / MAX_HP；阶段阈值也由它派生，不写散魔法数字。 */
 const MAX_HP = 2400;
@@ -436,54 +434,6 @@ class MainScene extends Scene {
         this.bossPos.x = nx; this.bossPos.y = ny; this.bossPos.z = nz;
     }
 
-    /**
-     * 出生校准：把 Boss 从「视轴方向」微调到**屏幕正中央**（视野中心 BORN_X/BORN_Y）。
-     * 视轴方向的投影理论上就该落在几何中心，但相机 fov 口径与投影方向在不同端有偏差，
-     * 靠公式反算不可靠，所以对 yaw / pitch 各做一次「正负试探」，
-     * 取投影更贴近目标像素的那一组（不依赖各端 Y/X 轴方向假设，两端相反也能自洽）。
-     * 校准完 Boss 一定停在屏幕正中，玩家一睁眼就能看见。
-     */
-    private aimAtScreenCenter(): void {
-        if (!this.arCamera) return;
-        const half = Math.max(0.05, Math.min(1.2, (this.arCamera.fov / 2) * Math.PI / 180));
-        const tanY = Math.tan(half);
-        const tanX = tanY * (SCREEN_W / SCREEN_H);
-        this.orbitYaw = 0; this.orbitPitch = 0;
-        this.placeBossOnOrbit(); this.projectBoss();
-        this.orbitYaw = this.scanOffset('x', BORN_X, tanX);
-        this.orbitPitch = this.scanOffset('y', BORN_Y, tanY);
-        this.placeBossOnOrbit();
-    }
-
-    /**
-     * 一维试探：算出「像素差 → 角度」的候选值后，分别试 +a / -a，
-     * 取投影更贴近目标像素的那个（顺便自动判定该端投影轴的正负方向）。
-     * @param axis 'x' 走 yaw，'y' 走 pitch
-     */
-    private scanOffset(axis: 'x' | 'y', target: number, tanHalf: number): number {
-        const before = axis === 'x' ? this.bossScreenX : this.bossScreenY;
-        if (!isFinite(before)) return 0;
-        const need = target - before;
-        if (Math.abs(need) < 6) return 0;
-        const span = axis === 'x' ? SCREEN_W : SCREEN_H;
-        const angle = Math.min(ORBIT_AIM_MAX, Math.atan(Math.abs(need) / (span / 2) * tanHalf));
-        let best = 0; let bestD = Math.abs(need);
-        for (const sign of [1, -1]) {
-            this.applyOrbit(axis, sign * angle);
-            const d = Math.abs((axis === 'x' ? this.bossScreenX : this.bossScreenY) - target);
-            if (d < bestD) { bestD = d; best = sign * angle; }
-        }
-        this.applyOrbit(axis, best);
-        return best;
-    }
-
-    /** 写入某一轴的环绕角并立刻重算世界坐标与投影（试探专用）。 */
-    private applyOrbit(axis: 'x' | 'y', value: number): void {
-        if (axis === 'x') this.orbitYaw = value; else this.orbitPitch = value;
-        this.placeBossOnOrbit();
-        this.projectBoss();
-    }
-
     /** 真机诊断探针：打印相机、朝向、锚点、Boss 世界坐标与投影结果。定位完毕后应移除。 */
     private probeSpatial(tag: string): void {
         const camObj = this.sys.engineScene.findSceneObject('AR摄像机');
@@ -679,8 +629,8 @@ class MainScene extends Scene {
         this.orbitYaw = 0; this.orbitPitch = 0;
         this.orbitYawVel = 0; this.orbitPitchVel = 0;
         this.placeBossOnOrbit();
-        // 微调到屏幕正中央（视野中心），让玩家一睁眼就看见它。
-        this.aimAtScreenCenter();
+        // 出生就停在**相机视轴正前方**（yaw=pitch=0 ⇒ baseForward 方向），
+        // 不做任何投影纠偏 —— 原因见文件头「出生位置」那段注释。
         // 先定住不动，让玩家看清 Boss 的位置，再开始绕飞。
         this.bornHoldLeft = BORN_HOLD_MS;
         if (this.bossSpatial) {
