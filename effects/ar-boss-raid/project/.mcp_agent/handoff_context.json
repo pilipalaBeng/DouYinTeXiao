@@ -1,8 +1,8 @@
 {
   "formatVersion": 2,
   "revision": 26,
-  "mutationRevision": 269,
-  "updatedAt": "2026-10-16T11:37:03.075Z",
+  "mutationRevision": 271,
+  "updatedAt": "2026-10-16T13:03:52.847Z",
   "writerInstanceId": "1",
   "task": {
     "objective": "把 ar-boss-raid 改为真 3D 空间玩法并调通",
@@ -127,16 +127,16 @@
       "at": "2026-10-16T01:12:25.498Z"
     },
     {
-      "kind": "script",
-      "status": "passed",
-      "summary": "The latest run_otsc_check call completed without compilation errors.",
-      "at": "2026-10-16T11:36:13.408Z"
-    },
-    {
       "kind": "interaction",
       "status": "passed",
       "summary": "The latest interact_by_dsl sequence completed successfully.",
       "at": "2026-10-16T11:36:39.694Z"
+    },
+    {
+      "kind": "script",
+      "status": "passed",
+      "summary": "The latest run_otsc_check call completed without compilation errors.",
+      "at": "2026-10-16T13:03:39.087Z"
     }
   ],
   "openIssues": [
@@ -159,6 +159,6 @@
   },
   "autoBrief": {
     "summary": "Saved project: 50 scene object(s), 36 resource(s), 5 render group(s).",
-    "at": "2026-10-16T11:37:03.075Z"
+    "at": "2026-10-16T13:03:52.847Z"
   }
 }
