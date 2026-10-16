@@ -43,6 +43,17 @@ const BORN_HOLD_MS = 2500;
  *  2 -> 4 -> 6 -> 3 -> 1.5 -> 3 -> 6（作者两次要求拉近「减半」，两次要求推远一倍）。**实体恒为 3.0，不随距离缩放**。
  */
 const SPAWN_DIST = 6.0;
+
+/** 环绕「球心」是否每帧跟随相机位置（= 用户走动时 Boss 是否跟着一起平移）。
+ *  true  = 平移跟随（当前）：Boss 跟着走，与用户距离恒为 SPAWN_DIST，射击手感最稳。
+ *  false = 世界锚定：球心钉在开局位置，用户可以走近它、绕到它背后；
+ *          代价是走远之后 Boss 会出视野，得转头去找。 */
+const ORBIT_FOLLOW_CAMERA = true;
+
+/** 参考基（前 / 右 / 上）是否每帧跟随相机的**当前**朝向。
+ *  false = 沿用开局朝向（当前）：原地转身后 Boss 不跟转，会落到用户身后。
+ *  true  = 朝向跟随：Boss 永远顶在用户正前方；代价是转身时会把它「甩」着横移，观感较晃。 */
+const ORBIT_FOLLOW_HEADING = false;
 /** 投放闸门兜底：等 AR 相机离原点（SLAM 就位）最多等多久，超时则按当前位置投放。
  *  2500 -> 1200：真机实测相机 590~900ms 就位，缩短后玩家几乎无感；
  *  且现在球心每帧跟随相机，即便开局锚点算错也会立刻被纠正（不再需要长等待兜底）。
@@ -350,13 +361,16 @@ class MainScene extends Scene {
         const dt = Math.min(0.05, delta / 1000);
         try {
             if (!this.spawnReady) { this.trySpawnBoss(delta); return; }
-            // 球心每帧跟随相机的**当前**位置 —— 这才是「围着用户转」。
-            // 若球心固定为开局那一刻的位置，玩家一走动（相机平移），
-            // Boss 到他的距离就不再等于半径，表现为「忽远忽近」。
-            if (this.arCamTransform) {
+            // 球心是否跟随相机的**当前**位置，由 ORBIT_FOLLOW_CAMERA 决定：
+            //   true （当前）平移跟随：用户走动时 Boss 跟着平移，距离恒为半径；
+            //                  若球心固定为开局位置，玩家一走 Boss 就「忽远忽近」。
+            //   false 世界锚定：Boss 钉在空间里，可以走近它、绕到它背后，代价是走远会出视野。
+            if (ORBIT_FOLLOW_CAMERA && this.arCamTransform) {
                 const cp = this.arCamTransform.getWorldPosition();
                 this.userOrigin.x = cp.x; this.userOrigin.y = cp.y; this.userOrigin.z = cp.z;
             }
+            // 参考基是否跟随**当前**朝向：关着（当前）就是沿用开局朝向 ⇒ 原地转身 Boss 不跟转。
+            if (ORBIT_FOLLOW_HEADING) this.updateBasisFromCamera();
             // 投放后先定住 BORN_HOLD_MS，让玩家先看清 Boss 在哪，再开始绕飞。
             if (this.bornHoldLeft > 0) {
                 this.bornHoldLeft = Math.max(0, this.bornHoldLeft - delta);
@@ -614,22 +628,11 @@ class MainScene extends Scene {
         if (this.arCamera && this.arCamTransform) {
             // AR 相机由 DeviceTracker 驱动，其位置/朝向只能运行时读取。
             const camPos = this.arCamTransform.getWorldPosition();
-            const look = this.arCamera.getLookAt();
-            // 防御：getLookAt 若返回非单位向量，直接乘米数会把锚点甩到很远。
-            const lookLen = Math.sqrt(look.x * look.x + look.y * look.y + look.z * look.z) || 1;
-            // 球心 = 开局时用户（相机）所在位置。整局不变 ⇒ 与用户的距离恒定。
+            // 球心初值 = 开局时用户（相机）所在位置。
+            // ORBIT_FOLLOW_CAMERA 开启时之后每帧同步；关闭则整局钉死在这里（世界锚定）。
             this.userOrigin.x = camPos.x; this.userOrigin.y = camPos.y; this.userOrigin.z = camPos.z;
             // 开局视轴作为参考基：yaw=pitch=0 即"手机正前方"。
-            this.baseForward.x = look.x / lookLen;
-            this.baseForward.y = look.y / lookLen;
-            this.baseForward.z = look.z / lookLen;
-            // 与世界上方向构造正交基；手机近乎朝天/朝地时叉乘会退化，换一个参考轴。
-            const refUp = Math.abs(this.baseForward.y) > 0.99
-                ? new APJS.Vector3f(0, 0, 1) : new APJS.Vector3f(0, 1, 0);
-            const right = this.baseForward.cross(refUp).normalize();
-            this.baseRight.x = right.x; this.baseRight.y = right.y; this.baseRight.z = right.z;
-            const up = this.baseRight.cross(this.baseForward).normalize();
-            this.baseUp.x = up.x; this.baseUp.y = up.y; this.baseUp.z = up.z;
+            this.updateBasisFromCamera();
             // 沿用旧字段语义：spawnOrigin 仍保留为"出生点"（= 球心 + 视轴 × 半径）。
             this.spawnOrigin.x = camPos.x + this.baseForward.x * SPAWN_DIST;
             this.spawnOrigin.y = camPos.y + this.baseForward.y * SPAWN_DIST;
@@ -649,6 +652,25 @@ class MainScene extends Scene {
         }
         this.projectBoss();
         this.syncFollowers();
+    }
+
+    /**
+     * 用相机**当前**朝向重算参考基 baseForward / baseRight / baseUp。
+     * `spawnBossInSpace()` 开局会调一次；当 ORBIT_FOLLOW_HEADING 开启时每帧再调（朝向跟随）。
+     */
+    private updateBasisFromCamera(): void {
+        if (!this.arCamera) return;
+        // 防御：getLookAt 若返回非单位向量，直接乘米数会把锚点甩到很远。
+        const look = this.arCamera.getLookAt();
+        const len = Math.sqrt(look.x * look.x + look.y * look.y + look.z * look.z) || 1;
+        this.baseForward.x = look.x / len; this.baseForward.y = look.y / len; this.baseForward.z = look.z / len;
+        // 与世界上方向构造正交基；手机近乎朝天/朝地时叉乘会退化，换一个参考轴。
+        const refUp = Math.abs(this.baseForward.y) > 0.99
+            ? new APJS.Vector3f(0, 0, 1) : new APJS.Vector3f(0, 1, 0);
+        const right = this.baseForward.cross(refUp).normalize();
+        this.baseRight.x = right.x; this.baseRight.y = right.y; this.baseRight.z = right.z;
+        const up = this.baseRight.cross(this.baseForward).normalize();
+        this.baseUp.x = up.x; this.baseUp.y = up.y; this.baseUp.z = up.z;
     }
 }
 
