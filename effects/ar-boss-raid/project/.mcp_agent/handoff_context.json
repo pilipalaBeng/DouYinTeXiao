@@ -1,8 +1,8 @@
 {
   "formatVersion": 2,
   "revision": 26,
-  "mutationRevision": 228,
-  "updatedAt": "2026-10-16T01:24:40.432Z",
+  "mutationRevision": 234,
+  "updatedAt": "2026-10-16T01:53:32.799Z",
   "writerInstanceId": "1",
   "task": {
     "objective": "把 ar-boss-raid 改为真 3D 空间玩法并调通",
@@ -127,16 +127,16 @@
       "at": "2026-10-16T01:12:25.498Z"
     },
     {
-      "kind": "script",
-      "status": "passed",
-      "summary": "The latest run_otsc_check call completed without compilation errors.",
-      "at": "2026-10-16T01:24:25.516Z"
-    },
-    {
       "kind": "interaction",
       "status": "passed",
       "summary": "The latest interact_by_dsl sequence completed successfully.",
-      "at": "2026-10-16T01:24:40.432Z"
+      "at": "2026-10-16T01:52:45.104Z"
+    },
+    {
+      "kind": "script",
+      "status": "passed",
+      "summary": "The latest run_otsc_check call completed without compilation errors.",
+      "at": "2026-10-16T01:53:32.799Z"
     }
   ],
   "openIssues": [

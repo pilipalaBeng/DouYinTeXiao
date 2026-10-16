@@ -17,12 +17,20 @@ const CROSS_X = 360;
 const CROSS_Y = 520;
 const AIM_RADIUS = 122;
 
+/** 开局出生点对准的屏幕像素坐标 = 画面几何中心（即相机视野中心）。
+ *  作者要求：按下播放后 Boss 直接停在屏幕正中，玩家一睁眼就能看见，不用满世界找。
+ *  注意这不是准星位置（准星在 CROSS_Y=520，比几何中心偏上）——准星不动，只把出生点居中。 */
+const BORN_X = SCREEN_W / 2;
+const BORN_Y = SCREEN_H / 2;
+/** 出生居中校准的试探幅度上限（弧度）。yaw/pitch 各试一次 ±这个值，取投影更贴近中心的那组。 */
+const ORBIT_AIM_MAX = 0.6;
+
 /** Boss 总血量。血条填充比例 = hp / MAX_HP；阶段阈值也由它派生，不写散魔法数字。 */
 const MAX_HP = 2400;
 
 /** 3D Boss 的空间参数，单位：米。
  *  尺寸依据（探针实测）：AR 相机 fov=60°、fovType=Custom(0)，距离 D 处屏幕竖向覆盖 ≈ 1.155×D 米。
- *  当前 BOSS_CORE_SIZE=3.0 + SPAWN_DIST=1.5 → 占屏约 173%，**已超过满屏**（会顶到脸、甚至穿进相机）。
+ *  当前 BOSS_CORE_SIZE=3.0 + SPAWN_DIST=3.0 → 占屏约 87%（一屏放得下，留得出四周环境）。
  *  若真机出现「糊脸/穿模」，应调小 BOSS_CORE_SIZE，而不是回退距离。
  */
 const BOSS_CORE_SIZE = 3.0;
@@ -34,9 +42,9 @@ const BOSS_SPEED = 0.025;
  */
 const BORN_HOLD_MS = 2500;
 /** 开局投放距离：沿相机视轴前方多少米（= 环绕飞行的恒定半径）。
- *  2 -> 4 -> 6 -> 3 -> 1.5（作者两次要求拉近，均为「减半」）。**实体恒为 3.0，不随距离缩放**。
+ *  2 -> 4 -> 6 -> 3 -> 1.5 -> 3（作者两次要求拉近「减半」，又一次要求推远一倍）。**实体恒为 3.0，不随距离缩放**。
  */
-const SPAWN_DIST = 1.5;
+const SPAWN_DIST = 3.0;
 /** 投放闸门兜底：等 AR 相机离原点（SLAM 就位）最多等多久，超时则按当前位置投放。
  *  2500 -> 1200：真机实测相机 590~900ms 就位，缩短后玩家几乎无感；
  *  且现在球心每帧跟随相机，即便开局锚点算错也会立刻被纠正（不再需要长等待兜底）。
@@ -69,9 +77,15 @@ class MainScene extends Scene {
     private combo: number = 0;
     private maxCombo: number = 0;
     private gunKickLeft: number = 0;
-    private gunBaseX: number = 506;
-    private gunBaseY: number = 1004;
+    /** 战弩基准位：**开局从场景对象读一次**（作者在编辑器里手工摆好的位置），
+     *  之后只在此基准上叠加后坐力偏移。
+     *  曾经写死过 506/1004 —— 作者在编辑器里怎么拖，一运行就被脚本拉回写死坐标，
+     *  看起来像"坐标被锁死"。改为读场景初值后，编辑器里摆哪儿就是哪儿。 */
+    private gunBaseX: number = 0;
+    private gunBaseY: number = 0;
     private gunBaseAngle: number = 0;
+    /** 战弩基准位是否已从场景捕获（只捕获一次，避免被本局自己写过的值污染）。 */
+    private gunHomeReady: boolean = false;
     private resultDelay: number = 0;
     private flyingArrows: {sprite: Sprite; startX: number; startY: number; endX: number; endY: number; elapsed: number; duration: number}[] = [];
 
@@ -149,6 +163,7 @@ class MainScene extends Scene {
         this.shield = this.object<Sprite>('护盾覆盖'); this.core = this.object<Sprite>('护盾核心'); this.crosshair = this.object<Sprite>('固定准星');
         this.highlight = this.object<Sprite>('准星命中高亮'); this.gun = this.object<Sprite>('古代战弩'); this.hpFill = this.object<Sprite>('Boss血条填充');
         this.gunBaseTexture = this.gun.getTexture()!;
+        this.captureGunHome();
         // 战弩三张动作帧属可选素材：对象缺失或尚未生成时回退到基础帧，避免对 null 取贴图直接崩。
         this.gunDrawTexture = this.optionalTexture('战弩拉弦模板') || this.gunBaseTexture;
         this.gunFireTexture = this.optionalTexture('战弩击发模板') || this.gunBaseTexture;
@@ -232,6 +247,20 @@ class MainScene extends Scene {
     private handleRecordStart(): void { this.isRecording = true; this.resetGame(); }
     // 录制结束只收火、停音效，不再把整局冻结（冻结会导致后续任何输入都无响应）。
     private handleRecordEnd(): void { this.fireHeld = false; this.sound.stopAll(); }
+
+    /**
+     * 捕获战弩的场景基准位（只做一次）。
+     * gun.x / gun.y 是屏幕坐标（左上原点），gun.angle 是角度 —— 都直接来自场景里手工摆的值。
+     * 之后 updateGunKick 每帧写的都是「基准位 + 后坐力偏移」，不再覆盖作者摆的位置。
+     */
+    private captureGunHome(): void {
+        if (this.gunHomeReady || !this.gun) return;
+        this.gunBaseX = this.gun.x;
+        this.gunBaseY = this.gun.y;
+        this.gunBaseAngle = this.gun.angle;
+        this.gunHomeReady = true;
+        console.log(`[gun-home] captured x=${Math.round(this.gunBaseX)} y=${Math.round(this.gunBaseY)} angle=${Math.round(this.gunBaseAngle)}`);
+    }
 
     private updateGunKick(): void {
         const recoil = this.gunKickLeft > 0 ? Math.min(1, this.gunKickLeft / 90) : 0;
@@ -382,33 +411,51 @@ class MainScene extends Scene {
     }
 
     /**
-     * 出生校准：把 Boss 从「视轴方向」微调到正对屏幕准星。
-     * 视轴方向的投影落在屏幕几何中心 (360, 640)，而准星在 (360, 520) —— 相差 120px，
-     * 命中容差 AIM_RADIUS 只有 122px，余量几乎为零，稍微一动就会脱靶。
-     * 这里不依赖 worldToScreenPoint 的 Y 轴方向假设（不同端可能相反）：
-     * 对 pitch 做「正负试探」，取投影更接近准星的那一组。
+     * 出生校准：把 Boss 从「视轴方向」微调到**屏幕正中央**（视野中心 BORN_X/BORN_Y）。
+     * 视轴方向的投影理论上就该落在几何中心，但相机 fov 口径与投影方向在不同端有偏差，
+     * 靠公式反算不可靠，所以对 yaw / pitch 各做一次「正负试探」，
+     * 取投影更贴近目标像素的那一组（不依赖各端 Y/X 轴方向假设，两端相反也能自洽）。
+     * 校准完 Boss 一定停在屏幕正中，玩家一睁眼就能看见。
      */
-    private aimAtCrosshair(): void {
+    private aimAtScreenCenter(): void {
         if (!this.arCamera) return;
-        const fovHalfRad = Math.max(0.05, Math.min(1.2, (this.arCamera.fov / 2) * Math.PI / 180));
+        const half = Math.max(0.05, Math.min(1.2, (this.arCamera.fov / 2) * Math.PI / 180));
+        const tanY = Math.tan(half);
+        const tanX = tanY * (SCREEN_W / SCREEN_H);
         this.orbitYaw = 0; this.orbitPitch = 0;
+        this.placeBossOnOrbit(); this.projectBoss();
+        this.orbitYaw = this.scanOffset('x', BORN_X, tanX);
+        this.orbitPitch = this.scanOffset('y', BORN_Y, tanY);
         this.placeBossOnOrbit();
-        this.projectBoss();
-        const baseY = this.bossScreenY;
-        if (!isFinite(baseY)) return;
-        const need = CROSS_Y - baseY;
-        if (Math.abs(need) < 6) return;
-        const angle = Math.min(ORBIT_PITCH_MAX, Math.atan(Math.abs(need) / (SCREEN_H / 2) * Math.tan(fovHalfRad)));
+    }
+
+    /**
+     * 一维试探：算出「像素差 → 角度」的候选值后，分别试 +a / -a，
+     * 取投影更贴近目标像素的那个（顺便自动判定该端投影轴的正负方向）。
+     * @param axis 'x' 走 yaw，'y' 走 pitch
+     */
+    private scanOffset(axis: 'x' | 'y', target: number, tanHalf: number): number {
+        const before = axis === 'x' ? this.bossScreenX : this.bossScreenY;
+        if (!isFinite(before)) return 0;
+        const need = target - before;
+        if (Math.abs(need) < 6) return 0;
+        const span = axis === 'x' ? SCREEN_W : SCREEN_H;
+        const angle = Math.min(ORBIT_AIM_MAX, Math.atan(Math.abs(need) / (span / 2) * tanHalf));
         let best = 0; let bestD = Math.abs(need);
         for (const sign of [1, -1]) {
-            this.orbitPitch = sign * angle;
-            this.placeBossOnOrbit();
-            this.projectBoss();
-            const d = Math.abs(this.bossScreenY - CROSS_Y);
+            this.applyOrbit(axis, sign * angle);
+            const d = Math.abs((axis === 'x' ? this.bossScreenX : this.bossScreenY) - target);
             if (d < bestD) { bestD = d; best = sign * angle; }
         }
-        this.orbitYaw = 0; this.orbitPitch = best;
+        this.applyOrbit(axis, best);
+        return best;
+    }
+
+    /** 写入某一轴的环绕角并立刻重算世界坐标与投影（试探专用）。 */
+    private applyOrbit(axis: 'x' | 'y', value: number): void {
+        if (axis === 'x') this.orbitYaw = value; else this.orbitPitch = value;
         this.placeBossOnOrbit();
+        this.projectBoss();
     }
 
     /** 真机诊断探针：打印相机、朝向、锚点、Boss 世界坐标与投影结果。定位完毕后应移除。 */
@@ -606,8 +653,8 @@ class MainScene extends Scene {
         this.orbitYaw = 0; this.orbitPitch = 0;
         this.orbitYawVel = 0; this.orbitPitchVel = 0;
         this.placeBossOnOrbit();
-        // 微调到正对屏幕准星，让玩家一睁眼就看见它、且能直接打中。
-        this.aimAtCrosshair();
+        // 微调到屏幕正中央（视野中心），让玩家一睁眼就看见它。
+        this.aimAtScreenCenter();
         // 先定住不动，让玩家看清 Boss 的位置，再开始绕飞。
         this.bornHoldLeft = BORN_HOLD_MS;
         if (this.bossSpatial) {
