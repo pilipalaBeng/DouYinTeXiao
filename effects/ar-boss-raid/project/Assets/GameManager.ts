@@ -665,16 +665,23 @@ class MainScene extends Scene {
      */
     private updateBasisFromCamera(): void {
         if (!this.arCamera) return;
-        // 防御：getLookAt 若返回非单位向量，直接乘米数会把锚点甩到很远。
         const look = this.arCamera.getLookAt();
-        const len = Math.sqrt(look.x * look.x + look.y * look.y + look.z * look.z) || 1;
-        this.baseForward.x = look.x / len; this.baseForward.y = look.y / len; this.baseForward.z = look.z / len;
-        // 与世界上方向构造正交基；手机近乎朝天/朝地时叉乘会退化，换一个参考轴。
-        const refUp = Math.abs(this.baseForward.y) > 0.99
+        const len = Math.sqrt(look.x * look.x + look.y * look.y + look.z * look.z);
+        // 朝向无效（SLAM 未就绪 / API 返回零向量）时保持上一次的基，别污染后续所有计算。
+        if (!isFinite(len) || len < 1e-6) return;
+        // ⚠️ APJS 的 Vector3f.cross / normalize 都是**原地修改**（文档：cross "stores the result
+        //    in this vector"；normalize "in place"，零向量保持原样）。所以必须在**临时向量**上算。
+        //    此前写成 `this.baseForward.cross(refUp).normalize()`，直接把 baseForward 覆盖成了
+        //    右向量，并让 baseRight×baseForward = v×v = 零向量，于是：
+        //      · Boss 出生在用户右侧 90°（baseForward 已变成右方向）
+        //      · baseRight / baseUp 全为 0 ⇒ yaw 与 pitch 偏移全部乘 0 失效（怪既不绕飞也不浮动）
+        const fwd = new APJS.Vector3f(look.x / len, look.y / len, look.z / len);
+        const refUp = Math.abs(fwd.y) > 0.99
             ? new APJS.Vector3f(0, 0, 1) : new APJS.Vector3f(0, 1, 0);
-        const right = this.baseForward.cross(refUp).normalize();
+        const right = fwd.clone().cross(refUp).normalize();
+        const up = right.clone().cross(fwd).normalize();
+        this.baseForward.x = fwd.x; this.baseForward.y = fwd.y; this.baseForward.z = fwd.z;
         this.baseRight.x = right.x; this.baseRight.y = right.y; this.baseRight.z = right.z;
-        const up = this.baseRight.cross(this.baseForward).normalize();
         this.baseUp.x = up.x; this.baseUp.y = up.y; this.baseUp.z = up.z;
     }
 }

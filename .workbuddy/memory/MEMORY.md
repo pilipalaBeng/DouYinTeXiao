@@ -62,3 +62,16 @@
   PC 预览无 SLAM 时它还会返回离谱值（实测 `boss=(152049,14588)`），只能真机参考。
   ⇒ **AR 里「用户面前」的可靠定义 = 相机 `getLookAt()` 方向（baseForward）**，不要用投影反推。
   （2026-10-16 踩坑：用它做 yaw 纠偏，Boss 被固定推到用户右前方约 34°，得转头才看得见。）
+- **⚠️ APJS `Vector3f` 的数学方法全是「原地修改」（in-place），返回的是 `this` 而不是新向量！**
+  文档原文：*Most instance math methods (`add`, `subtract`, `multiply`, `divide`, `multiplyScalar`,
+  `divideScalar`, `negate`, `normalize`, `cross`, `set`, etc.) ...*；
+  `cross(other): this` —— *stores the result in **this** vector*；
+  `normalize(): this` —— *in place*（零向量则保持原样，不会 NaN）。
+  ⇒ **必须 `v.clone().cross(u)`，绝不能 `v.cross(u)`**。
+  踩坑实例（2026-10-16，GameManager 正交基）：
+  ```ts
+  const right = this.baseForward.cross(refUp).normalize();   // ✗ baseForward 被覆盖成右向量
+  const up = this.baseRight.cross(this.baseForward).normalize();  // ✗ v×v = 零向量
+  ```
+  后果：出生方向变成「用户右侧 90°」+ `baseRight/baseUp` 全零 ⇒ yaw/pitch 偏移失效（怪不绕飞）。
+  正确写法：`const right = fwd.clone().cross(refUp).normalize();`
