@@ -1,8 +1,8 @@
 {
   "formatVersion": 2,
   "revision": 26,
-  "mutationRevision": 235,
-  "updatedAt": "2026-10-16T02:02:35.659Z",
+  "mutationRevision": 236,
+  "updatedAt": "2026-10-16T02:17:35.348Z",
   "writerInstanceId": "1",
   "task": {
     "objective": "把 ar-boss-raid 改为真 3D 空间玩法并调通",
@@ -159,6 +159,6 @@
   },
   "autoBrief": {
     "summary": "Saved project: 50 scene object(s), 36 resource(s), 5 render group(s).",
-    "at": "2026-10-16T02:02:35.659Z"
+    "at": "2026-10-16T02:17:35.348Z"
   }
 }

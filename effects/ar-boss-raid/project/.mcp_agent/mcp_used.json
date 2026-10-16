@@ -13,7 +13,7 @@
     "get_current_preview_video": 1,
     "generate_image": 1,
     "inspect": 22,
-    "project_status": 7,
+    "project_status": 8,
     "edit_by_dsl": 48,
     "get_scene": 35,
     "generate_assets_batch": 1,
@@ -22,6 +22,6 @@
     "interact_by_dsl": 98,
     "get_script_logs": 105,
     "get_scene_view": 2,
-    "save_project": 2
+    "save_project": 3
   }
 }

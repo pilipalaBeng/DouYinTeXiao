@@ -106,6 +106,13 @@
 3. **交付必带合规清单**：任何特效交付都必须附自检结果。
 4. **不生成规避审核内容**：被问"怎么骗过审核"→ 直接拒绝。
 5. **改素材先量尺寸**：动像素图前先确认它符合第三节规格。
+6. **收工自动存盘**（2026-10-16 作者指定）：凡改动过像塑工程（脚本 / 场景 / 参数）且编译通过，
+   **收工前必须自己调一次 `save_project` 把改动落盘，不要让作者手动 Ctrl+S。**
+   正常走 MCP 的 `save_project`；连接器不灵时直连网关 `POST http://127.0.0.1:17320/mcp`，
+   body `{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"save_project","arguments":{"instance_id":"1"}}}`
+   （须绕代理；实例号从 `%LOCALAPPDATA%\DouyinAR\Shared\MCP\Projects\*.json` 读）。
+   理由：编辑器自带的 `[Backup] Autosave` 是 **10 分钟一次的备份副本**，
+   **不写回工程主文件**——不存盘 = 编辑器一关改动就丢。
 
 ---
 

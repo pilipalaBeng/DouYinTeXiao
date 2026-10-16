@@ -47,4 +47,12 @@
 - **包体判据实测值**：真·DB16 硬边 128 逻辑帧 = **3.2–3.6 KB/帧**（阈值 26.8 KB）；AI 插画直导 = **73.9 KB/帧**（破线）。→ **必须走像素化流水线**（`tools/pixelize.py`：中值压平 → BOX 降采样 → DB16 硬量化 → Nearest 整数倍放大）。
 - **像塑没有用户选图能力**（本版）：Image Picker 场景对象与资源双重不可创建，APJS 无 picker API。
 - 验收序列清场用 `reset_preview`；**`start_preview_record` 会触发开拍重置**，不要用它当清场手段。
-- 本 workflow **不调 `save_project`**，结尾必须提醒用户自行保存工程。
+- **收工必存盘**（2026-10-16 作者指定，**就此推翻此前"不调 `save_project`"的旧约定**）：
+  凡改过工程（脚本 / 场景 / 参数）且编译通过，**收工前自己调一次 `save_project` 落盘，不要让作者手动 Ctrl+S。**
+  理由：编辑器自带的 `[Backup] Autosave` 是 **10 分钟一次的备份副本**（拷到 `Instances\InstanceN\Backup\<时间戳>_x\`），
+  **不写回工程主文件** —— 不存盘 = 编辑器一关改动全丢（作者已踩过：战弩位置反复"变回去"）。
+  - 正常走 MCP 工具 `save_project`；连接器不灵时直连网关
+    `POST http://127.0.0.1:17320/mcp`，body `{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"save_project","arguments":{"instance_id":"1"}}}`（**须绕代理**）。
+  - 只读探针 `project_status` 返回 `is_saved` / `is_changed` / `scene_dirty`，可判断是否真有改动。
+  - 备用：`tools/xs_autosave.py`（外挂守护，默认 3 秒轮询脏标记自动存）。作者说过"那算了"→ **不主动推他启动**，
+    他哪天想全自动再说（双击 `tools/autosave.cmd`）。
