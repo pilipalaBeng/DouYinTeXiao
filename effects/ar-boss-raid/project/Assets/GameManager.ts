@@ -24,7 +24,13 @@ const AIM_RADIUS = 122;
  *  「用户面前」的可靠定义就是相机 getLookAt() 方向，不要用投影去反推 —— 已整段移除。 */
 
 /** Boss 总血量。血条填充比例 = hp / MAX_HP；阶段阈值也由它派生，不写散魔法数字。 */
-const MAX_HP = 2400;
+const MAX_HP = 4800;
+
+/** 护盾阶段的三项规则（原来硬编码在 resolveArrowHit / breakShield / restoreShield 里，
+ *  这次一并提成常量，调手感只改这里）。 */
+const SHIELD_CORE_HITS = 4;      // 一轮护盾要打中核心几次才破（原 3）
+const SHIELD_WINDOW_MS = 1500;   // 破盾后的输出窗口（原 2000）
+const SHIELD_ROUNDS = 3;         // 最多几轮护盾，之后永久开放
 
 /** 一局时长（秒）。判负、HUD 倒计时、HUD 初始文本全部由它派生 —— **改时长只改这一个数**。
  *  ⚠️ 平台侧：抖音的拍摄时长是用户自己选的（15s / 60s / …），特效本身运行不受限，
@@ -72,8 +78,9 @@ const GRADE_WEIGHT_COMBO = 20;    // 连击权重
 /** 命中率满分线：打护盾核心的射击计入「射击数」但不计入「命中数」（见 resolveArrowHit），
  *  所以命中率天然到不了 100%；以这个值为满分基准，高于它的部分按满分计。 */
 const GRADE_ACC_FULL = 0.8;
-/** 速度项归零点（秒）：用满这个时长速度分为 0（= 一局时限），击杀越快分越高。 */
-const GRADE_SPEED_CEIL = 30;
+/** 速度项归零点（秒）：用满这个时长速度分为 0。**已随血量 2400→4800 从 30 下调到 22** ——
+ *  血量翻倍后耗时普遍变长，若还按 30 算速度项等于废掉（28 秒击杀只剩 0.07 分）。 */
+const GRADE_SPEED_CEIL = 22;
 /** 连击项满分线：达到这个连击数即拿满连击分。 */
 const GRADE_COMBO_FULL = 20;
 /** 评级分数线（低于 GRADE_B 即 C）。 */
@@ -107,7 +114,7 @@ const ORBIT_YAW_MAX = 1.309;
  *  一局**不要求**走完所有行为 —— 随机抽到哪个算哪个；「冲刺」这种大动作每局限次数。 */
 const BEHAVIOR_COOLDOWN_MIN_MS = 1000;    // 巡航多久后开始抽下一个行为（下限）
 const BEHAVIOR_COOLDOWN_MAX_MS = 3600;    // 上限（区间内随机，避免节奏机械）
-const BEHAVIOR_HOLD_MS = 1000;            // 停驻：悬停不动，白送一个输出窗口
+const BEHAVIOR_HOLD_MS = 600;             // 停驻：悬停不动，白送一个输出窗口（原 1000，窗口太多）
 const BEHAVIOR_DASH_MS = 900;             // 冲刺：角速度暴增，快速甩动（yaw 有 ±75° 限幅，不会绕圈）
 const BEHAVIOR_RETREAT_MS = 1300;         // 后撤：沿视轴拉远，屏幕上明显变小
 const BEHAVIOR_DASH_SPEED_MUL = 5;        // 冲刺时的角速度倍数
@@ -884,7 +891,7 @@ class MainScene extends Scene {
         if (this.phase === 'result') return;
         if (hitShieldCore && this.phase === 'shield') {
             this.coreHits += 1;
-            if (this.coreHits >= 3) this.breakShield();
+            if (this.coreHits >= SHIELD_CORE_HITS) this.breakShield();
             return;
         }
         if (!hitShieldCore && this.phase !== 'shield') this.hit(80, false);
@@ -918,8 +925,8 @@ class MainScene extends Scene {
     }
 
     private enterShield(): void { this.phase = 'shield'; this.coreHits = 0; this.shield.setVisible(true); this.core.setVisible(true); }
-    private breakShield(): void { this.phase = 'window'; this.windowLeft = 2000; this.shieldRounds += 1; this.shield.setVisible(false); this.core.setVisible(false); this.sound.play('护盾破裂音'); }
-    private restoreShield(): void { if (this.shieldRounds < 3) this.enterShield(); else { this.phase = 'window'; this.windowLeft = 2000; } }
+    private breakShield(): void { this.phase = 'window'; this.windowLeft = SHIELD_WINDOW_MS; this.shieldRounds += 1; this.shield.setVisible(false); this.core.setVisible(false); this.sound.play('护盾破裂音'); }
+    private restoreShield(): void { if (this.shieldRounds < SHIELD_ROUNDS) this.enterShield(); else { this.phase = 'window'; this.windowLeft = SHIELD_WINDOW_MS; } }
 
     /**
      * 血条填充：Boss血条填充 的 Image DrawMode 已在场景里配为 Filled（横向 / startPoint=0），

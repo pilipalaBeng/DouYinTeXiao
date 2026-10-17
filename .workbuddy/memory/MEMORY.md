@@ -22,6 +22,11 @@
 - **共享数值必须单一来源 + 每轮全库 grep 残留扫描**。否则"结论对、数字错/依据错"会静默传播（已抓 8 起）。
 - 单一来源表：hitstop→`vfx-spec §6.1`；对齐点偏移→`animation-spec §5.2`；包体→`tech-spec §3.2`/§3.2.1；帧数→`AGENTS.md §三`+`animation-spec §9.2`；脚本结构→`implement-plan §2.0.2`；
   **结算评级参数→`GameManager.ts` 顶部 `GRADE_*` 常量组**（权重 / 满分线 / 分数线，要调评级手感只改这一处）。
+- **数值调参入口一览（都集中在 GameManager.ts 顶部，改手感只动这些）**：
+  `MAX_HP`（血量）/ `ROUND_SECONDS`（一局秒数）/ `SHIELD_CORE_HITS`·`SHIELD_WINDOW_MS`·`SHIELD_ROUNDS`（护盾三规则）/
+  `BOSS_SPEED`（环绕线速度）/ `SPAWN_DIST`（半径）/ `ORBIT_YAW_MAX`·`ORBIT_PITCH_MAX`（绕飞范围）/
+  `BEHAVIOR_*`（行为时长与频率）/ `GRADE_*`（评级权重与分数线）/ `COMBO_TIMEOUT_MS`（连击断连）。
+  **改血量必须同步改 `GRADE_SPEED_CEIL`** —— 速度项 = 1 − 耗时/CEIL，血量翻倍后若不调，速度分会被整体抹平。
 - **结算/战绩类数据必须来自真实采集，不得硬编码**（2026-10-17：原评级是 `win ? 'B' : 'C'` 的假数据，打得再好也是 B）。
   「同步率」= 命中数 / 射击数；⚠️ 打**护盾核心**的射击计入射击数但**不计入**命中数 ⇒ 命中率天花板约 83%，
   所以评级里用 80% 当命中率满分线，否则 S 档永远够不着。
