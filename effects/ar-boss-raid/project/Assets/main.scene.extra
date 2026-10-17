@@ -3937,7 +3937,8 @@
     "_lazyUpgrateVersion": "0.1.0",
     "extendedInfo": {
       "isVisibleInInspector": true,
-      "expanded": true
+      "expanded": true,
+      "allExpanded": true
     },
     "sharedMaterial": "00000000-0000-0000-0000-000000000132",
     "segBlendMode": "Normal_v2",
@@ -3953,5 +3954,76 @@
     "ellipseX": 1,
     "ellipseY": 1,
     "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "96f01e01-fd27-6373-27c2-b7be223144af",
+      "b": ""
+    },
+    "objGuid": "Guid(5161989140477571238, 11482716284164933276)",
+    "extraType": "Entity",
+    "name": "像素失败音",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_music",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "2D"
+  },
+  {
+    "guid": {
+      "a": "c62a2770-2792-af28-f9dc-70ef43d0b6ca",
+      "b": ""
+    },
+    "objGuid": "Guid(5728167939885142445, 16041314409378280383)",
+    "extraType": "Transform",
+    "name": "变换",
+    "version": "0.1.0",
+    "rttiType": "Transform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.0.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": false
+    },
+    "eulerAngle": [
+      0,
+      0,
+      0
+    ],
+    "linkage": 0
+  },
+  {
+    "guid": {
+      "a": "e155c79a-28df-8439-2a2b-25f4ecea5dad",
+      "b": ""
+    },
+    "objGuid": "Guid(4763952803055713574, 12222226994422527381)",
+    "extraType": "AudioComponent",
+    "name": "音频播放器",
+    "version": "0.3.0",
+    "rttiType": "AudioComponent",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.3.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "audioRef": "0e07c5e4-dfc1-0954-48df-ac438a78baa5",
+    "AudioEffectId": "",
+    "AudioEffectCategory": "",
+    "lyricsVolume": 100,
+    "lyricsEntityGuid": "",
+    "lyricsTemplateEntityGuid": "",
+    "subtitleEntityGuid": "",
+    "karaokeEntityGuid": "",
+    "styleResLokiId": "",
+    "prefabGuid": "",
+    "prefabInstanceGuid": ""
   }
 ]

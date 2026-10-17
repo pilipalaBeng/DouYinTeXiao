@@ -1,0 +1,21 @@
+[
+  {
+    "guid": {
+      "a": "0e07c5e4-dfc1-0954-48df-ac438a78baa5",
+      "b": ""
+    },
+    "extraType": "ResItemMP3",
+    "name": "像素失败音",
+    "version": "0.1.0",
+    "rttiType": "AudioAsset",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "mccState": "SUCCESS",
+    "objGuid": "",
+    "references": []
+  }
+]

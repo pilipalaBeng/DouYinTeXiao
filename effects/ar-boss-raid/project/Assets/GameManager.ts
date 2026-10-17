@@ -105,7 +105,7 @@ const ORBIT_YAW_MAX = 1.309;
 /** 行为层：叠在「阶段（血条驱动）」之上的微观调度。
  *  阶段管宏观节奏（warmup / rage / shield / window），行为管「这几秒它想干嘛」。
  *  一局**不要求**走完所有行为 —— 随机抽到哪个算哪个；「冲刺」这种大动作每局限次数。 */
-const BEHAVIOR_COOLDOWN_MIN_MS = 2000;    // 巡航多久后开始抽下一个行为（下限）
+const BEHAVIOR_COOLDOWN_MIN_MS = 1000;    // 巡航多久后开始抽下一个行为（下限）
 const BEHAVIOR_COOLDOWN_MAX_MS = 3600;    // 上限（区间内随机，避免节奏机械）
 const BEHAVIOR_HOLD_MS = 1000;            // 停驻：悬停不动，白送一个输出窗口
 const BEHAVIOR_DASH_MS = 900;             // 冲刺：角速度暴增，快速甩动（yaw 有 ±75° 限幅，不会绕圈）
@@ -128,7 +128,7 @@ const BOSS_SPEED = 5;
 /** 投放后先「定在原地」多久（毫秒），让玩家先看清 Boss 在哪，再开始绕飞。
  *  作者要求：不要一上来就飞，避免玩家像抓瞎一样找。
  */
-const BORN_HOLD_MS = 2500;
+const BORN_HOLD_MS = 1500;
 /** 开局投放距离：沿相机视轴前方多少米（= 环绕飞行的恒定半径）。
  *  2 -> 4 -> 6 -> 3 -> 1.5 -> 3 -> 6 -> 9 -> 18
  *  （两次拉近「减半」、两次推远一倍、「再推远一些」、最后「再推远 2 倍」）。
@@ -993,7 +993,8 @@ class MainScene extends Scene {
         //   评级 = gradeResult() 由上述真实数据算出（旧版是 win ? 'B' : 'C' 的假数据）
         const acc = this.shots > 0 ? Math.round(this.hits * 100 / this.shots) : 0;
         this.resultStats.setText(`耗时 ${Math.round(this.elapsed)}s\n命中率 ${acc}%\n连击 ${this.maxCombo}\n评级 ${this.gradeResult(win)}`);
-        if (win) this.sound.play('胜利庆祝音');
+        // 结算音：胜利放庆祝音，失败放失败音（场景对象「像素失败音」，绑 Assets/像素失败音.mp3）。
+        this.sound.play(win ? '胜利庆祝音' : '像素失败音');
     }
 
     /**

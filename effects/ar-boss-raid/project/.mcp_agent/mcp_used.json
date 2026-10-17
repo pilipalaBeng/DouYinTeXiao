@@ -12,16 +12,16 @@
     "save_plan": 3,
     "get_current_preview_video": 1,
     "generate_image": 2,
-    "inspect": 32,
+    "inspect": 35,
     "project_status": 8,
-    "edit_by_dsl": 60,
+    "edit_by_dsl": 63,
     "get_scene": 41,
     "generate_assets_batch": 1,
     "capture_preview": 16,
-    "run_otsc_check": 101,
-    "interact_by_dsl": 136,
-    "get_script_logs": 127,
+    "run_otsc_check": 103,
+    "interact_by_dsl": 139,
+    "get_script_logs": 130,
     "get_scene_view": 2,
-    "save_project": 26
+    "save_project": 28
   }
 }

@@ -1,8 +1,8 @@
 {
   "formatVersion": 2,
   "revision": 31,
-  "mutationRevision": 366,
-  "updatedAt": "2026-10-17T09:06:57.153Z",
+  "mutationRevision": 376,
+  "updatedAt": "2026-10-17T09:23:31.682Z",
   "writerInstanceId": "1",
   "task": {
     "objective": "把作者新导入的「庆祝彩带」序列帧特效接入游戏胜利逻辑",
@@ -144,6 +144,11 @@
       "role": "ind",
       "kind": "sceneObject",
       "name": "离屏指示器"
+    },
+    {
+      "role": "fail",
+      "kind": "sceneObject",
+      "name": "像素失败音"
     }
   ],
   "verification": [
@@ -157,13 +162,13 @@
       "kind": "interaction",
       "status": "passed",
       "summary": "The latest interact_by_dsl sequence completed successfully.",
-      "at": "2026-10-17T09:06:05.330Z"
+      "at": "2026-10-17T09:22:56.330Z"
     },
     {
       "kind": "script",
       "status": "passed",
       "summary": "The latest run_otsc_check call completed without compilation errors.",
-      "at": "2026-10-17T09:06:57.153Z"
+      "at": "2026-10-17T09:23:31.682Z"
     }
   ],
   "openIssues": [
@@ -178,15 +183,15 @@
     "Assets/烟花效果.vg、爆炸效果.vg 已导入但尚未接入玩法，待作者指派用途"
   ],
   "lastMutation": {
-    "at": "2026-10-17T08:33:52.687Z",
+    "at": "2026-10-17T09:21:56.999Z",
     "status": "success",
-    "mutationRevision": 350,
+    "mutationRevision": 372,
     "commandTypes": [
       "set_scene_object"
     ]
   },
   "autoBrief": {
-    "summary": "Saved project: 55 scene object(s), 45 resource(s), 5 render group(s).",
-    "at": "2026-10-17T09:04:15.485Z"
+    "summary": "Saved project: 56 scene object(s), 45 resource(s), 5 render group(s).",
+    "at": "2026-10-17T09:22:04.112Z"
   }
 }
