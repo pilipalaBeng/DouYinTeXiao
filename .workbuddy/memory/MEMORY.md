@@ -125,6 +125,16 @@
      让作者换导出方式重出一张（换软件 / 另存 / 去元数据）。
 - **`set_component` 改不了 Image 的 `sortingOrder`**（报 "Property sortingOrder not found for component Image"），
   sortingOrder 走场景层级/自动排序，别在这里试。
+- **像塑有完整的父子层级，语义与 Unity 一致**（官方：ScreenTransform "supports ... parent-child hierarchies"、
+  "Position, Rotation, and Scale affect all children"）。
+  ⚠️ 关键 API 事实：`setEnabledInHierarchy(v)` **只改本对象的 local `enabled` + 递归通知后代的 DynamicComponent，
+    不修改后代的 local `enabled` 值** ⇒ 父关再开，**子对象各自的隐藏状态会保留**（等同 Unity 的 SetActive）。
+    所以"整组显隐"可以安全地作用在父容器上，不会把本该隐藏的子对象一起点亮。
+  - 与 Unity 对照：`anchoredPosition`≈localPosition（相对父锚点）、`anchors`/`pivot`≈RectTransform、
+    `scale`/`rotation`（子角度 = 自身 + 所有祖先之和）、`setEnabledInHierarchy`≈SetActive、Prefab 也有。
+  - 坑：`getChild(name)` **只查直接子级、不递归**；`add_builtin_object` 带 parent 是"先建再 move"，
+    且**新子对象插到父的最前面**（renderDepth 按 DFS 编号 ⇒ 后建的在下层），要用 `move_scene_object{above_scene_object}` 调；
+    `ScreenTransform` 与 `Transform` 在**同一对象上互斥**（2D / 3D 两套坐标系，别指望跨类型挂父）。
 - **`import_resource` 对同路径文件是覆盖导入**：guid 不变、`version` 前进，可用来强制刷新纹理资源。
 - ⚠️ **MCP 的组件 guid `c<N>` ≠ scene 文件里的 `localId`**（s20 的 ScreenTransform 文件里是 localId 22、MCP 里是 `c34`）。
   改组件只能用 MCP 返回的 `c<N>`；两者数值相近时极易搞混。
