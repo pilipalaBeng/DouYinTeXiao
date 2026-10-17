@@ -6,7 +6,7 @@
   "tools": {
     "query_knowledge": 15,
     "list_preview_videos": 2,
-    "update_handoff_context": 27,
+    "update_handoff_context": 28,
     "describe_project": 3,
     "list_resources": 8,
     "save_plan": 3,
@@ -18,10 +18,10 @@
     "get_scene": 39,
     "generate_assets_batch": 1,
     "capture_preview": 16,
-    "run_otsc_check": 70,
-    "interact_by_dsl": 112,
+    "run_otsc_check": 73,
+    "interact_by_dsl": 113,
     "get_script_logs": 116,
     "get_scene_view": 2,
-    "save_project": 17
+    "save_project": 18
   }
 }

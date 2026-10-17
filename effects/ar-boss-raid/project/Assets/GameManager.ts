@@ -26,6 +26,25 @@ const AIM_RADIUS = 122;
 /** Boss 总血量。血条填充比例 = hp / MAX_HP；阶段阈值也由它派生，不写散魔法数字。 */
 const MAX_HP = 2400;
 
+/** 结算评级：**全部由真实采集的数据算出**（命中率 / 耗时 / 连击），可复现、可解释。
+ *  以前是 `win ? 'B' : 'C'` 的硬编码 —— 打得再好也是 B，等于假数据。
+ *  三项各自归一化后加权求和（0~100），再按分数线映射到 S/A/B/C。
+ *  要调评级手感只动这一组常量，不要改算法。 */
+const GRADE_WEIGHT_ACC = 50;      // 命中率权重（满分项）
+const GRADE_WEIGHT_SPEED = 30;    // 速度权重
+const GRADE_WEIGHT_COMBO = 20;    // 连击权重
+/** 命中率满分线：打护盾核心的射击计入「射击数」但不计入「命中数」（见 resolveArrowHit），
+ *  所以命中率天然到不了 100%；以这个值为满分基准，高于它的部分按满分计。 */
+const GRADE_ACC_FULL = 0.8;
+/** 速度项归零点（秒）：用满这个时长速度分为 0（= 一局时限），击杀越快分越高。 */
+const GRADE_SPEED_CEIL = 30;
+/** 连击项满分线：达到这个连击数即拿满连击分。 */
+const GRADE_COMBO_FULL = 20;
+/** 评级分数线（低于 GRADE_B 即 C）。 */
+const GRADE_S = 85;
+const GRADE_A = 70;
+const GRADE_B = 50;
+
 /** Delay Health Bar（延迟血条）：受伤后「延迟条」先停顿多久（毫秒），再以多快追平（每秒收掉的比例）。
  *  观感 = 红条立刻缩短、露出一截黄条，黄条停一下后缓慢收掉 —— 让玩家看清这一下掉了多少血。 */
 const HP_DELAY_WAIT_MS = 400;
@@ -659,8 +678,31 @@ class MainScene extends Scene {
         // 全屏彩带序列帧：只在胜利时播，且每次胜利都从头播一遍。
         this.setConfettiSequence(win);
         this.resultTitle.setText(win ? '警报解除！' : '挑战结束');
-        this.resultStats.setText(`同步率 ${this.shots > 0 ? Math.round(this.hits * 100 / this.shots) : 0}%\n连击 ${this.maxCombo} 评级 ${win ? 'B' : 'C'}`);
+        // 三项全部来自真实采集的数据，没有任何硬编码：
+        //   耗时 = 本局计时 elapsed（开局归零，击杀/超时那一刻停下）
+        //   同步率 = 命中数 / 射击数（真实统计，见 fire() 与 hit()）
+        //   评级 = gradeResult() 由上述真实数据算出（旧版是 win ? 'B' : 'C' 的假数据）
+        const acc = this.shots > 0 ? Math.round(this.hits * 100 / this.shots) : 0;
+        this.resultStats.setText(`耗时 ${Math.round(this.elapsed)}s  同步率 ${acc}%\n连击 ${this.maxCombo}  评级 ${this.gradeResult(win)}`);
         if (win) this.sound.play('胜利庆祝音');
+    }
+
+    /**
+     * 结算评级：完全由真实采集的数据算出，可复现、可解释
+     * （旧版是 `win ? 'B' : 'C'` 硬编码 —— 打得再好也是 B，等于假数据）。
+     * 未击杀一律 C：没打完的局不谈表现（含 30 秒超时、一枪没开）。
+     * 分数 = 命中率×50 + 速度×30 + 连击×20；权重与分数线见文件顶部 GRADE_* 常量。
+     */
+    private gradeResult(win: boolean): string {
+        if (!win || this.shots === 0) return 'C';
+        const acc = Math.min(1, this.hits / this.shots / GRADE_ACC_FULL);
+        const speed = Math.max(0, 1 - this.elapsed / GRADE_SPEED_CEIL);
+        const combo = Math.min(1, this.maxCombo / GRADE_COMBO_FULL);
+        const score = acc * GRADE_WEIGHT_ACC + speed * GRADE_WEIGHT_SPEED + combo * GRADE_WEIGHT_COMBO;
+        if (score >= GRADE_S) return 'S';
+        if (score >= GRADE_A) return 'A';
+        if (score >= GRADE_B) return 'B';
+        return 'C';
     }
 
     /**

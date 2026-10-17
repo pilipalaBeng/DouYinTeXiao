@@ -1,15 +1,15 @@
 {
   "formatVersion": 2,
-  "revision": 28,
-  "mutationRevision": 292,
-  "updatedAt": "2026-10-17T00:38:04.951Z",
+  "revision": 29,
+  "mutationRevision": 297,
+  "updatedAt": "2026-10-17T00:43:56.817Z",
   "writerInstanceId": "1",
   "task": {
-    "objective": "把 ar-boss-raid 改为真 3D 空间玩法并调通",
+    "objective": "把作者新导入的「庆祝彩带」序列帧特效接入游戏胜利逻辑",
     "workflow": "EffectWorkflow",
-    "currentStage": "距离调至 1.5 + 主循环加固-已完成，待真机验证",
+    "currentStage": "彩带接入-已完成，待真机确认观感",
     "status": "verifying",
-    "summary": "SPAWN_DIST 3->1.5（作者要求再拉近一倍，BOSS_CORE_SIZE 保持 3.0）；彻底排查主循环：探针实测 tick 每帧完整执行、isRec=true、phase=warmup 均正常，PC 上 HUD 冻结系帧率仅 1.5~5 FPS 叠加单帧限幅所致，非代码问题；加固 detectFaceHeavy 异常隔离与 update 独立异常配额；确认 delta 单位为毫秒。"
+    "summary": "「庆祝彩带」序列帧（28帧/432×576/706KB）已接入胜利逻辑：新增 setConfettiSequence(show) 统一显隐+重播，通过 texture.getControl() 拿 AnimatedTextureProvider 调 stop()+play() 保证每次胜利从头播。顺带修复上一轮血条改造的遗漏：finish() 漏收起「战斗HUD底板」，导致结算画面左上留一条深紫长条。PC 预览验证：序列帧确实在动、胜利画面彩带正常、紫块消失、无异常。探针已全部撤除，exit_code=0，已 save_project。"
   },
   "knowledge": {
     "rulesDigest": "sha256:8833b06622258c7ff9181204bd4b86d74622dff6714909d205ca1bf969a8a580",
@@ -97,7 +97,7 @@
     ]
   },
   "semanticReady": true,
-  "needsAlignment": true,
+  "needsAlignment": false,
   "implementation": [
     "GameManager.ts 已 3D 化：Boss = 「Boss空间体」s68（3D Image，ARTracking 组 s8），旧 2D「Boss主体」s16 已删",
     "取对象：this.sys.engineScene.findSceneObject(name)；3D 对象不走 Game2D.existing()（那条路要求 ScreenTransform）",
@@ -113,35 +113,42 @@
   },
   "artifacts": [
     {
-      "role": "主玩法脚本（SPAWN_DIST=1.5；detectFaceHeavy 隔离；update 独立异常配额）",
+      "role": "主玩法脚本（新增 setConfettiSequence / restartConfettiSequence，修复 hudPlate 漏收起）",
       "kind": "script",
       "path": "Assets/GameManager.ts",
       "name": "GameManager"
     },
     {
-      "role": "delay",
+      "role": "庆祝彩带序列帧实例（全屏 720×1280，贴图 r52 动画纹理，FitHeight）",
       "kind": "sceneObject",
-      "name": "Boss血条延迟"
+      "parent": "2D 前景/2D 相机",
+      "name": "屏幕图片"
+    },
+    {
+      "role": "血条纯色底色，结算时需与血条一起收起",
+      "kind": "sceneObject",
+      "parent": "2D 前景/2D 摄像机/UI界面",
+      "name": "战斗HUD底板"
     }
   ],
   "verification": [
     {
       "kind": "preview",
       "status": "passed",
-      "summary": "The latest capture_preview call completed successfully.",
-      "at": "2026-10-16T01:12:25.498Z"
+      "summary": "收藏彩带序列帧在 PC 预览中正常显示且逐帧推进（两帧截图彩纸位置完全不同）；胜利画面彩带与结算卡共存，血条/底板正确收起。",
+      "at": "2026-10-17T00:39:20.350Z"
     },
     {
       "kind": "interaction",
       "status": "passed",
       "summary": "The latest interact_by_dsl sequence completed successfully.",
-      "at": "2026-10-17T00:37:31.622Z"
+      "at": "2026-10-17T00:43:20.430Z"
     },
     {
       "kind": "script",
       "status": "passed",
       "summary": "The latest run_otsc_check call completed without compilation errors.",
-      "at": "2026-10-17T00:37:58.189Z"
+      "at": "2026-10-17T00:43:48.802Z"
     }
   ],
   "openIssues": [
@@ -150,9 +157,10 @@
     "PC 上相机位于原点时 worldToScreenPoint 退化为 (0,0,0)，Boss 恒出框，命中判定无法在 PC 验证"
   ],
   "nextActions": [
-    "真机验证开火（触摸链路只能在真机验）与 1.5 米距离观感",
-    "若 1.5 米下 Boss 糊脸/穿模，调小 BOSS_CORE_SIZE（当前 3.0），不要回退距离",
-    "确认无问题后删除 probeSpatial 与 [fire] 诊断"
+    "真机确认彩带观感（预制件 blendMode=Screen 在亮背景上会显得发白；如观感偏淡可改为 Normal，需作者确认）",
+    "确认是否保留旧的静态「胜利彩带」（像素彩带庆祝.png，210×155，与序列帧彩带共存于结算画面）",
+    "留意包体：新增的 28 帧序列帧共 706KB（项目红线 2MB）",
+    "Assets/烟花效果.vg、爆炸效果.vg 已导入但尚未接入玩法，待作者指派用途"
   ],
   "lastMutation": {
     "at": "2026-10-16T23:48:39.770Z",
@@ -163,7 +171,7 @@
     ]
   },
   "autoBrief": {
-    "summary": "Saved project: 53 scene object(s), 40 resource(s), 5 render group(s).",
-    "at": "2026-10-17T00:38:04.951Z"
+    "summary": "Saved project: 53 scene object(s), 47 resource(s), 5 render group(s).",
+    "at": "2026-10-17T00:43:56.817Z"
   }
 }
