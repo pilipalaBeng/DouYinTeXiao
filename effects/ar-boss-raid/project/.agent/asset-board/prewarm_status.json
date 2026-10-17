@@ -2,13 +2,13 @@
   "version": 1,
   "status": "completed",
   "identity": {
-    "key": "6684aa5ab1ddfe509b10e05af703e12233d59b5a09cc3973652dc6a8f30d5461",
-    "designBriefHash": "cdf069d03343d079ed58f8e4a63c873ecc1e77140a529fb2929f327a74ef5af8",
+    "key": "16a2f4819bff8815f48e97174b11f5d33670734e271ca1c0e01a4dc741ca8718",
+    "designBriefHash": "3f537e820ffc24cf96905c152a542e16d13cbd318c857a7a28462f43bbd8d517",
     "settingImageHash": "474c40a493ff5b29dc3b35fadeed27299a3c375726ef681b0ffc7647dcf4483b",
     "settingImageTaskId": "wf12026101416142249610124034562"
   },
   "attempt": 1,
-  "startedAt": "2026-10-16T03:11:24.128Z",
-  "updatedAt": "2026-10-16T03:12:29.645Z",
-  "finishedAt": "2026-10-16T03:12:29.645Z"
+  "startedAt": "2026-10-17T00:47:56.189Z",
+  "updatedAt": "2026-10-17T00:48:55.563Z",
+  "finishedAt": "2026-10-17T00:48:55.563Z"
 }

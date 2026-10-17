@@ -2,11 +2,11 @@
   "version": 1,
   "generator": "image2-asset-board",
   "designBriefPath": "Assets/design_brief_ui.md",
-  "designBriefHash": "cdf069d03343d079ed58f8e4a63c873ecc1e77140a529fb2929f327a74ef5af8",
+  "designBriefHash": "3f537e820ffc24cf96905c152a542e16d13cbd318c857a7a28462f43bbd8d517",
   "settingImagePath": ".agent/setting-image/设定图.png",
   "settingImageHash": "474c40a493ff5b29dc3b35fadeed27299a3c375726ef681b0ffc7647dcf4483b",
   "settingImageTaskId": "wf12026101416142249610124034562",
-  "generatedAt": "2026-10-16T03:12:29.636Z",
+  "generatedAt": "2026-10-17T00:48:55.554Z",
   "pages": [
     {
       "pageNumber": 1,
@@ -14,12 +14,12 @@
       "rows": 6,
       "pageSize": 24,
       "boardPath": ".agent/asset-board/pages/page-01/board.png",
-      "boardHash": "8f7751e1d914e2be8b3539d06b7179bc33ae3e9c1cebaaddb1dd9e9201cdfb54",
+      "boardHash": "fe2e64351db7c76ef6096edb86e93abf19d4d5a79bb20a8e9682387da2cae7bd",
       "promptPath": ".agent/asset-board/pages/page-01/prompt.txt",
-      "promptHash": "13d8de797d2b87256c34e73f4c127009546acc2c31ffcaa75a7585aa91711141",
-      "taskId": "wf12026101611112549934218554114",
+      "promptHash": "66798ed5c2e349b207f1e91751cc3458c54c28622a44a44e5bad39360670b400",
+      "taskId": "wf12026101708475750099311364610",
       "workflowSource": "loki_material://7660791499554078766",
-      "image2LogId": "0217921202841352408820760c65e30e4fef7950c91c7799d85a5",
+      "image2LogId": "0217921980762032408820760c65e30e4fef7950c91c779dcabba",
       "width": 2160,
       "height": 3840,
       "detectedCellCount": 23
@@ -29,8 +29,8 @@
     {
       "assetKey": "像素飞行Boss待机.png",
       "assetType": "gameplay_sprite",
-      "width": 535,
-      "height": 479,
+      "width": 513,
+      "height": 489,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 0,
@@ -38,36 +38,36 @@
       "row": 0,
       "column": 0,
       "cellBBox": {
-        "left": 38,
-        "top": 39,
-        "width": 535,
-        "height": 636
+        "left": 11,
+        "top": 11,
+        "width": 513,
+        "height": 713
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A01-f1d175e725db.png",
-      "cropHash": "0a83faab12828ed072e1d95de43273b2464cd611a74f4d3aef4bbf357f449f0e",
+      "cropHash": "4e73cc6e945e917024dbf4d3bc02ec99fc1f310f97e425be013c2c86388a95e6",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A01-f1d175e725db.png",
-      "textlessCropHash": "0a83faab12828ed072e1d95de43273b2464cd611a74f4d3aef4bbf357f449f0e",
+      "textlessCropHash": "4e73cc6e945e917024dbf4d3bc02ec99fc1f310f97e425be013c2c86388a95e6",
       "bottomLabelRemoval": {
         "applied": true,
-        "sourceHeight": 636,
-        "outputHeight": 479,
+        "sourceHeight": 713,
+        "outputHeight": 489,
         "gap": {
-          "start": 447,
-          "end": 558
+          "start": 453,
+          "end": 616
         },
         "labelBand": {
-          "top": 559,
-          "bottom": 621
+          "top": 617,
+          "bottom": 663
         }
       },
-      "referenceImageUrl": "https://lf3-effectplatform-sign.byteeffecttos.com/ies.fe.effect/2de7511ebf1724578bc3fb53389fb2a3?x-expires=1792725149&x-signature=hK%2BAlZcdku%2FTcW5L7ypnnUkHszk%3D",
-      "referenceImageUri": "ies.fe.effect/2de7511ebf1724578bc3fb53389fb2a3"
+      "referenceImageUrl": "https://lf3-effectplatform-sign.byteeffecttos.com/ies.fe.effect/64f6bc2905423d68e55f9fba16f54405?x-expires=1792802936&x-signature=EIHTuRi8faPKtcwgGMAgEB52b3k%3D",
+      "referenceImageUri": "ies.fe.effect/64f6bc2905423d68e55f9fba16f54405"
     },
     {
       "assetKey": "像素飞行Boss振翅1.png",
       "assetType": "gameplay_sprite",
-      "width": 488,
-      "height": 479,
+      "width": 522,
+      "height": 491,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 1,
@@ -75,36 +75,36 @@
       "row": 0,
       "column": 1,
       "cellBBox": {
-        "left": 585,
-        "top": 39,
-        "width": 488,
-        "height": 636
+        "left": 537,
+        "top": 11,
+        "width": 522,
+        "height": 713
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A02-e4105f3fbe52.png",
-      "cropHash": "22b23aeab7ba1235ae8c33df717e890f1432bbb735ba803a40a09099ae5a2f0a",
+      "cropHash": "492659833a23ebc2af2e7185cd45bb622d4a6492bdb8f201032854a71252cdbc",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A02-e4105f3fbe52.png",
-      "textlessCropHash": "22b23aeab7ba1235ae8c33df717e890f1432bbb735ba803a40a09099ae5a2f0a",
+      "textlessCropHash": "492659833a23ebc2af2e7185cd45bb622d4a6492bdb8f201032854a71252cdbc",
       "bottomLabelRemoval": {
         "applied": true,
-        "sourceHeight": 636,
-        "outputHeight": 479,
+        "sourceHeight": 713,
+        "outputHeight": 491,
         "gap": {
-          "start": 447,
-          "end": 558
+          "start": 455,
+          "end": 616
         },
         "labelBand": {
-          "top": 559,
-          "bottom": 621
+          "top": 617,
+          "bottom": 662
         }
       },
-      "referenceImageUrl": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/624f1baf5d2e98484c33f2d503158e21?x-expires=1792725149&x-signature=cTZ%2FrpAVZxjGCTyJ1qJlMiGk2Mo%3D",
-      "referenceImageUri": "ies.fe.effect/624f1baf5d2e98484c33f2d503158e21"
+      "referenceImageUrl": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/2a22879f01f4c0ecfa63c5a7626d4c69?x-expires=1792802936&x-signature=I%2B7ah6S614N87X4QJTWZ24lrxq8%3D",
+      "referenceImageUri": "ies.fe.effect/2a22879f01f4c0ecfa63c5a7626d4c69"
     },
     {
       "assetKey": "像素飞行Boss振翅2.png",
       "assetType": "gameplay_sprite",
-      "width": 507,
-      "height": 480,
+      "width": 515,
+      "height": 500,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 2,
@@ -112,36 +112,36 @@
       "row": 0,
       "column": 2,
       "cellBBox": {
-        "left": 1085,
-        "top": 39,
-        "width": 507,
-        "height": 636
+        "left": 1072,
+        "top": 11,
+        "width": 515,
+        "height": 713
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A03-d9672ff7622c.png",
-      "cropHash": "ad34e1b5ef36b49f4d5c2926cbe35b3b19df30b00fe880acfba9996bb9f8d647",
+      "cropHash": "c18450ea725a8add6335876a115d3d9bdc00a0dde1b0e655dd996de70ac09760",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A03-d9672ff7622c.png",
-      "textlessCropHash": "ad34e1b5ef36b49f4d5c2926cbe35b3b19df30b00fe880acfba9996bb9f8d647",
+      "textlessCropHash": "c18450ea725a8add6335876a115d3d9bdc00a0dde1b0e655dd996de70ac09760",
       "bottomLabelRemoval": {
         "applied": true,
-        "sourceHeight": 636,
-        "outputHeight": 480,
+        "sourceHeight": 713,
+        "outputHeight": 500,
         "gap": {
-          "start": 448,
-          "end": 558
+          "start": 464,
+          "end": 615
         },
         "labelBand": {
-          "top": 559,
-          "bottom": 621
+          "top": 616,
+          "bottom": 661
         }
       },
-      "referenceImageUrl": "https://lf6-effectplatform-sign.byteeffecttos.com/ies.fe.effect/098978539d413e1998ca73ea2deff5e4?x-expires=1792725149&x-signature=ZnBTP0mexuGBmqWh74tJRppdHz8%3D",
-      "referenceImageUri": "ies.fe.effect/098978539d413e1998ca73ea2deff5e4"
+      "referenceImageUrl": "https://lf26-effectplatform-sign.byteeffecttos.com/ies.fe.effect/e88faa8f06c0cc5d8fe105d6c572c442?x-expires=1792802936&x-signature=E%2Fq7WT7jlin2lv15rlXoLPqwV%2B0%3D",
+      "referenceImageUri": "ies.fe.effect/e88faa8f06c0cc5d8fe105d6c572c442"
     },
     {
       "assetKey": "像素飞行Boss振翅3.png",
       "assetType": "gameplay_sprite",
-      "width": 514,
-      "height": 480,
+      "width": 550,
+      "height": 501,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 3,
@@ -149,36 +149,36 @@
       "row": 0,
       "column": 3,
       "cellBBox": {
-        "left": 1604,
-        "top": 39,
-        "width": 514,
-        "height": 636
+        "left": 1600,
+        "top": 11,
+        "width": 550,
+        "height": 713
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A04-41a68981a316.png",
-      "cropHash": "86b08c21dcacdf2dcd9754806fdddad34eb6055dad1366f6658892dd785d05c1",
+      "cropHash": "0115416b3b947d4c182c94556348c7b8be186cc7c62d8c198533ffafff718c1f",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A04-41a68981a316.png",
-      "textlessCropHash": "86b08c21dcacdf2dcd9754806fdddad34eb6055dad1366f6658892dd785d05c1",
+      "textlessCropHash": "0115416b3b947d4c182c94556348c7b8be186cc7c62d8c198533ffafff718c1f",
       "bottomLabelRemoval": {
         "applied": true,
-        "sourceHeight": 636,
-        "outputHeight": 480,
+        "sourceHeight": 713,
+        "outputHeight": 501,
         "gap": {
-          "start": 448,
-          "end": 558
+          "start": 465,
+          "end": 614
         },
         "labelBand": {
-          "top": 559,
-          "bottom": 621
+          "top": 615,
+          "bottom": 661
         }
       },
-      "referenceImageUrl": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/c7009e5cb19049c9205cae94b5b7a205?x-expires=1792725149&x-signature=S1LSfbecYNzDDj8Nx%2FBpNsng5O8%3D",
-      "referenceImageUri": "ies.fe.effect/c7009e5cb19049c9205cae94b5b7a205"
+      "referenceImageUrl": "https://lf3-effectplatform-sign.byteeffecttos.com/ies.fe.effect/27543873fa263ca5bc04104ff71bc7c5?x-expires=1792802936&x-signature=PmtmtNW7RaZDyJvWYW4tpOsVzC0%3D",
+      "referenceImageUri": "ies.fe.effect/27543873fa263ca5bc04104ff71bc7c5"
     },
     {
       "assetKey": "像素飞行Boss振翅4.png",
       "assetType": "gameplay_sprite",
-      "width": 535,
-      "height": 498,
+      "width": 513,
+      "height": 486,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 4,
@@ -186,36 +186,36 @@
       "row": 1,
       "column": 0,
       "cellBBox": {
-        "left": 38,
-        "top": 688,
-        "width": 535,
-        "height": 649
+        "left": 11,
+        "top": 737,
+        "width": 513,
+        "height": 712
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A05-bc870555876d.png",
-      "cropHash": "63f9c4460f5d6f46513f1a0077d9d8116e78af759c9a2552bdc2daac6acaa748",
+      "cropHash": "dafc0ed32652ac2596e519442b49d37fc6ef5b0b578601ecd5ff894179009a76",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A05-bc870555876d.png",
-      "textlessCropHash": "63f9c4460f5d6f46513f1a0077d9d8116e78af759c9a2552bdc2daac6acaa748",
+      "textlessCropHash": "dafc0ed32652ac2596e519442b49d37fc6ef5b0b578601ecd5ff894179009a76",
       "bottomLabelRemoval": {
         "applied": true,
-        "sourceHeight": 649,
-        "outputHeight": 498,
+        "sourceHeight": 712,
+        "outputHeight": 486,
         "gap": {
-          "start": 466,
-          "end": 576
+          "start": 450,
+          "end": 601
         },
         "labelBand": {
-          "top": 577,
-          "bottom": 638
+          "top": 602,
+          "bottom": 648
         }
       },
-      "referenceImageUrl": "https://lf3-effectplatform-sign.byteeffecttos.com/ies.fe.effect/34c879f874f6696ca6e42efe6c29519a?x-expires=1792725149&x-signature=vE6GT3McCoBA7DT3XhR4wWFRDKs%3D",
-      "referenceImageUri": "ies.fe.effect/34c879f874f6696ca6e42efe6c29519a"
+      "referenceImageUrl": "https://lf6-effectplatform-sign.byteeffecttos.com/ies.fe.effect/139a64fd5c18e75d6b7dd4e6d5fa2fab?x-expires=1792802936&x-signature=F6Q%2FoHY1WmrW5g7PMtpD8ahh%2Bdo%3D",
+      "referenceImageUri": "ies.fe.effect/139a64fd5c18e75d6b7dd4e6d5fa2fab"
     },
     {
       "assetKey": "像素飞行Boss暴怒.png",
       "assetType": "state_variant",
-      "width": 488,
-      "height": 506,
+      "width": 522,
+      "height": 513,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 5,
@@ -223,36 +223,36 @@
       "row": 1,
       "column": 1,
       "cellBBox": {
-        "left": 585,
-        "top": 688,
-        "width": 488,
-        "height": 649
+        "left": 537,
+        "top": 737,
+        "width": 522,
+        "height": 712
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A06-4c1d7046400c.png",
-      "cropHash": "3a19253cd59a20dbba2a23c0e82ae779d0dc60118a9f597d1d4dfc0642a05687",
+      "cropHash": "da20aa65df4538a0d23345e82255ead65ce28a9ae5d2d8cc23cca85fe1b77696",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A06-4c1d7046400c.png",
-      "textlessCropHash": "3a19253cd59a20dbba2a23c0e82ae779d0dc60118a9f597d1d4dfc0642a05687",
+      "textlessCropHash": "da20aa65df4538a0d23345e82255ead65ce28a9ae5d2d8cc23cca85fe1b77696",
       "bottomLabelRemoval": {
         "applied": true,
-        "sourceHeight": 649,
-        "outputHeight": 506,
+        "sourceHeight": 712,
+        "outputHeight": 513,
         "gap": {
-          "start": 476,
-          "end": 576
+          "start": 477,
+          "end": 601
         },
         "labelBand": {
-          "top": 577,
-          "bottom": 638
+          "top": 602,
+          "bottom": 648
         }
       },
-      "referenceImageUrl": "https://lf6-effectplatform-sign.byteeffecttos.com/ies.fe.effect/8588fbb48f9c8ce7be8fcef1e35a3aaa?x-expires=1792725149&x-signature=0w2aZY699K%2F%2F9%2FVuOQ3RqSFin7A%3D",
-      "referenceImageUri": "ies.fe.effect/8588fbb48f9c8ce7be8fcef1e35a3aaa"
+      "referenceImageUrl": "https://lf6-effectplatform-sign.byteeffecttos.com/ies.fe.effect/e278fd1a5ff4bccb8bf163fad46fb01c?x-expires=1792802936&x-signature=RXuG6AJTtHNyBcBq6wFKG04B6Qw%3D",
+      "referenceImageUri": "ies.fe.effect/e278fd1a5ff4bccb8bf163fad46fb01c"
     },
     {
       "assetKey": "像素飞行Boss投降.png",
       "assetType": "state_variant",
-      "width": 507,
-      "height": 508,
+      "width": 515,
+      "height": 521,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 6,
@@ -260,36 +260,36 @@
       "row": 1,
       "column": 2,
       "cellBBox": {
-        "left": 1085,
-        "top": 688,
-        "width": 507,
-        "height": 649
+        "left": 1072,
+        "top": 737,
+        "width": 515,
+        "height": 712
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A07-19e711a2cbe3.png",
-      "cropHash": "fcf5112d2eb7b65ee2c4fd0252c11461d57a018c9a536fdf6c8ec3b6aa4f839f",
+      "cropHash": "a142702278de3e67dd00cdd726498b0b97ca634df70054568d330952a9e25566",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A07-19e711a2cbe3.png",
-      "textlessCropHash": "fcf5112d2eb7b65ee2c4fd0252c11461d57a018c9a536fdf6c8ec3b6aa4f839f",
+      "textlessCropHash": "a142702278de3e67dd00cdd726498b0b97ca634df70054568d330952a9e25566",
       "bottomLabelRemoval": {
         "applied": true,
-        "sourceHeight": 649,
-        "outputHeight": 508,
+        "sourceHeight": 712,
+        "outputHeight": 521,
         "gap": {
-          "start": 479,
-          "end": 576
+          "start": 486,
+          "end": 601
         },
         "labelBand": {
-          "top": 577,
-          "bottom": 639
+          "top": 602,
+          "bottom": 648
         }
       },
-      "referenceImageUrl": "https://lf6-effectplatform-sign.byteeffecttos.com/ies.fe.effect/373ea743a7ee5be54144b404a2f71ea0?x-expires=1792725149&x-signature=60Z45hW4eCRBQ%2B7224YgdfhJRw0%3D",
-      "referenceImageUri": "ies.fe.effect/373ea743a7ee5be54144b404a2f71ea0"
+      "referenceImageUrl": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/672da54191539db2029e74a2ce8e9eff?x-expires=1792802936&x-signature=CTP77iraHleEcc1zbH0injXzNt4%3D",
+      "referenceImageUri": "ies.fe.effect/672da54191539db2029e74a2ce8e9eff"
     },
     {
       "assetKey": "古代像素战弩.png",
       "assetType": "gameplay_sprite",
-      "width": 514,
-      "height": 547,
+      "width": 550,
+      "height": 571,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 7,
@@ -297,36 +297,36 @@
       "row": 1,
       "column": 3,
       "cellBBox": {
-        "left": 1604,
-        "top": 688,
-        "width": 514,
-        "height": 649
+        "left": 1600,
+        "top": 737,
+        "width": 550,
+        "height": 712
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A08-f62990b0d809.png",
-      "cropHash": "87b25a588323617faaf7d791272cd300ced7a646ab32516752b76bcf11ffb324",
+      "cropHash": "e24b5cc44680e1751e22b5e304765371a8a152bf9b841d8354f7c0cb96c281a5",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A08-f62990b0d809.png",
-      "textlessCropHash": "87b25a588323617faaf7d791272cd300ced7a646ab32516752b76bcf11ffb324",
+      "textlessCropHash": "e24b5cc44680e1751e22b5e304765371a8a152bf9b841d8354f7c0cb96c281a5",
       "bottomLabelRemoval": {
         "applied": true,
-        "sourceHeight": 649,
-        "outputHeight": 547,
+        "sourceHeight": 712,
+        "outputHeight": 571,
         "gap": {
-          "start": 534,
-          "end": 576
+          "start": 557,
+          "end": 601
         },
         "labelBand": {
-          "top": 577,
-          "bottom": 639
+          "top": 602,
+          "bottom": 648
         }
       },
-      "referenceImageUrl": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/040807751d776f096c3e905c43212158?x-expires=1792725149&x-signature=I0sOwXIDJmw4IJC%2FVkZbzqeDqWE%3D",
-      "referenceImageUri": "ies.fe.effect/040807751d776f096c3e905c43212158"
+      "referenceImageUrl": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/680ee0898d401da442620967974c2364?x-expires=1792802936&x-signature=cCvFrvxFkhhuAaj0JNCY9%2B5d1%2FQ%3D",
+      "referenceImageUri": "ies.fe.effect/680ee0898d401da442620967974c2364"
     },
     {
       "assetKey": "古代像素战弩拉弦.png",
       "assetType": "gameplay_sprite",
-      "width": 535,
-      "height": 548,
+      "width": 513,
+      "height": 522,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 8,
@@ -334,36 +334,36 @@
       "row": 2,
       "column": 0,
       "cellBBox": {
-        "left": 38,
-        "top": 1350,
-        "width": 535,
+        "left": 11,
+        "top": 1462,
+        "width": 513,
         "height": 657
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A09-6ba2e06397ad.png",
-      "cropHash": "ca1afb33b8855bbf3e3eb8ec523afc7c4bbc215ba7ced0d9eba4aabd6fc4fe8d",
+      "cropHash": "af466ae8727c7e2bd651b763215564ca6dce693fd34b1fc6b07f3c1d8d9ca99b",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A09-6ba2e06397ad.png",
-      "textlessCropHash": "ca1afb33b8855bbf3e3eb8ec523afc7c4bbc215ba7ced0d9eba4aabd6fc4fe8d",
+      "textlessCropHash": "af466ae8727c7e2bd651b763215564ca6dce693fd34b1fc6b07f3c1d8d9ca99b",
       "bottomLabelRemoval": {
         "applied": true,
         "sourceHeight": 657,
-        "outputHeight": 548,
+        "outputHeight": 522,
         "gap": {
-          "start": 534,
-          "end": 579
+          "start": 510,
+          "end": 550
         },
         "labelBand": {
-          "top": 580,
-          "bottom": 641
+          "top": 551,
+          "bottom": 597
         }
       },
-      "referenceImageUrl": "https://lf26-effectplatform-sign.byteeffecttos.com/ies.fe.effect/5a7600998f42b8064290edf1d7cf1eae?x-expires=1792725149&x-signature=y4Hd5mLuXGsy%2BUObcAbMY1Z9dZo%3D",
-      "referenceImageUri": "ies.fe.effect/5a7600998f42b8064290edf1d7cf1eae"
+      "referenceImageUrl": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/4eca3ca56725301962087bf509a68335?x-expires=1792802936&x-signature=AD0gLC8hkN3W1kW%2BFfy8Rn73e6Y%3D",
+      "referenceImageUri": "ies.fe.effect/4eca3ca56725301962087bf509a68335"
     },
     {
       "assetKey": "古代像素战弩击发.png",
       "assetType": "gameplay_sprite",
-      "width": 488,
-      "height": 542,
+      "width": 522,
+      "height": 522,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 9,
@@ -371,36 +371,36 @@
       "row": 2,
       "column": 1,
       "cellBBox": {
-        "left": 585,
-        "top": 1350,
-        "width": 488,
+        "left": 537,
+        "top": 1462,
+        "width": 522,
         "height": 657
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A10-7545f59d71ca.png",
-      "cropHash": "b059eec4d37ef4b84e0cc0a9bc58fdd39207b17bee02666550e6f122a62fda88",
+      "cropHash": "ac0a2d861340474a02a82118538c96773438fb322c559aab283f9d6f5a085ba7",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A10-7545f59d71ca.png",
-      "textlessCropHash": "b059eec4d37ef4b84e0cc0a9bc58fdd39207b17bee02666550e6f122a62fda88",
+      "textlessCropHash": "ac0a2d861340474a02a82118538c96773438fb322c559aab283f9d6f5a085ba7",
       "bottomLabelRemoval": {
         "applied": true,
         "sourceHeight": 657,
-        "outputHeight": 542,
+        "outputHeight": 522,
         "gap": {
-          "start": 525,
-          "end": 581
+          "start": 510,
+          "end": 550
         },
         "labelBand": {
-          "top": 582,
-          "bottom": 643
+          "top": 551,
+          "bottom": 597
         }
       },
-      "referenceImageUrl": "https://lf26-effectplatform-sign.byteeffecttos.com/ies.fe.effect/4e75822572cda7d12dcd5d72be63252e?x-expires=1792725150&x-signature=KN0jIBpnMvhzYcrsPgS8rcKVe4k%3D",
-      "referenceImageUri": "ies.fe.effect/4e75822572cda7d12dcd5d72be63252e"
+      "referenceImageUrl": "https://lf6-effectplatform-sign.byteeffecttos.com/ies.fe.effect/fe469a46360e12bbcc62e60cb9f5683a?x-expires=1792802936&x-signature=sh3hqr0GUFzfe4H4kYctAtkkeNQ%3D",
+      "referenceImageUri": "ies.fe.effect/fe469a46360e12bbcc62e60cb9f5683a"
     },
     {
       "assetKey": "古代像素战弩回位.png",
       "assetType": "gameplay_sprite",
-      "width": 507,
-      "height": 549,
+      "width": 515,
+      "height": 522,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 10,
@@ -408,36 +408,36 @@
       "row": 2,
       "column": 2,
       "cellBBox": {
-        "left": 1085,
-        "top": 1350,
-        "width": 507,
+        "left": 1072,
+        "top": 1462,
+        "width": 515,
         "height": 657
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A11-edfd7790f0c9.png",
-      "cropHash": "9d66a52df72f891674677113b1097a58244936fa00f46a93d34091d43066d754",
+      "cropHash": "1a83113ae556f001fe2583e207ea183c4a3e96bf078cd04ebec358273b59cf12",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A11-edfd7790f0c9.png",
-      "textlessCropHash": "9d66a52df72f891674677113b1097a58244936fa00f46a93d34091d43066d754",
+      "textlessCropHash": "1a83113ae556f001fe2583e207ea183c4a3e96bf078cd04ebec358273b59cf12",
       "bottomLabelRemoval": {
         "applied": true,
         "sourceHeight": 657,
-        "outputHeight": 549,
+        "outputHeight": 522,
         "gap": {
-          "start": 535,
-          "end": 582
+          "start": 510,
+          "end": 550
         },
         "labelBand": {
-          "top": 583,
-          "bottom": 645
+          "top": 551,
+          "bottom": 597
         }
       },
-      "referenceImageUrl": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/1f55fac77cc47a4bbab918e8606b5ee2?x-expires=1792725149&x-signature=GOu22yE2y8LmrPsmav%2FCKqxDTsU%3D",
-      "referenceImageUri": "ies.fe.effect/1f55fac77cc47a4bbab918e8606b5ee2"
+      "referenceImageUrl": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/1d1f344076bff1950ad907dfabc26498?x-expires=1792802936&x-signature=iQKWTuqblxx2xi%2BZeqQazVyFnDU%3D",
+      "referenceImageUri": "ies.fe.effect/1d1f344076bff1950ad907dfabc26498"
     },
     {
       "assetKey": "像素准星.png",
       "assetType": "effect_sprite",
-      "width": 514,
-      "height": 499,
+      "width": 550,
+      "height": 461,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 11,
@@ -445,36 +445,36 @@
       "row": 2,
       "column": 3,
       "cellBBox": {
-        "left": 1604,
-        "top": 1350,
-        "width": 514,
+        "left": 1600,
+        "top": 1462,
+        "width": 550,
         "height": 657
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A12-1f976fcfdd6d.png",
-      "cropHash": "cab9c8b8c78d947b9bc043b83d22a1a86c7fcdecdf49df488089239e8116b685",
+      "cropHash": "d3c8f3b86108e42142bb2aa6de6f4786422754b0b382a3ee0c8dc38a1f3c28b1",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A12-1f976fcfdd6d.png",
-      "textlessCropHash": "cab9c8b8c78d947b9bc043b83d22a1a86c7fcdecdf49df488089239e8116b685",
+      "textlessCropHash": "d3c8f3b86108e42142bb2aa6de6f4786422754b0b382a3ee0c8dc38a1f3c28b1",
       "bottomLabelRemoval": {
         "applied": true,
         "sourceHeight": 657,
-        "outputHeight": 499,
+        "outputHeight": 461,
         "gap": {
-          "start": 466,
-          "end": 582
+          "start": 428,
+          "end": 550
         },
         "labelBand": {
-          "top": 583,
-          "bottom": 645
+          "top": 551,
+          "bottom": 597
         }
       },
-      "referenceImageUrl": "https://lf26-effectplatform-sign.byteeffecttos.com/ies.fe.effect/a860322c985299817afb107181362ea5?x-expires=1792725149&x-signature=aXhZxevZkHlSI45OyVpXv96u9Uw%3D",
-      "referenceImageUri": "ies.fe.effect/a860322c985299817afb107181362ea5"
+      "referenceImageUrl": "https://lf3-effectplatform-sign.byteeffecttos.com/ies.fe.effect/d3d8e028f76799436a85f814d19be49f?x-expires=1792802936&x-signature=NieKxxsE62vHXF9dvNTl2kEC%2FlA%3D",
+      "referenceImageUri": "ies.fe.effect/d3d8e028f76799436a85f814d19be49f"
     },
     {
       "assetKey": "准星命中高亮细线框.png",
       "assetType": "effect_sprite",
-      "width": 535,
-      "height": 448,
+      "width": 513,
+      "height": 403,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 12,
@@ -482,36 +482,36 @@
       "row": 3,
       "column": 0,
       "cellBBox": {
-        "left": 38,
-        "top": 2020,
-        "width": 535,
-        "height": 570
+        "left": 11,
+        "top": 2132,
+        "width": 513,
+        "height": 577
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A13-eadfc7296d94.png",
-      "cropHash": "8b7381d42c0ba87bab81461acd68c742207e416323b4840ada50f7bb29750c6a",
+      "cropHash": "b760619ebd38bf5867ee22f843635d66653740f12206151845d3f1ac0efe3cec",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A13-eadfc7296d94.png",
-      "textlessCropHash": "8b7381d42c0ba87bab81461acd68c742207e416323b4840ada50f7bb29750c6a",
+      "textlessCropHash": "b760619ebd38bf5867ee22f843635d66653740f12206151845d3f1ac0efe3cec",
       "bottomLabelRemoval": {
         "applied": true,
-        "sourceHeight": 570,
-        "outputHeight": 448,
+        "sourceHeight": 577,
+        "outputHeight": 403,
         "gap": {
-          "start": 428,
-          "end": 495
+          "start": 379,
+          "end": 459
         },
         "labelBand": {
-          "top": 496,
-          "bottom": 556
+          "top": 460,
+          "bottom": 504
         }
       },
-      "referenceImageUrl": "https://lf6-effectplatform-sign.byteeffecttos.com/ies.fe.effect/bd57c2cc962dcc0674ab4d382b3ce889?x-expires=1792725149&x-signature=9YA82HJ8p%2BR3RNsQ%2Flt5gWnNJqc%3D",
-      "referenceImageUri": "ies.fe.effect/bd57c2cc962dcc0674ab4d382b3ce889"
+      "referenceImageUrl": "https://lf3-effectplatform-sign.byteeffecttos.com/ies.fe.effect/25fe161093faa493c71515b21c51334d?x-expires=1792802936&x-signature=qSYH3Ktx5RFJ79jnGN0X%2FIn0oig%3D",
+      "referenceImageUri": "ies.fe.effect/25fe161093faa493c71515b21c51334d"
     },
     {
       "assetKey": "像素Boss血条框.png",
       "assetType": "hud_bar",
-      "width": 488,
-      "height": 366,
+      "width": 522,
+      "height": 309,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 13,
@@ -519,36 +519,36 @@
       "row": 3,
       "column": 1,
       "cellBBox": {
-        "left": 585,
-        "top": 2020,
-        "width": 488,
-        "height": 569
+        "left": 537,
+        "top": 2132,
+        "width": 522,
+        "height": 577
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A14-e56a24df206f.png",
-      "cropHash": "fb96cc3715e759fa35ac44b4ec01d80a9966604096bfe61a3b5b442e4ba87f52",
+      "cropHash": "90a0897ea18a988c2fc001ab0b02974ed40265995070e2fd741b921e5791e780",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A14-e56a24df206f.png",
-      "textlessCropHash": "fb96cc3715e759fa35ac44b4ec01d80a9966604096bfe61a3b5b442e4ba87f52",
+      "textlessCropHash": "90a0897ea18a988c2fc001ab0b02974ed40265995070e2fd741b921e5791e780",
       "bottomLabelRemoval": {
         "applied": true,
-        "sourceHeight": 569,
-        "outputHeight": 366,
+        "sourceHeight": 577,
+        "outputHeight": 309,
         "gap": {
-          "start": 338,
-          "end": 496
+          "start": 280,
+          "end": 459
         },
         "labelBand": {
-          "top": 497,
-          "bottom": 556
+          "top": 460,
+          "bottom": 504
         }
       },
-      "referenceImageUrl": "https://lf3-effectplatform-sign.byteeffecttos.com/ies.fe.effect/961c3117288742b06acff825bd96ec5a?x-expires=1792725149&x-signature=KecD77P2BcA04Lb%2Bpl78VuF0zSA%3D",
-      "referenceImageUri": "ies.fe.effect/961c3117288742b06acff825bd96ec5a"
+      "referenceImageUrl": "https://lf6-effectplatform-sign.byteeffecttos.com/ies.fe.effect/3bd4c1e188094932f38e3562b3a5ac86?x-expires=1792802936&x-signature=Wc4eOESIhOrGajYyvGBI1Pyv1cI%3D",
+      "referenceImageUri": "ies.fe.effect/3bd4c1e188094932f38e3562b3a5ac86"
     },
     {
       "assetKey": "像素血条填充.png",
       "assetType": "ui_container",
-      "width": 507,
-      "height": 335,
+      "width": 515,
+      "height": 292,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 14,
@@ -556,36 +556,36 @@
       "row": 3,
       "column": 2,
       "cellBBox": {
-        "left": 1085,
-        "top": 2020,
-        "width": 507,
-        "height": 569
+        "left": 1072,
+        "top": 2132,
+        "width": 515,
+        "height": 577
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A15-ffb626f2afec.png",
-      "cropHash": "2835f9a5fdee6d6d54e466e2114c25ca46ab5eda898770e9aafb00da21dfa87c",
+      "cropHash": "06295479d2e02030f9a63e1447b374e41a0959e4c6f1e1678a694698f7234eeb",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A15-ffb626f2afec.png",
-      "textlessCropHash": "2835f9a5fdee6d6d54e466e2114c25ca46ab5eda898770e9aafb00da21dfa87c",
+      "textlessCropHash": "06295479d2e02030f9a63e1447b374e41a0959e4c6f1e1678a694698f7234eeb",
       "bottomLabelRemoval": {
         "applied": true,
-        "sourceHeight": 569,
-        "outputHeight": 335,
+        "sourceHeight": 577,
+        "outputHeight": 292,
         "gap": {
-          "start": 307,
-          "end": 496
+          "start": 263,
+          "end": 459
         },
         "labelBand": {
-          "top": 497,
-          "bottom": 556
+          "top": 460,
+          "bottom": 505
         }
       },
-      "referenceImageUrl": "https://lf6-effectplatform-sign.byteeffecttos.com/ies.fe.effect/78e424b21c4c4adc0ac1766f41cfd812?x-expires=1792725149&x-signature=VsnOjZbesZHnJ2DA%2F%2FGEOMmXlEA%3D",
-      "referenceImageUri": "ies.fe.effect/78e424b21c4c4adc0ac1766f41cfd812"
+      "referenceImageUrl": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/b44b8b2684bb5f531a6f01daf537b6c7?x-expires=1792802936&x-signature=%2F0nWzWbuKNfGDG%2FULFbz%2BVrS0EI%3D",
+      "referenceImageUri": "ies.fe.effect/b44b8b2684bb5f531a6f01daf537b6c7"
     },
     {
       "assetKey": "像素护盾.png",
       "assetType": "gameplay_sprite",
-      "width": 514,
-      "height": 445,
+      "width": 550,
+      "height": 399,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 15,
@@ -593,36 +593,36 @@
       "row": 3,
       "column": 3,
       "cellBBox": {
-        "left": 1604,
-        "top": 2020,
-        "width": 514,
-        "height": 569
+        "left": 1600,
+        "top": 2132,
+        "width": 550,
+        "height": 577
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A16-9acab4d01283.png",
-      "cropHash": "640c9150caa72c31c1a93849dbcdf158a3c5239eb6f4a47b9d93b365d6cd2e5e",
+      "cropHash": "256e862cf4ec8b94e4ba1a508aea17a8ddc12601e70df371e59fc84567da90c9",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A16-9acab4d01283.png",
-      "textlessCropHash": "640c9150caa72c31c1a93849dbcdf158a3c5239eb6f4a47b9d93b365d6cd2e5e",
+      "textlessCropHash": "256e862cf4ec8b94e4ba1a508aea17a8ddc12601e70df371e59fc84567da90c9",
       "bottomLabelRemoval": {
         "applied": true,
-        "sourceHeight": 569,
-        "outputHeight": 445,
+        "sourceHeight": 577,
+        "outputHeight": 399,
         "gap": {
-          "start": 423,
-          "end": 496
+          "start": 372,
+          "end": 460
         },
         "labelBand": {
-          "top": 497,
-          "bottom": 556
+          "top": 461,
+          "bottom": 505
         }
       },
-      "referenceImageUrl": "https://lf3-effectplatform-sign.byteeffecttos.com/ies.fe.effect/0ce1b57482616fd9614b91dfebc802a3?x-expires=1792725149&x-signature=twhdQRDjXor079zxkdsu6htzdL4%3D",
-      "referenceImageUri": "ies.fe.effect/0ce1b57482616fd9614b91dfebc802a3"
+      "referenceImageUrl": "https://lf6-effectplatform-sign.byteeffecttos.com/ies.fe.effect/8605822862faf104c393ffd89098130c?x-expires=1792802936&x-signature=lCTsXND1qTWjlwtGkA%2FZpqA2FGU%3D",
+      "referenceImageUri": "ies.fe.effect/8605822862faf104c393ffd89098130c"
     },
     {
       "assetKey": "像素闪烁核心.png",
       "assetType": "gameplay_sprite",
-      "width": 535,
-      "height": 335,
+      "width": 513,
+      "height": 327,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 16,
@@ -630,36 +630,36 @@
       "row": 4,
       "column": 0,
       "cellBBox": {
-        "left": 38,
-        "top": 2603,
-        "width": 535,
-        "height": 473
+        "left": 11,
+        "top": 2722,
+        "width": 513,
+        "height": 510
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A17-f9a680ec8fdb.png",
-      "cropHash": "7294735b11781340496fe2d38d2d50eb240978c1c34d25179efd2a6fe7712877",
+      "cropHash": "f43eabc4276df9b393f8102043de116d4aaa91bbc3d382453992d70312d14edb",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A17-f9a680ec8fdb.png",
-      "textlessCropHash": "7294735b11781340496fe2d38d2d50eb240978c1c34d25179efd2a6fe7712877",
+      "textlessCropHash": "f43eabc4276df9b393f8102043de116d4aaa91bbc3d382453992d70312d14edb",
       "bottomLabelRemoval": {
         "applied": true,
-        "sourceHeight": 473,
-        "outputHeight": 335,
+        "sourceHeight": 510,
+        "outputHeight": 327,
         "gap": {
-          "start": 311,
-          "end": 399
+          "start": 301,
+          "end": 410
         },
         "labelBand": {
-          "top": 400,
-          "bottom": 460
+          "top": 411,
+          "bottom": 455
         }
       },
-      "referenceImageUrl": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/9f8f491f66af9dd4d0c94d7f71e81c97?x-expires=1792725149&x-signature=Kw2BsTmTrMMALxz5eHtEvtWy8dY%3D",
-      "referenceImageUri": "ies.fe.effect/9f8f491f66af9dd4d0c94d7f71e81c97"
+      "referenceImageUrl": "https://lf26-effectplatform-sign.byteeffecttos.com/ies.fe.effect/b9d66d6a8f74bb7e9a547896b176d969?x-expires=1792802936&x-signature=jVdJppySpGGpO1z0HFGcBOXBBkw%3D",
+      "referenceImageUri": "ies.fe.effect/b9d66d6a8f74bb7e9a547896b176d969"
     },
     {
       "assetKey": "像素小怪.png",
       "assetType": "gameplay_sprite",
-      "width": 488,
-      "height": 323,
+      "width": 522,
+      "height": 327,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 17,
@@ -667,36 +667,36 @@
       "row": 4,
       "column": 1,
       "cellBBox": {
-        "left": 585,
-        "top": 2603,
-        "width": 488,
-        "height": 473
+        "left": 537,
+        "top": 2722,
+        "width": 522,
+        "height": 510
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A18-becf1d65ebd2.png",
-      "cropHash": "399b194c02afdaa581a6fa8e0a4a45c61debf154335eae7def716cc381a8c0c9",
+      "cropHash": "c824ef80442df91929ba0362bbf4163494882ccee3ecd0d0ba724fd528564382",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A18-becf1d65ebd2.png",
-      "textlessCropHash": "399b194c02afdaa581a6fa8e0a4a45c61debf154335eae7def716cc381a8c0c9",
+      "textlessCropHash": "c824ef80442df91929ba0362bbf4163494882ccee3ecd0d0ba724fd528564382",
       "bottomLabelRemoval": {
         "applied": true,
-        "sourceHeight": 473,
-        "outputHeight": 323,
+        "sourceHeight": 510,
+        "outputHeight": 327,
         "gap": {
-          "start": 299,
-          "end": 400
+          "start": 301,
+          "end": 410
         },
         "labelBand": {
-          "top": 401,
-          "bottom": 460
+          "top": 411,
+          "bottom": 455
         }
       },
-      "referenceImageUrl": "https://lf3-effectplatform-sign.byteeffecttos.com/ies.fe.effect/10dace98dab4b668760d0acfc6d1973b?x-expires=1792725149&x-signature=IuwzJD%2FTIGGjMY96ayrCBLKj67Q%3D",
-      "referenceImageUri": "ies.fe.effect/10dace98dab4b668760d0acfc6d1973b"
+      "referenceImageUrl": "https://lf6-effectplatform-sign.byteeffecttos.com/ies.fe.effect/7bc302f6626d5c1d6e61e2e793488d2b?x-expires=1792802936&x-signature=DidxHtATXSWfK9pVcUxr2cd1z4s%3D",
+      "referenceImageUri": "ies.fe.effect/7bc302f6626d5c1d6e61e2e793488d2b"
     },
     {
       "assetKey": "像素弹幕.png",
       "assetType": "gameplay_sprite",
-      "width": 507,
-      "height": 310,
+      "width": 515,
+      "height": 286,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 18,
@@ -704,36 +704,36 @@
       "row": 4,
       "column": 2,
       "cellBBox": {
-        "left": 1085,
-        "top": 2603,
-        "width": 507,
-        "height": 473
+        "left": 1072,
+        "top": 2722,
+        "width": 515,
+        "height": 510
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A19-2a84dad8601b.png",
-      "cropHash": "942d61bc4db67e200e9c563c55b516a5418b5ce755f451eee5a6c9fcbd527122",
+      "cropHash": "5dc1d70ad9b38ed35d3fd94ff81ab925d7970cc95663dbc79f85fe0de4d67f76",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A19-2a84dad8601b.png",
-      "textlessCropHash": "942d61bc4db67e200e9c563c55b516a5418b5ce755f451eee5a6c9fcbd527122",
+      "textlessCropHash": "5dc1d70ad9b38ed35d3fd94ff81ab925d7970cc95663dbc79f85fe0de4d67f76",
       "bottomLabelRemoval": {
         "applied": true,
-        "sourceHeight": 473,
-        "outputHeight": 310,
+        "sourceHeight": 510,
+        "outputHeight": 286,
         "gap": {
-          "start": 286,
-          "end": 399
+          "start": 260,
+          "end": 410
         },
         "labelBand": {
-          "top": 400,
-          "bottom": 460
+          "top": 411,
+          "bottom": 455
         }
       },
-      "referenceImageUrl": "https://lf6-effectplatform-sign.byteeffecttos.com/ies.fe.effect/815dcd31545b6ecdd54c0cbea41a5979?x-expires=1792725149&x-signature=Jg%2FgEiIfRQuIjzxI4aJePl%2FZ9bM%3D",
-      "referenceImageUri": "ies.fe.effect/815dcd31545b6ecdd54c0cbea41a5979"
+      "referenceImageUrl": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/67d63deb7116bf4254c0ec8d4debd30b?x-expires=1792802936&x-signature=pg%2BGDT0bwVh1F%2BkTzYYnHYDxr10%3D",
+      "referenceImageUri": "ies.fe.effect/67d63deb7116bf4254c0ec8d4debd30b"
     },
     {
       "assetKey": "像素枪口闪光.png",
       "assetType": "effect_sprite",
-      "width": 514,
-      "height": 352,
+      "width": 550,
+      "height": 360,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 19,
@@ -741,36 +741,36 @@
       "row": 4,
       "column": 3,
       "cellBBox": {
-        "left": 1604,
-        "top": 2603,
-        "width": 514,
-        "height": 473
+        "left": 1600,
+        "top": 2722,
+        "width": 550,
+        "height": 510
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A20-17ec8027d09b.png",
-      "cropHash": "39f8a2820aa98e420d3fc368b42ae1727d3328ac4f8b4e3360c1f08e5ca12677",
+      "cropHash": "4e5d3c6dc5b20a72dc61eaa9cdae827c4514227ccb9482e0d064ca6c3ec118de",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A20-17ec8027d09b.png",
-      "textlessCropHash": "39f8a2820aa98e420d3fc368b42ae1727d3328ac4f8b4e3360c1f08e5ca12677",
+      "textlessCropHash": "4e5d3c6dc5b20a72dc61eaa9cdae827c4514227ccb9482e0d064ca6c3ec118de",
       "bottomLabelRemoval": {
         "applied": true,
-        "sourceHeight": 473,
-        "outputHeight": 352,
+        "sourceHeight": 510,
+        "outputHeight": 360,
         "gap": {
-          "start": 332,
-          "end": 398
+          "start": 338,
+          "end": 410
         },
         "labelBand": {
-          "top": 399,
-          "bottom": 458
+          "top": 411,
+          "bottom": 455
         }
       },
-      "referenceImageUrl": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/1957650c2c63bbe8f0ee302de8ea655a?x-expires=1792725149&x-signature=PJkHFHeKU4%2FZpxREmskDd0GMRHQ%3D",
-      "referenceImageUri": "ies.fe.effect/1957650c2c63bbe8f0ee302de8ea655a"
+      "referenceImageUrl": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/b8a23203961835a09e620f1c8a8fa2c0?x-expires=1792802936&x-signature=PCcG7sTYV2WOCfguABspUT3QJO0%3D",
+      "referenceImageUri": "ies.fe.effect/b8a23203961835a09e620f1c8a8fa2c0"
     },
     {
       "assetKey": "像素命中星爆.png",
       "assetType": "effect_sprite",
-      "width": 535,
-      "height": 514,
+      "width": 513,
+      "height": 444,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 20,
@@ -778,36 +778,36 @@
       "row": 5,
       "column": 0,
       "cellBBox": {
-        "left": 38,
-        "top": 3089,
-        "width": 535,
-        "height": 683
+        "left": 11,
+        "top": 3245,
+        "width": 513,
+        "height": 585
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A21-9eb98ae5f081.png",
-      "cropHash": "53b9cfb7828e23107bbc50250e7edff03038beea892e1452ddf5fd938fc2b9d2",
+      "cropHash": "6a0503aa9a9d4ba6979ac2d379cce8a0139a326c4a26fdb2efba68be2fc4502d",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A21-9eb98ae5f081.png",
-      "textlessCropHash": "53b9cfb7828e23107bbc50250e7edff03038beea892e1452ddf5fd938fc2b9d2",
+      "textlessCropHash": "6a0503aa9a9d4ba6979ac2d379cce8a0139a326c4a26fdb2efba68be2fc4502d",
       "bottomLabelRemoval": {
         "applied": true,
-        "sourceHeight": 683,
-        "outputHeight": 514,
+        "sourceHeight": 585,
+        "outputHeight": 444,
         "gap": {
-          "start": 480,
-          "end": 596
+          "start": 424,
+          "end": 489
         },
         "labelBand": {
-          "top": 597,
-          "bottom": 658
+          "top": 490,
+          "bottom": 534
         }
       },
-      "referenceImageUrl": "https://lf26-effectplatform-sign.byteeffecttos.com/ies.fe.effect/b83be1f2335ddba1539dbb13074b2775?x-expires=1792725149&x-signature=CpeXXUt%2FBiuIcHR9%2FBJtv3V04ic%3D",
-      "referenceImageUri": "ies.fe.effect/b83be1f2335ddba1539dbb13074b2775"
+      "referenceImageUrl": "https://lf26-effectplatform-sign.byteeffecttos.com/ies.fe.effect/1c7555b855cc7c6a10fd89fa8ddb5549?x-expires=1792802936&x-signature=W00vm8dAkKmzVdWSRLZ9SokI8PY%3D",
+      "referenceImageUri": "ies.fe.effect/1c7555b855cc7c6a10fd89fa8ddb5549"
     },
     {
       "assetKey": "像素彩带庆祝.png",
       "assetType": "effect_sprite",
-      "width": 488,
-      "height": 515,
+      "width": 522,
+      "height": 443,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 21,
@@ -815,36 +815,36 @@
       "row": 5,
       "column": 1,
       "cellBBox": {
-        "left": 585,
-        "top": 3089,
-        "width": 488,
-        "height": 683
+        "left": 537,
+        "top": 3245,
+        "width": 522,
+        "height": 585
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A22-27daa54abe49.png",
-      "cropHash": "91207ab1751ccf407afbfa971eafed1c2216644bd79733e5e781b72b6e20c121",
+      "cropHash": "cc9b45f3533b49e5d50a06d5aab8c53baf9e11f04304b8495e9161dc6bf978c0",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A22-27daa54abe49.png",
-      "textlessCropHash": "91207ab1751ccf407afbfa971eafed1c2216644bd79733e5e781b72b6e20c121",
+      "textlessCropHash": "cc9b45f3533b49e5d50a06d5aab8c53baf9e11f04304b8495e9161dc6bf978c0",
       "bottomLabelRemoval": {
         "applied": true,
-        "sourceHeight": 683,
-        "outputHeight": 515,
+        "sourceHeight": 585,
+        "outputHeight": 443,
         "gap": {
-          "start": 481,
-          "end": 599
+          "start": 423,
+          "end": 489
         },
         "labelBand": {
-          "top": 600,
-          "bottom": 660
+          "top": 490,
+          "bottom": 534
         }
       },
-      "referenceImageUrl": "https://lf3-effectplatform-sign.byteeffecttos.com/ies.fe.effect/673f419987f752c7e4973e89ce5a5161?x-expires=1792725149&x-signature=aSZjJ1zsEWC4EFuEtdr2qagBYDk%3D",
-      "referenceImageUri": "ies.fe.effect/673f419987f752c7e4973e89ce5a5161"
+      "referenceImageUrl": "https://lf26-effectplatform-sign.byteeffecttos.com/ies.fe.effect/0a99f0195288a67307edddf9084ec5f2?x-expires=1792802936&x-signature=OInPaGsRneHbj%2F8XJLQAIlBOxeg%3D",
+      "referenceImageUri": "ies.fe.effect/0a99f0195288a67307edddf9084ec5f2"
     },
     {
       "assetKey": "像素结算卡.png",
       "assetType": "ui_container",
-      "width": 507,
-      "height": 592,
+      "width": 515,
+      "height": 492,
       "chromaKeyColor": "#D8D8D8",
       "pageNumber": 1,
       "slotIndex": 22,
@@ -852,30 +852,30 @@
       "row": 5,
       "column": 2,
       "cellBBox": {
-        "left": 1085,
-        "top": 3089,
-        "width": 507,
-        "height": 683
+        "left": 1072,
+        "top": 3245,
+        "width": 515,
+        "height": 585
       },
       "cropPath": ".agent/asset-board/pages/page-01/textless/A23-f2eb5d712fc1.png",
-      "cropHash": "994bb4802f27b5c04c68557e88b56c4d74387691ef5eec15fe8e9d5fcb82dc8e",
+      "cropHash": "912db3b3c0796cae8c86d502fd0212e009d99606d7bd297a04717b595b2de360",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A23-f2eb5d712fc1.png",
-      "textlessCropHash": "994bb4802f27b5c04c68557e88b56c4d74387691ef5eec15fe8e9d5fcb82dc8e",
+      "textlessCropHash": "912db3b3c0796cae8c86d502fd0212e009d99606d7bd297a04717b595b2de360",
       "bottomLabelRemoval": {
         "applied": true,
-        "sourceHeight": 683,
-        "outputHeight": 592,
+        "sourceHeight": 585,
+        "outputHeight": 492,
         "gap": {
-          "start": 584,
-          "end": 603
+          "start": 484,
+          "end": 499
         },
         "labelBand": {
-          "top": 604,
-          "bottom": 666
+          "top": 500,
+          "bottom": 544
         }
       },
-      "referenceImageUrl": "https://lf26-effectplatform-sign.byteeffecttos.com/ies.fe.effect/8d1adc91afa735ab87fe18ba8fc95a1c?x-expires=1792725149&x-signature=J50AYWQW1gn8Yu%2Bd5dPIL0qPfRw%3D",
-      "referenceImageUri": "ies.fe.effect/8d1adc91afa735ab87fe18ba8fc95a1c"
+      "referenceImageUrl": "https://lf3-effectplatform-sign.byteeffecttos.com/ies.fe.effect/7e091888feb21114135a751f947c4c57?x-expires=1792802936&x-signature=1bswTMqg2cHJNAGptvehl7sOt%2BQ%3D",
+      "referenceImageUri": "ies.fe.effect/7e091888feb21114135a751f947c4c57"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "generator": "image-generator",
-  "updatedAt": "2026-10-16T03:12:53.799Z",
+  "updatedAt": "2026-10-17T00:49:01.687Z",
   "batches": [
     {
       "batchNumber": 1,
@@ -642,6 +642,48 @@
         "settingImageHash": "474c40a493ff5b29dc3b35fadeed27299a3c375726ef681b0ffc7647dcf4483b"
       },
       "assetInputSource": "asset_board"
+    },
+    {
+      "batchNumber": 26,
+      "startedAt": "2026-10-17T00:44:42.101Z",
+      "finishedAt": "2026-10-17T00:44:47.862Z",
+      "durationMs": 5761,
+      "total": 2,
+      "completed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "status": "done",
+      "assetKeys": [
+        "像素Boss血条框.png",
+        "像素血条填充.png"
+      ],
+      "assetReferenceManifest": {
+        "path": ".agent/asset-board/asset_reference_manifest.json",
+        "designBriefHash": "e15c590a11860f669b523987171b44eb25e6a7bbcd2270052f5f3496aa587ca7",
+        "settingImageHash": "474c40a493ff5b29dc3b35fadeed27299a3c375726ef681b0ffc7647dcf4483b"
+      },
+      "assetInputSource": "asset_board"
+    },
+    {
+      "batchNumber": 27,
+      "startedAt": "2026-10-17T00:48:55.593Z",
+      "finishedAt": "2026-10-17T00:49:01.685Z",
+      "durationMs": 6092,
+      "total": 2,
+      "completed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "status": "done",
+      "assetKeys": [
+        "像素Boss血条框.png",
+        "像素血条填充.png"
+      ],
+      "assetReferenceManifest": {
+        "path": ".agent/asset-board/asset_reference_manifest.json",
+        "designBriefHash": "3f537e820ffc24cf96905c152a542e16d13cbd318c857a7a28462f43bbd8d517",
+        "settingImageHash": "474c40a493ff5b29dc3b35fadeed27299a3c375726ef681b0ffc7647dcf4483b"
+      },
+      "assetInputSource": "asset_board"
     }
   ],
   "assets": [
@@ -722,73 +764,73 @@
       "assetKey": "像素血条填充.png",
       "prompt": "目标主体可见外接矩形比例（宽:高）为 90:7；该比例约束主体本身，不是输出画布。\n指定的纯色抠图底为 `#D8D8D8`。\n提取输入图的完整内容并放置到画面中心。禁止删减或仅提取部分元素。保持输入图完整造型、内部构成、方向、视角、透视、主要配色、材质、描边、装饰和美术风格。\r\n参考图主体比例与目标比例不一致时，不得照搬错误比例；允许为符合目标比例重新构图，但必须保持内部部件比例和视觉特征，禁止非等比缩放、压扁、拉伸、旋转、裁切或改变透视，禁止添加其他物体、场景、地面或相邻对象。最终输出必须移除文字、数字、字母、logo、水印、伪文字，并将原白色展示背景替换为指定抠图底。\r\nUI 容器只保留面板自身的形状、材质、描边、圆角和装饰，移除内部图标、文字占位、文本区和其它运行时内容；\r\n特效保持单一、边界清晰，不扩展为粒子场、碎片雨、烟雾场或连续爆炸。素材放置在画面中心，完整呈现且不裁切。\r\n主体外接矩形应接近 Brief 目标比例，允许保留必要安全边，禁止填满输出画布。\r\n背景必须完全使用指定的纯色抠图底，无渐变、阴影、地面或场景；主体、描边、高光、阴影和特效均不得改写为该背景色。图像清晰、边缘完整，最终只输出素材图，不输出解释。",
       "inputSource": "asset_board",
-      "designBriefHash": "cdf069d03343d079ed58f8e4a63c873ecc1e77140a529fb2929f327a74ef5af8",
+      "designBriefHash": "3f537e820ffc24cf96905c152a542e16d13cbd318c857a7a28462f43bbd8d517",
       "assetType": "ui_container",
       "referenceCropPath": ".agent/asset-board/pages/page-01/textless/A15-ffb626f2afec.png",
-      "referenceCropHash": "2835f9a5fdee6d6d54e466e2114c25ca46ab5eda898770e9aafb00da21dfa87c",
+      "referenceCropHash": "06295479d2e02030f9a63e1447b374e41a0959e4c6f1e1678a694698f7234eeb",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A15-ffb626f2afec.png",
-      "textlessCropHash": "2835f9a5fdee6d6d54e466e2114c25ca46ab5eda898770e9aafb00da21dfa87c",
-      "referenceImageUrl": "https://lf6-effectplatform-sign.byteeffecttos.com/ies.fe.effect/78e424b21c4c4adc0ac1766f41cfd812?x-expires=1792725149&x-signature=VsnOjZbesZHnJ2DA%2F%2FGEOMmXlEA%3D",
+      "textlessCropHash": "06295479d2e02030f9a63e1447b374e41a0959e4c6f1e1678a694698f7234eeb",
+      "referenceImageUrl": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/b44b8b2684bb5f531a6f01daf537b6c7?x-expires=1792802936&x-signature=%2F0nWzWbuKNfGDG%2FULFbz%2BVrS0EI%3D",
       "processingMode": "segment_only",
       "workflowSource": "loki_material://7678146505320054847",
-      "taskId": "wf12026101611124949931681798914",
+      "taskId": "wf12026101708485750100481370626",
       "failed_taskIds": [],
       "failureClasses": [],
       "qualityState": "generated",
       "requestedWidth": 360,
       "requestedHeight": 28,
-      "targetWidth": 175.686,
+      "targetWidth": 241.379,
       "targetHeight": 28,
-      "actualWidth": 640,
-      "actualHeight": 102,
+      "actualWidth": 750,
+      "actualHeight": 87,
       "chromaKeyColor": "#D8D8D8",
       "transparentMarginCrop": {
         "applied": true,
-        "sourceWidth": 507,
-        "sourceHeight": 335,
+        "sourceWidth": 515,
+        "sourceHeight": 292,
         "opaqueBounds": {
-          "left": 29,
-          "top": 233,
-          "width": 452,
-          "height": 72
+          "left": 33,
+          "top": 209,
+          "width": 449,
+          "height": 52
         },
         "cropRegion": {
-          "left": 29,
-          "top": 233,
-          "width": 452,
-          "height": 72
+          "left": 33,
+          "top": 209,
+          "width": 449,
+          "height": 52
         },
         "finalWidth": 360,
-        "finalHeight": 57,
+        "finalHeight": 42,
         "longEdge": "width"
       },
       "textSafeRect": {
-        "left": 15,
+        "left": 14,
         "top": 2,
         "width": 331,
-        "height": 53,
+        "height": 39,
         "source": "uniform_inset"
       },
       "surfaceSampleColor": {
         "r": 214,
-        "g": 45,
-        "b": 30,
-        "hex": "#D62D1E"
+        "g": 212,
+        "b": 213,
+        "hex": "#D6D4D5"
       },
       "finalPath": "Assets/像素血条填充.png",
       "status": "completed",
-      "batchNumber": 25,
+      "batchNumber": 27,
       "attempts": 1,
       "stageDurationsMs": {
-        "submit": 229,
-        "poll": 3425,
-        "download": 236,
-        "compress": 89,
-        "sceneRefresh": 197
+        "submit": 161,
+        "poll": 4617,
+        "download": 294,
+        "compress": 71,
+        "sceneRefresh": 146
       },
-      "startedAt": "2026-10-16T03:12:48.874Z",
-      "finishedAt": "2026-10-16T03:12:53.058Z",
-      "durationMs": 4184,
+      "startedAt": "2026-10-17T00:48:55.614Z",
+      "finishedAt": "2026-10-17T00:49:00.927Z",
+      "durationMs": 5313,
       "warnings": []
     },
     {
@@ -2257,16 +2299,16 @@
       "assetKey": "像素Boss血条框.png",
       "prompt": "目标主体可见外接矩形比例（宽:高）为 20:3；该比例约束主体本身，不是输出画布。\n指定的纯色抠图底为 `#D8D8D8`。\n提取输入图的完整内容并放置到画面中心。禁止删减或仅提取部分元素。保持输入图完整造型、内部构成、方向、视角、透视、主要配色、材质、描边、装饰和美术风格。\r\n参考图主体比例与目标比例不一致时，不得照搬错误比例；允许为符合目标比例重新构图，但必须保持内部部件比例和视觉特征，禁止非等比缩放、压扁、拉伸、旋转、裁切或改变透视，禁止添加其他物体、场景、地面或相邻对象。最终输出必须移除文字、数字、字母、logo、水印、伪文字，并将原白色展示背景替换为指定抠图底。\r\nUI 容器只保留面板自身的形状、材质、描边、圆角和装饰，移除内部图标、文字占位、文本区和其它运行时内容；\r\n特效保持单一、边界清晰，不扩展为粒子场、碎片雨、烟雾场或连续爆炸。素材放置在画面中心，完整呈现且不裁切。\r\n主体外接矩形应接近 Brief 目标比例，允许保留必要安全边，禁止填满输出画布。\r\n背景必须完全使用指定的纯色抠图底，无渐变、阴影、地面或场景；主体、描边、高光、阴影和特效均不得改写为该背景色。图像清晰、边缘完整，最终只输出素材图，不输出解释。",
       "inputSource": "asset_board",
-      "designBriefHash": "cdf069d03343d079ed58f8e4a63c873ecc1e77140a529fb2929f327a74ef5af8",
+      "designBriefHash": "3f537e820ffc24cf96905c152a542e16d13cbd318c857a7a28462f43bbd8d517",
       "assetType": "hud_bar",
       "referenceCropPath": ".agent/asset-board/pages/page-01/textless/A14-e56a24df206f.png",
-      "referenceCropHash": "fb96cc3715e759fa35ac44b4ec01d80a9966604096bfe61a3b5b442e4ba87f52",
+      "referenceCropHash": "90a0897ea18a988c2fc001ab0b02974ed40265995070e2fd741b921e5791e780",
       "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A14-e56a24df206f.png",
-      "textlessCropHash": "fb96cc3715e759fa35ac44b4ec01d80a9966604096bfe61a3b5b442e4ba87f52",
-      "referenceImageUrl": "https://lf3-effectplatform-sign.byteeffecttos.com/ies.fe.effect/961c3117288742b06acff825bd96ec5a?x-expires=1792725149&x-signature=KecD77P2BcA04Lb%2Bpl78VuF0zSA%3D",
+      "textlessCropHash": "90a0897ea18a988c2fc001ab0b02974ed40265995070e2fd741b921e5791e780",
+      "referenceImageUrl": "https://lf6-effectplatform-sign.byteeffecttos.com/ies.fe.effect/3bd4c1e188094932f38e3562b3a5ac86?x-expires=1792802936&x-signature=Wc4eOESIhOrGajYyvGBI1Pyv1cI%3D",
       "processingMode": "super_resolution_segment",
       "workflowSource": "loki_material://7678146505320054847",
-      "taskId": "wf12026101611124949928973030146",
+      "taskId": "wf12026101708485750100458809346",
       "failed_taskIds": [],
       "failureClasses": [],
       "qualityState": "generated",
@@ -2279,19 +2321,19 @@
       "chromaKeyColor": "#D8D8D8",
       "transparentMarginCrop": {
         "applied": true,
-        "sourceWidth": 976,
-        "sourceHeight": 732,
+        "sourceWidth": 1044,
+        "sourceHeight": 618,
         "opaqueBounds": {
-          "left": 32,
-          "top": 423,
-          "width": 915,
-          "height": 249
+          "left": 43,
+          "top": 371,
+          "width": 970,
+          "height": 184
         },
         "cropRegion": {
-          "left": 32,
-          "top": 423,
-          "width": 915,
-          "height": 249
+          "left": 43,
+          "top": 371,
+          "width": 970,
+          "height": 184
         },
         "finalWidth": 640,
         "finalHeight": 96,
@@ -2305,25 +2347,25 @@
         "source": "uniform_inset"
       },
       "surfaceSampleColor": {
-        "r": 59,
-        "g": 109,
-        "b": 65,
-        "hex": "#3B6D41"
+        "r": 1,
+        "g": 85,
+        "b": 75,
+        "hex": "#01554B"
       },
       "finalPath": "Assets/像素Boss血条框.png",
       "status": "completed",
-      "batchNumber": 25,
+      "batchNumber": 27,
       "attempts": 1,
       "stageDurationsMs": {
-        "submit": 264,
-        "poll": 3417,
-        "download": 588,
-        "compress": 112,
-        "sceneRefresh": 473
+        "submit": 148,
+        "poll": 3496,
+        "download": 364,
+        "compress": 132,
+        "sceneRefresh": 126
       },
-      "startedAt": "2026-10-16T03:12:48.873Z",
-      "finishedAt": "2026-10-16T03:12:53.739Z",
-      "durationMs": 4866,
+      "startedAt": "2026-10-17T00:48:55.613Z",
+      "finishedAt": "2026-10-17T00:48:59.900Z",
+      "durationMs": 4287,
       "warnings": []
     },
     {

@@ -1,7 +1,8 @@
 {
   "version": 2,
   "used": true,
-  "content_features": "Agent_k_highspeed",
+  "effort": "medium",
+  "content_features": "Agent_56terra",
   "script_content_features": [
     "DYSocialImageFriends"
   ],
@@ -63,7 +64,9 @@
       "b7713a21-d8f6-e0c1-9f16-07e757d8ac62",
       "3f7df707-c861-4dea-bc50-9ecc45e46f50",
       "18e1afc4-98ce-5fc0-dcef-7b3365190c25",
-      "6df9d380-67fb-86ab-cd9d-1fd35878b9f3"
+      "6df9d380-67fb-86ab-cd9d-1fd35878b9f3",
+      "d9502ebf-0869-f9f1-1f94-22e76f8f0903",
+      "60f6697a-0e64-5f5a-9725-ae5493383230"
     ],
     "scene_object_guids": [
       "Guid(5075850123475008166, 2944028057132349616)",

@@ -101,3 +101,13 @@
   查场景结构一律以 MCP `get_scene` 为准，别拿磁盘文件当真相（2026-10-17 庆祝彩带踩过）。
 - **新增 UI 对象后必须把它纳入代码的显隐控制**：结算/阶段切换是"成组隐藏"的，
   漏一个就会在结算画面留残影（2026-10-17：「战斗HUD底板」漏收起 ⇒ 结算画面左上一条深紫长条 #442434）。
+- **替换美术资源文件后，场景里的贴图引用会断成「内置占位图」⇒ 物体显示成品红色方块**
+  （文件里表现为 `texture: {localId: N, path: 00000000-0000-0000-0000-0000000000XX--…}`；MCP 里显示 `r53`）。
+  排查法：用 Python 扫 `main.scene` 全场景找 `00000000-0000-0000-0000` 开头的 texture 引用，
+  再用 `list_resources` / `inspect` 找对应新资源重新绑定。
+- **`inspect` 能用长 guid 查资源**，返回 `r<N>` + **`filePath`** + `width/height`
+  —— 这是打通「磁盘 `.extra` 里的 guid ↔ MCP 的 `r<N>` 编号」的唯一钥匙。
+  同名资源会因工程内存在两个目录而出现两份（如 `Assets/Boss待机` = r5 与 `_boss_original_backup/Boss待机` = r62），
+  **绑定前必须用 `inspect` 核对 `filePath`**，别绑到备份那份。
+- ⚠️ **MCP 的组件 guid `c<N>` ≠ scene 文件里的 `localId`**（s20 的 ScreenTransform 文件里是 localId 22、MCP 里是 `c34`）。
+  改组件只能用 MCP 返回的 `c<N>`；两者数值相近时极易搞混。

@@ -1922,7 +1922,8 @@
     "extendedInfo": {
       "isVisibleInInspector": true,
       "expanded": true,
-      "allExpanded": true
+      "allExpanded": true,
+      "[object Object]_show_d9502ebf-0869-f9f1-1f94-22e76f8f0903": false
     },
     "sharedMaterial": "00000000-0000-0000-0000-000000000132",
     "segBlendMode": "Normal_v2",

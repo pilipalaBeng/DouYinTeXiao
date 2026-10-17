@@ -6,22 +6,22 @@
   "tools": {
     "query_knowledge": 15,
     "list_preview_videos": 2,
-    "update_handoff_context": 28,
+    "update_handoff_context": 29,
     "describe_project": 3,
-    "list_resources": 8,
+    "list_resources": 9,
     "save_plan": 3,
     "get_current_preview_video": 1,
     "generate_image": 1,
-    "inspect": 24,
+    "inspect": 29,
     "project_status": 8,
-    "edit_by_dsl": 51,
-    "get_scene": 39,
+    "edit_by_dsl": 52,
+    "get_scene": 40,
     "generate_assets_batch": 1,
     "capture_preview": 16,
     "run_otsc_check": 73,
-    "interact_by_dsl": 113,
-    "get_script_logs": 116,
+    "interact_by_dsl": 114,
+    "get_script_logs": 117,
     "get_scene_view": 2,
-    "save_project": 18
+    "save_project": 19
   }
 }

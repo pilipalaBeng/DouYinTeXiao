@@ -487,9 +487,9 @@ entities:
           __class: LightProbeBlendMode
           value: OFF
         entirePingPong: false
-        texture: {localId: 1, path: 83ebefad-b6e1-4e4a-dc23-bb2e3fed3bb7--83ebefad-b6e1-4e4a-dc23-bb2e3fed3bb7.png}
+        texture: {localId: 1, path: d9502ebf-0869-f9f1-1f94-22e76f8f0903--d9502ebf-0869-f9f1-1f94-22e76f8f0903.png}
         opacity: 1
-        color: {r: 0.2667, g: 0.1412, b: 0.2039, a: 1}
+        color: {r: 1, g: 1, b: 1, a: 1}
         size: {x: 10, y: 10}
         pivot: {x: 0.5, y: 0.5}
         flipX: false
@@ -533,7 +533,7 @@ entities:
           __class: LightProbeBlendMode
           value: OFF
         entirePingPong: false
-        texture: {localId: 1, path: 83ebefad-b6e1-4e4a-dc23-bb2e3fed3bb7--83ebefad-b6e1-4e4a-dc23-bb2e3fed3bb7.png}
+        texture: {localId: 1, path: 60f6697a-0e64-5f5a-9725-ae5493383230--60f6697a-0e64-5f5a-9725-ae5493383230.png}
         opacity: 1
         color: {r: 0.8157, g: 0.2745, b: 0.2824, a: 1}
         size: {x: 10, y: 10}
@@ -2419,7 +2419,7 @@ entities:
           __class: LightProbeBlendMode
           value: OFF
         entirePingPong: false
-        texture: {localId: 1, path: 00000000-0000-0000-0000-00000000001e--00000000-0000-0000-0000-00000000001e.png}
+        texture: {localId: 1, path: 9ba5a15f-a9c1-8a7c-0fc6-29e125aa7b96--9ba5a15f-a9c1-8a7c-0fc6-29e125aa7b96.png}
         opacity: 1
         color: {r: 1, g: 1, b: 1, a: 1}
         size: {x: 10, y: 10}
@@ -2465,7 +2465,7 @@ entities:
           __class: LightProbeBlendMode
           value: OFF
         entirePingPong: false
-        texture: {localId: 1, path: 00000000-0000-0000-0000-00000000001e--00000000-0000-0000-0000-00000000001e.png}
+        texture: {localId: 1, path: 8d7ffecd-052f-e5fe-cd7f-df17346d22e1--8d7ffecd-052f-e5fe-cd7f-df17346d22e1.png}
         opacity: 1
         color: {r: 1, g: 1, b: 1, a: 1}
         size: {x: 10, y: 10}
@@ -2511,7 +2511,7 @@ entities:
           __class: LightProbeBlendMode
           value: OFF
         entirePingPong: false
-        texture: {localId: 1, path: 00000000-0000-0000-0000-00000000001e--00000000-0000-0000-0000-00000000001e.png}
+        texture: {localId: 1, path: 9e993ddc-e704-068c-e435-51f5fd3d83f7--9e993ddc-e704-068c-e435-51f5fd3d83f7.png}
         opacity: 1
         color: {r: 1, g: 1, b: 1, a: 1}
         size: {x: 10, y: 10}
@@ -2557,7 +2557,7 @@ entities:
           __class: LightProbeBlendMode
           value: OFF
         entirePingPong: false
-        texture: {localId: 1, path: 00000000-0000-0000-0000-00000000001e--00000000-0000-0000-0000-00000000001e.png}
+        texture: {localId: 1, path: ccdaf3c6-1a9a-fc8d-3373-6a2268ab81be--ccdaf3c6-1a9a-fc8d-3373-6a2268ab81be.png}
         opacity: 1
         color: {r: 1, g: 1, b: 1, a: 1}
         size: {x: 10, y: 10}
@@ -3378,15 +3378,15 @@ enablePivotMatrix: false
 name: !<str> ""
 guid: {a: 5266253988735593265, b: 5732337985413801634}
 enabled: true
-localPosition: {x: -0.3278685, y: 13.71414, z: 0}
+localPosition: {x: 0, y: 13.85683, z: 0}
 localScale: {x: 1, y: 1, z: 1}
 localOrientation: {w: 1, x: 0, y: 0, z: 0}
 parent: {localId: 26}
 mobility:
   __class: Mobility
   value: Dynamic
-anchoredPosition: {x: -10.49179, y: 438.8525}
-sizeDelta: {x: 488.0474, y: 111.8384}
+anchoredPosition: {x: 0, y: 443.4187}
+sizeDelta: {x: 518.2603, y: 129.1141}
 pivot: {x: 0.5, y: 0.5}
 anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
 pixelsPerUnit: 32
