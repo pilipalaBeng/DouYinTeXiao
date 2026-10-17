@@ -4,7 +4,7 @@
     "MCP"
   ],
   "tools": {
-    "query_knowledge": 21,
+    "query_knowledge": 22,
     "list_preview_videos": 2,
     "update_handoff_context": 30,
     "describe_project": 3,
@@ -18,10 +18,10 @@
     "get_scene": 40,
     "generate_assets_batch": 1,
     "capture_preview": 16,
-    "run_otsc_check": 88,
-    "interact_by_dsl": 127,
-    "get_script_logs": 119,
+    "run_otsc_check": 92,
+    "interact_by_dsl": 131,
+    "get_script_logs": 124,
     "get_scene_view": 2,
-    "save_project": 23
+    "save_project": 24
   }
 }

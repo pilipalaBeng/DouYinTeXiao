@@ -90,6 +90,12 @@ const HP_DELAY_SPEED = 0.7;
 const BOSS_CORE_SIZE = 6.0;
 /** 环绕飞行的俯仰上限（弧度）：限制在用户周围「平飞」（±约 28°），不飞到头顶或脚下。 */
 const ORBIT_PITCH_MAX = 0.5;
+/** 环绕飞行的**左右上限**（弧度，±75°）。
+ *  为什么必须限：yaw 原本是**无边界累加**的（角速度恒为 BOSS_SPEED/SPAWN_DIST = 9.55°/s，
+ *  一局 30 秒能转到 260°+），一旦转到侧后方/背后，projectBoss() 的 bossOnScreen=false
+ *  就会把 Boss **直接 disable** ⇒ 就是作者反馈的「越飞越近、然后突然看不见」。
+ *  限在 ±75° 后它始终在视野附近左右飘，撞界反弹（与 pitch 同样处理）。 */
+const ORBIT_YAW_MAX = 1.309;
 /** 环绕**线速度**（米/秒）。角速度 = BOSS_SPEED / SPAWN_DIST，所以半径越大转得越慢。
  *  0.025 在真机上几乎看不出在动（作者反馈「怪是不动的」）→ 提到 0.1。
  *  18m 半径下 0.1 m/s ≈ 绕一整圈要 19 分钟，加上方向本身随机游走，观感是「缓慢飘移」。 */
@@ -124,9 +130,12 @@ const ORBIT_FOLLOW_CAMERA = false;
  *    那个 bug 已经在 `updateBasisFromCamera()` 里用 clone 修掉了，这里不再需要它兜底。 */
 const ORBIT_FOLLOW_HEADING = false;
 /** 投放闸门兜底：等 AR 相机离原点（SLAM 就位）最多等多久，超时则按当前位置投放。
- *  2500 -> 1200：真机实测相机 590~900ms 就位，缩短后玩家几乎无感；
- *  且现在球心每帧跟随相机，即便开局锚点算错也会立刻被纠正（不再需要长等待兜底）。
- */
+ *  2500 -> 1200：真机实测相机 590~900ms 就位，缩短后玩家几乎无感。
+ *  ⚠️ 注意：`ORBIT_FOLLOW_CAMERA` 为 **false**（球心世界锚定、不跟随相机），
+ *  所以「超时兜底投放」**不会**被后续的相机移动自动纠正 —— 兜底时若相机仍在原点，
+ *  球心就会钉在 (0,0,0)。为此补了 `reanchorAfterSlamReady()`：
+ *  投放后一旦检测到相机首次真正就位，把球心整体搬到相机位置、Boss 同步平移相同位移，
+ *  锚点被纠正而相对位置不变（不会跳变）。 */
 const SPAWN_WAIT_MS = 1200;
 
 /** 真机空间诊断探针开关。打开后每局在 1.5 / 3.0 / 4.5 秒各打一次：
@@ -206,6 +215,10 @@ class MainScene extends Scene {
     /** 开局投放闸门：等 AR 相机被 SLAM 就位后再投放，避免锚点算在世界原点。 */
     private spawnReady: boolean = false;
     private spawnWait: number = 0;
+    /** 投放那一刻 AR 相机是否已就位（已离开原点）。
+     *  false = 走的是「超时兜底」投放，球心可能是错的 ⇒ 之后要等相机真正就位时纠正一次锚点
+     *  （见 reanchorAfterSlamReady）。 */
+    private spawnCamWasReady: boolean = false;
     /** 投放后「定住不动」的倒计时（毫秒）；归零后才开始绕飞。 */
     private bornHoldLeft: number = 0;
     /** AR 相机 Transform 缓存（billboard 每帧都要用，避免每帧做场景查找）。 */
@@ -486,6 +499,8 @@ class MainScene extends Scene {
         const dt = Math.min(0.05, delta / 1000);
         try {
             if (!this.spawnReady) { this.trySpawnBoss(delta); return; }
+            // 兜底投放（投放时相机还在原点）⇒ 等相机真正就位后补一次锚点纠正。
+            if (!this.spawnCamWasReady) this.reanchorAfterSlamReady();
             // 球心 / 参考基是否跟随相机，见文件头两个 ORBIT_FOLLOW_* 常量的说明。
             // 当前两者都为 false ⇒ Boss 完全锚定在开局时算出的世界坐标上，具有真实空间感。
             if (ORBIT_FOLLOW_CAMERA && this.arCamTransform) {
@@ -544,7 +559,33 @@ class MainScene extends Scene {
         }
         this.spawnBossInSpace();
         this.spawnReady = true;
+        // 记下投放时相机是否已就位：走了超时兜底的话，等它真正就位要补一次锚点纠正。
+        this.spawnCamWasReady = camMoved;
         console.log(`[probe] spawn fired: camMoved=${camMoved} waited=${Math.round(this.spawnWait)}ms`);
+    }
+
+    /**
+     * SLAM 迟到的锚点纠正（只做一次）。
+     * 背景：`ORBIT_FOLLOW_CAMERA=false`（球心世界锚定、不跟随相机），所以「超时兜底投放」时
+     * 若相机仍在原点，球心就被钉在 (0,0,0) 且**不会再被纠正** —— 之后相机跑到真实位置，
+     * 整局的方位与距离都是错的（表现：Boss 忽远忽近、走到某个角度就消失）。
+     * 修法：投放后一旦检测到相机首次真正离开原点，把球心搬到相机位置、
+     * **Boss 同步平移相同的位移** ⇒ 锚点被纠正，但相对玩家仍是 SPAWN_DIST，不会跳变。
+     * 参考基也顺势用当前朝向重取一次（SLAM 未就位时 getLookAt 可能是无效值）。
+     */
+    private reanchorAfterSlamReady(): void {
+        if (!this.arCamTransform) return;
+        const cp = this.arCamTransform.getWorldPosition();
+        if (!(Math.abs(cp.x) + Math.abs(cp.y) + Math.abs(cp.z) > 0.01)) return;   // 还没就位，继续等
+        this.spawnCamWasReady = true;                                             // 只纠正一次
+        const dx = cp.x - this.userOrigin.x;
+        const dy = cp.y - this.userOrigin.y;
+        const dz = cp.z - this.userOrigin.z;
+        this.userOrigin.x = cp.x; this.userOrigin.y = cp.y; this.userOrigin.z = cp.z;
+        this.bossPos.x += dx; this.bossPos.y += dy; this.bossPos.z += dz;
+        this.updateBasisFromCamera();
+        if (this.bossSpatial) this.bossSpatial.getTransform().setWorldPosition(this.bossPos);
+        console.log(`[anchor] re-anchored on SLAM ready: shift=(${dx.toFixed(2)},${dy.toFixed(2)},${dz.toFixed(2)})m`);
     }
 
     /**
@@ -560,6 +601,9 @@ class MainScene extends Scene {
         this.orbitYawVel *= s; this.orbitPitchVel *= s;
         this.orbitYaw += this.orbitYawVel * dt;
         this.orbitPitch += this.orbitPitchVel * dt;
+        // 左右 / 上下都撞界反弹：yaw 不限的话会绕到背后，Boss 会被直接 disable（"突然看不见"）。
+        if (this.orbitYaw > ORBIT_YAW_MAX) { this.orbitYaw = ORBIT_YAW_MAX; this.orbitYawVel = -Math.abs(this.orbitYawVel); }
+        if (this.orbitYaw < -ORBIT_YAW_MAX) { this.orbitYaw = -ORBIT_YAW_MAX; this.orbitYawVel = Math.abs(this.orbitYawVel); }
         if (this.orbitPitch > ORBIT_PITCH_MAX) { this.orbitPitch = ORBIT_PITCH_MAX; this.orbitPitchVel = -Math.abs(this.orbitPitchVel); }
         if (this.orbitPitch < -ORBIT_PITCH_MAX) { this.orbitPitch = -ORBIT_PITCH_MAX; this.orbitPitchVel = Math.abs(this.orbitPitchVel); }
         this.placeBossOnOrbit();
@@ -773,13 +817,13 @@ class MainScene extends Scene {
         this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false);
         // 全屏彩带序列帧：只在胜利时播，且每次胜利都从头播一遍。
         this.setConfettiSequence(win);
-        this.resultTitle.setText(win ? '警报解除！' : '挑战结束');
+        this.resultTitle.setText(win ? '挑战成功！' : '挑战结束');
         // 三项全部来自真实采集的数据，没有任何硬编码：
         //   耗时 = 本局计时 elapsed（开局归零，击杀/超时那一刻停下）
         //   命中率 = 命中数 / 射击数（真实统计，见 fire() 与 hit()）
         //   评级 = gradeResult() 由上述真实数据算出（旧版是 win ? 'B' : 'C' 的假数据）
         const acc = this.shots > 0 ? Math.round(this.hits * 100 / this.shots) : 0;
-        this.resultStats.setText(`耗时 ${Math.round(this.elapsed)}s  命中率 ${acc}%\n连击 ${this.maxCombo}  评级 ${this.gradeResult(win)}`);
+        this.resultStats.setText(`耗时 ${Math.round(this.elapsed)}s\n命中率 ${acc}%\n连击 ${this.maxCombo}\n评级 ${this.gradeResult(win)}`);
         if (win) this.sound.play('胜利庆祝音');
     }
 
