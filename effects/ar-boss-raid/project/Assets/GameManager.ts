@@ -26,6 +26,11 @@ const AIM_RADIUS = 122;
 /** Boss 总血量。血条填充比例 = hp / MAX_HP；阶段阈值也由它派生，不写散魔法数字。 */
 const MAX_HP = 2400;
 
+/** 一局时长（秒）。判负、HUD 倒计时、HUD 初始文本全部由它派生 —— **改时长只改这一个数**。
+ *  ⚠️ 平台侧：抖音的拍摄时长是用户自己选的（15s / 60s / …），特效本身运行不受限，
+ *  但一局别超过 60s，否则用户录不满就停了、看不到结局。 */
+const ROUND_SECONDS = 30;
+
 /** 连击（combo）规则：命中 +1；**打空**或**超时**归零。
  *  超时 = 距上次命中超过 COMBO_TIMEOUT_MS。与射击间隔（fireGate 250ms）配合 ——
  *  1.5 秒内续不上下一发就断连。 */
@@ -96,6 +101,19 @@ const ORBIT_PITCH_MAX = 0.5;
  *  就会把 Boss **直接 disable** ⇒ 就是作者反馈的「越飞越近、然后突然看不见」。
  *  限在 ±75° 后它始终在视野附近左右飘，撞界反弹（与 pitch 同样处理）。 */
 const ORBIT_YAW_MAX = 1.309;
+
+/** 行为层：叠在「阶段（血条驱动）」之上的微观调度。
+ *  阶段管宏观节奏（warmup / rage / shield / window），行为管「这几秒它想干嘛」。
+ *  一局**不要求**走完所有行为 —— 随机抽到哪个算哪个；「冲刺」这种大动作每局限次数。 */
+const BEHAVIOR_COOLDOWN_MIN_MS = 2000;    // 巡航多久后开始抽下一个行为（下限）
+const BEHAVIOR_COOLDOWN_MAX_MS = 3600;    // 上限（区间内随机，避免节奏机械）
+const BEHAVIOR_HOLD_MS = 1000;            // 停驻：悬停不动，白送一个输出窗口
+const BEHAVIOR_DASH_MS = 900;             // 冲刺：角速度暴增，快速甩动（yaw 有 ±75° 限幅，不会绕圈）
+const BEHAVIOR_RETREAT_MS = 1300;         // 后撤：沿视轴拉远，屏幕上明显变小
+const BEHAVIOR_DASH_SPEED_MUL = 5;        // 冲刺时的角速度倍数
+const BEHAVIOR_RETREAT_METERS = 6;        // 后撤距离（米）
+const BEHAVIOR_DASH_BUDGET = 2;           // 一局内「冲刺」最多几次（大动作别太频繁）
+const BEHAVIOR_DASH_GAP_S = 8;            // 两次冲刺之间至少隔这么多秒（否则会连着冲，观感很乱）
 
 /** 离屏指示器：Boss 跑到画面外时，在屏幕边缘显示箭头指向它的方位。
  *  INDICATOR_MARGIN：箭头中心距屏幕边缘的留白（像素）；
@@ -203,13 +221,26 @@ class MainScene extends Scene {
     private arCamera: APJS.Camera | null = null;
     private bossPos: APJS.Vector3f = new APJS.Vector3f(0, 1.2, 3.5);
     /** 环绕飞行的球面坐标（相对开局视轴基）：yaw 水平、pitch 俯仰，半径恒为 SPAWN_DIST。 */
-    private orbitYaw: number = 0;
-    private orbitErrLeft: number = 6;
+    private orbitYaw: number = 0;    private orbitErrLeft: number = 6;
     /** 主循环异常打印配额：够查清问题，又不会刷屏。 */
     private errQuota: number = 6;
     private orbitPitch: number = 0;
     private orbitYawVel: number = 0;
     private orbitPitchVel: number = 0;
+    /** 当前行为（叠在「阶段」之上的微观调度）：巡航 / 冲刺 / 后撤 / 停驻。 */
+    private behavior: 'cruise' | 'dash' | 'retreat' | 'hold' = 'cruise';
+    /** 当前行为剩余时长（毫秒）；归零即回巡航。 */
+    private behaviorLeft: number = 0;
+    /** 巡航阶段「距离下次抽行为」的倒计时（毫秒）。 */
+    private behaviorCooldown: number = 0;
+    /** 本局剩余的冲刺次数（大动作预算，用一次减一）。 */
+    private dashLeft: number = 0;
+    /** 上一次冲刺发生的时刻（elapsed 秒），用来卡两次冲刺之间的最小间隔。 */
+    private lastDashAt: number = 0;
+    /** 当前环绕半径（后撤会临时拉大，回巡航再收回 SPAWN_DIST）。 */
+    private orbitRadius: number = SPAWN_DIST;
+    /** 半径的目标值（后撤 / 回位都靠它平滑过渡，避免瞬移）。 */
+    private radiusTarget: number = SPAWN_DIST;
     /** 球心 = 相机（用户）的**当前**位置，每帧同步 ⇒ 用户走动时 Boss 跟着平移，距离恒为 SPAWN_DIST。 */
     private userOrigin: APJS.Vector3f = new APJS.Vector3f(0, 0, 0);
     /** 开局视轴方向，作为 yaw=0 / pitch=0 的参考基，保证初始位置正好在手机正前方。 */
@@ -385,7 +416,7 @@ class MainScene extends Scene {
         this.detectFaceHeavy();
         if (this.fireHeld && this.fireGate <= 0) this.fire();
         if (this.phase === 'window' && this.windowLeft <= 0) this.restoreShield();
-        if (this.elapsed >= 30) this.finish(false);
+        if (this.elapsed >= ROUND_SECONDS) this.finish(false);
         this.updateHud();
         this.updateHpDelay(delta);
         this.updateCombo(delta);
@@ -529,6 +560,7 @@ class MainScene extends Scene {
                 this.bornHoldLeft = Math.max(0, this.bornHoldLeft - delta);
                 this.placeBossOnOrbit();
             } else {
+                this.updateBehavior(delta);
                 this.orbitStep(dt);
             }
             if (this.bossSpatial) {
@@ -606,11 +638,62 @@ class MainScene extends Scene {
     }
 
     /**
+     * 行为调度：非巡航行为跑完自动回巡航；巡航冷却结束后随机抽下一个。
+     * 一局**不要求**走完所有行为 —— 抽到哪个算哪个；「冲刺」有大动作预算（每局 BEHAVIOR_DASH_BUDGET 次）。
+     */
+    private updateBehavior(delta: number): void {
+        if (this.phase === 'result') return;
+        if (this.behavior !== 'cruise') {
+            this.behaviorLeft -= delta;
+            if (this.behaviorLeft > 0) return;
+            this.behavior = 'cruise';
+            this.radiusTarget = SPAWN_DIST;
+            this.behaviorCooldown = BEHAVIOR_COOLDOWN_MIN_MS
+                + Math.random() * (BEHAVIOR_COOLDOWN_MAX_MS - BEHAVIOR_COOLDOWN_MIN_MS);
+            return;
+        }
+        this.behaviorCooldown -= delta;
+        if (this.behaviorCooldown > 0) return;
+        this.pickBehavior();
+    }
+
+    /** 抽一个行为。冲刺有每局预算 + 最小间隔，用完/太近就不再进池子（大动作别太频繁）。 */
+    private pickBehavior(): void {
+        const pool: ('hold' | 'retreat' | 'dash')[] = ['hold', 'retreat'];
+        const dashReady = this.dashLeft > 0 && (this.elapsed - this.lastDashAt) >= BEHAVIOR_DASH_GAP_S;
+        if (dashReady) pool.push('dash');
+        const pick = pool[Math.floor(Math.random() * pool.length)];
+        this.behavior = pick;
+        if (pick === 'dash') {
+            this.dashLeft -= 1;
+            this.lastDashAt = this.elapsed;
+            this.behaviorLeft = BEHAVIOR_DASH_MS;
+        } else if (pick === 'retreat') {
+            this.behaviorLeft = BEHAVIOR_RETREAT_MS;
+            this.radiusTarget = SPAWN_DIST + BEHAVIOR_RETREAT_METERS;
+        } else {
+            this.behaviorLeft = BEHAVIOR_HOLD_MS;
+        }
+    }
+
+    /**
      * 球面环绕推进：角速度大小恒为 v/R（线速度由 BOSS_SPEED 控制），方向缓慢随机游走。
      * pitch 撞到上下限即反弹，保证始终绕着用户「平飞」。
      */
     private orbitStep(dt: number): void {
-        const omega = (BOSS_SPEED * (this.phase === 'rage' ? 1.6 : 1)) / Math.max(0.5, SPAWN_DIST);
+        // 半径平滑趋向目标：后撤拉远 / 回巡航收近（不瞬移，避免观感跳变）。
+        this.orbitRadius += (this.radiusTarget - this.orbitRadius) * Math.min(1, dt * 3);
+        // 行为影响速度：冲刺加速、停驻刹停。
+        let speedMul = this.phase === 'rage' ? 1.6 : 1;
+        if (this.behavior === 'dash') speedMul *= BEHAVIOR_DASH_SPEED_MUL;
+        else if (this.behavior === 'hold') speedMul = 0;
+        if (speedMul <= 0) {
+            // 停驻：速度清零、位置定住（半径仍可能在变，所以还得重算一次）。
+            this.orbitYawVel = 0; this.orbitPitchVel = 0;
+            this.placeBossOnOrbit();
+            return;
+        }
+        const omega = (BOSS_SPEED * speedMul) / Math.max(0.5, this.orbitRadius);
         this.orbitYawVel += (Math.random() - 0.5) * omega * dt * 2;
         this.orbitPitchVel += (Math.random() - 0.5) * omega * dt * 2;
         const mag = Math.sqrt(this.orbitYawVel ** 2 + this.orbitPitchVel ** 2) || 0.0001;
@@ -635,9 +718,10 @@ class MainScene extends Scene {
         const cy = Math.cos(this.orbitYaw), sy = Math.sin(this.orbitYaw);
         const f = this.baseForward, r = this.baseRight, u = this.baseUp;
         const kf = cp * cy, kr = sy * cp;
-        const nx = this.userOrigin.x + (f.x * kf + r.x * kr + u.x * sp) * SPAWN_DIST;
-        const ny = this.userOrigin.y + (f.y * kf + r.y * kr + u.y * sp) * SPAWN_DIST;
-        const nz = this.userOrigin.z + (f.z * kf + r.z * kr + u.z * sp) * SPAWN_DIST;
+        const R = this.orbitRadius;
+        const nx = this.userOrigin.x + (f.x * kf + r.x * kr + u.x * sp) * R;
+        const ny = this.userOrigin.y + (f.y * kf + r.y * kr + u.y * sp) * R;
+        const nz = this.userOrigin.z + (f.z * kf + r.z * kr + u.z * sp) * R;
         this.bossPos.x = nx; this.bossPos.y = ny; this.bossPos.z = nz;
     }
 
@@ -851,7 +935,7 @@ class MainScene extends Scene {
     }
 
     private updateHud(): void {
-        const text = ` ${this.hp}   ${Math.max(0, Math.ceil(30 - this.elapsed))}s`;
+        const text = ` ${this.hp}   ${Math.max(0, Math.ceil(ROUND_SECONDS - this.elapsed))}s`;
         if (text !== this.hudText) { this.hudText = text; this.hud.setText(text); }
         this.setHpFillAmount();
     }
@@ -897,7 +981,7 @@ class MainScene extends Scene {
         this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false);
         // 全屏彩带序列帧：只在胜利时播，且每次胜利都从头播一遍。
         this.setConfettiSequence(win);
-        this.resultTitle.setText(win ? '挑战成功！' : '挑战结束');
+        this.resultTitle.setText(win ? '挑战成功!' : '挑战结束');
         // 三项全部来自真实采集的数据，没有任何硬编码：
         //   耗时 = 本局计时 elapsed（开局归零，击杀/超时那一刻停下）
         //   命中率 = 命中数 / 射击数（真实统计，见 fire() 与 hit()）
@@ -1073,7 +1157,7 @@ class MainScene extends Scene {
         this.hpFillRatio = -1; this.hudText = '';
         this.hpDelayRatio = 1; this.hpDelayWait = 0;
         this.setBossTexture(this.idleTexture);
-        this.crosshair.setVisible(true); this.highlight.setVisible(false); this.gun.setFlipX(false).setPosition(this.gunBaseX, this.gunBaseY).setAngle(this.gunBaseAngle).setTexture(this.gunBaseTexture).setVisible(true); this.shield.setVisible(false); this.core.setVisible(false); this.hudPlate.setVisible(true); this.hpFill.setVisible(true); this.hpDelay.setVisible(true); this.setHpFillAmount(); this.hud.setText(`稳定 ${MAX_HP}   30s`).setVisible(true); this.hint.setText('转动手机对准，按住能量脉冲').setVisible(true);
+        this.crosshair.setVisible(true); this.highlight.setVisible(false); this.gun.setFlipX(false).setPosition(this.gunBaseX, this.gunBaseY).setAngle(this.gunBaseAngle).setTexture(this.gunBaseTexture).setVisible(true); this.shield.setVisible(false); this.core.setVisible(false); this.hudPlate.setVisible(true); this.hpFill.setVisible(true); this.hpDelay.setVisible(true); this.setHpFillAmount(); this.hud.setText(`稳定 ${MAX_HP}   ${ROUND_SECONDS}s`).setVisible(true); this.hint.setText('转动手机对准，按住能量脉冲').setVisible(true);
         this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false);
         this.setConfettiSequence(false);
         // 连击状态归零 + HIT 复位（位置/缩放/透明度必须复原，否则下一局开局是歪的）。
@@ -1110,6 +1194,12 @@ class MainScene extends Scene {
         // 出生即正前方（yaw=pitch=0），随后才开始绕飞。
         this.orbitYaw = 0; this.orbitPitch = 0;
         this.orbitYawVel = 0; this.orbitPitchVel = 0;
+        // 行为与半径也归位：每局从「标准半径 + 巡航」开始，冲刺预算重置。
+        this.behavior = 'cruise'; this.behaviorLeft = 0;
+        this.behaviorCooldown = BEHAVIOR_COOLDOWN_MIN_MS;
+        this.dashLeft = BEHAVIOR_DASH_BUDGET;
+        this.lastDashAt = 0;
+        this.orbitRadius = SPAWN_DIST; this.radiusTarget = SPAWN_DIST;
         this.placeBossOnOrbit();
         // 出生就停在**相机视轴正前方**（yaw=pitch=0 ⇒ baseForward 方向），
         // 不做任何投影纠偏 —— 原因见文件头「出生位置」那段注释。

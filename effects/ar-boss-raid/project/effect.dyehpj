@@ -1,6 +1,6 @@
 {
   "name": "未命名",
-  "lastModified": "Sat, 17 Oct 2026 08:37:11 GMT",
+  "lastModified": "Sat, 17 Oct 2026 09:04:14 GMT",
   "version": "9.5.2",
   "toolName": "Douyin AR",
   "renderNames": {
@@ -69,9 +69,9 @@
     "62": "Layer 62",
     "63": "Layer 63"
   },
-  "durationToCreate": 339072087,
-  "durationCreation": 235706799,
-  "durationBackground": 162215219,
+  "durationToCreate": 340695735,
+  "durationCreation": 237330447,
+  "durationBackground": 162964101,
   "effectHint": "",
   "templateID": "templateID_none",
   "overwriteBuiltinGAN": 1,
@@ -101,12 +101,12 @@
   "selectedIdList": [],
   "lastSceneView": 1,
   "perfTested": true,
-  "effectSize": 1917556,
+  "effectSize": 2161793,
   "effectPackagePath": "C:\\Users\\Administrator\\AppData\\Local\\DouyinAR\\Instances\\Instance1\\submit\\package\\effect.zip",
   "effectPackageMissingResource": false,
   "effectUploadResult": {
-    "uri": "GOcPXrzrIEoFww6W+PZcrqmv97Htdsswme6BKTXRBnkV9WgH9t93Pq2V1vFSCGtiLtpngWd11ifGjKXjuwPrRZqIUd3HIf3gJMemjw==",
-    "decrypted_uri": "ies.fe.effect/fa3500f88317928dd6409dfc6a4052c8",
-    "url": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/fa3500f88317928dd6409dfc6a4052c8?x-expires=1792800722&x-signature=7nkGQ%2BUZAqQip%2Bxi6Xj63%2B6RJw4%3D"
+    "uri": "hx438lG9XYhrkysqKe9SsUni0ygFX1hmrgYMUGmjVgMyDGOM8ej3+mJYN09BRGyZr76IvIBcH+9UzFl0mUlquZDZ2HoYUIjPkPWoJA==",
+    "decrypted_uri": "ies.fe.effect/3e32fd036044f411224396d10e788f6a",
+    "url": "https://lf6-effectplatform-sign.byteeffecttos.com/ies.fe.effect/3e32fd036044f411224396d10e788f6a?x-expires=1792831728&x-signature=mahlUIvN2%2Bj4HhZqnDiy9ix%2FeWI%3D"
   }
 }
