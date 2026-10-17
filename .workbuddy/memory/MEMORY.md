@@ -40,6 +40,9 @@
   组件 GUID 直接传（`c61`），别用 `{"$ref":..,"component_type":..}` 包字面 GUID。`properties` 是**对象**不是数组。会回显 before/after。
 - **ScreenTransform 只写 `anchoredPosition` / `sizeDelta`**，别写派生的 `offsets`。
 - **屏幕坐标换算**：`screenX = 360 + anchoredPosition.x`，`screenY = 640 − anchoredPosition.y`（画布 720×1280，锚点 0.5/0.5，PPU 32）。
+  已用三处交叉验证（2026-10-17）：准星 `(0,120)`、结算卡 `(0,0)`、HUD文字 `(0,433)` —— `(0,0)` 就是屏幕正中心、y 轴向上为正。
+- **2D Text 动态改色可用**：`Text.setColor('#RRGGBB')` 写的是 Text2D 组件的 `color` 属性（`letterFillMode=SOLID` 时生效），
+  实测变色成功。Text2D 的属性名：`input`（文本）/ `fontSize` / `horizontalAlignment` / `color`。
 - **像素素材上屏必须整数倍**：显示尺寸 ÷ 逻辑画布必须为整数（否则半像素）。战弩：逻辑 64×55 → 显示 192×165 = 3×。
 - **改贴图没有专用命令**：需 `import_resource` + `set_component{texture}`；**覆盖 `project/Assets/` 源文件不保证编辑器自动重导**。
 - 连接器 `xiangsu-mcp-manager` → `ToolSearch` + `DeferExecuteTool` 两步调用。
@@ -111,3 +114,6 @@
   **绑定前必须用 `inspect` 核对 `filePath`**，别绑到备份那份。
 - ⚠️ **MCP 的组件 guid `c<N>` ≠ scene 文件里的 `localId`**（s20 的 ScreenTransform 文件里是 localId 22、MCP 里是 `c34`）。
   改组件只能用 MCP 返回的 `c<N>`；两者数值相近时极易搞混。
+- ⚠️ **MCP `update_handoff_context` 单对话最多 20 条 `input_messages`**：
+  超出直接报 `must contain at most 20 messages per conversation`，减少条数重试同样报错
+  （服务端按累积计算）。同一对话里登记额度用尽后**别再重试**，直接干活。

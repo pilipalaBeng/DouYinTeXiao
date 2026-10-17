@@ -26,6 +26,28 @@ const AIM_RADIUS = 122;
 /** Boss 总血量。血条填充比例 = hp / MAX_HP；阶段阈值也由它派生，不写散魔法数字。 */
 const MAX_HP = 2400;
 
+/** 连击（combo）规则：命中 +1；**打空**或**超时**归零。
+ *  超时 = 距上次命中超过 COMBO_TIMEOUT_MS。与射击间隔（fireGate 250ms）配合 ——
+ *  1.5 秒内续不上下一发就断连。 */
+const COMBO_TIMEOUT_MS = 1500;
+
+/** 街机风「连击 HIT」显示（场景对象「连击HIT」）。
+ *  ⚠️ 数字与结算面板**同源**：都用 this.combo（当前）/ this.maxCombo（本局峰值），
+ *  不存在两套计数。低于 HIT_MIN_COMBO 不显示（单发不算连击）。 */
+const HIT_MIN_COMBO = 2;
+/** 命中脉冲时长（毫秒）：数字瞬间放大 + 随机抖动，随后按**平方**衰减回常态（比线性更"脆"）。 */
+const HIT_PUNCH_MS = 150;
+/** 脉冲幅度：最大放大比例 / 最大抖动像素。 */
+const HIT_PUNCH_SCALE = 0.3;
+const HIT_SHAKE_PX = 5;
+/** 连击颜色分档（全部取自 DB16 色板），从高到低匹配 —— 连击越高越"烫"。 */
+const HIT_TIERS: { from: number; color: string }[] = [
+    { from: 20, color: '#d04648' },   // DB16 红
+    { from: 10, color: '#d27d2c' },   // DB16 橙
+    { from: 5, color: '#dad45e' },    // DB16 黄
+    { from: 2, color: '#deeed6' },    // DB16 白
+];
+
 /** 结算评级：**全部由真实采集的数据算出**（命中率 / 耗时 / 连击），可复现、可解释。
  *  以前是 `win ? 'B' : 'C'` 的硬编码 —— 打得再好也是 B，等于假数据。
  *  三项各自归一化后加权求和（0~100），再按分数线映射到 S/A/B/C。
@@ -220,6 +242,21 @@ class MainScene extends Scene {
     private confettiSeq: Sprite | null = null;
     /** 序列帧播放控制器（首次需要时懒取一次）；用于每次胜利把动画倒回首帧重播。 */
     private confettiCtrl: { stop(): void; play(): void } | null = null;
+    /** 街机风连击 HIT 文本（场景对象「连击HIT」）。取不到时为 null，静默降级。 */
+    private hitText: Text | null = null;
+    /** 连击超时倒计时（毫秒）：归零即断连。 */
+    private comboLeft: number = 0;
+    /** HIT 脉冲倒计时（毫秒）：>0 时数字放大+抖动，衰减到 0 的那一帧收尾复位。 */
+    private hitPunchLeft: number = 0;
+    /** 本次脉冲的抖动方向（命中时随机一次、脉冲期间保持不变，避免每帧乱抖）。 */
+    private hitShakeX: number = 0;
+    private hitShakeY: number = 0;
+    /** HIT 文本基准位置：抖动是相对它的临时偏移，不能累积。 */
+    private hitBaseX: number = 0;
+    private hitBaseY: number = 0;
+    /** HIT 脏检查缓存（已写入的数字 / 颜色档）：避免每帧重排版与重复写颜色。 */
+    private hitShown: number = -1;
+    private hitTierShown: string = '';
     private hitHighlightLeft: number = 0;
 
     create(): void {
@@ -250,6 +287,10 @@ class MainScene extends Scene {
         // 全屏彩带序列帧（作者新加的「庆祝彩带」预制件实例：2D 相机 > 屏幕图片）。
         // 对象缺失时 object() 会返回 null，后续调用点都做了判空，不影响结算画面。
         this.confettiSeq = this.object<Sprite>('屏幕图片');
+        // 街机风连击 HIT：数字与结算面板同源（this.combo / this.maxCombo）。
+        // 记下基准位置 —— 抖动是在它之上的临时偏移，不能基于上一帧位置累加。
+        this.hitText = this.object<Text>('连击HIT');
+        if (this.hitText) { this.hitBaseX = this.hitText.x; this.hitBaseY = this.hitText.y; }
         this.input.on('pointerdown', this.beginFire, this); this.input.on('pointerup', this.endFire, this);
         this.input.on('RecordStart', this.handleRecordStart, this); this.input.on('RecordEnd', this.handleRecordEnd, this);
         // 旧场景对象不参与当前 2D 能量挑战。
@@ -295,6 +336,7 @@ class MainScene extends Scene {
         if (this.elapsed >= 30) this.finish(false);
         this.updateHud();
         this.updateHpDelay(delta);
+        this.updateCombo(delta);
     }
 
     private object<T extends GameObject>(id: string): T { return this.add.existing(id) as T; }
@@ -577,7 +619,7 @@ class MainScene extends Scene {
             const aimed = this.isAimed();
             this.spawnArrow(aimed ? this.bossScreenX : CROSS_X, aimed ? this.bossScreenY : CROSS_Y);
             if (this.shots <= 3) console.log(`[fire] #${this.shots} aimed=${aimed} boss=(${Math.round(this.bossScreenX)},${Math.round(this.bossScreenY)}) cross=(${CROSS_X},${CROSS_Y}) on=${this.bossOnScreen} phase=${this.phase} hp=${this.hp}`);
-            if (!aimed) { this.combo = 0; return; }
+            if (!aimed) { this.combo = 0; this.comboLeft = 0; return; }
             const hitShieldCore = this.phase === 'shield';
             this.time.delayedCall(160, () => this.resolveArrowHit(hitShieldCore), [], this);
         } catch (e) {
@@ -599,6 +641,11 @@ class MainScene extends Scene {
     private hit(amount: number, heavy: boolean): void {
         if (this.phase === 'shield' || this.phase === 'result' || !this.bossOnScreen) return;
         this.hp = Math.max(0, this.hp - amount); this.hits += 1; this.combo += 1; this.maxCombo = Math.max(this.maxCombo, this.combo);
+        // 连击续期 + 触发击打脉冲（抖动方向每次命中随机一次，脉冲期间保持不变）。
+        this.comboLeft = COMBO_TIMEOUT_MS;
+        this.hitPunchLeft = HIT_PUNCH_MS;
+        this.hitShakeX = (Math.random() * 2 - 1) * HIT_SHAKE_PX;
+        this.hitShakeY = (Math.random() * 2 - 1) * HIT_SHAKE_PX;
         this.sound.play(heavy ? '人脸重击音' : '像素命中音');
         this.hitHighlightLeft = 140;
         this.highlight.setVisible(true);
@@ -672,6 +719,8 @@ class MainScene extends Scene {
         // 否则它会一直飘在结算画面里（enabled 停在最后一次 syncFollowers 的值）。
         if (this.bossSpatial) this.bossSpatial.enabled = false;
         this.crosshair.setVisible(false); this.highlight.setVisible(false); this.gun.setVisible(true); this.hud.setVisible(false); this.hudPlate.setVisible(false); this.hpFill.setVisible(false); this.hpDelay.setVisible(false); this.hint.setVisible(false); this.shield.setVisible(false); this.core.setVisible(false);
+        // 结算面板自带连击数，HUD 上的 HIT 实时显示收起。
+        if (this.hitText) this.hitText.setVisible(false);
         // 胜利才换「投降」贴图；失败时保持当前振翅帧（不再用「暴怒」红球图）。
         if (win) this.setBossTexture(this.friendlyTexture);
         this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(win);
@@ -680,11 +729,52 @@ class MainScene extends Scene {
         this.resultTitle.setText(win ? '警报解除！' : '挑战结束');
         // 三项全部来自真实采集的数据，没有任何硬编码：
         //   耗时 = 本局计时 elapsed（开局归零，击杀/超时那一刻停下）
-        //   同步率 = 命中数 / 射击数（真实统计，见 fire() 与 hit()）
+        //   命中率 = 命中数 / 射击数（真实统计，见 fire() 与 hit()）
         //   评级 = gradeResult() 由上述真实数据算出（旧版是 win ? 'B' : 'C' 的假数据）
         const acc = this.shots > 0 ? Math.round(this.hits * 100 / this.shots) : 0;
-        this.resultStats.setText(`耗时 ${Math.round(this.elapsed)}s  同步率 ${acc}%\n连击 ${this.maxCombo}  评级 ${this.gradeResult(win)}`);
+        this.resultStats.setText(`耗时 ${Math.round(this.elapsed)}s  命中率 ${acc}%\n连击 ${this.maxCombo}  评级 ${this.gradeResult(win)}`);
         if (win) this.sound.play('胜利庆祝音');
+    }
+
+    /**
+     * 街机风连击 HIT 表现 + 连击超时（每帧调用）。
+     * - 超时：距上次命中超过 COMBO_TIMEOUT_MS 即断连（打空同样断，见 fire()）
+     * - 显示：combo ≥ HIT_MIN_COMBO 才出现，断连立刻收起
+     * - 击爽感：命中瞬间数字放大 + 随机抖动，随后**按平方衰减**回常态
+     *   （平方比线性收得更快，打击感更"脆"；末帧 kk≈0 自然复位成 1 倍缩放 / 基准位置）；
+     *   颜色按连击分档升温（白 → 黄 → 橙 → 红，全部取自 DB16 色板）
+     */
+    private updateCombo(delta: number): void {
+        if (this.combo > 0) {
+            this.comboLeft = Math.max(0, this.comboLeft - delta);
+            if (this.comboLeft <= 0) this.combo = 0;      // 超时断连
+        }
+        // 脉冲倒计时无条件推进：即便 combo 掉到阈值以下，也不会残留满值脉冲。
+        const punchBefore = this.hitPunchLeft;
+        this.hitPunchLeft = Math.max(0, this.hitPunchLeft - delta);
+        const txt = this.hitText;
+        if (!txt) return;
+        if (this.combo < HIT_MIN_COMBO) {
+            // 单发 / 已断连：收起（脏检查，避免每帧重复写显隐）。
+            if (this.hitShown !== -1) { this.hitShown = -1; txt.setVisible(false); }
+            return;
+        }
+        if (this.hitShown === -1) txt.setVisible(true);
+        if (this.hitShown !== this.combo) { this.hitShown = this.combo; txt.setText(`${this.combo} HIT`); }
+        const color = this.hitColorFor(this.combo);
+        if (this.hitTierShown !== color) { this.hitTierShown = color; txt.setColor(color); }
+        if (punchBefore > 0) {
+            const k = punchBefore / HIT_PUNCH_MS;
+            const kk = k * k;
+            txt.setScale(1 + HIT_PUNCH_SCALE * kk, 1 + HIT_PUNCH_SCALE * kk);
+            txt.setPosition(this.hitBaseX + this.hitShakeX * kk, this.hitBaseY + this.hitShakeY * kk);
+        }
+    }
+
+    /** 按连击数取 HIT 颜色（DB16 色板，越高越"烫"）。 */
+    private hitColorFor(combo: number): string {
+        for (const tier of HIT_TIERS) if (combo >= tier.from) return tier.color;
+        return HIT_TIERS[HIT_TIERS.length - 1].color;
     }
 
     /**
@@ -757,6 +847,9 @@ class MainScene extends Scene {
         this.crosshair.setVisible(true); this.highlight.setVisible(false); this.gun.setFlipX(false).setPosition(this.gunBaseX, this.gunBaseY).setAngle(this.gunBaseAngle).setTexture(this.gunBaseTexture).setVisible(true); this.shield.setVisible(false); this.core.setVisible(false); this.hudPlate.setVisible(true); this.hpFill.setVisible(true); this.hpDelay.setVisible(true); this.setHpFillAmount(); this.hud.setText(`稳定 ${MAX_HP}   30s`).setVisible(true); this.hint.setText('转动手机对准，按住能量脉冲').setVisible(true);
         this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(false);
         this.setConfettiSequence(false);
+        // 连击状态归零 + HIT 复位（位置/缩放必须复原，否则下一局开局是歪的）。
+        this.comboLeft = 0; this.hitPunchLeft = 0; this.hitShown = -1; this.hitTierShown = '';
+        if (this.hitText) this.hitText.setVisible(false).setScale(1, 1).setPosition(this.hitBaseX, this.hitBaseY);
         // 真机空间诊断探针（默认关闭，见 DEBUG_SPATIAL_PROBE）。
         if (DEBUG_SPATIAL_PROBE) {
             this.time.delayedCall(1500, () => this.probeSpatial('t1.5'), [], this);

@@ -3811,5 +3811,75 @@
     "ellipseX": 1,
     "ellipseY": 1,
     "alphaNOPM": true
+  },
+  {
+    "guid": {
+      "a": "1b561eb9-6f09-2c07-65f2-874efce71d71",
+      "b": ""
+    },
+    "objGuid": "Guid(4766506952243975033, 7481981074546429881)",
+    "extraType": "Entity",
+    "name": "连击HIT",
+    "version": "0.1.0",
+    "rttiType": "SceneObject",
+    "expanded": true,
+    "type": "none",
+    "isAnimatorBound": false,
+    "modelGUID": "",
+    "createdEffectNodeKey": "effect_node_2D_foreground",
+    "disableSelection": false,
+    "hiddenInHierarchy": false,
+    "editorTags": [],
+    "entityPanel": "2D"
+  },
+  {
+    "guid": {
+      "a": "95e16b89-4e14-21f8-2724-d43eabaa1ca4",
+      "b": ""
+    },
+    "objGuid": "Guid(5265302607508954078, 7570589977479033762)",
+    "extraType": "ScreenTransform",
+    "name": "2D 变换",
+    "version": "0.1.0",
+    "rttiType": "ScreenTransform",
+    "editable": true,
+    "_lazyUpgrateVersion": "0.1.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "horizontalConstraint": 2,
+    "verticalConstraint": 2,
+    "linkageScale": 0,
+    "linkageSize": 0
+  },
+  {
+    "guid": {
+      "a": "300719fc-9479-4bf7-5f02-9e5e28925be8",
+      "b": ""
+    },
+    "objGuid": "Guid(5124756598057918000, 9649650689681991317)",
+    "extraType": "Text2D",
+    "name": "文字",
+    "version": "1.2.0",
+    "rttiType": "Text",
+    "editable": true,
+    "_lazyUpgrateVersion": "1.2.0",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "expanded": true
+    },
+    "artTextDropdown": "",
+    "artTextNameDropdown": "00000000-0000-0000-0000-000000008000",
+    "totalAnimationTime": 0,
+    "inAnimationAssetID": "",
+    "loopAnimationAssetID": "",
+    "outAnimationAssetID": "",
+    "inAnimationDuration": 0,
+    "loopAnimationDuration": 0,
+    "outAnimationDuration": 0,
+    "userEditable": false,
+    "maxInputWords": 0,
+    "templateId": ""
   }
 ]
