@@ -1,6 +1,6 @@
 {
   "name": "未命名",
-  "lastModified": "Fri, 16 Oct 2026 23:50:17 GMT",
+  "lastModified": "Sat, 17 Oct 2026 00:38:04 GMT",
   "version": "9.5.2",
   "toolName": "Douyin AR",
   "renderNames": {
@@ -69,9 +69,9 @@
     "62": "Layer 62",
     "63": "Layer 63"
   },
-  "durationToCreate": 307458434,
-  "durationCreation": 204093146,
-  "durationBackground": 96802456,
+  "durationToCreate": 310325148,
+  "durationCreation": 206959860,
+  "durationBackground": 135945135,
   "effectHint": "",
   "templateID": "templateID_none",
   "overwriteBuiltinGAN": 1,
@@ -98,15 +98,17 @@
     "index": 82,
     "resourceUrl": "D:\\Software\\XiangSu\\Douyin AR\\Resources\\BuiltinResource\\preview\\video\\preview_environment\\ceiling.mp4"
   },
-  "selectedIdList": [],
+  "selectedIdList": [
+    "editor:5c8aa960-8af4-51d1-2def-b959749d705c"
+  ],
   "lastSceneView": 1,
   "perfTested": true,
-  "effectSize": 1660160,
+  "effectSize": 1917556,
   "effectPackagePath": "C:\\Users\\Administrator\\AppData\\Local\\DouyinAR\\Instances\\Instance1\\submit\\package\\effect.zip",
   "effectPackageMissingResource": false,
   "effectUploadResult": {
-    "uri": "HIOg/LYDmpXnwqQYrTe+WGgqvCgQB5IbLacBQG3FmKVhAH/I0GFjeg/Y1OpoSrxsDOIDHOmzU6LHOBTWZCUWTDmIVnVaf8Oe8IJhtg==",
-    "decrypted_uri": "ies.fe.effect/2fa2f2a3e1d274fea4e14d97301d78e8",
-    "url": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/2fa2f2a3e1d274fea4e14d97301d78e8?x-expires=1792636471&x-signature=hPkh9oF%2B%2FKn%2FI9X%2FLE36lyuoCxk%3D"
+    "uri": "GOcPXrzrIEoFww6W+PZcrqmv97Htdsswme6BKTXRBnkV9WgH9t93Pq2V1vFSCGtiLtpngWd11ifGjKXjuwPrRZqIUd3HIf3gJMemjw==",
+    "decrypted_uri": "ies.fe.effect/fa3500f88317928dd6409dfc6a4052c8",
+    "url": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/fa3500f88317928dd6409dfc6a4052c8?x-expires=1792800722&x-signature=7nkGQ%2BUZAqQip%2Bxi6Xj63%2B6RJw4%3D"
   }
 }

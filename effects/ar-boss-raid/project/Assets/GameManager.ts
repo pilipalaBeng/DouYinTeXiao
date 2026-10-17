@@ -177,6 +177,8 @@ class MainScene extends Scene {
     private gunFireTexture!: APJS.Texture;
     private gunReturnTexture!: APJS.Texture;
     private gunAnimLeft: number = 0;
+    /** 血条底板（纯色深紫背景板）。结算时要跟着血条一起收起，否则结算画面上会留一条紫条。 */
+    private hudPlate!: Sprite;
     private hpFill!: Sprite;
     /** 血条填充比例脏检查缓存：与上传给材质的 _filledRange 保持一致，避免每帧重复写共享材质。 */
     private hpFillRatio: number = -1;
@@ -195,6 +197,10 @@ class MainScene extends Scene {
     private resultTitle!: Text;
     private resultStats!: Text;
     private confetti!: Sprite;
+    /** 全屏彩带序列帧（作者新加的「庆祝彩带」预制件实例：2D 相机 > 屏幕图片）。取不到时为 null，静默降级。 */
+    private confettiSeq: Sprite | null = null;
+    /** 序列帧播放控制器（首次需要时懒取一次）；用于每次胜利把动画倒回首帧重播。 */
+    private confettiCtrl: { stop(): void; play(): void } | null = null;
     private hitHighlightLeft: number = 0;
 
     create(): void {
@@ -209,6 +215,7 @@ class MainScene extends Scene {
         this.friendlyTexture = this.optionalTexture('能量核心友好模板');
         this.shield = this.object<Sprite>('护盾覆盖'); this.core = this.object<Sprite>('护盾核心'); this.crosshair = this.object<Sprite>('固定准星');
         this.highlight = this.object<Sprite>('准星命中高亮'); this.gun = this.object<Sprite>('古代战弩'); this.hpFill = this.object<Sprite>('Boss血条填充');
+        this.hudPlate = this.object<Sprite>('战斗HUD底板');
         this.hpDelay = this.object<Sprite>('Boss血条延迟');
         // 记下延迟条的满宽与左边界：之后按比例缩放时保持左边界不动（否则会从中间缩，方向感全错）。
         this.hpDelayFull = this.hpDelay.width;
@@ -221,6 +228,9 @@ class MainScene extends Scene {
         this.gunReturnTexture = this.optionalTexture('战弩回位模板') || this.gunBaseTexture;
         this.hud = this.object<Text>('HUD文字'); this.hint = this.object<Text>('开局提示'); this.resultCard = this.object<Sprite>('结算卡');
         this.resultTitle = this.object<Text>('结算标题'); this.resultStats = this.object<Text>('结算战绩'); this.confetti = this.object<Sprite>('胜利彩带');
+        // 全屏彩带序列帧（作者新加的「庆祝彩带」预制件实例：2D 相机 > 屏幕图片）。
+        // 对象缺失时 object() 会返回 null，后续调用点都做了判空，不影响结算画面。
+        this.confettiSeq = this.object<Sprite>('屏幕图片');
         this.input.on('pointerdown', this.beginFire, this); this.input.on('pointerup', this.endFire, this);
         this.input.on('RecordStart', this.handleRecordStart, this); this.input.on('RecordEnd', this.handleRecordEnd, this);
         // 旧场景对象不参与当前 2D 能量挑战。
@@ -609,7 +619,7 @@ class MainScene extends Scene {
     }
 
     private updateHud(): void {
-        const text = `稳定 ${this.hp}   ${Math.max(0, Math.ceil(30 - this.elapsed))}s`;
+        const text = ` ${this.hp}   ${Math.max(0, Math.ceil(30 - this.elapsed))}s`;
         if (text !== this.hudText) { this.hudText = text; this.hud.setText(text); }
         this.setHpFillAmount();
     }
@@ -642,13 +652,41 @@ class MainScene extends Scene {
         // 结算后 tick 会直接 return、不再走 syncFollowers ⇒ 这里必须显式收起 3D Boss，
         // 否则它会一直飘在结算画面里（enabled 停在最后一次 syncFollowers 的值）。
         if (this.bossSpatial) this.bossSpatial.enabled = false;
-        this.crosshair.setVisible(false); this.highlight.setVisible(false); this.gun.setVisible(true); this.hud.setVisible(false); this.hpFill.setVisible(false); this.hpDelay.setVisible(false); this.hint.setVisible(false); this.shield.setVisible(false); this.core.setVisible(false);
+        this.crosshair.setVisible(false); this.highlight.setVisible(false); this.gun.setVisible(true); this.hud.setVisible(false); this.hudPlate.setVisible(false); this.hpFill.setVisible(false); this.hpDelay.setVisible(false); this.hint.setVisible(false); this.shield.setVisible(false); this.core.setVisible(false);
         // 胜利才换「投降」贴图；失败时保持当前振翅帧（不再用「暴怒」红球图）。
         if (win) this.setBossTexture(this.friendlyTexture);
         this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(win);
+        // 全屏彩带序列帧：只在胜利时播，且每次胜利都从头播一遍。
+        this.setConfettiSequence(win);
         this.resultTitle.setText(win ? '警报解除！' : '挑战结束');
         this.resultStats.setText(`同步率 ${this.shots > 0 ? Math.round(this.hits * 100 / this.shots) : 0}%\n连击 ${this.maxCombo} 评级 ${win ? 'B' : 'C'}`);
         if (win) this.sound.play('胜利庆祝音');
+    }
+
+    /**
+     * 全屏彩带序列帧的开关。显隐与「重播」绑在一起：
+     * 引擎的动画纹理会自己无限循环，不重置的话每次胜利看到的都是**上一次播到一半**的进度，
+     * 观感像彩带中途接上。所以显示时先倒回首帧再播。
+     */
+    private setConfettiSequence(show: boolean): void {
+        if (!this.confettiSeq) return;
+        if (show) this.restartConfettiSequence();
+        this.confettiSeq.setVisible(show);
+    }
+
+    /** 把彩带序列帧倒回首帧并重新播放（控制器懒取一次，取不到就只静态显示首帧，不报错）。 */
+    private restartConfettiSequence(): void {
+        if (!this.confettiSeq) return;
+        if (!this.confettiCtrl) {
+            const tex = this.confettiSeq.getTexture();
+            const ctrl = (tex ? tex.getControl() : null) as unknown as { stop?: () => void; play?: () => void } | null;
+            if (!ctrl || typeof ctrl.stop !== 'function' || typeof ctrl.play !== 'function') {
+                console.warn('[confetti] AnimatedTextureProvider not available; sequence will show its current frame.');
+                return;
+            }
+            this.confettiCtrl = ctrl as { stop(): void; play(): void };
+        }
+        this.confettiCtrl.stop(); this.confettiCtrl.play();
     }
 
     private showMinimalResult(): void {
@@ -674,8 +712,9 @@ class MainScene extends Scene {
         this.hpFillRatio = -1; this.hudText = '';
         this.hpDelayRatio = 1; this.hpDelayWait = 0;
         this.setBossTexture(this.idleTexture);
-        this.crosshair.setVisible(true); this.highlight.setVisible(false); this.gun.setFlipX(false).setPosition(this.gunBaseX, this.gunBaseY).setAngle(this.gunBaseAngle).setTexture(this.gunBaseTexture).setVisible(true); this.shield.setVisible(false); this.core.setVisible(false); this.hpFill.setVisible(true); this.hpDelay.setVisible(true); this.setHpFillAmount(); this.hud.setText(`稳定 ${MAX_HP}   30s`).setVisible(true); this.hint.setText('转动手机对准，按住能量脉冲').setVisible(true);
+        this.crosshair.setVisible(true); this.highlight.setVisible(false); this.gun.setFlipX(false).setPosition(this.gunBaseX, this.gunBaseY).setAngle(this.gunBaseAngle).setTexture(this.gunBaseTexture).setVisible(true); this.shield.setVisible(false); this.core.setVisible(false); this.hudPlate.setVisible(true); this.hpFill.setVisible(true); this.hpDelay.setVisible(true); this.setHpFillAmount(); this.hud.setText(`稳定 ${MAX_HP}   30s`).setVisible(true); this.hint.setText('转动手机对准，按住能量脉冲').setVisible(true);
         this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(false);
+        this.setConfettiSequence(false);
         // 真机空间诊断探针（默认关闭，见 DEBUG_SPATIAL_PROBE）。
         if (DEBUG_SPATIAL_PROBE) {
             this.time.delayedCall(1500, () => this.probeSpatial('t1.5'), [], this);
