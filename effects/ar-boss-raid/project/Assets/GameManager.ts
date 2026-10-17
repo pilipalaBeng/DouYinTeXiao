@@ -47,6 +47,15 @@ const HIT_TIERS: { from: number; color: string }[] = [
     { from: 5, color: '#dad45e' },    // DB16 黄
     { from: 2, color: '#deeed6' },    // DB16 白
 ];
+/** HIT 出现动画：时长 + 缩放先冲到的峰值（像弹出来，再回弹到 1.0）。 */
+const HIT_IN_MS = 180;
+const HIT_IN_OVERSHOOT = 1.15;
+/** HIT 消失动画：时长 + 缩到多小（同时淡出），避免「啪一下没了」的硬切。 */
+const HIT_OUT_MS = 200;
+const HIT_OUT_SCALE = 0.85;
+/** 保持显示期间的轻微「呼吸」（幅度 / 角速度）—— 数字静止时会显得死板。 */
+const HIT_BREATH_AMP = 0.02;
+const HIT_BREATH_SPEED = 6;
 
 /** 结算评级：**全部由真实采集的数据算出**（命中率 / 耗时 / 连击），可复现、可解释。
  *  以前是 `win ? 'B' : 'C'` 的硬编码 —— 打得再好也是 B，等于假数据。
@@ -257,6 +266,11 @@ class MainScene extends Scene {
     /** HIT 脏检查缓存（已写入的数字 / 颜色档）：避免每帧重排版与重复写颜色。 */
     private hitShown: number = -1;
     private hitTierShown: string = '';
+    /** HIT 显隐状态机：0=隐藏 1=出现动画 2=保持 3=消失动画。显隐一律走过渡，不硬切。 */
+    private hitPhase: number = 0;
+    private hitPhaseLeft: number = 0;
+    /** 已写入的 HIT 透明度（量化到 0.05），避免每帧重排版。 */
+    private hitAlphaShown: number = 1;
     private hitHighlightLeft: number = 0;
 
     create(): void {
@@ -745,30 +759,88 @@ class MainScene extends Scene {
      *   颜色按连击分档升温（白 → 黄 → 橙 → 红，全部取自 DB16 色板）
      */
     private updateCombo(delta: number): void {
+        // 1) 连击超时：距上次命中超过 COMBO_TIMEOUT_MS 就断连（打空同样断，见 fire()）
         if (this.combo > 0) {
             this.comboLeft = Math.max(0, this.comboLeft - delta);
-            if (this.comboLeft <= 0) this.combo = 0;      // 超时断连
+            if (this.comboLeft <= 0) this.combo = 0;
         }
-        // 脉冲倒计时无条件推进：即便 combo 掉到阈值以下，也不会残留满值脉冲。
+        // 2) 脉冲倒计时无条件推进：即便 combo 掉到阈值以下，也不会残留满值脉冲。
         const punchBefore = this.hitPunchLeft;
         this.hitPunchLeft = Math.max(0, this.hitPunchLeft - delta);
         const txt = this.hitText;
         if (!txt) return;
-        if (this.combo < HIT_MIN_COMBO) {
-            // 单发 / 已断连：收起（脏检查，避免每帧重复写显隐）。
-            if (this.hitShown !== -1) { this.hitShown = -1; txt.setVisible(false); }
-            return;
+
+        // 3) 显隐状态机：命中 → 弹出；断连 → 淡出缩小离场；淡出途中再次命中 → 弹回来。
+        //    所有显隐都走过渡，不做「啪一下出现/消失」的硬切。
+        const wantShow = this.combo >= HIT_MIN_COMBO;
+        if (wantShow && this.hitPhase === 0) {
+            this.hitPhase = 1; this.hitPhaseLeft = HIT_IN_MS; txt.setVisible(true);
+        } else if (wantShow && this.hitPhase === 3) {
+            this.hitPhase = 1; this.hitPhaseLeft = HIT_IN_MS;
+        } else if (!wantShow && (this.hitPhase === 1 || this.hitPhase === 2)) {
+            this.hitPhase = 3; this.hitPhaseLeft = HIT_OUT_MS;
         }
-        if (this.hitShown === -1) txt.setVisible(true);
-        if (this.hitShown !== this.combo) { this.hitShown = this.combo; txt.setText(`${this.combo} HIT`); }
-        const color = this.hitColorFor(this.combo);
-        if (this.hitTierShown !== color) { this.hitTierShown = color; txt.setColor(color); }
+        if (this.hitPhase === 0) return;
+
+        // 4) 数字 / 颜色（脏检查，避免每帧重排版）。
+        // ⚠️ 消失动画期间必须**冻结**：断连时 combo 已归零，若继续写会闪一下「0 HIT」，
+        //    破坏「保持最后一击的数字淡出」的观感（2026-10-17 实测踩到）。
+        if (this.hitPhase !== 3) {
+            if (this.hitShown !== this.combo) { this.hitShown = this.combo; txt.setText(`${this.combo} HIT`); }
+            const color = this.hitColorFor(this.combo);
+            if (this.hitTierShown !== color) { this.hitTierShown = color; txt.setColor(color); }
+        }
+
+        // 5) 状态机：入场弹性 → 保持呼吸 → 离场淡出
+        let base = 1;
+        let alpha = 1;
+        if (this.hitPhase === 1) {
+            this.hitPhaseLeft = Math.max(0, this.hitPhaseLeft - delta);
+            const t = 1 - this.hitPhaseLeft / HIT_IN_MS;                      // 0 → 1
+            base = t < 0.6
+                ? 0.6 + (HIT_IN_OVERSHOOT - 0.6) * (t / 0.6)                   // 0.6 → 1.15（冲过头）
+                : HIT_IN_OVERSHOOT - (HIT_IN_OVERSHOOT - 1) * ((t - 0.6) / 0.4);  // 1.15 → 1.0（回弹）
+            alpha = Math.min(1, t * 2.5);                                      // 前 40% 时长内淡入
+            if (this.hitPhaseLeft <= 0) this.hitPhase = 2;
+        } else if (this.hitPhase === 2) {
+            base = 1 + HIT_BREATH_AMP * Math.sin(this.elapsed * HIT_BREATH_SPEED);   // 轻微呼吸，别死板
+        } else {
+            this.hitPhaseLeft = Math.max(0, this.hitPhaseLeft - delta);
+            const t = 1 - this.hitPhaseLeft / HIT_OUT_MS;                      // 0 → 1
+            base = 1 - (1 - HIT_OUT_SCALE) * t;
+            alpha = 1 - t;
+            if (this.hitPhaseLeft <= 0) {
+                this.hitPhase = 0; this.hitShown = -1; this.hitTierShown = '';
+                this.setHitAlpha(1); txt.setVisible(false); return;
+            }
+        }
+
+        // 6) 命中脉冲叠加：放大 + 抖动（平方衰减，起步猛、收得快）
+        let punch = 1;
+        let shakeK = 0;
         if (punchBefore > 0) {
             const k = punchBefore / HIT_PUNCH_MS;
-            const kk = k * k;
-            txt.setScale(1 + HIT_PUNCH_SCALE * kk, 1 + HIT_PUNCH_SCALE * kk);
-            txt.setPosition(this.hitBaseX + this.hitShakeX * kk, this.hitBaseY + this.hitShakeY * kk);
+            shakeK = k * k;
+            punch = 1 + HIT_PUNCH_SCALE * shakeK;
         }
+        this.setHitAlpha(alpha);
+        const s = base * punch;
+        txt.setScale(s, s);
+        txt.setPosition(this.hitBaseX + this.hitShakeX * shakeK, this.hitBaseY + this.hitShakeY * shakeK);
+    }
+
+    /**
+     * 改 HIT 文本整体透明度。
+     * ⚠️ `GameObject.setAlpha` 只对 Image 组件生效，Text 对象没有 Image ⇒ 用不了；
+     * Text2D 的透明度属性是 `letterAlpha`。量化到 0.05 步长做脏检查，避免每帧重排版。
+     */
+    private setHitAlpha(a: number): void {
+        if (!this.hitText) return;
+        const q = Math.round(a * 20) / 20;
+        if (q === this.hitAlphaShown) return;
+        this.hitAlphaShown = q;
+        const comp = this.hitText.getEngineComponent('Text2D') as any;
+        if (comp && comp.letterAlpha !== undefined) comp.letterAlpha = q;
     }
 
     /** 按连击数取 HIT 颜色（DB16 色板，越高越"烫"）。 */
@@ -847,8 +919,10 @@ class MainScene extends Scene {
         this.crosshair.setVisible(true); this.highlight.setVisible(false); this.gun.setFlipX(false).setPosition(this.gunBaseX, this.gunBaseY).setAngle(this.gunBaseAngle).setTexture(this.gunBaseTexture).setVisible(true); this.shield.setVisible(false); this.core.setVisible(false); this.hudPlate.setVisible(true); this.hpFill.setVisible(true); this.hpDelay.setVisible(true); this.setHpFillAmount(); this.hud.setText(`稳定 ${MAX_HP}   30s`).setVisible(true); this.hint.setText('转动手机对准，按住能量脉冲').setVisible(true);
         this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(false);
         this.setConfettiSequence(false);
-        // 连击状态归零 + HIT 复位（位置/缩放必须复原，否则下一局开局是歪的）。
+        // 连击状态归零 + HIT 复位（位置/缩放/透明度必须复原，否则下一局开局是歪的）。
         this.comboLeft = 0; this.hitPunchLeft = 0; this.hitShown = -1; this.hitTierShown = '';
+        this.hitPhase = 0; this.hitPhaseLeft = 0;
+        this.hitAlphaShown = -1; this.setHitAlpha(1);
         if (this.hitText) this.hitText.setVisible(false).setScale(1, 1).setPosition(this.hitBaseX, this.hitBaseY);
         // 真机空间诊断探针（默认关闭，见 DEBUG_SPATIAL_PROBE）。
         if (DEBUG_SPATIAL_PROBE) {

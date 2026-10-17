@@ -43,6 +43,11 @@
   已用三处交叉验证（2026-10-17）：准星 `(0,120)`、结算卡 `(0,0)`、HUD文字 `(0,433)` —— `(0,0)` 就是屏幕正中心、y 轴向上为正。
 - **2D Text 动态改色可用**：`Text.setColor('#RRGGBB')` 写的是 Text2D 组件的 `color` 属性（`letterFillMode=SOLID` 时生效），
   实测变色成功。Text2D 的属性名：`input`（文本）/ `fontSize` / `horizontalAlignment` / `color`。
+- ⚠️ **Text 改透明度不能用 `setAlpha`**：`GameObject.setAlpha` 内部**只找 Image 组件**，Text 对象没有 Image
+  ⇒ 静默无效（不报错，就是没反应）。Text 的透明度要改 Text2D 的 **`letterAlpha`**
+  （`getEngineComponent('Text2D') as any` 后赋值）。
+- **低帧率 PC 预览里看不清短动画**（PC 只有 1.5~5 FPS，180ms 的入场动画会被一帧整个跨过）。
+  要看曲线就**临时把动画时长放大 10 倍**跑一遍，验完再改回来 —— 比反复截图碰运气靠谱。
 - **像素素材上屏必须整数倍**：显示尺寸 ÷ 逻辑画布必须为整数（否则半像素）。战弩：逻辑 64×55 → 显示 192×165 = 3×。
 - **改贴图没有专用命令**：需 `import_resource` + `set_component{texture}`；**覆盖 `project/Assets/` 源文件不保证编辑器自动重导**。
 - 连接器 `xiangsu-mcp-manager` → `ToolSearch` + `DeferExecuteTool` 两步调用。
