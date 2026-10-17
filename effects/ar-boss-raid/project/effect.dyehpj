@@ -1,6 +1,6 @@
 {
   "name": "未命名",
-  "lastModified": "Sat, 17 Oct 2026 09:29:55 GMT",
+  "lastModified": "Sat, 17 Oct 2026 09:34:43 GMT",
   "version": "9.5.2",
   "toolName": "Douyin AR",
   "renderNames": {
@@ -69,9 +69,9 @@
     "62": "Layer 62",
     "63": "Layer 63"
   },
-  "durationToCreate": 342236919,
-  "durationCreation": 238871631,
-  "durationBackground": 164018451,
+  "durationToCreate": 342524034,
+  "durationCreation": 239158746,
+  "durationBackground": 164480081,
   "effectHint": "",
   "templateID": "templateID_none",
   "overwriteBuiltinGAN": 1,
@@ -99,7 +99,7 @@
     "resourceUrl": "D:\\Software\\XiangSu\\Douyin AR\\Resources\\BuiltinResource\\preview\\video\\preview_environment\\ceiling.mp4"
   },
   "selectedIdList": [
-    "editor:c7c56426-45b0-fe17-bbc4-b6e09765453c"
+    "editor:64c486b9-8acd-0a6d-e300-550099cbccce"
   ],
   "lastSceneView": 1,
   "perfTested": true,

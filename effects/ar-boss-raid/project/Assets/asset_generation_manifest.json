@@ -1,7 +1,7 @@
 {
   "version": 1,
   "generator": "image-generator",
-  "updatedAt": "2026-10-17T00:49:01.687Z",
+  "updatedAt": "2026-10-17T09:07:25.465Z",
   "batches": [
     {
       "batchNumber": 1,
@@ -684,6 +684,146 @@
         "settingImageHash": "474c40a493ff5b29dc3b35fadeed27299a3c375726ef681b0ffc7647dcf4483b"
       },
       "assetInputSource": "asset_board"
+    },
+    {
+      "batchNumber": 28,
+      "startedAt": "2026-10-17T00:51:12.604Z",
+      "finishedAt": "2026-10-17T00:51:16.291Z",
+      "durationMs": 3687,
+      "total": 1,
+      "completed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "status": "done",
+      "assetKeys": [
+        "像素血条填充.png"
+      ],
+      "assetReferenceManifest": {
+        "path": ".agent/asset-board/asset_reference_manifest.json",
+        "designBriefHash": "3f537e820ffc24cf96905c152a542e16d13cbd318c857a7a28462f43bbd8d517",
+        "settingImageHash": "474c40a493ff5b29dc3b35fadeed27299a3c375726ef681b0ffc7647dcf4483b"
+      },
+      "assetInputSource": "asset_board"
+    },
+    {
+      "batchNumber": 29,
+      "startedAt": "2026-10-17T00:52:39.013Z",
+      "finishedAt": "2026-10-17T00:52:44.772Z",
+      "durationMs": 5759,
+      "total": 1,
+      "completed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "status": "done",
+      "assetKeys": [
+        "像素血条填充.png"
+      ],
+      "assetReferenceManifest": {
+        "path": ".agent/asset-board/asset_reference_manifest.json",
+        "designBriefHash": "3f537e820ffc24cf96905c152a542e16d13cbd318c857a7a28462f43bbd8d517",
+        "settingImageHash": "474c40a493ff5b29dc3b35fadeed27299a3c375726ef681b0ffc7647dcf4483b"
+      },
+      "assetInputSource": "asset_board"
+    },
+    {
+      "batchNumber": 30,
+      "startedAt": "2026-10-17T07:52:24.269Z",
+      "finishedAt": "2026-10-17T07:52:29.355Z",
+      "durationMs": 5086,
+      "total": 1,
+      "completed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "status": "done",
+      "assetKeys": [
+        "像素结算卡.png"
+      ],
+      "assetReferenceManifest": {
+        "path": ".agent/asset-board/asset_reference_manifest.json",
+        "designBriefHash": "3f537e820ffc24cf96905c152a542e16d13cbd318c857a7a28462f43bbd8d517",
+        "settingImageHash": "474c40a493ff5b29dc3b35fadeed27299a3c375726ef681b0ffc7647dcf4483b"
+      },
+      "assetInputSource": "asset_board"
+    },
+    {
+      "batchNumber": 31,
+      "startedAt": "2026-10-17T08:43:18.629Z",
+      "finishedAt": "2026-10-17T08:43:24.065Z",
+      "durationMs": 5436,
+      "total": 1,
+      "completed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "status": "done",
+      "assetKeys": [
+        "像素护盾.png"
+      ],
+      "assetReferenceManifest": {
+        "path": ".agent/asset-board/asset_reference_manifest.json",
+        "designBriefHash": "1822772b408b0dc513658e6b66c5e313bf8c7ae538c7387dd1485cd82a262b04",
+        "settingImageHash": "474c40a493ff5b29dc3b35fadeed27299a3c375726ef681b0ffc7647dcf4483b"
+      },
+      "assetInputSource": "asset_board"
+    },
+    {
+      "batchNumber": 32,
+      "startedAt": "2026-10-17T08:46:27.999Z",
+      "finishedAt": "2026-10-17T08:46:34.051Z",
+      "durationMs": 6052,
+      "total": 1,
+      "completed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "status": "done",
+      "assetKeys": [
+        "像素护盾.png"
+      ],
+      "assetReferenceManifest": {
+        "path": ".agent/asset-board/asset_reference_manifest.json",
+        "designBriefHash": "50d9dce609172568df007d70ca85cc4f554eb166f3eda0bc434f89bced4bb419",
+        "settingImageHash": "474c40a493ff5b29dc3b35fadeed27299a3c375726ef681b0ffc7647dcf4483b"
+      },
+      "assetInputSource": "asset_board"
+    },
+    {
+      "batchNumber": 33,
+      "startedAt": "2026-10-17T09:03:08.103Z",
+      "finishedAt": "2026-10-17T09:03:13.719Z",
+      "durationMs": 5616,
+      "total": 1,
+      "completed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "status": "done",
+      "assetKeys": [
+        "像素护盾.png"
+      ],
+      "assetReferenceManifest": {
+        "path": ".agent/asset-board/asset_reference_manifest.json",
+        "designBriefHash": "6c6f4cbb6ab665c43b776c2b5e8396e0e3e6eb14e9131551b82c7f06513bdfc2",
+        "settingImageHash": "474c40a493ff5b29dc3b35fadeed27299a3c375726ef681b0ffc7647dcf4483b"
+      },
+      "assetInputSource": "asset_board"
+    },
+    {
+      "batchNumber": 34,
+      "startedAt": "2026-10-17T09:07:19.636Z",
+      "finishedAt": "2026-10-17T09:07:25.463Z",
+      "durationMs": 5827,
+      "total": 1,
+      "completed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "status": "done",
+      "assetKeys": [
+        "像素护盾.png"
+      ],
+      "assetReferenceManifest": {
+        "path": ".agent/asset-board/asset_reference_manifest.json",
+        "designBriefHash": "6c6f4cbb6ab665c43b776c2b5e8396e0e3e6eb14e9131551b82c7f06513bdfc2",
+        "settingImageHash": "474c40a493ff5b29dc3b35fadeed27299a3c375726ef681b0ffc7647dcf4483b"
+      },
+      "assetInputSource": "asset_board"
     }
   ],
   "assets": [
@@ -773,7 +913,7 @@
       "referenceImageUrl": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/b44b8b2684bb5f531a6f01daf537b6c7?x-expires=1792802936&x-signature=%2F0nWzWbuKNfGDG%2FULFbz%2BVrS0EI%3D",
       "processingMode": "segment_only",
       "workflowSource": "loki_material://7678146505320054847",
-      "taskId": "wf12026101708485750100481370626",
+      "taskId": "wf12026101708524050099332095234",
       "failed_taskIds": [],
       "failureClasses": [],
       "qualityState": "generated",
@@ -819,18 +959,18 @@
       },
       "finalPath": "Assets/像素血条填充.png",
       "status": "completed",
-      "batchNumber": 27,
+      "batchNumber": 29,
       "attempts": 1,
       "stageDurationsMs": {
-        "submit": 161,
-        "poll": 4617,
-        "download": 294,
-        "compress": 71,
-        "sceneRefresh": 146
+        "submit": 265,
+        "poll": 4486,
+        "download": 331,
+        "compress": 51,
+        "sceneRefresh": 113
       },
-      "startedAt": "2026-10-17T00:48:55.614Z",
-      "finishedAt": "2026-10-17T00:49:00.927Z",
-      "durationMs": 5313,
+      "startedAt": "2026-10-17T00:52:39.027Z",
+      "finishedAt": "2026-10-17T00:52:44.286Z",
+      "durationMs": 5259,
       "warnings": []
     },
     {
@@ -1788,73 +1928,73 @@
       "assetKey": "像素结算卡.png",
       "prompt": "目标主体可见外接矩形比例（宽:高）为 174:205；该比例约束主体本身，不是输出画布。\n指定的纯色抠图底为 `#D8D8D8`。\n提取输入图的完整内容并放置到画面中心。禁止删减或仅提取部分元素。保持输入图完整造型、内部构成、方向、视角、透视、主要配色、材质、描边、装饰和美术风格。\r\n参考图主体比例与目标比例不一致时，不得照搬错误比例；允许为符合目标比例重新构图，但必须保持内部部件比例和视觉特征，禁止非等比缩放、压扁、拉伸、旋转、裁切或改变透视，禁止添加其他物体、场景、地面或相邻对象。最终输出必须移除文字、数字、字母、logo、水印、伪文字，并将原白色展示背景替换为指定抠图底。\r\nUI 容器只保留面板自身的形状、材质、描边、圆角和装饰，移除内部图标、文字占位、文本区和其它运行时内容；\r\n特效保持单一、边界清晰，不扩展为粒子场、碎片雨、烟雾场或连续爆炸。素材放置在画面中心，完整呈现且不裁切。\r\n主体外接矩形应接近 Brief 目标比例，允许保留必要安全边，禁止填满输出画布。\r\n背景必须完全使用指定的纯色抠图底，无渐变、阴影、地面或场景；主体、描边、高光、阴影和特效均不得改写为该背景色。图像清晰、边缘完整，最终只输出素材图，不输出解释。",
       "inputSource": "asset_board",
-      "designBriefHash": "91b1808465362e283c4a584841496a888e683c3ded062f13903224ecf3c29ac1",
+      "designBriefHash": "3f537e820ffc24cf96905c152a542e16d13cbd318c857a7a28462f43bbd8d517",
       "assetType": "ui_container",
-      "referenceCropPath": ".agent/asset-board/pages/page-01/textless/A24-f2eb5d712fc1.png",
-      "referenceCropHash": "bf49e18c940a9a114f4a5d4295de3d5e9fb3ada83fbe4dede7f4727d9e3e0254",
-      "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A24-f2eb5d712fc1.png",
-      "textlessCropHash": "bf49e18c940a9a114f4a5d4295de3d5e9fb3ada83fbe4dede7f4727d9e3e0254",
-      "referenceImageUrl": "https://lf3-effectplatform-sign.byteeffecttos.com/ies.fe.effect/0c3ac90aa9a7370a2f0d770eb10bd828?x-expires=1792659186&x-signature=SUEuF6KXPf%2BqZdv%2FFkQPd9IZRLI%3D",
+      "referenceCropPath": ".agent/asset-board/pages/page-01/textless/A23-f2eb5d712fc1.png",
+      "referenceCropHash": "912db3b3c0796cae8c86d502fd0212e009d99606d7bd297a04717b595b2de360",
+      "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A23-f2eb5d712fc1.png",
+      "textlessCropHash": "912db3b3c0796cae8c86d502fd0212e009d99606d7bd297a04717b595b2de360",
+      "referenceImageUrl": "https://lf3-effectplatform-sign.byteeffecttos.com/ies.fe.effect/7e091888feb21114135a751f947c4c57?x-expires=1792802936&x-signature=1bswTMqg2cHJNAGptvehl7sOt%2BQ%3D",
       "processingMode": "segment_only",
       "workflowSource": "loki_material://7678146505320054847",
-      "taskId": "wf12026101516530749784491047938",
+      "taskId": "wf12026101715522550154204431874",
       "failed_taskIds": [],
       "failureClasses": [],
       "qualityState": "generated",
       "requestedWidth": 348,
       "requestedHeight": 410,
-      "targetWidth": 315.77,
+      "targetWidth": 309,
       "targetHeight": 410,
-      "actualWidth": 315,
-      "actualHeight": 409,
+      "actualWidth": 309,
+      "actualHeight": 410,
       "chromaKeyColor": "#D8D8D8",
       "transparentMarginCrop": {
         "applied": true,
-        "sourceWidth": 520,
-        "sourceHeight": 480,
+        "sourceWidth": 515,
+        "sourceHeight": 492,
         "opaqueBounds": {
-          "left": 80,
-          "top": 32,
-          "width": 337,
-          "height": 438
+          "left": 67,
+          "top": 34,
+          "width": 338,
+          "height": 448
         },
         "cropRegion": {
-          "left": 80,
-          "top": 32,
-          "width": 337,
-          "height": 438
+          "left": 67,
+          "top": 34,
+          "width": 338,
+          "height": 448
         },
-        "finalWidth": 315,
+        "finalWidth": 309,
         "finalHeight": 410,
         "longEdge": "height"
       },
       "textSafeRect": {
-        "left": 13,
+        "left": 12,
         "top": 16,
-        "width": 289,
+        "width": 285,
         "height": 378,
         "source": "uniform_inset"
       },
       "surfaceSampleColor": {
-        "r": 56,
-        "g": 93,
-        "b": 64,
-        "hex": "#385D40"
+        "r": 19,
+        "g": 81,
+        "b": 67,
+        "hex": "#135143"
       },
       "finalPath": "Assets/像素结算卡.png",
       "status": "completed",
-      "batchNumber": 19,
+      "batchNumber": 30,
       "attempts": 1,
       "stageDurationsMs": {
-        "submit": 238,
-        "poll": 3927,
-        "download": 587,
-        "compress": 138,
-        "sceneRefresh": 2328
+        "submit": 205,
+        "poll": 3462,
+        "download": 445,
+        "compress": 237,
+        "sceneRefresh": 595
       },
-      "startedAt": "2026-10-15T08:53:07.538Z",
-      "finishedAt": "2026-10-15T08:53:14.765Z",
-      "durationMs": 7227,
+      "startedAt": "2026-10-17T07:52:24.283Z",
+      "finishedAt": "2026-10-17T07:52:29.248Z",
+      "durationMs": 4965,
       "warnings": []
     },
     {
@@ -2153,73 +2293,73 @@
       "assetKey": "像素护盾.png",
       "prompt": "目标主体可见外接矩形比例（宽:高）为 15:11；该比例约束主体本身，不是输出画布。\n指定的纯色抠图底为 `#D8D8D8`。\n提取输入图的完整内容并放置到画面中心。禁止删减或仅提取部分元素。保持输入图完整造型、内部构成、方向、视角、透视、主要配色、材质、描边、装饰和美术风格。\r\n参考图主体比例与目标比例不一致时，不得照搬错误比例；允许为符合目标比例重新构图，但必须保持内部部件比例和视觉特征，禁止非等比缩放、压扁、拉伸、旋转、裁切或改变透视，禁止添加其他物体、场景、地面或相邻对象。最终输出必须移除文字、数字、字母、logo、水印、伪文字，并将原白色展示背景替换为指定抠图底。\r\nUI 容器只保留面板自身的形状、材质、描边、圆角和装饰，移除内部图标、文字占位、文本区和其它运行时内容；\r\n特效保持单一、边界清晰，不扩展为粒子场、碎片雨、烟雾场或连续爆炸。素材放置在画面中心，完整呈现且不裁切。\r\n主体外接矩形应接近 Brief 目标比例，允许保留必要安全边，禁止填满输出画布。\r\n背景必须完全使用指定的纯色抠图底，无渐变、阴影、地面或场景；主体、描边、高光、阴影和特效均不得改写为该背景色。图像清晰、边缘完整，最终只输出素材图，不输出解释。",
       "inputSource": "asset_board",
-      "designBriefHash": "91b1808465362e283c4a584841496a888e683c3ded062f13903224ecf3c29ac1",
+      "designBriefHash": "6c6f4cbb6ab665c43b776c2b5e8396e0e3e6eb14e9131551b82c7f06513bdfc2",
       "assetType": "gameplay_sprite",
-      "referenceCropPath": ".agent/asset-board/pages/page-01/textless/A17-9acab4d01283.png",
-      "referenceCropHash": "624f62d5fa1892428b8a9c05e930f6684259208f4c3ea41e9b23a1f3f431f109",
-      "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A17-9acab4d01283.png",
-      "textlessCropHash": "624f62d5fa1892428b8a9c05e930f6684259208f4c3ea41e9b23a1f3f431f109",
-      "referenceImageUrl": "https://lf9-effectplatform-sign.byteeffecttos.com/ies.fe.effect/c6e67e34b22d885e0fc181e4bc88ddda?x-expires=1792659186&x-signature=7%2FVWX6X0g6LXaQkNtaFfN6%2BqMRU%3D",
+      "referenceCropPath": ".agent/asset-board/pages/page-01/textless/A16-9acab4d01283.png",
+      "referenceCropHash": "cb00274bcb0e509c06f88fc5f36b0ec09fbcc465b19bdcd981f6ac186132a4a3",
+      "textlessCropPath": ".agent/asset-board/pages/page-01/textless/A16-9acab4d01283.png",
+      "textlessCropHash": "cb00274bcb0e509c06f88fc5f36b0ec09fbcc465b19bdcd981f6ac186132a4a3",
+      "referenceImageUrl": "https://lf3-effectplatform-sign.byteeffecttos.com/ies.fe.effect/285a6f16802dcc09b58142154030c817?x-expires=1792832589&x-signature=MQPgWsfL%2BwxfbNardh0uS3sAa7w%3D",
       "processingMode": "segment_only",
       "workflowSource": "loki_material://7678146505320054847",
-      "taskId": "wf12026101516530749780787721218",
+      "taskId": "wf12026101717072150176657721858",
       "failed_taskIds": [],
       "failureClasses": [],
       "qualityState": "generated",
       "requestedWidth": 300,
       "requestedHeight": 220,
-      "targetWidth": 300,
-      "targetHeight": 193.73,
-      "actualWidth": 319,
-      "actualHeight": 206,
+      "targetWidth": 223.729,
+      "targetHeight": 220,
+      "actualWidth": 300,
+      "actualHeight": 295,
       "chromaKeyColor": "#D8D8D8",
       "transparentMarginCrop": {
         "applied": true,
-        "sourceWidth": 512,
-        "sourceHeight": 347,
+        "sourceWidth": 508,
+        "sourceHeight": 484,
         "opaqueBounds": {
-          "left": 59,
-          "top": 67,
-          "width": 396,
-          "height": 256
+          "left": 53,
+          "top": 75,
+          "width": 397,
+          "height": 391
         },
         "cropRegion": {
-          "left": 59,
-          "top": 67,
-          "width": 396,
-          "height": 256
+          "left": 53,
+          "top": 75,
+          "width": 397,
+          "height": 391
         },
         "finalWidth": 300,
-        "finalHeight": 194,
+        "finalHeight": 295,
         "longEdge": "width"
       },
       "textSafeRect": {
         "left": 12,
-        "top": 8,
+        "top": 12,
         "width": 276,
-        "height": 179,
+        "height": 271,
         "source": "uniform_inset"
       },
       "surfaceSampleColor": {
-        "r": 93,
-        "g": 197,
-        "b": 211,
-        "hex": "#5DC5D3"
+        "r": 73,
+        "g": 189,
+        "b": 249,
+        "hex": "#49BDF9"
       },
       "finalPath": "Assets/像素护盾.png",
       "status": "completed",
-      "batchNumber": 19,
+      "batchNumber": 34,
       "attempts": 1,
       "stageDurationsMs": {
-        "submit": 220,
-        "poll": 3949,
-        "download": 422,
-        "compress": 60,
-        "sceneRefresh": 2431
+        "submit": 359,
+        "poll": 3643,
+        "download": 495,
+        "compress": 176,
+        "sceneRefresh": 251
       },
-      "startedAt": "2026-10-15T08:53:07.536Z",
-      "finishedAt": "2026-10-15T08:53:14.626Z",
-      "durationMs": 7090,
+      "startedAt": "2026-10-17T09:07:19.654Z",
+      "finishedAt": "2026-10-17T09:07:24.614Z",
+      "durationMs": 4960,
       "warnings": []
     },
     {
