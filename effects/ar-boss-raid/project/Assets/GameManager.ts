@@ -24,7 +24,7 @@ const AIM_RADIUS = 122;
  *  「用户面前」的可靠定义就是相机 getLookAt() 方向，不要用投影去反推 —— 已整段移除。 */
 
 /** Boss 总血量。血条填充比例 = hp / MAX_HP；阶段阈值也由它派生，不写散魔法数字。 */
-const MAX_HP = 4800;
+const MAX_HP = 4300;
 
 /** 护盾阶段的三项规则（原来硬编码在 resolveArrowHit / breakShield / restoreShield 里，
  *  这次一并提成常量，调手感只改这里）。 */
