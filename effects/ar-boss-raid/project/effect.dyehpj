@@ -1,6 +1,6 @@
 {
   "name": "未命名",
-  "lastModified": "Sat, 17 Oct 2026 01:35:24 GMT",
+  "lastModified": "Sat, 17 Oct 2026 01:45:28 GMT",
   "version": "9.5.2",
   "toolName": "Douyin AR",
   "renderNames": {
@@ -69,9 +69,9 @@
     "62": "Layer 62",
     "63": "Layer 63"
   },
-  "durationToCreate": 313765672,
-  "durationCreation": 210400384,
-  "durationBackground": 137584236,
+  "durationToCreate": 314369214,
+  "durationCreation": 211003926,
+  "durationBackground": 137981899,
   "effectHint": "",
   "templateID": "templateID_none",
   "overwriteBuiltinGAN": 1,

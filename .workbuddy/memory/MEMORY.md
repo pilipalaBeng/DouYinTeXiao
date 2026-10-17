@@ -117,6 +117,15 @@
   —— 这是打通「磁盘 `.extra` 里的 guid ↔ MCP 的 `r<N>` 编号」的唯一钥匙。
   同名资源会因工程内存在两个目录而出现两份（如 `Assets/Boss待机` = r5 与 `_boss_original_backup/Boss待机` = r62），
   **绑定前必须用 `inspect` 核对 `filePath`**，别绑到备份那份。
+- ⚠️ **"换了图 → 物体不显示"有两种完全不同的病因，别混**（2026-10-17）：
+  1. **引用断了**：贴图变成内置占位（文件里 `00000000-…-0000000000XX`、MCP 显示 `r53`）→ 重新绑定即可。
+  2. **图本身引擎吃不进去**：guid / 尺寸 / 组件状态 / 运行时日志（`vis` `soEnabled` `opacity` `tex`）**全部正常**，
+     但就是不渲染；`import_resource` 覆盖导入也修不好。
+     ⇒ **诊断手段：把贴图临时换成一张已知能显示的图**（如 `Boss待机`）。换了能显示 = 就是那张图的问题，
+     让作者换导出方式重出一张（换软件 / 另存 / 去元数据）。
+- **`set_component` 改不了 Image 的 `sortingOrder`**（报 "Property sortingOrder not found for component Image"），
+  sortingOrder 走场景层级/自动排序，别在这里试。
+- **`import_resource` 对同路径文件是覆盖导入**：guid 不变、`version` 前进，可用来强制刷新纹理资源。
 - ⚠️ **MCP 的组件 guid `c<N>` ≠ scene 文件里的 `localId`**（s20 的 ScreenTransform 文件里是 localId 22、MCP 里是 `c34`）。
   改组件只能用 MCP 返回的 `c<N>`；两者数值相近时极易搞混。
 - ⚠️ **MCP `update_handoff_context` 单对话最多 20 条 `input_messages`**：

@@ -246,7 +246,6 @@ class MainScene extends Scene {
     private resultCard!: Sprite;
     private resultTitle!: Text;
     private resultStats!: Text;
-    private confetti!: Sprite;
     /** 全屏彩带序列帧（作者新加的「庆祝彩带」预制件实例：2D 相机 > 屏幕图片）。取不到时为 null，静默降级。 */
     private confettiSeq: Sprite | null = null;
     /** 序列帧播放控制器（首次需要时懒取一次）；用于每次胜利把动画倒回首帧重播。 */
@@ -297,7 +296,7 @@ class MainScene extends Scene {
         this.gunFireTexture = this.optionalTexture('战弩击发模板') || this.gunBaseTexture;
         this.gunReturnTexture = this.optionalTexture('战弩回位模板') || this.gunBaseTexture;
         this.hud = this.object<Text>('HUD文字'); this.hint = this.object<Text>('开局提示'); this.resultCard = this.object<Sprite>('结算卡');
-        this.resultTitle = this.object<Text>('结算标题'); this.resultStats = this.object<Text>('结算战绩'); this.confetti = this.object<Sprite>('胜利彩带');
+        this.resultTitle = this.object<Text>('结算标题'); this.resultStats = this.object<Text>('结算战绩');
         // 全屏彩带序列帧（作者新加的「庆祝彩带」预制件实例：2D 相机 > 屏幕图片）。
         // 对象缺失时 object() 会返回 null，后续调用点都做了判空，不影响结算画面。
         this.confettiSeq = this.object<Sprite>('屏幕图片');
@@ -737,7 +736,9 @@ class MainScene extends Scene {
         if (this.hitText) this.hitText.setVisible(false);
         // 胜利才换「投降」贴图；失败时保持当前振翅帧（不再用「暴怒」红球图）。
         if (win) this.setBossTexture(this.friendlyTexture);
-        this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(win);
+        // 结算卡 / 标题 / 战绩。旧的 UI 静态彩带（场景对象「胜利彩带」）已弃用 ——
+        // 作者要求改用全屏「庆祝彩带」序列帧，见 setConfettiSequence()。
+        this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false);
         // 全屏彩带序列帧：只在胜利时播，且每次胜利都从头播一遍。
         this.setConfettiSequence(win);
         this.resultTitle.setText(win ? '警报解除！' : '挑战结束');
@@ -917,7 +918,7 @@ class MainScene extends Scene {
         this.hpDelayRatio = 1; this.hpDelayWait = 0;
         this.setBossTexture(this.idleTexture);
         this.crosshair.setVisible(true); this.highlight.setVisible(false); this.gun.setFlipX(false).setPosition(this.gunBaseX, this.gunBaseY).setAngle(this.gunBaseAngle).setTexture(this.gunBaseTexture).setVisible(true); this.shield.setVisible(false); this.core.setVisible(false); this.hudPlate.setVisible(true); this.hpFill.setVisible(true); this.hpDelay.setVisible(true); this.setHpFillAmount(); this.hud.setText(`稳定 ${MAX_HP}   30s`).setVisible(true); this.hint.setText('转动手机对准，按住能量脉冲').setVisible(true);
-        this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false); this.confetti.setVisible(false);
+        this.resultCard.setVisible(false); this.resultTitle.setVisible(false); this.resultStats.setVisible(false);
         this.setConfettiSequence(false);
         // 连击状态归零 + HIT 复位（位置/缩放/透明度必须复原，否则下一局开局是歪的）。
         this.comboLeft = 0; this.hitPunchLeft = 0; this.hitShown = -1; this.hitTierShown = '';
