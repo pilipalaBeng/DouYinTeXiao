@@ -1,8 +1,8 @@
 {
   "formatVersion": 2,
   "revision": 31,
-  "mutationRevision": 330,
-  "updatedAt": "2026-10-17T01:45:28.975Z",
+  "mutationRevision": 338,
+  "updatedAt": "2026-10-17T07:46:56.726Z",
   "writerInstanceId": "1",
   "task": {
     "objective": "把作者新导入的「庆祝彩带」序列帧特效接入游戏胜利逻辑",
@@ -149,16 +149,16 @@
       "at": "2026-10-17T00:39:20.350Z"
     },
     {
-      "kind": "interaction",
-      "status": "passed",
-      "summary": "The latest interact_by_dsl sequence completed successfully.",
-      "at": "2026-10-17T01:44:09.358Z"
-    },
-    {
       "kind": "script",
       "status": "passed",
       "summary": "The latest run_otsc_check call completed without compilation errors.",
-      "at": "2026-10-17T01:45:17.782Z"
+      "at": "2026-10-17T07:46:33.918Z"
+    },
+    {
+      "kind": "interaction",
+      "status": "passed",
+      "summary": "The latest interact_by_dsl sequence completed successfully.",
+      "at": "2026-10-17T07:46:48.605Z"
     }
   ],
   "openIssues": [
@@ -181,7 +181,7 @@
     ]
   },
   "autoBrief": {
-    "summary": "Saved project: 54 scene object(s), 43 resource(s), 5 render group(s).",
-    "at": "2026-10-17T01:45:28.975Z"
+    "summary": "Saved project: 54 scene object(s), 44 resource(s), 5 render group(s).",
+    "at": "2026-10-17T07:46:56.726Z"
   }
 }

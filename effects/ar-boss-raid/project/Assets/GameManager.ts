@@ -219,6 +219,13 @@ class MainScene extends Scene {
     private wingFrameLeft: number = 0;
     private shield!: Sprite;
     private core!: Sprite;
+    /** 护盾 / 核心的基准尺寸（开局从场景读一次）；按 Boss 距离缩放时以它为 1.0 基准。 */
+    private shieldBaseW: number = 0;
+    private shieldBaseH: number = 0;
+    private coreBaseW: number = 0;
+    private coreBaseH: number = 0;
+    /** 上次应用过的护盾缩放系数（脏检查：避免每帧新建 Vector3f 写 transform）。 */
+    private shieldScale: number = -1;
     private crosshair!: Sprite;
     private highlight!: Sprite;
     private gun!: Sprite;
@@ -285,6 +292,9 @@ class MainScene extends Scene {
         this.shield = this.object<Sprite>('护盾覆盖'); this.core = this.object<Sprite>('护盾核心'); this.crosshair = this.object<Sprite>('固定准星');
         this.highlight = this.object<Sprite>('准星命中高亮'); this.gun = this.object<Sprite>('古代战弩'); this.hpFill = this.object<Sprite>('Boss血条填充');
         this.hudPlate = this.object<Sprite>('战斗HUD底板');
+        // 护盾 / 核心的基准尺寸：之后按 Boss 的实际距离缩放，以这个尺寸为 1.0 基准。
+        this.shieldBaseW = this.shield.width; this.shieldBaseH = this.shield.height;
+        this.coreBaseW = this.core.width; this.coreBaseH = this.core.height;
         this.hpDelay = this.object<Sprite>('Boss血条延迟');
         // 记下延迟条的满宽与左边界：之后按比例缩放时保持左边界不动（否则会从中间缩，方向感全错）。
         this.hpDelayFull = this.hpDelay.width;
@@ -602,9 +612,31 @@ class MainScene extends Scene {
         const visible = this.bossOnScreen && this.phase !== 'result';
         this.shield.setPosition(this.bossScreenX, this.bossScreenY);
         this.core.setPosition(this.bossScreenX, this.bossScreenY);
+        // 尺寸也要跟着 Boss 走：位置跟了而尺寸不跟，就会出现「离得远护盾显大、离得近护盾显小」。
+        const k = this.bossDistanceScale();
+        if (Math.abs(k - this.shieldScale) > 0.01) {
+            this.shieldScale = k;
+            this.shield.setDisplaySize(this.shieldBaseW * k, this.shieldBaseH * k);
+            this.core.setDisplaySize(this.coreBaseW * k, this.coreBaseH * k);
+        }
         this.highlight.setPosition(this.bossScreenX, this.bossScreenY);
         this.highlight.setVisible(visible && this.hitHighlightLeft > 0);
         if (this.bossSpatial) this.bossSpatial.enabled = visible;
+    }
+
+    /**
+     * 护盾 / 核心的屏幕缩放系数：以 SPAWN_DIST 为基准（该距离下 = 1.0），按**实际距离**线性缩放。
+     * 为什么需要：Boss 是 3D 物体，玩家走动会改变与它的实际距离 —— 屏幕上 Boss 会近大远小，
+     * 而 2D 护盾的尺寸是固定的，不同步缩放就会出现作者反馈的「离得远护盾很大、离得近护盾又很小」。
+     * 结果钳在 0.4~2.5，防止相机位置异常时把护盾缩成针尖或撑爆屏幕。
+     */
+    private bossDistanceScale(): number {
+        if (!this.arCamTransform) return 1;
+        const cp = this.arCamTransform.getWorldPosition();
+        const dx = this.bossPos.x - cp.x, dy = this.bossPos.y - cp.y, dz = this.bossPos.z - cp.z;
+        const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        if (!isFinite(dist) || dist <= 0.01) return 1;
+        return Math.min(2.5, Math.max(0.4, SPAWN_DIST / dist));
     }
 
     private isAimed(): boolean {

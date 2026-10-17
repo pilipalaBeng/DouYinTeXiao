@@ -18,10 +18,10 @@
     "get_scene": 40,
     "generate_assets_batch": 1,
     "capture_preview": 16,
-    "run_otsc_check": 84,
-    "interact_by_dsl": 124,
-    "get_script_logs": 118,
+    "run_otsc_check": 88,
+    "interact_by_dsl": 127,
+    "get_script_logs": 119,
     "get_scene_view": 2,
-    "save_project": 22
+    "save_project": 23
   }
 }
