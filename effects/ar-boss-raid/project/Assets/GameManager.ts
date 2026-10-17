@@ -343,6 +343,8 @@ class MainScene extends Scene {
             this.optionalTexture('Boss振翅帧1模板'), this.optionalTexture('Boss振翅帧2模板'),
             this.optionalTexture('Boss振翅帧3模板'), this.optionalTexture('Boss振翅帧4模板'),
         ];
+        // ⚠️ 名字叫「能量核心友好模板」，但它贴的其实就是 Assets/Boss投降.png
+        //    （guid 98dc1081…，已核对）—— 胜利时用它给 3D Boss 换「投降」姿势。
         this.friendlyTexture = this.optionalTexture('能量核心友好模板');
         this.shield = this.object<Sprite>('护盾覆盖'); this.core = this.object<Sprite>('护盾核心'); this.crosshair = this.object<Sprite>('固定准星');
         this.highlight = this.object<Sprite>('准星命中高亮'); this.gun = this.object<Sprite>('古代战弩'); this.hpFill = this.object<Sprite>('Boss血条填充');
@@ -965,9 +967,11 @@ class MainScene extends Scene {
     private finish(win: boolean): void {
         if (this.phase === 'result') return; this.phase = 'result'; this.resultDelay = 450; this.fireHeld = false;
         for (const item of this.runtimeObjects) item.destroy(); this.runtimeObjects = []; this.flyingArrows = [];
-        // 结算后 tick 会直接 return、不再走 syncFollowers ⇒ 这里必须显式收起 3D Boss，
-        // 否则它会一直飘在结算画面里（enabled 停在最后一次 syncFollowers 的值）。
-        if (this.bossSpatial) this.bossSpatial.enabled = false;
+        // 结算后 tick 会直接 return、不再走 syncFollowers ⇒ 这里必须显式处理 3D Boss（否则 enabled
+        // 会停在最后一次 syncFollowers 的值）。**按输赢分开**：
+        //   胜利 → 保留并定格（配合下面的「投降」贴图，让玩家看到它认输），位置就停在最后一帧；
+        //   失败 → 收起（怪消失在暗处）。
+        if (this.bossSpatial) this.bossSpatial.enabled = win;
         this.crosshair.setVisible(false); this.highlight.setVisible(false); this.gun.setVisible(true); this.hud.setVisible(false); this.hudPlate.setVisible(false); this.hpFill.setVisible(false); this.hpDelay.setVisible(false); this.hint.setVisible(false); this.shield.setVisible(false); this.core.setVisible(false);
         // 结算面板自带连击数，HUD 上的 HIT 实时显示收起。
         if (this.hitText) this.hitText.setVisible(false);
@@ -975,6 +979,7 @@ class MainScene extends Scene {
         this.indicatorShown = false;
         if (this.indicator) this.indicator.setVisible(false);
         // 胜利才换「投降」贴图；失败时保持当前振翅帧（不再用「暴怒」红球图）。
+        // 胜利 → 换成「投降」贴图（Boss投降.png），配合上面 enabled=win 让玩家看到它认输定格。
         if (win) this.setBossTexture(this.friendlyTexture);
         // 结算卡 / 标题 / 战绩。旧的 UI 静态彩带（场景对象「胜利彩带」）已弃用 ——
         // 作者要求改用全屏「庆祝彩带」序列帧，见 setConfettiSequence()。
