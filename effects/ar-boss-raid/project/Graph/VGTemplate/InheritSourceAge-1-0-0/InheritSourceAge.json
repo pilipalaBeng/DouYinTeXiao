@@ -1,0 +1,37 @@
+{
+	"templateGuid": "a8896758-cb47-083c-62e6-697e4b2cd7a8",
+	"displayName": "Inherit Source Age",
+	"category": "Attribute Inherit",
+	"function": "InheritSourceAge",
+	"NodeType": "VFXGRAPHBLOCK",
+	"inputs": [],
+	"uniforms": [],
+	"parameters": [],
+	"methodBody": "float source_age = uintBitsToFloat(sourceAttributeBuffer_buf[index_source + 11u]);\nage = source_age;",
+	"externalVariables": [],
+	"compatibleContexts": [
+		"Init",
+		"StripInit"
+	],
+	"attributes": [
+		"age"
+	],
+	"builtinVars": [
+		{
+			"name": "index_source",
+			"type": "uint"
+		}
+	],
+	"usedelta": false,
+	"description": "Mimics the age of the source",
+	"version": "1.0.0",
+	"TSPATH": "",
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"nameKey": "vfxgraph_inherit_source_age_name",
+	"categoryKey": "vfxgraph_category_attributeinherit",
+	"descriptionKey": "vfxgraph_inherit_source_age_description"
+}

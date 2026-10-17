@@ -1,0 +1,46 @@
+{
+	"displayName": "Set Color",
+	"function": "SetColor",
+	"templateGuid": "504b4f66-1ca0-c777-6a86-4d87e3b638c4",
+	"NodeType": "VFXGRAPHBLOCK",
+	"inputs": [
+		{
+			"displayName": "Color",
+			"name": "Color",
+			"description": "The color of the particles in RGB",
+			"type": "Vec3",
+			"default": {
+				"x": 1,
+				"y": 1,
+				"z": 1
+			},
+			"allowedTypes": [],
+			"nameKey": "vfxgraph_set_color_input_color",
+			"descriptionKey": "vfxgraph_set_color_input_color_description",
+			"displayType": "Vec3",
+			"displayTypeKey": "graph_type_vec3"
+		}
+	],
+	"outputs": [],
+	"category": "Attribute Set",
+	"description": "Sets the color of the particles",
+	"version": "1.0.0",
+	"compatibleContexts": [
+		"Init",
+		"Update",
+		"Output"
+	],
+	"attributes": [
+		"color"
+	],
+	"methodBody": "color.xyz = Color.xyz;",
+	"TSPATH": "",
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"nameKey": "vfxgraph_set_color_name",
+	"categoryKey": "vfxgraph_category_attributeset",
+	"descriptionKey": "vfxgraph_set_color_description"
+}

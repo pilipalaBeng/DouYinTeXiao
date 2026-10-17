@@ -1,0 +1,45 @@
+{
+	"displayName": "Add Gravity",
+	"function": "AddGravity",
+	"templateGuid": "a37a80f5-92f6-b83e-5a1f-d6ce63b1af66",
+	"NodeType": "VFXGRAPHBLOCK",
+	"inputs": [
+		{
+			"displayName": "Force",
+			"name": "Force",
+			"description": "The force of gravity",
+			"type": "Vec3",
+			"default": {
+				"x": 0,
+				"y": -10,
+				"z": 0
+			},
+			"allowedTypes": [],
+			"nameKey": "vfxgraph_add_gravity_input_force",
+			"descriptionKey": "vfxgraph_add_gravity_input_force_description",
+			"displayType": "Vec3",
+			"displayTypeKey": "graph_type_vec3"
+		}
+	],
+	"outputs": [],
+	"category": "Force",
+	"description": "Adds a gravitational force on particles regardless of their mass",
+	"version": "1.0.0",
+	"compatibleContexts": [
+		"Update"
+	],
+	"attributes": [
+		"velocity"
+	],
+	"usedelta": true,
+	"methodBody": "velocity += Force.xyz * deltaTime;",
+	"TSPATH": "",
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"nameKey": "vfxgraph_add_gravity_name",
+	"categoryKey": "vfxgraph_category_force",
+	"descriptionKey": "vfxgraph_add_gravity_description"
+}

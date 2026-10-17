@@ -1,0 +1,51 @@
+%YAML 1.1
+--- !TextureDelegate &1
+name: !<str> 单序列帧_庆祝彩带
+guid: {a: 4782032240918202047, b: 15873776268144361399}
+serializedProperty:
+  __class: ScriptSerializedProperty
+  name: !<str> ""
+  guid: {a: 5326273744931530261, b: 15883599882951955875}
+  properties:
+    __class: Map
+    JSClassName: !<str> AnimatedTextureProvider
+    duration: 1
+    fps: 28
+    loopCount: -1
+    playMode: 0
+    reverse: false
+    textureSequence: {localId: 1, path: 968a3d87-bd68-29f3-4baf-fecbcf98af6b--968a3d87-bd68-29f3-4baf-fecbcf98af6b.seq}
+width: 0
+height: 0
+depth: 0
+internalFormat:
+  __class: InternalFormat
+  value: RGBA8
+dataType:
+  __class: DataType
+  value: U8norm
+builtinType:
+  __class: BuiltInTextureType
+  value: NORAML
+enableMipmap: true
+filterMin:
+  __class: FilterMode
+  value: LINEAR
+filterMag:
+  __class: FilterMode
+  value: LINEAR
+filterMipmap:
+  __class: FilterMipmapMode
+  value: NONE
+wrapModeS:
+  __class: WrapMode
+  value: CLAMP
+wrapModeT:
+  __class: WrapMode
+  value: CLAMP
+wrapModeR:
+  __class: WrapMode
+  value: CLAMP
+maxAnisotropy: 1
+delegateData:
+  __class: Map

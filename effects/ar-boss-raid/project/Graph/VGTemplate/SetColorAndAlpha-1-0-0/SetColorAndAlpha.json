@@ -1,0 +1,53 @@
+{
+	"displayName": "Set Color (RGBA)",
+	"function": "SetColorRGBA",
+	"templateGuid": "7a1c3ccc-06fc-4e8a-97a7-7973618c1f86",
+	"NodeType": "VFXGRAPHBLOCK",
+	"inputs": [
+		{
+			"displayName": "Color",
+			"name": "Color",
+			"description": "The color of the particles in RGBA",
+			"type": "Color",
+			"isShowColor": true,
+			"default": {
+				"r": 1,
+				"g": 1,
+				"b": 1,
+				"a": 1
+			},
+			"allowedTypes": [],
+			"nameKey": "vfxgraph_set_color_rgba_input_color",
+			"descriptionKey": "vfxgraph_set_color_rgba_input_color_description",
+			"displayType": "Vec4",
+			"displayTypeKey": "graph_type_vec4"
+		}
+	],
+	"outputs": [],
+	"category": "Attribute Set",
+	"description": "Sets the color and alpha of the particles",
+	"version": "1.0.0",
+	"compatibleContexts": [
+		"Init",
+		"StripInit",
+		"Update",
+		"StripUpdate",
+		"Output",
+		"StripOutput",
+		"MeshOutput"
+	],
+	"attributes": [
+		"color",
+		"alpha"
+	],
+	"methodBody": "color.xyz = Color.xyz;alpha = Color.w;",
+	"TSPATH": "",
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"nameKey": "vfxgraph_set_color_rgba_name",
+	"categoryKey": "vfxgraph_category_attributeset",
+	"descriptionKey": "vfxgraph_set_color_rgba_description"
+}

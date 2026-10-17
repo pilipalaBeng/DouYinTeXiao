@@ -1,0 +1,67 @@
+{
+	"displayName": "Trigger Event: On Die",
+	"function": "TriggerEventOnDie",
+	"templateGuid": "2ee613cb-bb7b-ed49-f2b0-06d333c66d65",
+	"NodeType": "VFXGRAPHBLOCK",
+	"inputs": [
+		{
+			"displayName": "Count",
+			"name": "Count",
+			"description": "The number of particles spawned from this event",
+			"type": "Uint",
+			"default": 300,
+			"allowedTypes": [],
+			"range": [
+				[
+					0,
+					500000,
+					1
+				]
+			],
+			"nameKey": "vfxgraph_trigger_event_on_die_input_count",
+			"descriptionKey": "vfxgraph_trigger_event_on_die_input_count_description",
+			"displayType": "Uint",
+			"displayTypeKey": "graph_type_uint"
+		}
+	],
+	"outputs": [
+		{
+			"displayName": "Event",
+			"name": "Event",
+			"description": "Connect to the GPU Event context",
+			"type": "GPU Event",
+			"allowedTypes": [],
+			"displayType": "GPU Event",
+			"nameKey": "vfxgraph_trigger_event_on_die_output_event",
+			"descriptionKey": "vfxgraph_trigger_event_on_die_output_event_description",
+			"displayTypeKey": "graph_type_gpuevent"
+		}
+	],
+	"category": "Event",
+	"description": "Creates another particle system when particles disappear",
+	"version": "1.0.0",
+	"compatibleContexts": [
+		"Update"
+	],
+	"attributes": [
+		"eventCount",
+		"alive"
+	],
+	"usedelta": true,
+	"methodBody": "eventCount = (alive == uint(0)) ? uint(max(Count, 0)) : 0u;",
+	"TSPATH": "",
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"prevAliases": [
+		"Trigger Event Die"
+	],
+	"contentFeature": [
+		"VFX_GPUEvent"
+	],
+	"nameKey": "vfxgraph_trigger_event_on_die_name",
+	"categoryKey": "vfxgraph_category_event",
+	"descriptionKey": "vfxgraph_trigger_event_on_die_description"
+}

@@ -1,0 +1,41 @@
+{
+	"displayName": "Event",
+	"name": "Event",
+	"function": "Event",
+	"templateGuid": "f2b8ec54-ada3-91e2-83e8-49157e401dde",
+	"NodeType": "VFXGRAPHBLOCK",
+	"inputs": [
+		{
+			"displayName": "Event",
+			"name": "Event",
+			"description": "The GPU Event to trigger the Spawn context",
+			"type": "GPU Event",
+			"allowedTypes": [],
+			"nameKey": "vfxgraph_event_input_event",
+			"descriptionKey": "vfxgraph_event_input_event_description",
+			"displayType": "GPU Event",
+			"displayTypeKey": "graph_type_gpuevent"
+		}
+	],
+	"outputs": [],
+	"category": "Event",
+	"description": "Spawns particles from an event",
+	"version": "1.0.0",
+	"compatibleContexts": [
+		"SpawnGPU"
+	],
+	"hideEnableCheckbox": true,
+	"attributes": [],
+	"TSPATH": "",
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"contentFeature": [
+		"VFX_GPUEvent"
+	],
+	"nameKey": "vfxgraph_event_name",
+	"categoryKey": "vfxgraph_category_event",
+	"descriptionKey": "vfxgraph_event_description"
+}

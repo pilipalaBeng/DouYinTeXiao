@@ -1,0 +1,69 @@
+{
+	"displayName": "Normalize",
+	"templateGuid": "182046e7-bb03-0bd1-5031-fb231709e0eb",
+	"inputs": [
+		{
+			"displayName": "A",
+			"description": "The input vector",
+			"name": "A",
+			"type": "Vec3",
+			"default": {
+				"x": 1,
+				"y": 0,
+				"z": 0
+			},
+			"allowedTypes": [
+				"Vector4f",
+				"Vector3f",
+				"Vector2f"
+			],
+			"isShowColor": false,
+			"nameKey": "vfxgraph_normalize_input_a",
+			"descriptionKey": "vfxgraph_normalize_input_a_description",
+			"displayType": "Vec3",
+			"displayTypeKey": "graph_type_vec3"
+		}
+	],
+	"outputs": [
+		{
+			"displayName": "Result",
+			"description": "The normalized vector with a length of 1",
+			"type": "Vector3f",
+			"allowedTypes": [],
+			"nameKey": "vfxgraph_normalize_output_result",
+			"descriptionKey": "vfxgraph_normalize_output_result_description",
+			"displayType": "Vec3",
+			"displayTypeKey": "graph_type_vec3"
+		}
+	],
+	"supportedInputs": [
+		{
+			"in": [
+				"genType"
+			],
+			"out": [
+				"genType"
+			]
+		}
+	],
+	"category": "Vector Operations",
+	"description": "Normalizes the input vector by returning a vector of the same direction as the input and with a length of 1",
+	"version": "1.0.0",
+	"uniforms": [],
+	"parameters": [],
+	"externalVariables": [],
+	"TSPATH": "",
+	"NodeType": "VFXGRAPHOPERATOR",
+	"outputPortTypeUpdate": "HighestInput",
+	"invokeString": "normalize(%A%);",
+	"deprecatedInvokeString": "normalize(%%);",
+	"function": "GetNormalized",
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"nameKey": "vfxgraph_normalize_name",
+	"categoryKey": "vfxgraph_category_vectoroperations",
+	"descriptionKey": "vfxgraph_normalize_description"
+}

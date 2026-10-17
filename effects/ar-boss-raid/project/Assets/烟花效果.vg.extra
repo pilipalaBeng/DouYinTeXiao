@@ -1,0 +1,42 @@
+[
+  {
+    "guid": {
+      "a": "cd0f90cf-ecc9-dcf7-1d7d-1b056335b63b",
+      "b": ""
+    },
+    "extraType": "ResItemVFXGraph",
+    "name": "烟花效果",
+    "version": "0.1.0",
+    "rttiType": "VisualEffectAsset",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "objGuid": "",
+    "resourceFilePath": "D:\\Software\\XiangSu\\Douyin AR\\Plugins\\VFXComponent@1.0.11\\resources\\vg\\Fireworks.vg",
+    "references": [
+      {
+        "propertyName": "MainTexture",
+        "guid": "00000000-0000-0000-0000-00000000004g"
+      },
+      {
+        "propertyName": "MainTexture_1",
+        "guid": "00000000-0000-0000-0000-00000000004g"
+      },
+      {
+        "propertyName": "MainTexture_2",
+        "guid": "00000000-0000-0000-0000-00000000004g"
+      },
+      {
+        "propertyName": "Curve",
+        "guid": "00000000-0000-0000-0000-000000000090"
+      },
+      {
+        "propertyName": "MainTexture_3",
+        "guid": "00000000-0000-0000-0000-00000000004g"
+      }
+    ]
+  }
+]

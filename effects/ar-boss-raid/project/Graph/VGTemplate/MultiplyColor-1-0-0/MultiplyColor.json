@@ -1,0 +1,47 @@
+{
+	"displayName": "Multiply Color",
+	"function": "MultiplyColor",
+	"templateGuid": "9255f291-5d4f-b7e3-ad0b-2c1c270f2a28",
+	"NodeType": "VFXGRAPHBLOCK",
+	"inputs": [
+		{
+			"displayName": "Color",
+			"name": "Color",
+			"description": "The color attribute value in RGB",
+			"type": "Vec3",
+			"default": {
+				"x": 1,
+				"y": 1,
+				"z": 1
+			},
+			"allowedTypes": [],
+			"nameKey": "vfxgraph_multiply_color_input_color",
+			"descriptionKey": "vfxgraph_multiply_color_input_color_description",
+			"displayType": "Vec3",
+			"displayTypeKey": "graph_type_vec3"
+		}
+	],
+	"outputs": [],
+	"category": "Attribute Set",
+	"description": "Multiplies the color attribute value by the new value",
+	"version": "1.0.0",
+	"compatibleContexts": [
+		"Init",
+		"Update",
+		"Output"
+	],
+	"attributes": [
+		"color"
+	],
+	"methodBody": "color = color * Color.xyz;",
+	"deprecatedMethodBody": "color = color * Value.xyz;",
+	"TSPATH": "",
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"nameKey": "vfxgraph_multiply_color_name",
+	"categoryKey": "vfxgraph_category_attributeset",
+	"descriptionKey": "vfxgraph_multiply_color_description"
+}

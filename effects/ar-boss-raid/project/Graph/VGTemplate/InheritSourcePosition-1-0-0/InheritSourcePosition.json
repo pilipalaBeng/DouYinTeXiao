@@ -1,0 +1,37 @@
+{
+	"displayName": "Inherit Source Position",
+	"templateGuid": "026c5ee8-0dc5-8519-b520-bc2c0ccccd23",
+	"category": "Attribute Inherit",
+	"description": "Mimics the current position of the source",
+	"version": "1.0.0",
+	"function": "InheritSourcePosition",
+	"NodeType": "VFXGRAPHBLOCK",
+	"inputs": [],
+	"outputs": [],
+	"uniforms": [],
+	"parameters": [],
+	"methodBody": "position = source_position;",
+	"builtinVars": [
+		{
+			"name": "source_position",
+			"type": "vec3"
+		}
+	],
+	"externalVariables": [],
+	"compatibleContexts": [
+		"Init",
+		"StripInit"
+	],
+	"attributes": [
+		"position"
+	],
+	"TSPATH": "",
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"nameKey": "vfxgraph_inherit_source_position_name",
+	"categoryKey": "vfxgraph_category_attributeinherit",
+	"descriptionKey": "vfxgraph_inherit_source_position_description"
+}

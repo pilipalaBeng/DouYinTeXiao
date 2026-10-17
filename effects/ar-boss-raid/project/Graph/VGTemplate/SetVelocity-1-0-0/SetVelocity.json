@@ -1,0 +1,46 @@
+{
+	"displayName": "Set Velocity",
+	"function": "SetVelocity",
+	"templateGuid": "aa435ac1-debb-314a-2fde-83ad85d16298",
+	"NodeType": "VFXGRAPHBLOCK",
+	"inputs": [
+		{
+			"displayName": "Velocity",
+			"name": "Velocity",
+			"description": "The velocity of the particles",
+			"type": "Vec3",
+			"default": {
+				"x": 0,
+				"y": 1,
+				"z": "0.0"
+			},
+			"allowedTypes": [],
+			"nameKey": "vfxgraph_set_velocity_input_velocity",
+			"descriptionKey": "vfxgraph_set_velocity_input_velocity_description",
+			"displayType": "Vec3",
+			"displayTypeKey": "graph_type_vec3"
+		}
+	],
+	"outputs": [],
+	"category": "Attribute Set",
+	"description": "Sets the velocity of the particles",
+	"version": "1.0.0",
+	"compatibleContexts": [
+		"Init",
+		"Update",
+		"Output"
+	],
+	"attributes": [
+		"velocity"
+	],
+	"methodBody": "velocity.xyz = Velocity.xyz;",
+	"TSPATH": "",
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"nameKey": "vfxgraph_set_velocity_name",
+	"categoryKey": "vfxgraph_category_attributeset",
+	"descriptionKey": "vfxgraph_set_velocity_description"
+}

@@ -1,0 +1,115 @@
+{
+	"displayName": "Multiply",
+	"templateGuid": "daf23d7e-dda2-7230-cd54-4e102ff41936",
+	"inputs": [
+		{
+			"displayName": "A",
+			"name": "A",
+			"description": "The first input value",
+			"type": "Float",
+			"default": 0.5,
+			"allowedTypes": [
+				"Color",
+				"Vector4f",
+				"Vector3f",
+				"Vector2f",
+				"Float",
+				"Int"
+			],
+			"isShowColor": false,
+			"nameKey": "vfxgraph_multiply_input_a",
+			"descriptionKey": "vfxgraph_multiply_input_a_description",
+			"displayType": "Float",
+			"displayTypeKey": "graph_type_float"
+		},
+		{
+			"displayName": "B",
+			"name": "B",
+			"description": "The second input value",
+			"type": "Float",
+			"default": 0.5,
+			"allowedTypes": [
+				"Color",
+				"Vector4f",
+				"Vector3f",
+				"Vector2f",
+				"Float",
+				"Int"
+			],
+			"isShowColor": false,
+			"nameKey": "vfxgraph_multiply_input_b",
+			"descriptionKey": "vfxgraph_multiply_input_b_description",
+			"displayType": "Float",
+			"displayTypeKey": "graph_type_float"
+		}
+	],
+	"outputs": [
+		{
+			"displayName": "Result",
+			"description": "The product of A multiplied by B",
+			"type": "Float",
+			"allowedTypes": [],
+			"nameKey": "vfxgraph_multiply_output_result",
+			"descriptionKey": "vfxgraph_multiply_output_result_description",
+			"displayType": "Float",
+			"displayTypeKey": "graph_type_float"
+		}
+	],
+	"supportedInputs": [
+		{
+			"in": [
+				"genType",
+				"genType"
+			],
+			"out": [
+				"genType"
+			]
+		},
+		{
+			"in": [
+				"genType",
+				"Float"
+			],
+			"out": [
+				"genType"
+			]
+		},
+		{
+			"in": [
+				"Float",
+				"genType"
+			],
+			"out": [
+				"genType"
+			]
+		},
+		{
+			"in": [
+				"Int",
+				"Int"
+			],
+			"out": [
+				"Int"
+			]
+		}
+	],
+	"category": "Math",
+	"description": "Calculates the product of two input values",
+	"version": "1.0.0",
+	"uniforms": [],
+	"parameters": [],
+	"externalVariables": [],
+	"TSPATH": "",
+	"NodeType": "VFXGRAPHOPERATOR",
+	"outputPortTypeUpdate": "HighestInput",
+	"invokeString": "%A% * %B%;",
+	"function": "GetMultiplication",
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"nameKey": "vfxgraph_multiply_name",
+	"categoryKey": "vfxgraph_category_math",
+	"descriptionKey": "vfxgraph_multiply_description"
+}

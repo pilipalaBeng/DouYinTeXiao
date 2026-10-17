@@ -1,0 +1,120 @@
+{
+	"templateGuid": "0869f70b-63fc-f23f-ddbc-e1c0c0488129",
+	"displayName": "Add Force",
+	"category": "Force",
+	"function": "AddForce",
+	"NodeType": "VFXGRAPHBLOCK",
+	"options": [
+		{
+			"type": "Mode",
+			"values": [
+				"Absolute",
+				"Relative"
+			],
+			"typeKey": "vfxgraph_add_force_option_type_mode",
+			"valuesKey": [
+				"vfxgraph_add_force_option_value_absolute",
+				"vfxgraph_add_force_option_value_relative"
+			]
+		}
+	],
+	"inputs": [],
+	"optionalInputs": [
+		{
+			"optionType": "Mode",
+			"optionValue": "Absolute",
+			"input": {
+				"displayName": "Force",
+				"description": "The force directly applied on particles",
+				"name": "Force",
+				"type": "Vector3f",
+				"default": {
+					"x": 1,
+					"y": 0,
+					"z": 0
+				},
+				"allowedTypes": [],
+				"isShowColor": false,
+				"nameKey": "vfxgraph_add_force_optional_input_force",
+				"descriptionKey": "vfxgraph_add_force_optional_input_force_description",
+				"displayType": "Vec3",
+				"displayTypeKey": "graph_type_vec3"
+			}
+		},
+		{
+			"optionType": "Mode",
+			"optionValue": "Relative",
+			"input": {
+				"displayName": "Velocity",
+				"description": "The target velocity of the particles under the force",
+				"name": "Velocity",
+				"type": "Vector3f",
+				"default": {
+					"x": 1,
+					"y": 0,
+					"z": 0
+				},
+				"allowedTypes": [],
+				"isShowColor": false,
+				"nameKey": "vfxgraph_add_force_optional_input_velocity",
+				"descriptionKey": "vfxgraph_add_force_optional_input_velocity_description",
+				"displayType": "Vec3",
+				"displayTypeKey": "graph_type_vec3"
+			}
+		},
+		{
+			"optionType": "Mode",
+			"optionValue": "Relative",
+			"input": {
+				"displayName": "Drag",
+				"description": "The transition speed at which the particles' velocity change to the target velocity",
+				"name": "Drag",
+				"type": "float",
+				"default": 1.001,
+				"allowedTypes": [],
+				"isShowColor": false,
+				"nameKey": "vfxgraph_add_force_optional_input_drag",
+				"descriptionKey": "vfxgraph_add_force_optional_input_drag_description",
+				"displayType": "Float",
+				"displayTypeKey": "graph_type_float"
+			}
+		}
+	],
+	"uniforms": [],
+	"parameters": [],
+	"methodBody": "",
+	"optionalMethodBodies": [
+		{
+			"optionType": "Mode",
+			"optionValue": "Absolute",
+			"methodBody": "velocity += (Force.xyz / mass) * deltaTime;"
+		},
+		{
+			"optionType": "Mode",
+			"optionValue": "Relative",
+			"methodBody": "velocity += (Velocity.xyz - velocity) * min(1.0,Drag * deltaTime / mass);"
+		}
+	],
+	"outputPortTypeUpdate": "HighestInput",
+	"externalVariables": [],
+	"compatibleContexts": [
+		"Init",
+		"Update"
+	],
+	"attributes": [
+		"velocity",
+		"mass"
+	],
+	"usedelta": true,
+	"description": "Adds a force on particles to change their velocity",
+	"version": "1.0.0",
+	"TSPATH": "",
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"nameKey": "vfxgraph_add_force_name",
+	"categoryKey": "vfxgraph_category_force",
+	"descriptionKey": "vfxgraph_add_force_description"
+}

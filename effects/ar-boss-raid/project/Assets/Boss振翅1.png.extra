@@ -1,0 +1,31 @@
+[
+  {
+    "guid": {
+      "a": "9ba5a15f-a9c1-8a7c-0fc6-29e125aa7b96",
+      "b": ""
+    },
+    "extraType": "ResItemPNGImage",
+    "name": "Boss振翅1",
+    "version": "0.2.0",
+    "rttiType": "Texture",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "compressionType": 0,
+    "compressQuality": 0,
+    "compressMaxResolution": 512,
+    "enableMipmap": false,
+    "filterMin": 1,
+    "filterMag": 1,
+    "filterMipmap": 0,
+    "wrapModeS": 0,
+    "wrapModeT": 0,
+    "wrapModeR": 0,
+    "premultiplyAlpha": false,
+    "objGuid": "",
+    "references": []
+  }
+]

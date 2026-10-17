@@ -1,0 +1,62 @@
+{
+	"displayName": "Trigger Event: Always",
+	"function": "TriggerEventAlways",
+	"templateGuid": "239060d2-94c2-eb61-f7d0-10e03ad3d7c4",
+	"NodeType": "VFXGRAPHBLOCK",
+	"inputs": [
+		{
+			"displayName": "Count",
+			"name": "Count",
+			"description": "The number of particles spawned from this event",
+			"type": "Uint",
+			"default": 10,
+			"allowedTypes": [],
+			"range": [
+				[
+					0,
+					500000,
+					1
+				]
+			],
+			"nameKey": "vfxgraph_trigger_event_always_input_count",
+			"descriptionKey": "vfxgraph_trigger_event_always_input_count_description",
+			"displayType": "Uint",
+			"displayTypeKey": "graph_type_uint"
+		}
+	],
+	"outputs": [
+		{
+			"displayName": "Event",
+			"name": "Event",
+			"description": "Connect to the GPU Event context",
+			"type": "GPU Event",
+			"allowedTypes": [],
+			"displayType": "GPU Event",
+			"nameKey": "vfxgraph_trigger_event_always_output_event",
+			"descriptionKey": "vfxgraph_trigger_event_always_output_event_description",
+			"displayTypeKey": "graph_type_gpuevent"
+		}
+	],
+	"category": "Event",
+	"description": "Creates another particle system in each frame",
+	"version": "1.0.0",
+	"compatibleContexts": [
+		"Update"
+	],
+	"attributes": [
+		"eventCount"
+	],
+	"methodBody": "eventCount = uint(max(Count, 0));",
+	"TSPATH": "",
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"contentFeature": [
+		"VFX_GPUEvent"
+	],
+	"nameKey": "vfxgraph_trigger_event_always_name",
+	"categoryKey": "vfxgraph_category_event",
+	"descriptionKey": "vfxgraph_trigger_event_always_description"
+}

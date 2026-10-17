@@ -1,0 +1,54 @@
+{
+	"templateGuid": "5e826a2a-7639-4431-b577-ed45292ad030",
+	"displayName": "HSV to RGB",
+	"category": "Color",
+	"function": "HSVtoRGB",
+	"NodeType": "VFXGRAPHOPERATOR",
+	"inputs": [
+		{
+			"displayName": "HSV",
+			"name": "HSV",
+			"type": "Vec3",
+			"default": {
+				"x": 0.5,
+				"y": 0.5,
+				"z": 0.5
+			},
+			"allowedTypes": [],
+			"isShowColor": false,
+			"description": "The input HSV value",
+			"nameKey": "vfxgraph_hsv_to_rgb_input_hsv",
+			"descriptionKey": "vfxgraph_hsv_to_rgb_input_hsv_description",
+			"displayType": "Vec3",
+			"displayTypeKey": "graph_type_vec3"
+		}
+	],
+	"outputs": [
+		{
+			"displayName": "Result",
+			"name": "RGBOutput",
+			"type": "Vector3f",
+			"description": "The coverted RGB value",
+			"nameKey": "vfxgraph_hsv_to_rgb_output_result",
+			"descriptionKey": "vfxgraph_hsv_to_rgb_output_result_description",
+			"displayType": "Vec3",
+			"displayTypeKey": "graph_type_vec3"
+		}
+	],
+	"uniforms": [],
+	"parameters": [],
+	"invokeString": "HSVtoRGB(%HSV%);",
+	"outputPortTypeUpdate": "Default",
+	"externalVariables": [],
+	"description": "Converts an HSV value to its RGB value",
+	"version": "1.0.0",
+	"TSPATH": "",
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"nameKey": "vfxgraph_hsv_to_rgb_name",
+	"categoryKey": "vfxgraph_category_color",
+	"descriptionKey": "vfxgraph_hsv_to_rgb_description"
+}

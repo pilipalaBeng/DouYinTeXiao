@@ -1,0 +1,46 @@
+{
+	"displayName": "Set Size",
+	"function": "SetSize",
+	"templateGuid": "ea93d777-559f-765c-7367-0afaebde4bc4",
+	"NodeType": "VFXGRAPHBLOCK",
+	"inputs": [
+		{
+			"displayName": "Size",
+			"name": "Size",
+			"description": "The size of the particles",
+			"type": "Vec3",
+			"default": {
+				"x": 1,
+				"y": 1,
+				"z": 1
+			},
+			"allowedTypes": [],
+			"nameKey": "vfxgraph_set_size_input_size",
+			"descriptionKey": "vfxgraph_set_size_input_size_description",
+			"displayType": "Vec3",
+			"displayTypeKey": "graph_type_vec3"
+		}
+	],
+	"outputs": [],
+	"category": "Attribute Set",
+	"description": "Sets the size of the particles",
+	"version": "1.0.0",
+	"compatibleContexts": [
+		"Init",
+		"Update",
+		"Output"
+	],
+	"attributes": [
+		"size"
+	],
+	"methodBody": "size.xyz = Size.xyz;",
+	"TSPATH": "",
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"nameKey": "vfxgraph_set_size_name",
+	"categoryKey": "vfxgraph_category_attributeset",
+	"descriptionKey": "vfxgraph_set_size_description"
+}

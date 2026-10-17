@@ -1,0 +1,19 @@
+[
+  {
+    "guid": {
+      "a": "d94bdb96-aaae-b5d9-6b74-d651800a4fcc",
+      "b": ""
+    },
+    "extraType": "ResItemFolder",
+    "name": "纹理",
+    "version": "0.1.0",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": true
+    },
+    "objGuid": "",
+    "references": []
+  }
+]

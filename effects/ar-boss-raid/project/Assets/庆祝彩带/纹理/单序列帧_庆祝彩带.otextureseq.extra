@@ -1,0 +1,26 @@
+[
+  {
+    "guid": {
+      "a": "968a3d87-bd68-29f3-4baf-fecbcf98af6b",
+      "b": ""
+    },
+    "extraType": "ResItemTextureSequence",
+    "name": "单序列帧_庆祝彩带",
+    "version": "0.2.0",
+    "rttiType": "TextureSequence",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "compressionType": 1,
+    "compressQuality": 0,
+    "compressMaxResolution": 1024,
+    "premultiplyAlpha": false,
+    "objGuid": "",
+    "assetPackageID": "7244545868953845820",
+    "resourceFilePath": "C:\\Users\\Administrator\\AppData\\Local\\DouyinAR\\Instances\\Instance1\\EHpackage\\7244545868953845820\\纹理\\单序列帧_庆祝彩带.otextureseq",
+    "references": []
+  }
+]

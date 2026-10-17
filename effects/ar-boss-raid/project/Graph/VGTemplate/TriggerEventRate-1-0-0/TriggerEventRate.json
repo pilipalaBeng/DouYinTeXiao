@@ -1,0 +1,91 @@
+{
+	"displayName": "Trigger Event: Rate",
+	"function": "TriggerEventRate",
+	"templateGuid": "32955aeb-34a7-c9b8-c1ef-e1b502a4c3bc",
+	"NodeType": "VFXGRAPHBLOCK",
+	"options": [
+		{
+			"type": "Mode",
+			"values": [
+				"Over Time",
+				"Over Distance"
+			],
+			"typeKey": "vfxgraph_trigger_event_rate_option_type_mode",
+			"valuesKey": [
+				"vfxgraph_trigger_event_rate_option_value_overtime",
+				"vfxgraph_trigger_event_rate_option_value_overdistance"
+			]
+		}
+	],
+	"inputs": [
+		{
+			"displayName": "Rate",
+			"name": "Rate",
+			"description": "The number of events triggered in one second",
+			"type": "Float",
+			"default": 0.5,
+			"allowedTypes": [],
+			"range": [
+				[
+					0,
+					500000,
+					0.001
+				]
+			],
+			"nameKey": "vfxgraph_trigger_event_rate_input_rate",
+			"descriptionKey": "vfxgraph_trigger_event_rate_input_rate_description",
+			"displayType": "Float",
+			"displayTypeKey": "graph_type_float"
+		}
+	],
+	"outputs": [
+		{
+			"displayName": "Event",
+			"name": "Event",
+			"description": "Connect to the GPU Event context",
+			"type": "GPU Event",
+			"allowedTypes": [],
+			"displayType": "GPU Event",
+			"nameKey": "vfxgraph_trigger_event_rate_output_event",
+			"descriptionKey": "vfxgraph_trigger_event_rate_output_event_description",
+			"displayTypeKey": "graph_type_gpuevent"
+		}
+	],
+	"category": "Event",
+	"description": "Creates another particle system at a specified rate per second",
+	"version": "1.0.0",
+	"compatibleContexts": [
+		"Update"
+	],
+	"attributes": [
+		"rateCount",
+		"eventCount",
+		"velocity"
+	],
+	"usedelta": true,
+	"methodBody": "",
+	"optionalMethodBodies": [
+		{
+			"optionType": "Mode",
+			"optionValue": "Over Time",
+			"methodBody": "rateCount += deltaTime * max(float(Rate), 0.0);\nuint count = uint(floor(rateCount));\nrateCount = fract(rateCount);\neventCount = count;"
+		},
+		{
+			"optionType": "Mode",
+			"optionValue": "Over Distance",
+			"methodBody": "rateCount += length(velocity) * deltaTime * max(float(Rate), 0.0);\nuint count = uint(floor(rateCount));\nrateCount = fract(rateCount);\neventCount = count;"
+		}
+	],
+	"TSPATH": "",
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"contentFeature": [
+		"VFX_GPUEvent"
+	],
+	"nameKey": "vfxgraph_trigger_event_rate_name",
+	"categoryKey": "vfxgraph_category_event",
+	"descriptionKey": "vfxgraph_trigger_event_rate_description"
+}

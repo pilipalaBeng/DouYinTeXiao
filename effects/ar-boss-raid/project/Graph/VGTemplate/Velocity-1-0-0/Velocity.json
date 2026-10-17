@@ -1,0 +1,42 @@
+{
+	"displayName": "Get Velocity",
+	"templateGuid": "2a960671-eda0-bced-6c9d-e1f973401437",
+	"inputs": [],
+	"outputs": [
+		{
+			"displayName": "Velocity",
+			"description": "The velocity of the particles",
+			"type": "Vector3f",
+			"allowedTypes": [],
+			"nameKey": "vfxgraph_get_velocity_output_velocity",
+			"descriptionKey": "vfxgraph_get_velocity_output_velocity_description",
+			"displayType": "Vec3",
+			"displayTypeKey": "graph_type_vec3"
+		}
+	],
+	"category": "Get Attribute",
+	"description": "Retrieves the velocity of the particles",
+	"version": "1.0.0",
+	"uniforms": [],
+	"parameters": [],
+	"externalVariables": [],
+	"TSPATH": "",
+	"NodeType": "VFXGRAPHOPERATOR",
+	"outputPortTypeUpdate": "FirstInput",
+	"invokeString": "velocity;",
+	"function": "GetVelocity",
+	"attributes": [
+		"velocity"
+	],
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"prevAliases": [
+		"Get Attribute: velocity"
+	],
+	"nameKey": "vfxgraph_get_velocity_name",
+	"categoryKey": "vfxgraph_category_getattribute",
+	"descriptionKey": "vfxgraph_get_velocity_description"
+}

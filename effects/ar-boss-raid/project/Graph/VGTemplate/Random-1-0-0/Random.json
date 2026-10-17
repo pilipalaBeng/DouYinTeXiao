@@ -1,0 +1,73 @@
+{
+	"displayName": "Random",
+	"templateGuid": "d9d1f3bb-f262-4b1a-4470-ba5c8acd2174",
+	"inputs": [
+		{
+			"displayName": "Min",
+			"name": "Min",
+			"description": "The minimum value of the generated random number (inclusive)",
+			"type": "Float",
+			"default": 0.00001,
+			"allowedTypes": [
+				"Float"
+			],
+			"isShowColor": false,
+			"nameKey": "vfxgraph_random_input_min",
+			"descriptionKey": "vfxgraph_random_input_min_description",
+			"displayType": "Float",
+			"displayTypeKey": "graph_type_float"
+		},
+		{
+			"displayName": "Max",
+			"name": "Max",
+			"description": "The maximum value of the generated random number (exclusive)",
+			"type": "Float",
+			"default": 1.00001,
+			"allowedTypes": [
+				"Float"
+			],
+			"isShowColor": false,
+			"nameKey": "vfxgraph_random_input_max",
+			"descriptionKey": "vfxgraph_random_input_max_description",
+			"displayType": "Float",
+			"displayTypeKey": "graph_type_float"
+		}
+	],
+	"outputs": [
+		{
+			"displayName": "Result",
+			"description": "The random number generated between minumum and maximum value",
+			"type": "Float",
+			"allowedTypes": [],
+			"nameKey": "vfxgraph_random_output_result",
+			"descriptionKey": "vfxgraph_random_output_result_description",
+			"displayType": "Float",
+			"displayTypeKey": "graph_type_float"
+		}
+	],
+	"category": "Math",
+	"description": "Generates a random number within a certain range",
+	"version": "1.0.0",
+	"uniforms": [],
+	"parameters": [],
+	"externalVariables": [],
+	"TSPATH": "",
+	"NodeType": "VFXGRAPHOPERATOR",
+	"outputPortTypeUpdate": "Default",
+	"invokeString": "random(seed,%Min%,%Max%);",
+	"function": "GetRandom",
+	"attributes": [
+		"seed"
+	],
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"prevAliases": [
+		"Random Number"
+	],
+	"nameKey": "vfxgraph_random_name",
+	"categoryKey": "vfxgraph_category_math",
+	"descriptionKey": "vfxgraph_random_description"
+}

@@ -1,0 +1,57 @@
+{
+	"displayName": "Set Random Lifetime",
+	"function": "SetRandomLifetime",
+	"templateGuid": "3ea78eca-39ab-c3f7-8d63-086a63dee748",
+	"NodeType": "VFXGRAPHBLOCK",
+	"inputs": [
+		{
+			"displayName": "Min",
+			"name": "Min",
+			"description": "The minimum value in seconds",
+			"type": "Float",
+			"allowedTypes": [],
+			"nameKey": "vfxgraph_set_random_lifetime_input_min",
+			"descriptionKey": "vfxgraph_set_random_lifetime_input_min_description",
+			"displayType": "Float",
+			"displayTypeKey": "graph_type_float"
+		},
+		{
+			"displayName": "Max",
+			"name": "Max",
+			"description": "The maximum value in seconds",
+			"type": "Float",
+			"default": 3.0001,
+			"allowedTypes": [],
+			"nameKey": "vfxgraph_set_random_lifetime_input_max",
+			"descriptionKey": "vfxgraph_set_random_lifetime_input_max_description",
+			"displayType": "Float",
+			"displayTypeKey": "graph_type_float"
+		}
+	],
+	"outputs": [],
+	"category": "Attribute Set",
+	"description": "Sets a random amount of time, within a specified minimum and maximum values, that the particles live before they disappear",
+	"version": "1.0.0",
+	"compatibleContexts": [
+		"Init",
+		"Update",
+		"Output"
+	],
+	"attributes": [
+		"lifetime",
+		"seed"
+	],
+	"methodBody": "lifetime = random(seed, Min, Max);",
+	"TSPATH": "",
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"prevAliases": [
+		"SetRandomLifetime"
+	],
+	"nameKey": "vfxgraph_set_random_lifetime_name",
+	"categoryKey": "vfxgraph_category_attributeset",
+	"descriptionKey": "vfxgraph_set_random_lifetime_description"
+}

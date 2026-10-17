@@ -1,0 +1,140 @@
+[
+  {
+    "guid": {
+      "a": "91f50c20-4145-1f04-6209-1d782a12bb56",
+      "b": ""
+    },
+    "extraType": "ResItemPrefab",
+    "name": "单序列帧_庆祝彩带",
+    "version": "1.0.3",
+    "rttiType": "Prefab",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "relatedResourceGuids": [
+      "5b682203-da18-19eb-6682-faa4aa97bc48"
+    ],
+    "relatedPrefabResourceGuids": [],
+    "objGuid": "",
+    "resourceFilePath": "C:\\Users\\Administrator\\AppData\\Local\\DouyinAR\\Instances\\Instance1\\EHpackage\\7244545868953845820\\预制件\\单序列帧_庆祝彩带.prefab",
+    "references": [
+      {
+        "guid": "5b682203-da18-19eb-6682-faa4aa97bc48",
+        "propertyName": "0"
+      }
+    ],
+    "data": [
+      {
+        "guid": {
+          "a": "9ada34c5-bc04-851f-daa5-45e3276a3fb5",
+          "b": ""
+        },
+        "objGuid": "Guid(5111359588548610017, 9553516763872341149)",
+        "extraType": "Entity",
+        "name": "2D 相机",
+        "rttiType": "Entity",
+        "version": "0.1.0",
+        "isVisibleInInspector": true,
+        "hideInPanel": false,
+        "expanded": true,
+        "type": "none",
+        "createdEffectNodeKey": "effect_node_2D_foreground"
+      },
+      {
+        "guid": {
+          "a": "ea794b20-2280-9810-0e83-b27f53afad7e",
+          "b": ""
+        },
+        "objGuid": "Guid(5323512570917169443, 10849770190259097017)",
+        "extraType": "Transform",
+        "name": "变换",
+        "rttiType": "Transform",
+        "version": "0.1.0",
+        "isVisibleInInspector": true,
+        "hideInPanel": false,
+        "expanded": true,
+        "editable": true,
+        "eulerAngle": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "guid": {
+          "a": "b9febff1-6a17-49a8-f5cb-13be316ed3cd",
+          "b": ""
+        },
+        "objGuid": "Guid(5553509948867527930, 10354444913799572413)",
+        "extraType": "ScreenTransform",
+        "name": "屏幕变换",
+        "rttiType": "ScreenTransform",
+        "version": "0.1.0",
+        "isVisibleInInspector": true,
+        "hideInPanel": false,
+        "expanded": true,
+        "editable": true
+      },
+      {
+        "guid": {
+          "a": "c46eb6d7-aaba-847b-8a88-7ce3b5c96710",
+          "b": ""
+        },
+        "objGuid": "Guid(5074145969474677209, 18184327875755545997)",
+        "extraType": "Camera",
+        "name": "相机",
+        "rttiType": "Camera",
+        "version": "0.2.0",
+        "isVisibleInInspector": true,
+        "hideInPanel": false,
+        "expanded": true,
+        "editable": true,
+        "maskTexture": {
+          "_copiedToProj": false,
+          "_guid": "00000000-0000-0000-0000-000000000802",
+          "_isVector": false,
+          "_isResItem": false
+        }
+      },
+      {
+        "guid": {
+          "a": "7b82960b-ae7d-ed81-ca78-b5a637aa6844",
+          "b": ""
+        },
+        "objGuid": "Guid(4763803540134265444, 9646495276602528691)",
+        "extraType": "Entity",
+        "name": "屏幕图片",
+        "rttiType": "Entity",
+        "version": "0.1.0",
+        "isVisibleInInspector": true,
+        "hideInPanel": false,
+        "expanded": true,
+        "type": "none",
+        "createdEffectNodeKey": "effect_node_2D_foreground"
+      },
+      {
+        "guid": {
+          "a": "0dc7b3d8-25b7-15f8-647b-fc088da63bd4",
+          "b": ""
+        },
+        "objGuid": "Guid(4654197305189224385, 6640633900551353508)",
+        "extraType": "Image",
+        "name": "图片",
+        "rttiType": "ImageRenderer",
+        "version": "0.1.0",
+        "isVisibleInInspector": true,
+        "hideInPanel": false,
+        "expanded": true,
+        "editable": true,
+        "alphaNOPM": true,
+        "blendMode": "Screen",
+        "texture": "5b682203-da18-19eb-6682-faa4aa97bc48"
+      }
+    ],
+    "effectNodeType": 6,
+    "dependencyData": []
+  }
+]

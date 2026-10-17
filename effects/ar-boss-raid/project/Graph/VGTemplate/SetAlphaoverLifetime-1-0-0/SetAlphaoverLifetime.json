@@ -1,0 +1,44 @@
+{
+	"displayName": "Set Alpha Over Lifetime",
+	"function": "SetAlphaoverLifetime",
+	"templateGuid": "09b0fcf2-3b22-7e7f-4fb2-1f6534dbbb53",
+	"NodeType": "VFXGRAPHBLOCK",
+	"inputs": [
+		{
+			"displayName": "Exponent",
+			"name": "Exponent",
+			"description": "The exponent of alpha decrease over lifetime",
+			"type": "Float",
+			"default": 0.5,
+			"allowedTypes": [],
+			"nameKey": "vfxgraph_set_alpha_over_lifetime_input_exponent",
+			"descriptionKey": "vfxgraph_set_alpha_over_lifetime_input_exponent_description",
+			"displayType": "Float",
+			"displayTypeKey": "graph_type_float"
+		}
+	],
+	"outputs": [],
+	"category": "Attribute Set",
+	"description": "Sets the alpha of the particles based on their relative age (age over lifetime value)",
+	"version": "1.0.0",
+	"compatibleContexts": [
+		"Init",
+		"Update",
+		"Output"
+	],
+	"attributes": [
+		"alpha",
+		"age",
+		"lifetime"
+	],
+	"methodBody": "  alpha = max(0.0, 1.0 - pow(age / lifetime, Exponent));",
+	"TSPATH": "",
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"nameKey": "vfxgraph_set_alpha_over_lifetime_name",
+	"categoryKey": "vfxgraph_category_attributeset",
+	"descriptionKey": "vfxgraph_set_alpha_over_lifetime_description"
+}

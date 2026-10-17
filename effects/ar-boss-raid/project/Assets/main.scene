@@ -487,7 +487,7 @@ entities:
           __class: LightProbeBlendMode
           value: OFF
         entirePingPong: false
-        texture: {localId: 1, path: 00000000-0000-0000-0000-0000000000c0--00000000-0000-0000-0000-0000000000c0.png}
+        texture: {localId: 1, path: 83ebefad-b6e1-4e4a-dc23-bb2e3fed3bb7--83ebefad-b6e1-4e4a-dc23-bb2e3fed3bb7.png}
         opacity: 1
         color: {r: 0.2667, g: 0.1412, b: 0.2039, a: 1}
         size: {x: 10, y: 10}
@@ -533,7 +533,7 @@ entities:
           __class: LightProbeBlendMode
           value: OFF
         entirePingPong: false
-        texture: {localId: 1, path: 00000000-0000-0000-0000-0000000000c0--00000000-0000-0000-0000-0000000000c0.png}
+        texture: {localId: 1, path: 83ebefad-b6e1-4e4a-dc23-bb2e3fed3bb7--83ebefad-b6e1-4e4a-dc23-bb2e3fed3bb7.png}
         opacity: 1
         color: {r: 0.8157, g: 0.2745, b: 0.2824, a: 1}
         size: {x: 10, y: 10}
@@ -586,7 +586,7 @@ entities:
             _glowVAngle: 0
             _horizontalAlignment: 1
             _inAnimationAssetID: !<str> ""
-            _inner_input: !<str> 稳定 2400   30s
+            _inner_input: !<str> 2400   30s
             _lineBreakType: 1
             _loopAnimationAssetID: !<str> ""
             _maxInputWords: 0
@@ -610,46 +610,10 @@ entities:
         letters:
           - __class: Letter
             name: !<str> ""
-            guid: {a: 5322297700383958158, b: 825948119421260475}
-            utf8: !<str> 稳
-            initialPosition: {x: -1768.2, y: -0.2999878}
-            position: {x: -1768.2, y: -0.2999878}
-            rotate: {x: 0, y: 0, z: 0}
-            scale: {x: 1, y: 1}
-            anchor: {x: 0, y: 0}
-            extraMatrix: {__class: Matrix4x4f, values: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
-            instanceColor: {r: 1, g: 1, b: 1, a: 1}
-            letterStyle: {localId: 57}
-          - __class: Letter
-            name: !<str> ""
-            guid: {a: 4882225860133653766, b: 13769366292700672915}
-            utf8: !<str> 定
-            initialPosition: {x: -1172.4, y: -0.2999878}
-            position: {x: -1172.4, y: -0.2999878}
-            rotate: {x: 0, y: 0, z: 0}
-            scale: {x: 1, y: 1}
-            anchor: {x: 0, y: 0}
-            extraMatrix: {__class: Matrix4x4f, values: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
-            instanceColor: {r: 1, g: 1, b: 1, a: 1}
-            letterStyle: {localId: 57}
-          - __class: Letter
-            name: !<str> ""
-            guid: {a: 5593871197830152444, b: 8886402977917866372}
-            utf8: !<str> " "
-            initialPosition: {x: -796.5, y: 0}
-            position: {x: -796.5, y: 0}
-            rotate: {x: 0, y: 0, z: 0}
-            scale: {x: 1, y: 1}
-            anchor: {x: 0, y: 0}
-            extraMatrix: {__class: Matrix4x4f, values: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
-            instanceColor: {r: 1, g: 1, b: 1, a: 1}
-            letterStyle: {localId: 57}
-          - __class: Letter
-            name: !<str> ""
-            guid: {a: 5156126806102731615, b: 10057851148537216651}
+            guid: {a: 5671506208695324338, b: 11234454899322255011}
             utf8: !<str> 2
-            initialPosition: {x: -552.3, y: 3.599976}
-            position: {x: -552.3, y: 3.599976}
+            initialPosition: {x: -1227.3, y: 3.599976}
+            position: {x: -1227.3, y: 3.599976}
             rotate: {x: 0, y: 0, z: 0}
             scale: {x: 1, y: 1}
             anchor: {x: 0, y: 0}
@@ -658,10 +622,10 @@ entities:
             letterStyle: {localId: 57}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 5533290093395812048, b: 14313900153278392227}
+            guid: {a: 5483914129786446770, b: 9169366051017457821}
             utf8: !<str> 4
-            initialPosition: {x: -213.9001, y: 0}
-            position: {x: -213.9001, y: 0}
+            initialPosition: {x: -888.9, y: 0}
+            position: {x: -888.9, y: 0}
             rotate: {x: 0, y: 0, z: 0}
             scale: {x: 1, y: 1}
             anchor: {x: 0, y: 0}
@@ -670,10 +634,10 @@ entities:
             letterStyle: {localId: 57}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 5024117673719110504, b: 752196911961583267}
+            guid: {a: 4861400599221970204, b: 12806171960647181233}
             utf8: !<str> 0
-            initialPosition: {x: 130.7997, y: 0}
-            position: {x: 130.7997, y: 0}
+            initialPosition: {x: -544.2, y: 0}
+            position: {x: -544.2, y: 0}
             rotate: {x: 0, y: 0, z: 0}
             scale: {x: 1, y: 1}
             anchor: {x: 0, y: 0}
@@ -682,10 +646,10 @@ entities:
             letterStyle: {localId: 57}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 4686265417600710315, b: 1132478506479787455}
+            guid: {a: 5153385809983346606, b: 2492521660514580361}
             utf8: !<str> 0
-            initialPosition: {x: 481.7997, y: 0}
-            position: {x: 481.7997, y: 0}
+            initialPosition: {x: -193.2, y: 0}
+            position: {x: -193.2, y: 0}
             rotate: {x: 0, y: 0, z: 0}
             scale: {x: 1, y: 1}
             anchor: {x: 0, y: 0}
@@ -694,10 +658,10 @@ entities:
             letterStyle: {localId: 57}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 4626339648923733332, b: 4946960863001297086}
+            guid: {a: 5038113249970459558, b: 3593947544139286965}
             utf8: !<str> " "
-            initialPosition: {x: 732.2998, y: 0}
-            position: {x: 732.2998, y: 0}
+            initialPosition: {x: 57.30005, y: 0}
+            position: {x: 57.30005, y: 0}
             rotate: {x: 0, y: 0, z: 0}
             scale: {x: 1, y: 1}
             anchor: {x: 0, y: 0}
@@ -706,10 +670,10 @@ entities:
             letterStyle: {localId: 57}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 4932484704828743208, b: 10527184743694444945}
+            guid: {a: 5754388111158153543, b: 6527930602254861206}
             utf8: !<str> " "
-            initialPosition: {x: 882.2998, y: 0}
-            position: {x: 882.2998, y: 0}
+            initialPosition: {x: 207.3, y: 0}
+            position: {x: 207.3, y: 0}
             rotate: {x: 0, y: 0, z: 0}
             scale: {x: 1, y: 1}
             anchor: {x: 0, y: 0}
@@ -718,10 +682,10 @@ entities:
             letterStyle: {localId: 57}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 5275473744785938711, b: 14632437007451489951}
+            guid: {a: 4736756806956815979, b: 165614730890694078}
             utf8: !<str> " "
-            initialPosition: {x: 1032.3, y: 0}
-            position: {x: 1032.3, y: 0}
+            initialPosition: {x: 357.3, y: 0}
+            position: {x: 357.3, y: 0}
             rotate: {x: 0, y: 0, z: 0}
             scale: {x: 1, y: 1}
             anchor: {x: 0, y: 0}
@@ -730,10 +694,10 @@ entities:
             letterStyle: {localId: 57}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 4706568185938877244, b: 3705465284050861191}
+            guid: {a: 4925458243580201481, b: 3856760298040315547}
             utf8: !<str> 3
-            initialPosition: {x: 1276.5, y: -3.600037}
-            position: {x: 1276.5, y: -3.600037}
+            initialPosition: {x: 601.5001, y: -3.600037}
+            position: {x: 601.5001, y: -3.600037}
             rotate: {x: 0, y: 0, z: 0}
             scale: {x: 1, y: 1}
             anchor: {x: 0, y: 0}
@@ -742,10 +706,10 @@ entities:
             letterStyle: {localId: 57}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 5362668650592957926, b: 10318443251902876850}
+            guid: {a: 5283243056827024964, b: 12647875948873541018}
             utf8: !<str> 0
-            initialPosition: {x: 1621.2, y: 0}
-            position: {x: 1621.2, y: 0}
+            initialPosition: {x: 946.1999, y: 0}
+            position: {x: 946.1999, y: 0}
             rotate: {x: 0, y: 0, z: 0}
             scale: {x: 1, y: 1}
             anchor: {x: 0, y: 0}
@@ -754,18 +718,18 @@ entities:
             letterStyle: {localId: 57}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 5418808597559404594, b: 14342201946150369153}
+            guid: {a: 5202086880462055235, b: 8575201557608434316}
             utf8: !<str> s
-            initialPosition: {x: 1931.1, y: -59.69998}
-            position: {x: 1931.1, y: -59.69998}
+            initialPosition: {x: 1256.1, y: -59.69998}
+            position: {x: 1256.1, y: -59.69998}
             rotate: {x: 0, y: 0, z: 0}
             scale: {x: 1, y: 1}
             anchor: {x: 0, y: 0}
             extraMatrix: {__class: Matrix4x4f, values: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
             instanceColor: {r: 1, g: 1, b: 1, a: 1}
             letterStyle: {localId: 57}
-        str: !<str> 稳定 2400   30s
-        richStr: !<str> 稳定 2400   30s
+        str: !<str> 2400   30s
+        richStr: !<str> 2400   30s
         typeSettingParam: {localId: 62}
         canvas: {localId: 63}
         globalBackground: {localId: 64}
@@ -1286,7 +1250,7 @@ entities:
             _glowVAngle: 0
             _horizontalAlignment: 1
             _inAnimationAssetID: !<str> ""
-            _inner_input: !<str> 转动手机对准，按住能量脉冲
+            _inner_input: !<str> 转动手机对准，点击屏幕射击
             _lineBreakType: 1
             _loopAnimationAssetID: !<str> ""
             _maxInputWords: 0
@@ -1310,7 +1274,7 @@ entities:
         letters:
           - __class: Letter
             name: !<str> ""
-            guid: {a: 5186017926700112585, b: 13086573405932895629}
+            guid: {a: 5320022037840892441, b: 10653689346408344226}
             utf8: !<str> 转
             initialPosition: {x: -3362.24, y: -4.759979}
             position: {x: -3362.24, y: -4.759979}
@@ -1322,7 +1286,7 @@ entities:
             letterStyle: {localId: 73}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 4820681672179868284, b: 7560578054452039587}
+            guid: {a: 5742434431719918584, b: 16621847937215606705}
             utf8: !<str> 动
             initialPosition: {x: -2811.76, y: 0}
             position: {x: -2811.76, y: 0}
@@ -1334,7 +1298,7 @@ entities:
             letterStyle: {localId: 73}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 5419237846377851180, b: 701788478096676283}
+            guid: {a: 5471125785580769077, b: 1577557146818810027}
             utf8: !<str> 手
             initialPosition: {x: -2236.36, y: -2.519989}
             position: {x: -2236.36, y: -2.519989}
@@ -1346,7 +1310,7 @@ entities:
             letterStyle: {localId: 73}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 4644220051929593574, b: 8182786800254713759}
+            guid: {a: 5748134959259424424, b: 1310677509362776249}
             utf8: !<str> 机
             initialPosition: {x: -1679.16, y: 0}
             position: {x: -1679.16, y: 0}
@@ -1358,7 +1322,7 @@ entities:
             letterStyle: {localId: 73}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 4817440417584356630, b: 6600018543759995325}
+            guid: {a: 5763849161527783575, b: 13768084878871222144}
             utf8: !<str> 对
             initialPosition: {x: -1124.48, y: 1.679993}
             position: {x: -1124.48, y: 1.679993}
@@ -1370,7 +1334,7 @@ entities:
             letterStyle: {localId: 73}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 5449514975884097523, b: 6393607726553992370}
+            guid: {a: 4729672494161762751, b: 12259766557299759016}
             utf8: !<str> 准
             initialPosition: {x: -560, y: 0}
             position: {x: -560, y: 0}
@@ -1382,7 +1346,7 @@ entities:
             letterStyle: {localId: 73}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 4680058509704232876, b: 13758198325644592301}
+            guid: {a: 4935441217321704223, b: 9732698581411725220}
             utf8: !<str> ，
             initialPosition: {x: -140, y: -203.84}
             position: {x: -140, y: -203.84}
@@ -1394,10 +1358,10 @@ entities:
             letterStyle: {localId: 73}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 4839143158124848203, b: 4160750423729865910}
-            utf8: !<str> 按
-            initialPosition: {x: 559.72, y: -2.519958}
-            position: {x: 559.72, y: -2.519958}
+            guid: {a: 5675394634015522118, b: 18119326034749977272}
+            utf8: !<str> 点
+            initialPosition: {x: 561.4002, y: 0}
+            position: {x: 561.4002, y: 0}
             rotate: {x: 0, y: 0, z: 0}
             scale: {x: 1, y: 1}
             anchor: {x: 0, y: 0}
@@ -1406,10 +1370,10 @@ entities:
             letterStyle: {localId: 73}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 4660107879893085311, b: 13459350047092137403}
-            utf8: !<str> 住
-            initialPosition: {x: 1123.36, y: 0}
-            position: {x: 1123.36, y: 0}
+            guid: {a: 5083777463594186861, b: 5566768831513591699}
+            utf8: !<str> 击
+            initialPosition: {x: 1120.28, y: 13.44}
+            position: {x: 1120.28, y: 13.44}
             rotate: {x: 0, y: 0, z: 0}
             scale: {x: 1, y: 1}
             anchor: {x: 0, y: 0}
@@ -1418,10 +1382,10 @@ entities:
             letterStyle: {localId: 73}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 4864624778775968268, b: 8468737317023588536}
-            utf8: !<str> 能
-            initialPosition: {x: 1686.44, y: 0}
-            position: {x: 1686.44, y: 0}
+            guid: {a: 5124112387196036004, b: 8653941499663659429}
+            utf8: !<str> 屏
+            initialPosition: {x: 1676.36, y: -8.119995}
+            position: {x: 1676.36, y: -8.119995}
             rotate: {x: 0, y: 0, z: 0}
             scale: {x: 1, y: 1}
             anchor: {x: 0, y: 0}
@@ -1430,10 +1394,10 @@ entities:
             letterStyle: {localId: 73}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 5316443881394415163, b: 2632524900321441679}
-            utf8: !<str> 量
-            initialPosition: {x: 2239.72, y: -1.959991}
-            position: {x: 2239.72, y: -1.959991}
+            guid: {a: 5478126759667727671, b: 6317276023113043384}
+            utf8: !<str> 幕
+            initialPosition: {x: 2238.6, y: -0.2799683}
+            position: {x: 2238.6, y: -0.2799683}
             rotate: {x: 0, y: 0, z: 0}
             scale: {x: 1, y: 1}
             anchor: {x: 0, y: 0}
@@ -1442,10 +1406,10 @@ entities:
             letterStyle: {localId: 73}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 5007052162473625112, b: 1450049909084888459}
-            utf8: !<str> 脉
-            initialPosition: {x: 2804.76, y: 1.679993}
-            position: {x: 2804.76, y: 1.679993}
+            guid: {a: 4849571938057874367, b: 1929747250877310116}
+            utf8: !<str> 射
+            initialPosition: {x: 2797.48, y: -0.5599976}
+            position: {x: 2797.48, y: -0.5599976}
             rotate: {x: 0, y: 0, z: 0}
             scale: {x: 1, y: 1}
             anchor: {x: 0, y: 0}
@@ -1454,18 +1418,18 @@ entities:
             letterStyle: {localId: 73}
           - __class: Letter
             name: !<str> ""
-            guid: {a: 5662346553740074512, b: 12852130840030282415}
-            utf8: !<str> 冲
-            initialPosition: {x: 3348.52, y: 0}
-            position: {x: 3348.52, y: 0}
+            guid: {a: 5137229825260496590, b: 1033045950394314638}
+            utf8: !<str> 击
+            initialPosition: {x: 3360.28, y: 13.44}
+            position: {x: 3360.28, y: 13.44}
             rotate: {x: 0, y: 0, z: 0}
             scale: {x: 1, y: 1}
             anchor: {x: 0, y: 0}
             extraMatrix: {__class: Matrix4x4f, values: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
             instanceColor: {r: 1, g: 1, b: 1, a: 1}
             letterStyle: {localId: 73}
-        str: !<str> 转动手机对准，按住能量脉冲
-        richStr: !<str> 转动手机对准，按住能量脉冲
+        str: !<str> 转动手机对准，点击屏幕射击
+        richStr: !<str> 转动手机对准，点击屏幕射击
         typeSettingParam: {localId: 78}
         canvas: {localId: 79}
         globalBackground: {localId: 80}
@@ -2455,7 +2419,7 @@ entities:
           __class: LightProbeBlendMode
           value: OFF
         entirePingPong: false
-        texture: {localId: 1, path: c6a4cd13-4850-3c95-1695-63403f472563--c6a4cd13-4850-3c95-1695-63403f472563.png}
+        texture: {localId: 1, path: 00000000-0000-0000-0000-00000000001e--00000000-0000-0000-0000-00000000001e.png}
         opacity: 1
         color: {r: 1, g: 1, b: 1, a: 1}
         size: {x: 10, y: 10}
@@ -2501,7 +2465,7 @@ entities:
           __class: LightProbeBlendMode
           value: OFF
         entirePingPong: false
-        texture: {localId: 1, path: 8c35bd6c-d175-e6fe-ea68-150f13aebb27--8c35bd6c-d175-e6fe-ea68-150f13aebb27.png}
+        texture: {localId: 1, path: 00000000-0000-0000-0000-00000000001e--00000000-0000-0000-0000-00000000001e.png}
         opacity: 1
         color: {r: 1, g: 1, b: 1, a: 1}
         size: {x: 10, y: 10}
@@ -2547,7 +2511,7 @@ entities:
           __class: LightProbeBlendMode
           value: OFF
         entirePingPong: false
-        texture: {localId: 1, path: c034420c-ec7d-b0eb-5c9c-9c5b5440724b--c034420c-ec7d-b0eb-5c9c-9c5b5440724b.png}
+        texture: {localId: 1, path: 00000000-0000-0000-0000-00000000001e--00000000-0000-0000-0000-00000000001e.png}
         opacity: 1
         color: {r: 1, g: 1, b: 1, a: 1}
         size: {x: 10, y: 10}
@@ -2593,7 +2557,7 @@ entities:
           __class: LightProbeBlendMode
           value: OFF
         entirePingPong: false
-        texture: {localId: 1, path: ffcea71d-8e0d-057c-9af7-ed56e370e69b--ffcea71d-8e0d-057c-9af7-ed56e370e69b.png}
+        texture: {localId: 1, path: 00000000-0000-0000-0000-00000000001e--00000000-0000-0000-0000-00000000001e.png}
         opacity: 1
         color: {r: 1, g: 1, b: 1, a: 1}
         size: {x: 10, y: 10}
@@ -2869,7 +2833,7 @@ entities:
           __class: LightProbeBlendMode
           value: OFF
         entirePingPong: false
-        texture: {localId: 1, path: 00000000-0000-0000-0000-0000000000c0--00000000-0000-0000-0000-0000000000c0.png}
+        texture: {localId: 1, path: 83ebefad-b6e1-4e4a-dc23-bb2e3fed3bb7--83ebefad-b6e1-4e4a-dc23-bb2e3fed3bb7.png}
         opacity: 1
         color: {r: 0.8549, g: 0.8314, b: 0.3686, a: 1}
         size: {x: 10, y: 10}
@@ -2879,6 +2843,60 @@ entities:
         stretchMode:
           __class: ImageStretchMode
           value: Stretch
+        atlasIndex: 0
+        horizontalAlignment:
+          __class: LinearAlignment
+          value: Center
+        verticalAlignment:
+          __class: LinearAlignment
+          value: Center
+        imageMaterialProperties:
+          __class: Map
+          _ellipseX: 1
+          _ellipseY: 1
+          _filledRange: 1
+          _filledType: 0
+          _startPoint: 0
+        batchingEnabled: false
+        reservedField: {x: -1, y: -1, z: -1, w: -1}
+    layer: 0
+  - __class: Entity
+    name: !<str> 2D 相机
+    guid: {a: 4985834735658941267, b: 17683973135643914405}
+    scene: {localId: 1}
+    selfvisible: true
+    components:
+      - {localId: 98}
+    layer: 0
+  - __class: Entity
+    name: !<str> 屏幕图片
+    guid: {a: 4833573350867620888, b: 18372341176087736493}
+    scene: {localId: 1}
+    selfvisible: true
+    components:
+      - {localId: 99}
+      - __class: ImageRenderer
+        name: !<str> ""
+        guid: {a: 4704622000689223051, b: 6063427297826000801}
+        enabled: true
+        sortingOrder: 31
+        autoSortingOrder: true
+        useFrustumCulling: true
+        receiveShadow: true
+        lightProbeBlendMode:
+          __class: LightProbeBlendMode
+          value: OFF
+        entirePingPong: false
+        texture: {localId: 1, path: 5b682203-da18-19eb-6682-faa4aa97bc48}
+        opacity: 1
+        color: {r: 1, g: 1, b: 1, a: 1}
+        size: {x: 10, y: 10}
+        pivot: {x: 0.5, y: 0.5}
+        flipX: false
+        flipY: false
+        stretchMode:
+          __class: ImageStretchMode
+          value: FitHeight
         atlasIndex: 0
         horizontalAlignment:
           __class: LinearAlignment
@@ -3056,6 +3074,7 @@ localScale: {x: 1, y: 1, z: 1}
 localOrientation: {w: 1, x: 0, y: 0, z: 0}
 children:
   - {localId: 14}
+  - {localId: 98}
 mobility:
   __class: Mobility
   value: Dynamic
@@ -3359,15 +3378,15 @@ enablePivotMatrix: false
 name: !<str> ""
 guid: {a: 5266253988735593265, b: 5732337985413801634}
 enabled: true
-localPosition: {x: 0, y: 13.875, z: 0}
+localPosition: {x: -0.3278685, y: 13.71414, z: 0}
 localScale: {x: 1, y: 1, z: 1}
 localOrientation: {w: 1, x: 0, y: 0, z: 0}
 parent: {localId: 26}
 mobility:
   __class: Mobility
   value: Dynamic
-anchoredPosition: {x: 0, y: 444}
-sizeDelta: {x: 640, y: 96}
+anchoredPosition: {x: -10.49179, y: 438.8525}
+sizeDelta: {x: 488.0474, y: 111.8384}
 pivot: {x: 0.5, y: 0.5}
 anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
 pixelsPerUnit: 32
@@ -3376,15 +3395,15 @@ enablePivotMatrix: false
 name: !<str> ""
 guid: {a: 5367058898714682943, b: 1723671046835810978}
 enabled: true
-localPosition: {x: -0.2083335, y: 14, z: 0}
+localPosition: {x: -0.3491192, y: 13.74499, z: 0}
 localScale: {x: 1, y: 1, z: 1}
 localOrientation: {w: 1, x: 0, y: 0, z: 0}
 parent: {localId: 26}
 mobility:
   __class: Mobility
   value: Dynamic
-anchoredPosition: {x: -6.666672, y: 448}
-sizeDelta: {x: 330, y: 53}
+anchoredPosition: {x: -11.17181, y: 439.8397}
+sizeDelta: {x: 461.0406, y: 86}
 pivot: {x: 0.5, y: 0.5}
 anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
 pixelsPerUnit: 32
@@ -5574,15 +5593,45 @@ gradientStyle:
 name: !<str> ""
 guid: {a: 5350593762817376167, b: 17553255752512232590}
 enabled: true
-localPosition: {x: -0.2083335, y: 14, z: 0}
+localPosition: {x: -0.3491192, y: 13.74499, z: 0}
 localScale: {x: 1, y: 1, z: 1}
 localOrientation: {w: 1, x: 0, y: 0, z: 0}
 parent: {localId: 26}
 mobility:
   __class: Mobility
   value: Dynamic
-anchoredPosition: {x: -6.666672, y: 448}
-sizeDelta: {x: 330, y: 53}
+anchoredPosition: {x: -11.17181, y: 439.8397}
+sizeDelta: {x: 461.0406, y: 86}
+pivot: {x: 0.5, y: 0.5}
+anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
+pixelsPerUnit: 32
+enablePivotMatrix: false
+--- !Transform &98
+name: !<str> ""
+guid: {a: 5429314961856111294, b: 3845728024379669413}
+enabled: true
+localPosition: {x: 0, y: 0, z: 40}
+localScale: {x: 1, y: 1, z: 1}
+localOrientation: {w: 1, x: 0, y: 0, z: 0}
+parent: {localId: 13}
+children:
+  - {localId: 99}
+mobility:
+  __class: Mobility
+  value: Dynamic
+--- !ScreenTransform &99
+name: !<str> ""
+guid: {a: 5000506620429446586, b: 11660332789441203110}
+enabled: true
+localPosition: {x: 0, y: 0, z: -40}
+localScale: {x: 1, y: 1, z: 1}
+localOrientation: {w: 1, x: 0, y: 0, z: 0}
+parent: {localId: 98}
+mobility:
+  __class: Mobility
+  value: Dynamic
+anchoredPosition: {x: 0, y: 0}
+sizeDelta: {x: 720.0049, y: 1280}
 pivot: {x: 0.5, y: 0.5}
 anchors: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
 pixelsPerUnit: 32

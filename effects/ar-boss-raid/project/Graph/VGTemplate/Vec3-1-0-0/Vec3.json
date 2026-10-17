@@ -1,0 +1,87 @@
+{
+	"displayName": "Const Vec3",
+	"templateGuid": "ed8bb385-2734-1ffc-8927-f6b9e52800bd",
+	"NodeType": "VFXGRAPHOPERATOR",
+	"inputs": [
+		{
+			"displayName": "X",
+			"name": "X",
+			"type": "Float",
+			"default": 0.5,
+			"allowedTypes": [
+				"Float"
+			],
+			"isShowColor": false,
+			"targetType": "output",
+			"description": "The first value of the vector3",
+			"nameKey": "vfxgraph_const_vec3_input_x",
+			"descriptionKey": "vfxgraph_const_vec3_input_x_description",
+			"displayType": "Float",
+			"displayTypeKey": "graph_type_float"
+		},
+		{
+			"displayName": "Y",
+			"name": "Y",
+			"type": "Float",
+			"default": 0.5,
+			"allowedTypes": [
+				"Float"
+			],
+			"isShowColor": false,
+			"targetType": "output",
+			"description": "The second value of the vector3",
+			"nameKey": "vfxgraph_const_vec3_input_y",
+			"descriptionKey": "vfxgraph_const_vec3_input_y_description",
+			"displayType": "Float",
+			"displayTypeKey": "graph_type_float"
+		},
+		{
+			"displayName": "Z",
+			"name": "Z",
+			"type": "Float",
+			"default": 0.5,
+			"allowedTypes": [
+				"Float"
+			],
+			"isShowColor": false,
+			"targetType": "output",
+			"description": "The third value of the vector3",
+			"nameKey": "vfxgraph_const_vec3_input_z",
+			"descriptionKey": "vfxgraph_const_vec3_input_z_description",
+			"displayType": "Float",
+			"displayTypeKey": "graph_type_float"
+		}
+	],
+	"outputs": [
+		{
+			"displayName": "Result",
+			"description": "The value of the operator",
+			"type": "Vector3f",
+			"allowedTypes": [],
+			"nameKey": "vfxgraph_const_vec3_output_result",
+			"descriptionKey": "vfxgraph_const_vec3_output_result_description",
+			"displayType": "Vec3",
+			"displayTypeKey": "graph_type_vec3"
+		}
+	],
+	"category": "Constant",
+	"description": "Stores an instance of a vector3",
+	"uniforms": [],
+	"parameters": [],
+	"invokeString": "vec3(%X%,%Y%,%Z%);",
+	"outputPortTypeUpdate": "Default",
+	"externalVariables": [],
+	"version": "1.0.0",
+	"TSPATH": "",
+	"productTypes": [
+		"EHO",
+		"EHD",
+		"EHI"
+	],
+	"prevAliases": [
+		"Vector3"
+	],
+	"nameKey": "vfxgraph_const_vec3_name",
+	"categoryKey": "vfxgraph_category_constant",
+	"descriptionKey": "vfxgraph_const_vec3_description"
+}

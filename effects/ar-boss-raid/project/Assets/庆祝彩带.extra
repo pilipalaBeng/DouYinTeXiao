@@ -1,0 +1,19 @@
+[
+  {
+    "guid": {
+      "a": "8c9dea73-79e9-dcf6-bbe4-2bd2cac59858",
+      "b": ""
+    },
+    "extraType": "ResItemFolder",
+    "name": "庆祝彩带",
+    "version": "0.1.0",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": true
+    },
+    "objGuid": "",
+    "references": []
+  }
+]
