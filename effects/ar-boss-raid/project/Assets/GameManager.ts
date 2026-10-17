@@ -96,6 +96,13 @@ const ORBIT_PITCH_MAX = 0.5;
  *  就会把 Boss **直接 disable** ⇒ 就是作者反馈的「越飞越近、然后突然看不见」。
  *  限在 ±75° 后它始终在视野附近左右飘，撞界反弹（与 pitch 同样处理）。 */
 const ORBIT_YAW_MAX = 1.309;
+
+/** 离屏指示器：Boss 跑到画面外时，在屏幕边缘显示箭头指向它的方位。
+ *  INDICATOR_MARGIN：箭头中心距屏幕边缘的留白（像素）；
+ *  INDICATOR_EDGE_PAD：Boss 压到距边缘这么近就算「出界」——
+ *  留一点余量，避免它在边缘上下游走时箭头与模型同时闪现、互相打闪。 */
+const INDICATOR_MARGIN = 96;
+const INDICATOR_EDGE_PAD = 60;
 /** 环绕**线速度**（米/秒）。角速度 = BOSS_SPEED / SPAWN_DIST，所以半径越大转得越慢。
  *  0.025 在真机上几乎看不出在动（作者反馈「怪是不动的」）→ 提到 0.1。
  *  18m 半径下 0.1 m/s ≈ 绕一整圈要 19 分钟，加上方向本身随机游走，观感是「缓慢飘移」。 */
@@ -239,6 +246,10 @@ class MainScene extends Scene {
     private coreBaseH: number = 0;
     /** 上次应用过的护盾缩放系数（脏检查：避免每帧新建 Vector3f 写 transform）。 */
     private shieldScale: number = -1;
+    /** 离屏指示器（Boss 跑出画面时指向它的箭头）。取不到时为 null，静默降级。 */
+    private indicator: Sprite | null = null;
+    /** 指示器当前是否已经显示（脏检查，避免每帧重复写显隐）。 */
+    private indicatorShown: boolean = false;
     private crosshair!: Sprite;
     private highlight!: Sprite;
     private gun!: Sprite;
@@ -308,6 +319,11 @@ class MainScene extends Scene {
         // 护盾 / 核心的基准尺寸：之后按 Boss 的实际距离缩放，以这个尺寸为 1.0 基准。
         this.shieldBaseW = this.shield.width; this.shieldBaseH = this.shield.height;
         this.coreBaseW = this.core.width; this.coreBaseH = this.core.height;
+        // 离屏指示器：Boss 出画面时在屏幕边缘指方向（场景对象名「方向指示器」）。
+        // 不走 @serializeProperty 属性槽：本项目所有 UI 引用统一用「按名字查找」，
+        // 免得改名就断链、也省掉手动拖拽这一步。
+        this.indicator = this.object<Sprite>('方向指示器');
+        if (this.indicator) this.indicator.setVisible(false);
         this.hpDelay = this.object<Sprite>('Boss血条延迟');
         // 记下延迟条的满宽与左边界：之后按比例缩放时保持左边界不动（否则会从中间缩，方向感全错）。
         this.hpDelayFull = this.hpDelay.width;
@@ -521,6 +537,7 @@ class MainScene extends Scene {
             }
             this.projectBoss();
             this.syncFollowers();
+            this.updateOffscreenIndicator();
         } catch (e) {
             if (this.orbitErrLeft > 0) {
                 this.orbitErrLeft -= 1;
@@ -669,6 +686,66 @@ class MainScene extends Scene {
     }
 
     /**
+     * 离屏指示器：Boss 不在画面内时，在屏幕边缘显示箭头指向它的方位
+     * （配套 yaw 限幅用 —— Boss 走到侧边出画面时，玩家能一眼看到该往哪边转）。
+     * 方向用**相机基现算**（点积投影），不依赖 worldToScreenPoint：那条路在 PC 上会返回离谱值，
+     * 而且 Boss 在身后时投影会镜像、直接指反。箭头贴图默认朝**正上方**，所以角度 = atan2(dx, -dy)。
+     */
+    private updateOffscreenIndicator(): void {
+        const ind = this.indicator;
+        if (!ind) return;
+        const need = this.spawnReady && this.phase !== 'result' && !this.isBossInViewport();
+        const d = need ? this.bossViewDir() : null;
+        if (!need || !d) {
+            if (this.indicatorShown) { this.indicatorShown = false; ind.setVisible(false); }
+            return;
+        }
+        const cx = SCREEN_W / 2, cy = SCREEN_H / 2;
+        const len = Math.sqrt(d.x * d.x + d.y * d.y);
+        // 方向退化（Boss 正正好在身后中央）时给个默认值，免得除零后乱跳。
+        const ux = len > 1e-6 ? d.x / len : 0;
+        const uy = len > 1e-6 ? d.y / len : -1;
+        // 从屏幕中心沿单位方向射出，与「内缩后的屏幕矩形」求交点 ⇒ 箭头正好贴边。
+        const halfW = SCREEN_W / 2 - INDICATOR_MARGIN;
+        const halfH = SCREEN_H / 2 - INDICATOR_MARGIN;
+        const tx = Math.abs(ux) > 1e-6 ? halfW / Math.abs(ux) : Number.POSITIVE_INFINITY;
+        const ty = Math.abs(uy) > 1e-6 ? halfH / Math.abs(uy) : Number.POSITIVE_INFINITY;
+        const t = Math.min(tx, ty);
+        // rotation 正数为逆时针；屏幕 y 向下，所以垂直分量要取 -uy。
+        const deg = Math.atan2(ux, -uy) * 180 / Math.PI;
+        ind.setVisible(true).setPosition(cx + ux * t, cy + uy * t).setAngle(deg);
+        this.indicatorShown = true;
+    }
+
+    /** Boss 相对屏幕中心的方向（屏幕坐标：x 向右、y 向下）。相机不可用/朝向无效时返回 null。 */
+    private bossViewDir(): { x: number; y: number } | null {
+        if (!this.arCamTransform || !this.arCamera) return null;
+        const look = this.arCamera.getLookAt();
+        const len = Math.sqrt(look.x * look.x + look.y * look.y + look.z * look.z);
+        if (!isFinite(len) || len < 1e-6) return null;
+        const fwd = new APJS.Vector3f(look.x / len, look.y / len, look.z / len);
+        const refUp = Math.abs(fwd.y) > 0.99 ? new APJS.Vector3f(0, 0, 1) : new APJS.Vector3f(0, 1, 0);
+        // ⚠️ Vector3f 的 cross / normalize 都是**原地修改**，必须在 clone 出来的临时向量上算。
+        const right = fwd.clone().cross(refUp).normalize();
+        const up = right.clone().cross(fwd).normalize();
+        const cp = this.arCamTransform.getWorldPosition();
+        const vx = this.bossPos.x - cp.x, vy = this.bossPos.y - cp.y, vz = this.bossPos.z - cp.z;
+        const sx = vx * right.x + vy * right.y + vz * right.z;   // 水平分量
+        const sy = vx * up.x + vy * up.y + vz * up.z;            // 垂直分量
+        const sz = vx * fwd.x + vy * fwd.y + vz * fwd.z;         // 深度（<0 ⇒ 在身后）
+        // 在身后时投影会镜像，取反才指向它真实所在的那一侧。
+        const flip = sz < 0 ? -1 : 1;
+        return { x: sx * flip, y: -sy * flip };                  // 屏幕 y 向下 ⇒ 垂直分量取负
+    }
+
+    /** Boss 是否确实落在画面内（留边距：压边即算出界，避免箭头与模型同时闪现）。 */
+    private isBossInViewport(): boolean {
+        if (!this.bossOnScreen) return false;
+        return this.bossScreenX > INDICATOR_EDGE_PAD && this.bossScreenX < SCREEN_W - INDICATOR_EDGE_PAD
+            && this.bossScreenY > INDICATOR_EDGE_PAD && this.bossScreenY < SCREEN_H - INDICATOR_EDGE_PAD;
+    }
+
+    /**
      * 护盾 / 核心的屏幕缩放系数：以 SPAWN_DIST 为基准（该距离下 = 1.0），按**实际距离**线性缩放。
      * 为什么需要：Boss 是 3D 物体，玩家走动会改变与它的实际距离 —— 屏幕上 Boss 会近大远小，
      * 而 2D 护盾的尺寸是固定的，不同步缩放就会出现作者反馈的「离得远护盾很大、离得近护盾又很小」。
@@ -810,6 +887,9 @@ class MainScene extends Scene {
         this.crosshair.setVisible(false); this.highlight.setVisible(false); this.gun.setVisible(true); this.hud.setVisible(false); this.hudPlate.setVisible(false); this.hpFill.setVisible(false); this.hpDelay.setVisible(false); this.hint.setVisible(false); this.shield.setVisible(false); this.core.setVisible(false);
         // 结算面板自带连击数，HUD 上的 HIT 实时显示收起。
         if (this.hitText) this.hitText.setVisible(false);
+        // 结算时不需要方向指示器。
+        this.indicatorShown = false;
+        if (this.indicator) this.indicator.setVisible(false);
         // 胜利才换「投降」贴图；失败时保持当前振翅帧（不再用「暴怒」红球图）。
         if (win) this.setBossTexture(this.friendlyTexture);
         // 结算卡 / 标题 / 战绩。旧的 UI 静态彩带（场景对象「胜利彩带」）已弃用 ——
@@ -1001,6 +1081,8 @@ class MainScene extends Scene {
         this.hitPhase = 0; this.hitPhaseLeft = 0;
         this.hitAlphaShown = -1; this.setHitAlpha(1);
         if (this.hitText) this.hitText.setVisible(false).setScale(1, 1).setPosition(this.hitBaseX, this.hitBaseY);
+        this.indicatorShown = false;
+        if (this.indicator) this.indicator.setVisible(false);
         // 真机空间诊断探针（默认关闭，见 DEBUG_SPATIAL_PROBE）。
         if (DEBUG_SPATIAL_PROBE) {
             this.time.delayedCall(1500, () => this.probeSpatial('t1.5'), [], this);

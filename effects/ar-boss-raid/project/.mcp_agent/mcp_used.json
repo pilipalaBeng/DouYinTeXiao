@@ -11,17 +11,17 @@
     "list_resources": 9,
     "save_plan": 3,
     "get_current_preview_video": 1,
-    "generate_image": 1,
+    "generate_image": 2,
     "inspect": 32,
     "project_status": 8,
-    "edit_by_dsl": 57,
-    "get_scene": 40,
+    "edit_by_dsl": 60,
+    "get_scene": 41,
     "generate_assets_batch": 1,
     "capture_preview": 16,
-    "run_otsc_check": 92,
-    "interact_by_dsl": 131,
+    "run_otsc_check": 95,
+    "interact_by_dsl": 133,
     "get_script_logs": 124,
     "get_scene_view": 2,
-    "save_project": 24
+    "save_project": 25
   }
 }

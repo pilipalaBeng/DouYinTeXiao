@@ -1,0 +1,32 @@
+[
+  {
+    "guid": {
+      "a": "fccc84e7-b7ea-04df-ff3d-359cbd53841b",
+      "b": ""
+    },
+    "extraType": "ResItemPNGImage",
+    "name": "像素指示箭头",
+    "version": "0.2.0",
+    "rttiType": "Texture",
+    "authorizationInfo": "",
+    "extendedInfo": {
+      "isVisibleInInspector": true,
+      "hideInPanel": false,
+      "expandInPanel": false
+    },
+    "compressionType": 0,
+    "compressQuality": 0,
+    "compressMaxResolution": 512,
+    "enableMipmap": false,
+    "filterMin": 0,
+    "filterMag": 0,
+    "filterMipmap": 0,
+    "wrapModeS": 0,
+    "wrapModeT": 0,
+    "wrapModeR": 0,
+    "premultiplyAlpha": false,
+    "objGuid": "",
+    "resourceFilePath": "D:\\Project\\DouYinTeXiao\\effects\\ar-boss-raid\\project\\Assets\\像素指示箭头.png",
+    "references": []
+  }
+]
