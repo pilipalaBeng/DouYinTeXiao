@@ -85,3 +85,15 @@
   否则会从中间往两边缩、方向感全错。
 - **`$ref` 塞短 id 会报 "has no X component"**：`{"$ref":"s28","component_type":"Image"}` 失败，
   要**直接传组件 GUID**（`"guid":"c50"`）—— 实测于 2026-10-17 血条改造。
+- **场景对象取不到时 `object()` 返回 `null`（不抛错）**：`this.object<T>(name)` = `add.existing(name) as T`，
+  找不到只是 `console.warn` 并返回 null，而 `as T` 会**骗过 TS 类型检查** ⇒ 调用方必须判空
+  （尤其是"作者随时可能改名/删除"的对象）。
+- **「动画纹理」序列帧（`.OseqJSA` / `ResItemAnimatedTexture`）**：把该资源设为 `Image.texture` 即**自动循环播放**
+  （帧数/fps/loopCount 写在资源里；如庆祝彩带 = 28 帧 / 432×576 / fps 28 / 无限循环）。
+  运行时想控制它：`const ctrl = tex.getControl() as any`（实为 `AnimatedTextureProvider`）
+  → `stop()`（倒回首帧）/ `play()` / `pause()` / `resume()` / `playFromTo(a,b)` / `loopCount` / `fps` / `duration` / `playMode`。
+  ⚠️ **隐藏期间动画照常空转**，所以"每次触发要从头播"必须显式 `stop() + play()`，光切显隐不够。
+- **编辑器里的改动未保存时，磁盘 `main.scene` 是过期的**（作者新加的对象 grep 不到）——
+  查场景结构一律以 MCP `get_scene` 为准，别拿磁盘文件当真相（2026-10-17 庆祝彩带踩过）。
+- **新增 UI 对象后必须把它纳入代码的显隐控制**：结算/阶段切换是"成组隐藏"的，
+  漏一个就会在结算画面留残影（2026-10-17：「战斗HUD底板」漏收起 ⇒ 结算画面左上一条深紫长条 #442434）。
